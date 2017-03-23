@@ -29,7 +29,7 @@
 					?>
 				</select>
 		<br>
-		<input type="file" name="pic" accept="image/*">
+		<center><input type="file" name="pic" accept="image/*" ></center><br>
 		<center><button type="submit" class="btn btn-primary" >เพิ่มรถ</button></center>
 	</form>
 	
