@@ -23,7 +23,8 @@ class AddCar extends CI_Controller {
 			'plateLicense'	=> $this->input->post('plateLicense'), 
 			'seat' 			=> $this->input->post('seat'),
 			'carTypeId' 	=> $this->input->post('carType'),	
-			'driverId' 		=> $this->input->post('driver')		 	
+			'driverId' 		=> $this->input->post('driver'),
+			'Img'	=>$this->input->post('pic')		 	
 			);		
 		$this -> AddCarModel -> add($data);
 		$this->load->view('result');

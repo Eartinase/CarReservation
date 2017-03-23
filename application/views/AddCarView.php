@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>
 
-	<script src='fullcalendar/lib/jquery.min.js'></script>
-	<link rel="stylesheet" type="text/css" href="fullcalendar/bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="fullcalendar/bootstrap/css/bootstrap-theme.css">
-	<script src='fullcalendar/bootstrap/js/bootstrap.js'></script>
+	<script src='../fullcalendar/lib/jquery.min.js'></script>
+	<link rel="stylesheet" type="text/css" href="../fullcalendar/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../fullcalendar/bootstrap/css/bootstrap-theme.css">
+	<script src='../fullcalendar/bootstrap/js/bootstrap.js'></script>
 
 	
 </head>
@@ -29,6 +29,7 @@
 					?>
 				</select>
 		<br>
+		<input type="file" name="pic" accept="image/*">
 		<center><button type="submit" class="btn btn-primary" >เพิ่มรถ</button></center>
 	</form>
 	
