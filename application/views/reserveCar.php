@@ -22,8 +22,8 @@
 
 			events: [
 
-			<?php 
-			//$this->load->model('CarModel');
+			<?php
+			
 			$info = "";
 
 				foreach ($result as $q) :

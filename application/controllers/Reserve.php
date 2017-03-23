@@ -2,10 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reserve extends CI_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('CarModel');
+		
+	}
 
 	public function index()
 	{		
-		$this->load->model('CarModel');
+		
 		$data["result"] = $this-> CarModel ->showReserve();
 		$data["carList"] = $this-> CarModel ->showCar();
 
@@ -24,7 +30,7 @@ class Reserve extends CI_Controller {
 			'EndDate' =>$timeE,			
 			'place' => $this->input->post('place')
 			);
-		$this->load->model('CarModel');		
+			
 		$this -> CarModel -> add($data);
 		$this->load->view('result');
 
