@@ -13,7 +13,7 @@
 	
 </head>
 <body style="margin:2%">
-	<form action="addCar/addCar" method="post">
+	<form action="Add" method="post">
 		ทะเบียน: <input type="text" name="plateLicense" class="form-control" required> <br>
 		ประเภทรถ: <select name ="carType" class="form-control" required>
 					<?php 

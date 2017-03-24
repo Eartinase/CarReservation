@@ -9,14 +9,12 @@ class AddCar extends CI_Controller {
 	}
 
 	public function index()	
-	{
-		
+	{		
 		$cartype = $this-> AddCarModel ->CarTypeDriver();
-
 		$this->load->view('AddCarView', $cartype);
 	}
 
-	public function addCar()
+	public function Add()
 	{
 		
 		$data = array(		

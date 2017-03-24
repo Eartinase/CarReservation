@@ -10,8 +10,7 @@ class Reserve extends CI_Controller {
 	}
 
 	public function index()
-	{		
-		
+	{				
 		$data["result"] = $this-> CarModel ->showReserve();
 		$data["carList"] = $this-> CarModel ->showCar();
 
