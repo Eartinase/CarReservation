@@ -15,7 +15,17 @@ class Login extends CI_Controller {
 
 	public function Authen()
 	{
-		# code...
+		$this->load->model('LoginModel');
+		$data["username"] = $_POST['usr'];
+		$data["password"] = $_POST['psw'];
+
+		$result=$this -> LoginModel -> login($data);
+		if($result == true){
+			$this->load->view('result.php');
+		}else{
+			$this->load->view('login.php');
+		}
+		
 	}
 
 }

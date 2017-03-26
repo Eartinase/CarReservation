@@ -12,7 +12,7 @@
 </head>
 <body style="margin:2%;">
 	<center><h1>เข้าสู่ระบบ</h1></center>
-	<form action="Authen">
+	<form action="Login/Authen" method="post">
 		<input type="text" placeholder="username" name="usr" class="form-control"> <br>
 		<input type="password" placegolder="password" name="psw" class="form-control">
 		<br>
