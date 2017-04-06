@@ -27,7 +27,7 @@
 			$info = "";
 
 				foreach ($result as $q) :
-					$info .= "{title: '".$q["PlateLicense"].
+					$info .= "{title: '".$q["plateLicense"].
 					"',\nstart: '".$q["StartDate"].
 					"',\nend: '".$q["EndDate"].	
 					"',\ncolor: '".$q["color"].

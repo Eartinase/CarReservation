@@ -22,7 +22,7 @@ class Reserve extends CI_Controller {
 		$timeE = $_POST['date'].' '.$_POST['timeE'];
 		$code = '567';
 		$data = array(		
-			'plateLicense' => $this->input->post('plateLicense'),
+			'carId' => $this->input->post('plateLicense'),
 			'driverId' => $this->input->post('driver'),
 			'employeeCode' => $code,	
 			'StartDate' => $timeS,
