@@ -27,7 +27,7 @@
 			$info = "";
 
 				foreach ($result as $q) :
-					$info .= "{title: '".$q["PlateLicense"].
+					$info .= "{title: '".$q["plateLicense"].
 					"',\nstart: '".$q["StartDate"].
 					"',\nend: '".$q["EndDate"].	
 					"',\ncolor: '".$q["color"].
@@ -76,7 +76,11 @@
 			?>
 
 			<br><br>
-			<center><button class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button></center>
+			<center>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#search">ค้นหารถ</button>
+			</center>
+
 		</div>
 
 	</div>
@@ -96,7 +100,7 @@
 					<div class="modal-body">
 						<div id="information">
 
-							เลือกรถ: 
+							<b>เลือกรถ: </b>
 							<select name="cars"  id="cartype" onchange="changeDetect()" class="form-control">
 								<option>เลือกประเภทรถ</option>
 								<option value="1">เก๋ง</option>
@@ -107,22 +111,22 @@
 
 							<br>
 
-							วันที่: <input type="date" name="date" id="day"  value="เลือกวันที่ปฏิทิน" class="form-control" >
+							<b>วันที่: </b><input type="date" name="date" id="day"  value="เลือกวันที่ปฏิทิน" class="form-control" >
 
 							<input type="hidden" value="2" name="driver" id="driverr">
 							<br><br>
 
 							<div class="form-inline">
-								เวลา: ตั้งแต่ <input type="time" class="form-control" name="timeS" placeholder="ชช:นน:วว"> 
+								<b>เวลา: </b> ตั้งแต่ <input type="time" class="form-control" name="timeS" placeholder="ชช:นน:วว"> 
 								ถึง <input type="time" class="form-control" name="timeE" placeholder="ชช:นน:วว">
 							</div>
 							<br>
-							เลือกทะเบียนรถ:
+							<b>เลือกทะเบียนรถ:</b>
 							<select name="plateLicense" id="plate" class="form-control" onchange="driver()">
 								<option value='นม 66'>เลือกประเภทรถก่อน</option>
 							</select>
 							<br>
-							สถานที่:
+							<b>สถานที่:</b>
 							<textarea class="form-control" name="place"></textarea>
 							<br><br>
 						</div>
@@ -135,6 +139,48 @@
 			</div>
 		</div>
 	</form>
+
+
+<form class="form-inline">
+	<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">ค้นหารถ</h4>
+					</div>
+					<div class="modal-body">
+						<div id="information">
+							<b>วันที่ต้องการเดินทาง</b><br>
+							ตั้งแต่: <input type="date" class="form-control"> ถึงวันที่: <input type="date" class="form-control">
+<br><br>
+							<b>เลือกช่วงเวลาเดินทาง</b><br>
+							ตั้งแต่: <input type="time" class="form-control"> ถึง <input type="time" class="form-control">
+							<br><br>
+
+							<b>ประเภทรถที่ต้องการ</b><br>
+							<input type="checkbox"> เก๋ง <br>
+							<input type="checkbox"> กระบะ <br>
+							<input type="checkbox"> ตุ๊กตุ๊ก <br>
+							<input type="checkbox"> รถบัส <br>
+							<br><br>
+
+							<b>เส้นทาง</b><br>
+							<input type="radio"> กรุงเทพและปริมณฑล <br>
+							<input type="radio"> ต่างจังหวัด<br>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary" >ค้นหารถ</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		</form>
+
+
+
 </body>
 
 
