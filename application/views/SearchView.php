@@ -10,14 +10,8 @@
 	
 </head>
 <body style="margin:2%">
-	<?php 
-	//foreach ($r as $value) 
-	//{
-	
-	//	echo $value->getCarId();
-	//}
-	?>
-	<form action="searchCar" method="POST" accept-charset="utf-8">
+
+	<!--<form action="/searchCar" method="POST" accept-charset="utf-8">
 		วันที่ไป: <input type="date" name="startDate" id="startDate"  value="เลือกวันที่ปฏิทิน" class="form-control" >
 		เวลาที่ไป: ตั้งแต่ <input type="time" class="form-control" name="startTime" placeholder="ชช:นน:วว">
 		วันที่กลับ: <input type="date" name="endDate" id="endDate"  value="เลือกวันที่ปฏิทิน" class="form-control" > 
@@ -28,22 +22,43 @@
 		<input name='carType[]' type='checkbox' value=4> ซาเล้ง
 		<input name='carType[]' type='checkbox' value=5> มอเตอร์ไซค์
 		<button type="submit" class="btn btn-primary" >ค้นหา</button>
-	</form>
+	</form>-->
 
 	<?php 
-		if(isset($searchCar) )	{
-			if($searchCar == ""){
+		if(isset($searchCar))	
+		{
+			if($searchCar == "" & $Reserve == ""){
 				echo "	ไม่พบรถทีว่าง";
 			}else{
-
-				foreach ($searchCar as $value) {
-				echo $value->getCarId() ; 
-				echo $value->getPlateLicese() ;
-				echo $value -> getCarType() ."<br>";
-			}
-			}
-	
+		
+				foreach ($searchCar as $value) 
+				{
+					
+						echo $value->getCarId() ; 
+						echo $value->getPlateLicese() ;
+						echo $value -> getCarType() ."<br>";
+						
 			
+				}
+			}
+				echo "-------------------------";
+
+				//foreach ($reserveCarOb as $value) {
+					
+						//echo $value ->getCarId() ; 
+						//echo $value->getPlateLicese() ;
+						//echo $value -> getCarType() ;
+				//		foreach ($Reserve[$value->getCarId()] as $value) {
+				//			echo $value -> getStartDate();
+				//		}
+
+				//}
+				foreach ($Reserve as $key => $value) {
+						echo $key;
+						print_r($value);
+				}
+			
+
 		}
 	 ?>
 	

@@ -7,6 +7,7 @@ class CarsModel extends CI_Model {
 	private $carType;
 	private $plateLicense;
 	private $seat;
+	private $detail;
 	
 	public function __construct()
 	{
@@ -34,6 +35,10 @@ class CarsModel extends CI_Model {
 		return $this->seat;
 	}
 
+	public function getDetail(){
+		return $this->detail;
+	}
+
 	public function setCarId($carId)
 	{
 		$this->carId = $carId;
@@ -52,6 +57,10 @@ class CarsModel extends CI_Model {
 	public function setSeat($seat)
 	{
 		$this->seat = $seat;
+	}
+
+	public function setDetail(){
+		$this->detail = $detail;
 	}
 
 	public function getAllCar()
@@ -74,11 +83,31 @@ class CarsModel extends CI_Model {
 	
 	}
 
+	public function getCarById($carId){
+		$car = null;
+		$r = "";
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId =  '. $carId);
+			foreach ($query->result() as $row)
+		{
+			$car = new CarsModel;
+			$this->matchCarObject($car,$row);
+
+			if($r === "") 
+			{
+				$r = array();
+			}
+			array_push($r,$car);
+		}
+			
+		return $r;
+
+	}
+
 	public function getCarsByType($Type)
 	{
 		$car = null;
 		$r = "";
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType FROM cars c LEFT JOIN carType ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = $Type');
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.carType FROM cars c LEFT JOIN carType ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type);
 		foreach ($query->result() as $row)
 		{
 			$car = new CarsModel;
@@ -100,7 +129,7 @@ class CarsModel extends CI_Model {
 	{
 		$car = null;
 		$r = "";
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType , ct.carTypeId FROM cars c JOIN carType ct ON c.carTypeId= ct.carTypeId WHERE c.PlateLicense NOT IN( SELECT cr.PlateLicense FROM currentreservation cr WHERE cr.EndDate BETWEEN '. $startDateTime .' AND '. $endDateTime .'AND cr.StartDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')');
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType , ct.carTypeId FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId NOT IN( SELECT cr.carId FROM currentreservation cr WHERE (cr.EndDate BETWEEN '. $startDateTime .' AND '. $endDateTime .'AND cr.StartDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')OR (StartDate <'.$startDateTime.' AND EndDate >'.$endDateTime.') )');
 		foreach ($query->result() as $row)
 		{
 			if($carTypeId == null || in_array($row->carTypeId,$carTypeId) )
@@ -119,6 +148,9 @@ class CarsModel extends CI_Model {
 		return $r;
 
 	}
+
+
+	
 
 	private function matchCarObject($car,$row)
 	{

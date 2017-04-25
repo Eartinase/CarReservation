@@ -181,6 +181,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 					//
 					// https://secure.php.net/ChangeLog-5.php#5.6.16
 					// https://bugs.php.net/bug.php?id=68344
+
 					elseif (defined('MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT'))
 					{
 						$client_flags |= MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
