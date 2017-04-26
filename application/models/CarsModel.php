@@ -85,21 +85,15 @@ class CarsModel extends CI_Model {
 
 	public function getCarById($carId){
 		$car = null;
-		$r = "";
 		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId =  '. $carId);
-			foreach ($query->result() as $row)
+		foreach ($query->result() as $row)
 		{
 			$car = new CarsModel;
 			$this->matchCarObject($car,$row);
 
-			if($r === "") 
-			{
-				$r = array();
-			}
-			array_push($r,$car);
 		}
 			
-		return $r;
+		return $car;
 
 	}
 

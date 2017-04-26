@@ -41,21 +41,22 @@
 			
 				}
 			}
+
 				echo "-------------------------";
-
-				//foreach ($reserveCarOb as $value) {
-					
-						//echo $value ->getCarId() ; 
-						//echo $value->getPlateLicese() ;
-						//echo $value -> getCarType() ;
-				//		foreach ($Reserve[$value->getCarId()] as $value) {
-				//			echo $value -> getStartDate();
-				//		}
-
-				//}
-				foreach ($Reserve as $key => $value) {
-						echo $key;
-						print_r($value);
+				
+				
+				foreach ($reserveCarOb as $value1) 
+				{
+						$carId = $value1->getCarId();
+						echo $carId ."<br>";
+						foreach ($Reserve as $value2)
+						 {
+							if($carId == $value2->getCarId())
+							{
+								echo $value2->getStartDate();
+								echo $value2->getEndDate()."<br>";
+							}
+						}	
 				}
 			
 

@@ -30,9 +30,9 @@ class Search extends CI_Controller {
 		if($_POST['startTime'] == null || $_POST['endTime'] == null){
 			$data["Reserve"] =  $this -> ReservationModel -> getReserveFromSearch($startDateTime,$endDateTime,$carTypeId);
 			if($data["Reserve"] != null ){
-				foreach ($data["Reserve"] as $key => $value) 
+				foreach ($data["Reserve"] as $value) 
 					{
-						array_push($carArray ,$this-> CarsModel-> getCarById($key));
+						array_push($carArray ,$this-> CarsModel-> getCarById($value->getCarId()));
 					}
 
 			}

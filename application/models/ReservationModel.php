@@ -122,7 +122,7 @@ class ReservationModel extends CI_Model {
 	public function getReserveFromSearch($startDateTime,$endDateTime,$carTypeId){
 		$reserveInfo = null;
 		$r = "";
-		$query = $this->db->query('SELECT cr.* , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId WHERE (startDate BETWEEN '. $startDateTime .' AND '. $endDateTime .') OR (endDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')');
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId WHERE (startDate BETWEEN '. $startDateTime .' AND '. $endDateTime .') OR (endDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')');
 		foreach ($query->result() as $row)
 		{
 			if($carTypeId == null || in_array($row->carTypeId,$carTypeId) )
@@ -133,8 +133,7 @@ class ReservationModel extends CI_Model {
 				{
 					$r = array();
 				}
-				$a = array($row->carId => $reserveInfo);
-				array_push($r,$a);
+				array_push($r,$reserveInfo);
 			}
 		}
 		
@@ -155,7 +154,7 @@ class ReservationModel extends CI_Model {
 		$reserveInfo->setPlace($row->Place);
 		$reserveInfo->setDriverId($row->DriverId);
 		$reserveInfo->setColor($row->color);
-
+		$reserveInfo->setCarId($row->carId);
 
 	}
 
