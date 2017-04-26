@@ -3,19 +3,35 @@
 	<meta charset="utf-8">
 	<title></title>
 	
-	<?php 
-		include "header.php";
-	?>
 	
-	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
-	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
-	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script>
+
+
+	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.min.css' />	
+	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.print.min.css'  media='print'/>	
+	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
+<script src='<?php echo base_url(); ?>fullcalendar/lib/jquery.min.js'></script>
+	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/fullcalendar.min.js'></script>
+
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>fullcalendar/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>fullcalendar/bootstrap/css/bootstrap-theme.css">
+<script src='<?php echo base_url(); ?>fullcalendar/bootstrap/js/bootstrap.js'></script>
+
+
+
+	<!--script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script-->	
+	
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.css' />
 
 	
 	<script type='text/javascript'>
 	$(document).ready(function() {
-		$('#calendar').fullCalendar({
+
+		$('#calendar').fullCalendar({			
+			header: {
+				left: 'title',
+				center: '',
+				right : 'today month,agendaWeek,agendaDay prev,next listWeek'
+			},			
 			eventLimit: true, 
 			editable: true,
 			navLinks: true,
@@ -26,13 +42,13 @@
 			
 			$info = "";
 
-				foreach ($result as $q) :
-					$info .= "{title: '".$q["plateLicense"].
-					"',\nstart: '".$q["StartDate"].
-					"',\nend: '".$q["EndDate"].	
-					"',\ncolor: '".$q["color"].
-					"'},\n";
-				endforeach; 
+			foreach ($result as $q) :
+				$info .= "{title: '".$q["plateLicense"].
+			"',\nstart: '".$q["StartDate"].
+			"',\nend: '".$q["EndDate"].	
+			"',\ncolor: '".$q["color"].
+			"'},\n";
+			endforeach; 
 			echo substr($info, 0, -2);
 			
 
@@ -45,11 +61,6 @@
 				//document.getElementById('day').value = date.format();
 				var selectedDay = date.format();
 				document.getElementById('day').value = selectedDay;
-			},
-			header: {
-				left: 'title',
-				center: '',
-				right : 'today month,basicWeek,basicDay prev,next listWeek'
 			},
 
 		});
@@ -141,8 +152,8 @@
 	</form>
 
 
-<form class="form-inline">
-	<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<form class="form-inline">
+		<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -153,7 +164,7 @@
 						<div id="information">
 							<b>วันที่ต้องการเดินทาง</b><br>
 							ตั้งแต่: <input type="date" class="form-control"> ถึงวันที่: <input type="date" class="form-control">
-<br><br>
+							<br><br>
 							<b>เลือกช่วงเวลาเดินทาง</b><br>
 							ตั้งแต่: <input type="time" class="form-control"> ถึง <input type="time" class="form-control">
 							<br><br>
@@ -177,7 +188,7 @@
 				</div>
 			</div>
 		</div>
-		</form>
+	</form>
 
 
 
