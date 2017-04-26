@@ -44,8 +44,8 @@ class CarModel extends CI_Model {
 			
 			$resultPlate = $this->db->select('plateLicense')
 			->from('cars')
-			->join('carType', 'cars.carTypeId = carType.cartypeid')
-			->where('carType', $row->CarType)
+			->join('cartype', 'cars.carTypeId = cartype.cartypeid')
+			->where('cartype', $row->CarType)
 			->get();
 
 			foreach($resultPlate->result() as $plate){
@@ -54,14 +54,9 @@ class CarModel extends CI_Model {
 
 			}
 			$result .= "<br>";
-		}
-		
-		return $result;
-		
-	}
-
-	
-
+		}		
+		return $result;		
+	}	
 }
 
 /* End of file CarModel.php */
