@@ -27,7 +27,7 @@ class AddCar extends CI_Controller {
 		$this -> AddCarModel -> add($data);
 		$this->load->view('result');
 	}
-	
+	    
 
 }
 
