@@ -55,7 +55,7 @@
 							"',\nend: '".$value->getEndDate().	
 							"',\ncolor: '".$value->getColor().
 							"'},\n";
-						}; 
+						}
 					echo substr($info, 0, -2);
 				?>
 				],

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class Search extends CI_Controller {
 	public function __construct()
@@ -34,16 +34,11 @@ class Search extends CI_Controller {
 					{
 						array_push($carArray ,$this-> CarsModel-> getCarById($value->getCarId()));
 					}
-
-			}
-		
+			}		
 		}
-
 		$data["reserveCarOb"] = $carArray;
-		$this->load->view('SearchView',$data);
-		//return $data;
-	}
-	
+		$this->load->view('SearchView',$data);		
+	}	
 }
 
 /* End of file CarController.php */
