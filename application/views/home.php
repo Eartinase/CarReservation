@@ -70,7 +70,7 @@
 				header: {
 					left: 'title',
 					center: '',
-					right : 'today month,basicWeek,basicDay prev,next listWeek'
+					right : 'today month,agendaWeek,agendaDay prev,next listWeek'
 				},
 
 			});

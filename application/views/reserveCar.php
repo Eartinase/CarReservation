@@ -74,10 +74,10 @@
 
 <body style="margin:2%">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-9">
 			<div id='calendar'></div>
 		</div>
-		<div class="col-md-6" >
+		<div class="col-md-3" >
 
 			<center><h1>รายการรถ</h1></center>
 
