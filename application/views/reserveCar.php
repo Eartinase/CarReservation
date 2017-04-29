@@ -2,9 +2,6 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
-	
-	
-
 
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.min.css' />	
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.print.min.css'  media='print'/>	
@@ -52,6 +49,7 @@
     </nav>
 	
 	<br><br>
+
 	<script type='text/javascript'>
 	$(document).ready(function() {
 
@@ -61,14 +59,11 @@
 				center: '',
 				right : 'today month,agendaWeek,agendaDay prev,next listWeek'
 			},			
-			eventLimit: true, 
-			editable: true,
+			eventLimit: true, 			
 			navLinks: true,
-
 			events: [
 
-			<?php
-			
+			<?php			
 			$info = "";
 
 			foreach ($result as $q) :
@@ -78,12 +73,9 @@
 			"',\ncolor: '".$q["color"].
 			"'},\n";
 			endforeach; 
-			echo substr($info, 0, -2);
-			
-
+			echo substr($info, 0, -2);		
 			?>
 			],
-
 
 			dayClick: function(date, jsEvent, view) {
 				//alert('Clicked on: ' + date.format());
@@ -95,9 +87,6 @@
 		});
 	});
 	</script>
-
-
-
 
 </head>
 
@@ -129,8 +118,6 @@
 	</div>
 
 	<br>
-
-
 
 	<form action="add" method="post">
 		<div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -222,9 +209,5 @@
 		</div>
 	</form>
 
-
-
 </body>
-
-
 </html>
