@@ -38,7 +38,7 @@ class CarModel extends CI_Model {
 		foreach ($car->result() as $row)
 		{
 			$result .= $row->CarType."<br>";
-			$result .= "&emsp;ทะเบียน<br>";
+			
 			
 			$resultPlate = $this->db->select('plateLicense')
 			->from('cars')
@@ -48,7 +48,7 @@ class CarModel extends CI_Model {
 
 			foreach($resultPlate->result() as $plate){
 
-				$result .= "&emsp;&emsp;".$plate->plateLicense."<br>";
+				$result .= "&emsp;".$plate->plateLicense."<br>";
 
 			}
 			$result .= "<br>";
