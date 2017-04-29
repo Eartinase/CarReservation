@@ -27,39 +27,46 @@
 	<?php 
 		if(isset($searchCar))	
 		{
+			echo "<table class='table'>";
 			if($searchCar == "" & $Reserve == ""){
 				echo "	ไม่พบรถทีว่าง";
 			}else{
 		
 				foreach ($searchCar as $value) 
-				{
-					
-						echo $value->getCarId() ; 
-						echo $value->getPlateLicese() ;
-						echo $value -> getCarType() ."<br>";
-						
+				{   
+					echo "<tr>";
+						echo "<td>".$value->getCarId() ."</td>"; 
+						echo "<td>".$value->getPlateLicese() ."</td>";
+						echo "<td>".$value -> getCarType() ."</td>";
+						echo "";
+					echo "<tr>";						
 			
 				}
 			}
 
-				echo "-------------------------";
 				
 				
 				foreach ($reserveCarOb as $value1) 
 				{
-						$carId = $value1->getCarId();
-						echo $carId ."<br>";
+					$carId = $value1->getCarId();
+					echo "<tr>";
+						echo "<td>". $carId ."</td>";
+						echo "<td>".$value1->getPlateLicese() ."</td>";
+						echo "<td>".$value1 -> getCarType() ."</td>";
+					
+
 						foreach ($Reserve as $value2)
 						 {
 							if($carId == $value2->getCarId())
 							{
-								echo $value2->getStartDate();
-								echo $value2->getEndDate()."<br>";
+								echo "<td>". $value2->getStartDate();
+								echo $value2->getEndDate()."</td>";
 							}
-						}	
+						}
+					echo "</tr>";	
 				}
-			
-
+			echo "</table>";
+		
 		}
 	 ?>
 	

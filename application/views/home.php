@@ -107,7 +107,7 @@
 				
 				<form action="../search/searchCar" class="form-horizontal" target="listCars"  method="POST" accept-charset="utf-8" style="align-items:center;">
 				<br>
-				<b>วันที่ต้องการเดินทาง</b><br><br>
+				<center> <b>วันที่ต้องการเดินทาง</b></center><br><br>
 					<div class="form-group">
 						<div class="col-sm-3 col-sm-offset-1">วันที่ไป :</div>
 						<div class="col-sm-7">
