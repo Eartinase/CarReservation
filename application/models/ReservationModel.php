@@ -119,7 +119,7 @@ class ReservationModel extends CI_Model {
 	
 	}
 
-	public function getReserveFromSearch($startDateTime,$endDateTime,$carTypeId){
+	public function getReserveFromDate($startDateTime,$endDateTime,$carTypeId){
 		$reserveInfo = null;
 		$r = "";
 		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId WHERE (startDate BETWEEN '. $startDateTime .' AND '. $endDateTime .') OR (endDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')');
@@ -142,6 +142,32 @@ class ReservationModel extends CI_Model {
 
 
 	}
+
+	public function getReserveFromCarType($carTypeId){
+		$reserveInfo = null;
+		$r = "";
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId ');
+		foreach ($query->result() as $row)
+		{
+			if($carTypeId == null || in_array($row->carTypeId,$carTypeId) )
+			{
+				$reserveInfo = new ReservationModel;
+				$this->matchReservationObject($reserveInfo,$row);
+				if($r === "") 
+				{
+					$r = array();
+				}
+				array_push($r,$reserveInfo);
+			}
+		}
+		
+		return $r;
+	
+
+
+	}
+
+
 
 	
 

@@ -23,6 +23,12 @@
 			height: 100%;
 		
 		}
+		li{
+			list-style-type: none;
+		}
+		ul{
+			list-style-type: none;
+		}
 
 
 	</style>
@@ -39,7 +45,7 @@
 		
 		</div>
 		<div class="col-md-7">
-			<iframe id="calender"  src="../calendar"></iframe>
+			<iframe id="calender" name="calender" src="../calendar"></iframe>
 		</div>
 		
 		<div class="col-md-3" >
@@ -50,26 +56,74 @@
 			
 					<b>ประเภทรถที่ต้องการ</b><br>
 					<div>
-						<input name='carType[]' type='checkbox' value=1> เก๋ง 
+						<ul>
+						  <li><input name='carType[]' type='checkbox' value=1> เก๋ง </li>
+						  	<?php 
+						  		foreach ($Type1 as  $value) {
+						  			echo "<ul> <li><input name='carId[]' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo  $value->getPlateLicese()."</li></ul>";
+						  		}
+						  		
+						  	 ?>
+						</ul>
 					</div>
 					<div>
-						<input name='carType[]' type='checkbox' value=2> ปิ๊กอัพ <br>
+						<ul>
+						  <li><input name='carType[]' type='checkbox' value=2> ปิ๊กอัพ <br> </li>
+						  	<?php 
+						  		foreach ($Type2 as  $value) {
+						  			echo "<ul> <li><input name='carId[]' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo  $value->getPlateLicese()."</li></ul>";
+						  		}
+						  		
+						  	 ?>
+						</ul>	
 					</div>
 					<div>
-						<input name='carType[]' type='checkbox' value=3> ตุ๊กตุ๊ก <br>
+						<ul>
+						  <li><input name='carType[]' type='checkbox' value=3> ตุ๊กตุ๊ก <br></li>
+						  	<?php 
+						  		foreach ($Type3 as  $value) {
+						  			echo "<ul> <li><input name='carId[]' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo  $value->getPlateLicese()."</li></ul>";
+						  		}
+						  		
+						  	 ?>
+						</ul>
+						
 					</div>					
 					<div>
-						<input name='carType[]' type='checkbox' value=4> ซาเล้ง <br>
+						<ul>
+						  <li><input name='carType[]' type='checkbox' value=4> ซาเล้ง <br></li>
+						  	<?php 
+						  		foreach ($Type4 as  $value) {
+						  			echo "<ul> <li><input name='carId[]' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo  $value->getPlateLicese()."</li></ul>";
+						  		}
+						  		
+						  	 ?>
+						</ul>
 					</div>	
 					<div>
-						<input name='carType[]' type='checkbox' value=5> รถตู้ <br>
+						<ul>
+						  <li><input name='carType[]' type='checkbox' value=5> รถตู้ <br></li>
+						  	<?php 
+						  		foreach ($Type5 as  $value) {
+						  			echo "<ul> <li><input name='carId[]' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo  $value->getPlateLicese()."</li></ul>";
+						  		}
+						  		
+						  	 ?>
+						</ul>
+						
+						
 					</div>	
 						
 						
 			</div>	
 					<br><br><br>
 
-					<button id="searchbut" type="submit" data-toggle="modal" data-target="#search">ค้นหารถ</button>
+					<button id="searchbut" type="submit" data-target="#calender">ค้นหารถ</button>
 				</form>
 	
 

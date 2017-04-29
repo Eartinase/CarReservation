@@ -17,27 +17,14 @@ class Search extends CI_Controller {
 
 	public function searchCar()
 	{	
-		$startDateTime = '\''.$_POST['startDate'].' '.$_POST['startTime'].'\'';
-		$endDateTime = '\''.$_POST['endDate'].' '.$_POST['endTime'].'\'';
-		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
-		$data["searchCar"] =  $this -> CarsModel -> searchCars($startDateTime,$endDateTime,$carTypeId);
+		//$startDateTime = '\''.$_POST['startDate'].' '.$_POST['startTime'].'\'';
+		//$endDateTime = '\''.$_POST['endDate'].' '.$_POST['endTime'].'\'';
+		//$data["searchCar"] =  $this -> CarsModel -> searchCars($startDateTime,$endDateTime,$carTypeId);
 		// get Car Object that All availiable
-		$data["Reserve"] = ""; // collect related ReserveObject on that dateTime
-		$data["STime"] = $startDateTime;
-		$data["ETime"] = $endDateTime;
-		$carArray = array(); // collect CarObject from SearhCarById 
-
-		if($_POST['startTime'] == null || $_POST['endTime'] == null){
-			$data["Reserve"] =  $this -> ReservationModel -> getReserveFromSearch($startDateTime,$endDateTime,$carTypeId);
-			if($data["Reserve"] != null ){
-				foreach ($data["Reserve"] as $value) 
-					{
-						array_push($carArray ,$this-> CarsModel-> getCarById($value->getCarId()));
-					}
-			}		
-		}
-		$data["reserveCarOb"] = $carArray;
-		$this->load->view('SearchView',$data);		
+		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
+		$data["Reservation"] = $this -> ReservationModel -> getReserveFromCarType($carTypeId);
+		//$data["reserveCarOb"] = $carArray;
+		$this->load->view('calendarView',$data);		
 	}	
 }
 

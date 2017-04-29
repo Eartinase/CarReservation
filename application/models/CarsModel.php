@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') || exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CarsModel extends CI_Model {
 
@@ -67,7 +67,7 @@ class CarsModel extends CI_Model {
 	{
 		$car = null;
 		$r = "";
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType FROM cars c LEFT JOIN carType ct ON c.carTypeId= ct.carTypeId');
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.Cartype FROM cars c LEFT JOIN carType ct ON c.carTypeId= ct.carTypeId');
 		foreach ($query->result() as $row)
 		{
 			$car = new CarsModel;
@@ -85,7 +85,7 @@ class CarsModel extends CI_Model {
 
 	public function getCarById($carId){
 		$car = null;
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId =  '. $carId);
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.Cartype FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId =  '. $carId);
 		foreach ($query->result() as $row)
 		{
 			$car = new CarsModel;
@@ -101,7 +101,7 @@ class CarsModel extends CI_Model {
 	{
 		$car = null;
 		$r = "";
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.carType FROM cars c LEFT JOIN carType ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type);
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.carType FROM cars c LEFT JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type);
 		foreach ($query->result() as $row)
 		{
 			$car = new CarsModel;
@@ -138,7 +138,7 @@ class CarsModel extends CI_Model {
 				array_push($r,$car);
 			}
 		}
-
+		
 		return $r;
 
 	}
@@ -151,7 +151,7 @@ class CarsModel extends CI_Model {
 		$car->setCarId($row->carId);
 		$car->setSeat($row->seat);	
 		$car->setPlateLicense($row->plateLicense);	
-		$car->setCarType($row->CarType);
+		$car->setCarType($row->carType);
 
 	}
 
