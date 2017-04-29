@@ -3,19 +3,64 @@
 	<meta charset="utf-8">
 	<title></title>
 	
-	<?php 
-		include "header.php";
-	?>
 	
-	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
-	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
-	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script>
+
+
+	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.min.css' />	
+	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.print.min.css'  media='print'/>	
+	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
+	<script src='<?php echo base_url(); ?>fullcalendar/lib/jquery.min.js'></script>
+	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/fullcalendar.min.js'></script>
+
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>fullcalendar/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>fullcalendar/bootstrap/css/bootstrap-theme.css">
+	<script src='<?php echo base_url(); ?>fullcalendar/bootstrap/js/bootstrap.js'></script>
+
+	<!--script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script-->	
+	
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.css' />
 
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost/senior/Reserve">Main Menu</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Use outside cars</a>
+                    </li>
+                    <li>
+                        <a href="#">Generate reports</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 	
+	<br><br>
 	<script type='text/javascript'>
 	$(document).ready(function() {
-		$('#calendar').fullCalendar({
+
+		$('#calendar').fullCalendar({			
+			header: {
+				left: 'title',
+				center: '',
+				right : 'today month,agendaWeek,agendaDay prev,next listWeek'
+			},			
 			eventLimit: true, 
 			editable: true,
 			navLinks: true,
@@ -26,13 +71,13 @@
 			
 			$info = "";
 
-				foreach ($result as $q) :
-					$info .= "{title: '".$q["plateLicense"].
-					"',\nstart: '".$q["StartDate"].
-					"',\nend: '".$q["EndDate"].	
-					"',\ncolor: '".$q["color"].
-					"'},\n";
-				endforeach; 
+			foreach ($result as $q) :
+				$info .= "{title: '".$q["plateLicense"].
+			"',\nstart: '".$q["StartDate"].
+			"',\nend: '".$q["EndDate"].	
+			"',\ncolor: '".$q["color"].
+			"'},\n";
+			endforeach; 
 			echo substr($info, 0, -2);
 			
 
@@ -46,11 +91,6 @@
 				var selectedDay = date.format();
 				document.getElementById('day').value = selectedDay;
 			},
-			header: {
-				left: 'title',
-				center: '',
-				right : 'today month,basicWeek,basicDay prev,next listWeek'
-			},
 
 		});
 	});
@@ -61,23 +101,26 @@
 
 </head>
 
+
 <body style="margin:2%">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-9">
 			<div id='calendar'></div>
 		</div>
-		<div class="col-md-6" >
 
-			<center><h1>รายการรถ</h1></center>
-
+		<div class="col-md-3" >
+			<div class="well">
+			
+			<center><h1 style="font-family:AngsanaUPC;font-size:55px">รายการรถ</h1></center>
+			
 			<?php
 			echo $carList;
 			//echo var_dump($carList);
 			?>
 
-			<br><br>
+			<br>
 			<center>
-				<button class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
+				<span style="margin-right:20px"><button class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button></span>
 				<button class="btn btn-primary" data-toggle="modal" data-target="#search">ค้นหารถ</button>
 			</center>
 
@@ -141,8 +184,8 @@
 	</form>
 
 
-<form class="form-inline">
-	<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<form class="form-inline">
+		<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -153,7 +196,7 @@
 						<div id="information">
 							<b>วันที่ต้องการเดินทาง</b><br>
 							ตั้งแต่: <input type="date" class="form-control"> ถึงวันที่: <input type="date" class="form-control">
-<br><br>
+							<br><br>
 							<b>เลือกช่วงเวลาเดินทาง</b><br>
 							ตั้งแต่: <input type="time" class="form-control"> ถึง <input type="time" class="form-control">
 							<br><br>
@@ -177,7 +220,7 @@
 				</div>
 			</div>
 		</div>
-		</form>
+	</form>
 
 
 

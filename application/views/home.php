@@ -29,7 +29,7 @@
 			border: 0px;
 			height: 40px;
 			width: 100%;
-			background-color: #514D50;
+			background-color: #04B45F;
 		}
 
 	</style>
@@ -55,7 +55,7 @@
 							"',\nend: '".$value->getEndDate().	
 							"',\ncolor: '".$value->getColor().
 							"'},\n";
-						}; 
+						}
 					echo substr($info, 0, -2);
 				?>
 				],
@@ -70,7 +70,7 @@
 				header: {
 					left: 'title',
 					center: '',
-					right : 'today month,basicWeek,basicDay prev,next listWeek'
+					right : 'today month,agendaWeek,agendaDay prev,next listWeek'
 				},
 
 			});

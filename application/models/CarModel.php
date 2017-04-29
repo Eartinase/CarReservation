@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class CarModel extends CI_Model {
 
@@ -8,8 +8,6 @@ class CarModel extends CI_Model {
 		->from('cars')
 		->where('plateLicense', $input["carId"])
 		->get();
-
-		//$result = $query->result_array();
 
 		foreach ($query->result() as $row)
 		{			
@@ -27,8 +25,8 @@ class CarModel extends CI_Model {
 		->join('currentreservation as cr', 'cr.carId = c.carId')      
 		->get();
 
-		$result = $query->result_array();
-		return $result;		
+		return $query->result_array();
+		 
 	}
 
 	public function showCar(){

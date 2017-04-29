@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class LoginModel extends CI_Model {
 
@@ -9,11 +9,9 @@ class LoginModel extends CI_Model {
 		$result = false;
 		foreach ($query->result() as $row)
 		{
-			if($row->UserName == $data["username"]){
-				if($row->Password== $data["password"]){
-					$result = true;
-					break;
-				}
+			if($row->UserName == $data["username"] && $row->Password== $data["password"] ){				
+				$result = true;
+				break;				
 			}
 		}
 		return $result;

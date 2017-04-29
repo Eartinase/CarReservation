@@ -1,7 +1,7 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
-class AddCar extends CI_Controller {
+class AddCar extends CI_Controller {   
 	public function __construct()
 	{
 		parent::__construct();
@@ -27,7 +27,7 @@ class AddCar extends CI_Controller {
 		$this -> AddCarModel -> add($data);
 		$this->load->view('result');
 	}
-	
+	    
 
 }
 
