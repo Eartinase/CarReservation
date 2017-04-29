@@ -20,7 +20,7 @@
 		$(document).ready(function() {
 			$('#calendar').fullCalendar({
 				eventLimit: true, 
-				editable: true,
+				editable: false,
 				navLinks: true,
 
 				events: [
