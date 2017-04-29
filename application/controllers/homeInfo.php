@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') || exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class homeInfo extends CI_Controller {
 	public function __construct()
@@ -43,6 +43,7 @@ class homeInfo extends CI_Controller {
 	}
 
 }
+
 
 /* End of file CarController.php */
 /* Location: ./application/controllers/CarController.php */

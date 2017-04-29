@@ -15,76 +15,17 @@
 
 </head>
 	<style type="text/css">
-		#listCars{
-			frameborder : 0 ; 
-			border :  0 ;
-			cellspacing : 0; 
+		iframe{
+			frameborder : 0px ; 
+			border :  0px ;
+			cellspacing : 0px; 
 			width: 100%;
-			height: 400px;
+			height: 100%;
+		
 		}
 
-		#searchbut{
-			margin:0px;
-			padding: 0px;
-			border: 0px;
-			height: 40px;
-			width: 100%;
-			background-color: #04B45F;
-		}
 
 	</style>
-
-
-	<script type='text/javascript'>
-		$(document).ready(function() {
-			$('#calendar').fullCalendar({
-				eventLimit: true, 
-				editable: true,
-				navLinks: true,
-
-				events: [
-
-				<?php
-				
-					$info = "";
-
-						foreach ($Reservation as $value)
-						{
-							$info .= "{title: '".$value->getPlateLicese().
-							"',\nstart: '".$value->getStartDate().
-							"',\nend: '".$value->getEndDate().	
-							"',\ncolor: '".$value->getColor().
-							"'},\n";
-						}
-					echo substr($info, 0, -2);
-				?>
-				],
-
-
-				dayClick: function(date, jsEvent, view) {
-					//alert('Clicked on: ' + date.format());
-					//document.getElementById('day').value = date.format();
-					var selectedDay = date.format();
-					document.getElementById('day').value = selectedDay;
-				},
-				header: {
-					left: 'title',
-					center: '',
-					right : 'today month,agendaWeek,agendaDay prev,next listWeek'
-				},
-
-			});
-
-			
-		});
-
-
-		
-
-	</script>
-
-
-
 
 
 
@@ -98,68 +39,44 @@
 		
 		</div>
 		<div class="col-md-7">
-			<div id='calendar'></div>
+			<iframe id="calender"  src="../calendar"></iframe>
 		</div>
 		
 		<div class="col-md-3" >
-			
-			<div id="information" style="background-color:#FFD4D9;">
-				
-				<form action="../search/searchCar" class="form-horizontal" target="listCars"  method="POST" accept-charset="utf-8" style="align-items:center;">
-				<br>
-				<center> <b>วันที่ต้องการเดินทาง</b></center><br><br>
-					<div class="form-group">
-						<div class="col-sm-3 col-sm-offset-1">วันที่ไป :</div>
-						<div class="col-sm-7">
-							<input type="date" name="startDate" id="startDate" class="form-control input-sm">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-3 col-sm-offset-1">เวลาไป :</div>
-						<div class="col-sm-7">
-							<input type="time" name="startTime" class="form-control input-sm" step="300">
-						</div>
-					</div>
 
-					<div class="form-group">
-						<div class="col-sm-3 col-sm-offset-1">วันที่กลับ :</div>
-						<div class="col-sm-7">
-							<input type="date" name="endDate" id="endDate"  class="form-control input-sm">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-3 col-sm-offset-1">เวลากลับ :</div>
-						<div class="col-sm-7">
-							<input type="time"  name="endTime" class="form-control input-sm" value="00:00:PM">
-						</div>
-					</div>
-					<div class="col-sm-10 col-sm-offset-1">
-						
-					
+			<div id="information" >
+				
+				<form action="../search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
+			
 					<b>ประเภทรถที่ต้องการ</b><br>
-						<input name='carType[]' type='checkbox' value=1> เก๋ง
-						<input name='carType[]' type='checkbox' value=2> ปิ๊กอัพ
-						<input name='carType[]' type='checkbox' value=3> ตุ๊กตุ๊ก 
-						<input name='carType[]' type='checkbox' value=4> ซาเล้ง
-						<input name='carType[]' type='checkbox' value=5> รถตู้
+					<div>
+						<input name='carType[]' type='checkbox' value=1> เก๋ง 
+					</div>
+					<div>
+						<input name='carType[]' type='checkbox' value=2> ปิ๊กอัพ <br>
+					</div>
+					<div>
+						<input name='carType[]' type='checkbox' value=3> ตุ๊กตุ๊ก <br>
+					</div>					
+					<div>
+						<input name='carType[]' type='checkbox' value=4> ซาเล้ง <br>
 					</div>	
+					<div>
+						<input name='carType[]' type='checkbox' value=5> รถตู้ <br>
+					</div>	
+						
+						
+			</div>	
 					<br><br><br>
 
 					<button id="searchbut" type="submit" data-toggle="modal" data-target="#search">ค้นหารถ</button>
 				</form>
-			</div>
-		
+	
 
-		    <!-- -------- list รายการรถ-------- -->
-
-			<center><h1>รายการรถ</h1></center>
+		<br><br>
 			
-
-			<br><br>
-			<center>
 				<button class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
-				
-			</center>
+			
 
 		</div>
 	</div>
