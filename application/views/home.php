@@ -87,8 +87,48 @@
 	.checkbox.checkbox-inline {
 	    margin-top: 0; }
 
+	
 
 </style>
+
+<script type="text/javascript">
+	
+		function checkFunc(ch){
+			if(ch == 1){
+				document.getElementById("listCar1").checked = true;
+			}else if(ch == 2){
+				document.getElementById("listCar2").checked = true;
+			}else if(ch == 3){
+				document.getElementById("listCar3").checked = true;
+			}else if(ch == 4){
+				document.getElementById("listCar4").checked = true;
+			}else if(ch == 5){
+				document.getElementById("listCar5").checked = true;
+			}
+			
+			
+		}
+		function uncheckFunc(ch){
+			list = null;
+			if(ch == 1){
+				list = document.getElementsByClassName("list1");
+			}else if(ch == 2){
+				list = document.getElementsByClassName("list2");
+			}else if(ch == 3){
+				list = document.getElementsByClassName("list3");
+			}else if(ch == 4){
+				list = document.getElementsByClassName("list4");
+			}else if(ch == 5){
+				list = document.getElementsByClassName("list5");
+			}
+
+			for (var i = 0; i < list.length; i++) {
+				list[i].checked = false;
+			}
+		}
+
+
+</script>
 
 
 
@@ -111,13 +151,13 @@
 				
 				<form action="../search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
 			
-					<h4>รายการรถ</h4><br>
+					<h4>รายการรถ</h4>
 					<div id="divCarList1" >
 						<ul>
 						 
 						  	<li>
 						  		<div class="checkbox">
-						  			<input  id="listCar1" name='carType[]' type='checkbox' value=1>
+						  			<input  id="listCar1" name='carType[]' onchange='uncheckFunc(1)' type='checkbox' value=1>
 						  			<label for="listCar1"> เก๋ง </label>
 						  		</div> 
 
@@ -126,7 +166,7 @@
 						  	<?php 
 						  		foreach ($Type1 as  $value) {
 						  			echo "<ul><li><div class='checkbox'>";
-						  			echo "<input name='carId[]' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo "<input name='carId[]' class='list1' onchange='checkFunc(1)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
 						  			echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
 						  		}
 						  		
@@ -137,14 +177,14 @@
 						<ul>
 						  <li>
 						  	<div class="checkbox">
-						  			<input id="listCar2" name='carType[]' type='checkbox' value=2>
+						  			<input id="listCar2" name='carType[]' onchange='uncheckFunc(2)' type='checkbox' value=2>
 						  			<label for="listCar2"> ปิ๊กอัพ  </label>
 						  	</div> 
 						  </li>
 						  	<?php 
 						  		foreach ($Type2 as  $value) {
 						  			echo "<ul><li><div class='checkbox'>";
-						  			echo "<input name='carId[]' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
 						  			echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
 						  		}
 						  		
@@ -155,7 +195,7 @@
 						<ul>
 						  <li>
 						  	<div class="checkbox">
-						  			<input id="listCar3"  name='carType[]' type='checkbox' value=3>
+						  			<input id="listCar3"  name='carType[]' onchange='uncheckFunc(3)' type='checkbox' value=3>
 						  			<label for="listCar3"> ตุ๊กตุ๊ก </label>
 						  	</div> 
 						
@@ -163,7 +203,7 @@
 						  	<?php 
 						  		foreach ($Type3 as  $value) {
 						  			echo "<ul><li><div class='checkbox'>";
-						  			echo "<input name='carId[]' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo "<input name='carId[]' class='list3' onchange='checkFunc(3)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
 						  			echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
 						  		}
 						  		
@@ -175,7 +215,7 @@
 						<ul>
 						  <li>
 							  <div class="checkbox">
-							  		<input id="listCar4" name='carType[]' type='checkbox' value=4> 
+							  		<input id="listCar4" name='carType[]' onchange='uncheckFunc(4)' type='checkbox' value=4> 
 							  		<label for="listCar4"> ซาเล้ง </label>
 							  </div> 
 						  
@@ -183,7 +223,7 @@
 						  	<?php 
 						  		foreach ($Type4 as  $value) {
 						  			echo "<ul><li><div class='checkbox'>";
-						  			echo "<input name='carId[]' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo "<input name='carId[]' class='list4' onchange='checkFunc(4)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
 						  			echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
 						  		}
 						  		
@@ -194,16 +234,17 @@
 						<ul>
 						  <li>
 						    <div class="checkbox">
-							  	<input id="listCar5" name='carType[]' type='checkbox' value=5>
+							  	<input id="listCar5" name='carType[]' onchange='uncheckFunc(5)' type='checkbox' value=5>
 							  	<label for="listCar5"> รถตู้ </label>
 							 </div> 
 						    
 						  </li>
 						  	<?php 
+						  	foreach ($Type5 as  $value) {
 						  			echo "<ul><li><div class='checkbox'>";
-						  			echo "<input name='carId[]' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+						  			echo "<input name='carId[]' class='list5' onchange='checkFunc(5)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
 						  			echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-						  		
+						  		}
 						  	 ?>
 						</ul>
 						

@@ -143,13 +143,13 @@ class ReservationModel extends CI_Model {
 
 	}
 
-	public function getReserveFromCarType($carTypeId){
+	public function getReserveFromCarType($carTypeId ,$carId){
 		$reserveInfo = null;
 		$r = "";
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId ');
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.cartypeId = '.$carTypeId);
 		foreach ($query->result() as $row)
 		{
-			if($carTypeId == null || in_array($row->carTypeId,$carTypeId) )
+			if($carId == null || in_array($row->carId,$carId))
 			{
 				$reserveInfo = new ReservationModel;
 				$this->matchReservationObject($reserveInfo,$row);
@@ -162,10 +162,10 @@ class ReservationModel extends CI_Model {
 		}
 		
 		return $r;
-	
-
 
 	}
+
+
 
 
 

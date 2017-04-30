@@ -122,7 +122,7 @@ class CarsModel extends CI_Model {
 	public function searchCars($startDateTime , $endDateTime, $carTypeId)
 	{
 		$car = null;
-		$r = "";
+		$r = array();;
 		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType , ct.carTypeId FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId NOT IN( SELECT cr.carId FROM currentreservation cr WHERE (cr.EndDate BETWEEN '. $startDateTime .' AND '. $endDateTime .'AND cr.StartDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')OR (StartDate <'.$startDateTime.' AND EndDate >'.$endDateTime.') )');
 		foreach ($query->result() as $row)
 		{
@@ -130,11 +130,6 @@ class CarsModel extends CI_Model {
 			{
 				$car = new CarsModel;
 				$this->matchCarObject($car,$row);
-
-				if($r === "") 
-				{
-					$r = array();
-				}
 				array_push($r,$car);
 			}
 		}
