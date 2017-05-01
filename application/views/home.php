@@ -96,11 +96,13 @@
 	</style>
 </head>
 
-<body style="margin:2%;">
+<body >
 	<div style="height: 50px ; background-color:#514D50 ;">
 
 	</div>
 	<br>
+
+	<div class="container"style="margin:2%;">
 	<div class="row">
 		
 		<div class="col-md-8">
@@ -218,6 +220,7 @@
 		<br>
 
 		
+	</div>
 	</div>
 	<br><br>
 	
