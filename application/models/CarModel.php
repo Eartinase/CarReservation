@@ -12,9 +12,7 @@ class CarModel extends CI_Model {
 		foreach ($query->result() as $row)
 		{			
 			$input["carId"] = $row->carId;
-		}
-
-		
+		}		
 		return $this->db->insert('currentreservation', $input);
 	}
 

@@ -78,9 +78,7 @@ class CarsModel extends CI_Model {
 			}
 			array_push($r,$car);
 		}
-
 		return $r;
-	
 	}
 
 	public function getCarById($carId){
@@ -90,11 +88,8 @@ class CarsModel extends CI_Model {
 		{
 			$car = new CarsModel;
 			$this->matchCarObject($car,$row);
-
-		}
-			
+		}			
 		return $car;
-
 	}
 
 	public function getCarsByType($Type)
@@ -113,10 +108,7 @@ class CarsModel extends CI_Model {
 			}
 			array_push($r,$car);
 		}
-
 		return $r;
-	
-
 	}
 
 	public function searchCars($startDateTime , $endDateTime, $carTypeId)
@@ -132,14 +124,9 @@ class CarsModel extends CI_Model {
 				$this->matchCarObject($car,$row);
 				array_push($r,$car);
 			}
-		}
-		
+		}		
 		return $r;
-
 	}
-
-
-	
 
 	private function matchCarObject($car,$row)
 	{
@@ -147,13 +134,20 @@ class CarsModel extends CI_Model {
 		$car->setSeat($row->seat);	
 		$car->setPlateLicense($row->plateLicense);	
 		$car->setCarType($row->carType);
+	}	
 
-	}
+	public function add($input){
+		$query = $this->db->select('carId')
+		->from('cars')
+		->where('plateLicense', $input["carId"])
+		->get();
 
-	
-
-
-	
+		foreach ($query->result() as $row)
+		{			
+			$input["carId"] = $row->carId;
+		}		
+		return $this->db->insert('currentreservation', $input);
+	}	
 
 }
 
