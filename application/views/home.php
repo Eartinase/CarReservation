@@ -113,103 +113,109 @@
 
 			<div class="col-md-4">
 				<div class="well" style="margin-left:3px">
-				
+					
 					<div id="information" >
 						<form action="../search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
 
 							<center><h1>รายการรถ</h1></center>
 							<div id="divCarList1">
-								<ul><div class="row">
+								<ul style="padding-left: 0px;"><div class="row">
 									<li style="background-color:#3B94B1">
-										<div class="checkbox" style="margin-left:15px">
+										<div class="checkbox" style="margin-left:30px">
 											<input  id="listCar1" name='carType[]' onchange='uncheckFunc(1)' type='checkbox' value=1>
 											<label for="listCar1"> เก๋ง </label>
 										</div> 
 
 									</li>
-
-									<?php 
-									foreach ($Type1 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list1' onchange='checkFunc(1)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-
-									?>
+									<li style="margin-left:20px">
+										<?php 
+										foreach ($Type1 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list1' onchange='checkFunc(1)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
 								</ul>
 							</div>
 							<div id="divCarList2">
-								<ul><div class="row">
+								<ul style="padding-left: 0px;"><div class="row">
 									<li style="background-color:#8DE748">
-										<div class="checkbox" style="margin-left:15px">
+										<div class="checkbox" style="margin-left:30px">
 											<input id="listCar2" name='carType[]' onchange='uncheckFunc(2)' type='checkbox' value=2>
 											<label for="listCar2"> ปิ๊กอัพ  </label>
 										</div> 
 									</li>
-									<?php 
-									foreach ($Type2 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-
-									?>
+									<li style="margin-left:20px">
+										<?php 
+										foreach ($Type2 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
 								</ul>	
 							</div>
 							<div id="divCarList3">
-								<ul><div class="row">
+								<ul style="padding-left: 0px;"><div class="row">
 									<li style="background-color:#FFF44F">
-										<div class="checkbox" style="margin-left:15px">
+										<div class="checkbox" style="margin-left:30px">
 											<input id="listCar3"  name='carType[]' onchange='uncheckFunc(3)' type='checkbox' value=3>
 											<label for="listCar3"> ตุ๊กตุ๊ก </label>
 										</div> 
 
 									</li>
-									<?php 
-									foreach ($Type3 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list3' onchange='checkFunc(3)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-									?>
+									<li style="margin-left:20px">
+										<?php 
+										foreach ($Type3 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list3' onchange='checkFunc(3)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
 								</ul>
 
 							</div>					
 							<div id="divCarList4">
-								<ul><div class="row">
+								<ul style="padding-left: 0px;"><div class="row">
 									<li style="background-color:#EF4A6D">
-										<div class="checkbox" style="margin-left:15px">
+										<div class="checkbox" style="margin-left:30px">
 											<input id="listCar4" name='carType[]' onchange='uncheckFunc(4)' type='checkbox' value=4> 
 											<label for="listCar4"> ซาเล้ง </label>
 										</div> 
 
 									</li>
-									<?php 
-									foreach ($Type4 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list4' onchange='checkFunc(4)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-
-									?>
+									<li style="margin-left:20px">
+										<?php 
+										foreach ($Type4 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list4' onchange='checkFunc(4)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
 								</ul>
 							</div>	
 							<div id="divCarList5">
-								<ul><div class="row">
+								<ul style="padding-left: 0px;"><div class="row">
 									<li style="background-color:#FF964F">
-										<div class="checkbox" style="margin-left:15px">
+										<div class="checkbox" style="margin-left:30px">
 											<input id="listCar5" name='carType[]' onchange='uncheckFunc(5)' type='checkbox' value=5>
 											<label for="listCar5"> รถตู้ </label>
 										</div> 
 
 									</li>
-									<?php 
-									foreach ($Type5 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list5' onchange='checkFunc(5)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-									?>
+									<li style="margin-left:20px">
+										<?php 
+										foreach ($Type5 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list5' onchange='checkFunc(5)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
 								</ul>
 							</div>	
 							<hr>
