@@ -103,6 +103,7 @@
 	<?php 
 	include "navbarUserNew.php";
 	?>
+	<br>
 	<div class="container"style="margin:3%">
 		<div class="row"> 
 			<div class="col-md-8">

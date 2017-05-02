@@ -1,6 +1,6 @@
 
 <footer class="footer-menu" style="background-color:#e3e3e3">
-	
+	<div class="container">
 		<div class="row">
 			<div class="span">
 				<p>
