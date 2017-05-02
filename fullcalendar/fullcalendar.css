@@ -171,6 +171,7 @@ NOTE: use percentage font sizes or else old IE chokes
 	font-size: 1em; /* normalize */
 	white-space: nowrap;
 	cursor: pointer;
+  
 }
 
 /* Firefox has an annoying inner border */

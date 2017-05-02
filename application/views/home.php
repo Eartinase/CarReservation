@@ -101,12 +101,10 @@
 
 	<br>
 	<?php 
-	include "navbarUser.php";
+	include "navbarUserNew.php";
 	?>
-	<br>
-
 	<div class="container"style="margin:3%">
-		<div class="row">
+		<div class="row"> 
 			<div class="col-md-8">
 				<iframe id="calender" name="calender" src="../calendar"></iframe>
 			</div>
@@ -308,7 +306,6 @@
 				</div>
 			</div>
 		</div>
-
 		<script type="text/javascript">
 		function checkFunc(ch){
 			if(ch == 1){
@@ -343,8 +340,5 @@
 			}
 		}
 		</script>
-
 	</body>
-
-
 	</html>
