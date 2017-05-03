@@ -52,6 +52,6 @@
             </div>
         </div>
     </footer>
-    <section style="text-align:center; margin:10px auto;"><p>Powereded by <a href="http://www.sit.kmutt.ac.th">SIT students</a></p></section>
+    <section style="text-align:center; margin:10px auto;"><p>Powered by <a href="http://www.sit.kmutt.ac.th">SIT students</a></p></section>
 
 </div>
