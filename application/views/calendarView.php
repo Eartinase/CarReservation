@@ -52,7 +52,6 @@ $(document).ready(function() {
 </script>
 
 <body>
-
 	<div >
 		<div id='calendar'></div>
 	</div>

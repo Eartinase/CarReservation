@@ -7,8 +7,7 @@ class calendar extends CI_Controller {
 		parent::__construct();
 		//$this->load->model('CarsModel','CarsModel');
 		$this->load->model('ReservationModel','ReservationModel');
-		$this->load->model('CarsModel','CarsModel');
-		
+		$this->load->model('CarsModel','CarsModel');		
 	}
 
 	public function index()
@@ -18,7 +17,6 @@ class calendar extends CI_Controller {
 	}
 
 }
-
 
 /* End of file CarController.php */
 /* Location: ./application/controllers/CarController.php */

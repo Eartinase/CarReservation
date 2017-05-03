@@ -1,4 +1,4 @@
-<link rel='stylesheet' href='<?php echo base_url(); ?>application/Views/css/footer.css' />
+<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/footer.css' />
 <div class="container">
     <!----------- Footer ------------>
     <footer class="footer-bs">
