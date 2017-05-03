@@ -14,119 +14,41 @@
 	<link rel='stylesheet' href='<?php echo base_url(); ?>application/Views/css/hr.css' />
 	
 	<style type="text/css">
-	iframe{
-		frameborder : 0px ; 
-		border :  0px ;
-		cellspacing : 0px; 
-		width: 100%;
-		height: 100%;	
-	}
-
-	input checkbox
-
-	li{
-		list-style-type: none;
-	}
-
-	ul{
-		list-style-type: none;
-	}
-
-	.checkbox {
-		padding-left: 20px; 
-	}
-	.checkbox label {
-		display: inline-block;
-		position: relative;
-		padding-left: 5px; 
-	}
-	.checkbox label::before {
-		content: "";
-		display: inline-block;
-		position: absolute;
-		width: 15px;
-		height: 15px;
-		left: 0;
-		margin-left: -20px;
-		border: 1px solid #cccccc;
-		border-radius: 3px;
-		background-color: #fff;
-		-webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-		-o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-		transition: border 0.15s ease-in-out, color 0.15s ease-in-out; 
-	}
-	.checkbox label::after {
-		display: inline-block;
-		position: absolute;
-		width: 14px;
-		height: 14px;
-		left: 0;
-		top: 0;
-		margin-left: -20px;
-		padding-left: 3px;
-		padding-top: 1px;
-		font-size: 11px;
-		color: #555555; 
-	}
-	.checkbox input[type="checkbox"] {
-		opacity: 0; 
-	}
-	.checkbox input[type="checkbox"]:focus + label::before {
-		outline: thin dotted;
-		outline: 5px auto -webkit-focus-ring-color;
-		outline-offset: -2px; 
-	}
-	.checkbox input[type="checkbox"]:checked + label::after {
-		font-family: 'FontAwesome';
-		content: "\f00c"; 
-	}
-	.checkbox input[type="checkbox"]:disabled + label {
-		opacity: 0.65; 
-	}
-	.checkbox input[type="checkbox"]:disabled + label::before {
-		background-color: #eeeeee;
-		cursor: not-allowed; 
-	}
-	.checkbox.checkbox-circle label::before {
-		border-radius: 50%; 
-	}
-	.checkbox.checkbox-inline {
-		margin-top: 0; 
-	}
+	
 
 	</style>
 </head>
 
-<body>
+<body class="container">
 
 	<br>
 	<?php 
 	include "navbarUserNew.php";
 	?>
 	<br>
-	<div class="container"style="margin:3%">
+	<div>
 		<div class="row"> 
-			<div class="col-md-8">
+			<div class="col-md-9 col-md-offset">
 				<iframe id="calender" name="calender" src="../calendar"></iframe>
 			</div>
 
-			<div class="col-md-4">
-				<div class="well" style="margin-left:3px">
-					
-					<div id="information" >
+			<div class="col-md-3 ">
+				<div id="holdList" style="padding: 1px; margin : 10px;">
 						<form action="../search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
+							<center style="font-size: 25px">รายการรถ</center>
 
-							<center><h1>รายการรถ</h1></center>
 							<div id="divCarList1">
-								<ul style="padding-left: 0px;"><div class="row">
-									<li style="background-color:#3B94B1">
-										<div class="checkbox" style="margin-left:30px">
-											<input  id="listCar1" name='carType[]' onchange='uncheckFunc(1)' type='checkbox' value=1>
-											<label for="listCar1"> เก๋ง </label>
-										</div> 
+								<ul>
+									<div class="headList" style="background-color:#3B94B1">
+										<li >
+											<div class="checkbox" >
+												<input  id="listCar1" name='carType[]' onchange='uncheckFunc(1)' type='checkbox' value=1>
+												<label for="listCar1"> เก๋ง </label>
+											</div> 
 
-									</li>
-									<li style="margin-left:20px">
+										</li>
+									</div>
+									<li  >
 										<?php 
 										foreach ($Type1 as  $value) {
 											echo "<ul><li><div class='checkbox'>";
@@ -138,14 +60,16 @@
 								</ul>
 							</div>
 							<div id="divCarList2">
-								<ul style="padding-left: 0px;"><div class="row">
-									<li style="background-color:#8DE748">
-										<div class="checkbox" style="margin-left:30px">
-											<input id="listCar2" name='carType[]' onchange='uncheckFunc(2)' type='checkbox' value=2>
-											<label for="listCar2"> ปิ๊กอัพ  </label>
-										</div> 
-									</li>
-									<li style="margin-left:20px">
+								<ul>
+									<div class="headList" style="background-color:#8DE748">
+										<li >
+											<div class="checkbox" >
+												<input id="listCar2" name='carType[]' onchange='uncheckFunc(2)' type='checkbox' value=2>
+												<label for="listCar2"> ปิ๊กอัพ  </label>
+											</div> 
+										</li>
+									</div>
+									<li >
 										<?php 
 										foreach ($Type2 as  $value) {
 											echo "<ul><li><div class='checkbox'>";
@@ -157,15 +81,17 @@
 								</ul>	
 							</div>
 							<div id="divCarList3">
-								<ul style="padding-left: 0px;"><div class="row">
-									<li style="background-color:#FFF44F">
-										<div class="checkbox" style="margin-left:30px">
-											<input id="listCar3"  name='carType[]' onchange='uncheckFunc(3)' type='checkbox' value=3>
-											<label for="listCar3"> ตุ๊กตุ๊ก </label>
-										</div> 
+								<ul>
+									<div class="headList" style="background-color:#FFF44F">
+										<li >
+											<div class="checkbox" >
+												<input id="listCar3"  name='carType[]' onchange='uncheckFunc(3)' type='checkbox' value=3>
+												<label for="listCar3"> ตุ๊กตุ๊ก </label>
+											</div> 
 
-									</li>
-									<li style="margin-left:20px">
+										</li>
+									</div>
+									<li >
 										<?php 
 										foreach ($Type3 as  $value) {
 											echo "<ul><li><div class='checkbox'>";
@@ -178,15 +104,17 @@
 
 							</div>					
 							<div id="divCarList4">
-								<ul style="padding-left: 0px;"><div class="row">
-									<li style="background-color:#EF4A6D">
-										<div class="checkbox" style="margin-left:30px">
-											<input id="listCar4" name='carType[]' onchange='uncheckFunc(4)' type='checkbox' value=4> 
-											<label for="listCar4"> ซาเล้ง </label>
-										</div> 
+								<ul >
+									<div class="headList" style="background-color:#EF4A6D">
+										<li>
+											<div class="checkbox" >
+												<input id="listCar4" name='carType[]' onchange='uncheckFunc(4)' type='checkbox' value=4> 
+												<label for="listCar4"> ซาเล้ง </label>
+											</div> 
 
-									</li>
-									<li style="margin-left:20px">
+										</li>
+									</div>
+									<li >
 										<?php 
 										foreach ($Type4 as  $value) {
 											echo "<ul><li><div class='checkbox'>";
@@ -198,15 +126,16 @@
 								</ul>
 							</div>	
 							<div id="divCarList5">
-								<ul style="padding-left: 0px;"><div class="row">
-									<li style="background-color:#FF964F">
-										<div class="checkbox" style="margin-left:30px">
-											<input id="listCar5" name='carType[]' onchange='uncheckFunc(5)' type='checkbox' value=5>
-											<label for="listCar5"> รถตู้ </label>
-										</div> 
-
-									</li>
-									<li style="margin-left:20px">
+								<ul>
+									<div class="headList" style="background-color:#FF964F">
+										<li>
+											<div class="checkbox" >
+												<input id="listCar5" name='carType[]' onchange='uncheckFunc(5)' type='checkbox' value=5>
+												<label for="listCar5"> รถตู้ </label>
+											</div> 
+										</li>
+									</div>
+									<li >
 										<?php 
 										foreach ($Type5 as  $value) {
 											echo "<ul><li><div class='checkbox'>";
@@ -224,7 +153,7 @@
 							</center>
 
 						</form>
-					</div>
+				
 				</div>	
 				<br>
 
