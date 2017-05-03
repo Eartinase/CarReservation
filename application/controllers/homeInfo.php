@@ -20,7 +20,7 @@ class homeInfo extends CI_Controller {
  		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
  		$data["Type5"] = $this-> CarsModel -> getCarsByType(5);
 
-		$this->load->view('home', $data);
+		$this->load->view('Home', $data);
 	}
 
 	public function add(){

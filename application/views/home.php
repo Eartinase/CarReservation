@@ -4,26 +4,22 @@
 	<title></title>
 	
 	<?php 
-	include "header.php";
+	include "Header.php";
 	?>
 	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
 	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
 	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script>
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.css' />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<link rel='stylesheet' href='<?php echo base_url(); ?>application/Views/css/hr.css' />
-	
-	<style type="text/css">
-	
-
-	</style>
+	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hr.css' />
+		
 </head>
 
 <body class="container">
 
 	<br>
 	<?php 
-	include "navbarUserNew.php";
+	include "NavbarUserNew.php";
 	?>
 	<br>
 	<div>
@@ -271,7 +267,7 @@
 		}
 		</script>
 		<?php 
-		include "footer.php";
+		include "Footer.php";
 		?>
 	</body>
 	</html>

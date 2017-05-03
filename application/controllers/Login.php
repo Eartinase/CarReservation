@@ -10,7 +10,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('login.php');
+		$this->load->view('Login.php');
 	}
 
 	public function Authen()
@@ -21,9 +21,9 @@ class Login extends CI_Controller {
 
 		$result=$this -> LoginModel -> login($data);
 		if($result == true){
-			redirect('http://localhost/senior/homeInfo/','refresh')	;		
+			redirect($config['base_url'].'homeInfo/','refresh')	;		
 		}else{
-			$this->load->view('login.php');
+			$this->load->view('Login.php');
 		}
 		
 	}

@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>	
 	<?php 
-		include "header.php";
+		include "Header.php";
 	?>
 
 	

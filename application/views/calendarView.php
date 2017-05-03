@@ -4,7 +4,7 @@
 	<title></title>
 	
 	<?php 
-	include "header.php";
+	include "Header.php";
 	?>
 
 	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
