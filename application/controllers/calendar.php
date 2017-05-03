@@ -14,7 +14,7 @@ class calendar extends CI_Controller {
 	public function index()
 	{				
 		$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
-		$this->load->view('calendarView', $data);
+		$this->load->view('CalendarView', $data);
 	}
 
 }
