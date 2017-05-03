@@ -9,7 +9,7 @@ class LoginModel extends CI_Model {
 		$result = false;
 		foreach ($query->result() as $row)
 		{
-			if($row->UserName == $data["username"] && $row->Password== $data["password"] ){				
+			if($row->Username == $data["username"] && $row->Password== $data["password"] ){				
 				$result = true;
 				break;				
 			}
