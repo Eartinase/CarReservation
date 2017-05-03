@@ -21,10 +21,7 @@ class Login extends CI_Controller {
 
 		$result=$this -> LoginModel -> login($data);
 		if($result == true){
-			//redirect('home.php');
-			$this->load->library('../controllers/homeInfo');
-			//$this->load->library('../controllers/homeInfo');
-			$this->homeInfo->index();
+			redirect('http://localhost/senior/homeInfo/','refresh')	;		
 		}else{
 			$this->load->view('login.php');
 		}
