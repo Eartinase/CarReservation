@@ -38,7 +38,7 @@ class Search extends CI_Controller {
 		}
 			
 		$data["Reservation"] = $reserve;	
-		$this->load->view('calendarView',$data);		
+		$this->load->view('CalendarView',$data);		
 		
 	}	
 }

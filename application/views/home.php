@@ -30,7 +30,7 @@
 
 			<div class="col-md-3 ">
 				<div id="holdList" style="padding: 1px; margin : 10px;">
-					<form action="../search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
+					<form action="<?php echo base_url(); ?>/Search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
 						<center style="font-size: 25px">รายการรถ</center>
 
 						<div id="divCarList1">
@@ -147,17 +147,12 @@
 							<button id="searchbut" type="submit" data-target="#calender" class="btn btn-primary">ค้นหารถ</button>
 							<button class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
 						</center>
-
-					</form>
-					
+					</form>					
 				</div>	
 				<br>
-
 			</div>
 		</div>
 		<br><br>
-
-
 	</div>
 
 	<br>
@@ -206,32 +201,13 @@
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-primary" >ยืนยันการจอง</button>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
 
-	<form class="form-inline">
-		<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">ค้นหารถ</h4>
-					</div>
-					<div class="modal-body">
-						<iframe id="listCars" name="listCars" src="#"></iframe>
-
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary" >ค้นหารถ</button>
-
-					</div>
-				</div>
-			</div>
-		</div>
+	
 		<script type="text/javascript">
 		function checkFunc(ch){
 			if(ch == 1){

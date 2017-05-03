@@ -7,8 +7,6 @@
 	include "Header.php";
 	?>
 
-
-
 	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
 	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
 	<script src='<?php echo base_url(); ?>fullcalendar/locale/th.js'></script>
