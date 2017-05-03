@@ -28,7 +28,7 @@
 	<br>
 	<div>
 		<div class="row"> 
-			<div class="col-md-9 col-md-offset">
+			<div class="col-md-9 ">
 				<iframe id="calender" name="calender" src="../calendar"></iframe>
 			</div>
 
@@ -271,8 +271,4 @@
 		}
 		</script>
 	</body>
-
-	<?php 
-	include "footer.php";
-	?>
 	</html>
