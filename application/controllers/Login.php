@@ -21,7 +21,10 @@ class Login extends CI_Controller {
 
 		$result=$this -> LoginModel -> login($data);
 		if($result == true){
-			$this->load->view('result.php');
+			//redirect('home.php');
+			$this->load->library('../controllers/homeInfo');
+			//$this->load->library('../controllers/homeInfo');
+			$this->homeInfo->index();
 		}else{
 			$this->load->view('login.php');
 		}
