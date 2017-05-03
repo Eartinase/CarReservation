@@ -29,7 +29,7 @@
 	<div>
 		<div class="row"> 
 			<div class="col-md-9 ">
-				<iframe id="calender" name="calender" src="../calendar"></iframe>
+				<iframe id="calender" name="calender" src="<?php echo base_url(); ?>calendar"></iframe>
 			</div>
 
 			<div class="col-md-3 ">
