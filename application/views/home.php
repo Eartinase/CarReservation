@@ -157,7 +157,7 @@
 
 	<br>
 
-	<form action="add" method="post">
+	<form action="<?php echo base_url(); ?>Reserve/add" method="post">
 		<div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -167,7 +167,6 @@
 					</div>
 					<div class="modal-body">
 						<div id="information">
-
 							<b>เลือกรถ: </b>
 							<select name="cars"  id="cartype" onchange="changeDetect()" class="form-control">
 								<option>เลือกประเภทรถ</option>
@@ -206,7 +205,6 @@
 			</div>
 		</div>
 	</form>
-
 	
 		<script type="text/javascript">
 		function checkFunc(ch){
