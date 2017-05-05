@@ -61,7 +61,7 @@
 									<li >
 										<div class="checkbox" >
 											<input id="listCar2" name='carType[]' onchange='uncheckFunc(2)' type='checkbox' value=2>
-											<label for="listCar2"> ปิ๊กอัพ  </label>
+											<label for="listCar2"> กระบะ(ปิ๊กอัพ)  </label>
 										</div> 
 									</li>
 								</div>
@@ -82,7 +82,7 @@
 									<li >
 										<div class="checkbox" >
 											<input id="listCar3"  name='carType[]' onchange='uncheckFunc(3)' type='checkbox' value=3>
-											<label for="listCar3"> ตุ๊กตุ๊ก </label>
+											<label for="listCar3"> รถตู้ </label>
 										</div> 
 
 									</li>
@@ -105,7 +105,7 @@
 									<li>
 										<div class="checkbox" >
 											<input id="listCar4" name='carType[]' onchange='uncheckFunc(4)' type='checkbox' value=4> 
-											<label for="listCar4"> ซาเล้ง </label>
+											<label for="listCar4"> รถบัส </label>
 										</div> 
 
 									</li>
@@ -127,7 +127,7 @@
 									<li>
 										<div class="checkbox" >
 											<input id="listCar5" name='carType[]' onchange='uncheckFunc(5)' type='checkbox' value=5>
-											<label for="listCar5"> รถตู้ </label>
+											<label for="listCar5"> ไมโครบัส </label>
 										</div> 
 									</li>
 								</div>
