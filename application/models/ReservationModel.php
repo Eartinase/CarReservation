@@ -165,6 +165,50 @@ class ReservationModel extends CI_Model {
 
 	}
 
+	public function addReservation($carId ,$startDate , $endDate, $code,$place){
+		if($this->checkReservation($carId,$startDate , $endDate)){
+			$data = array(		
+				'carId' => $carId,
+				'driverId' => 'driver',
+				'employeeCode' => $code,	
+				'StartDate' => $startDate,
+				'EndDate' =>$endDate,			
+				'place' => $place
+				);
+
+			$query = $this->db->select('driverId')
+				->from('cars')
+				->where('carId', $data["carId"])
+				->get();
+
+			foreach ($query->result() as $row)
+			{			
+				$input["driverId"] = $row->driverId;
+			}		
+
+			
+			return $this->db->insert('currentreservation', $data);
+			
+
+		}else{
+			return false;
+		}
+
+
+	}
+
+	private function checkReservation($carId , $startDate , $endDate){
+			$query = $this->db->query('SELECT carId FROM currentreservation WHERE carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
+			$row = $query->row();
+			 if(!isset($row)){
+			 	return true;
+			 }else{
+			 	return false;
+			 }
+
+			 //SELECT carId FROM currentreservation WHERE carId = 1 AND (EndDate BETWEEN 10-5-2017 AND 13-5-2017 AND StartDate BETWEEN 10-5-2017 AND 13-5-2017) OR (StartDate < 10-5-2017 AND EndDate > 13-5-2017) 
+	}
+
 
 
 

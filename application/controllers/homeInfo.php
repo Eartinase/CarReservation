@@ -23,22 +23,6 @@ class homeInfo extends CI_Controller {
 		$this->load->view('Home', $data);
 	}
 
-	public function add(){
-		$timeS = $_POST['date'].' '.$_POST['timeS'];
-		$timeE = $_POST['date'].' '.$_POST['timeE'];
-		$code = '567';
-		$data = array(		
-			'carId' => $this->input->post('plateLicense'),
-			'driverId' => $this->input->post('driver'),
-			'employeeCode' => $code,	
-			'StartDate' => $timeS,
-			'EndDate' =>$timeE,			
-			'place' => $this->input->post('place')
-			);
-			
-		$this -> CarsModel -> add($data);
-		$this->load->view('result');
-	}
 }
 
 

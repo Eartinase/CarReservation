@@ -16,19 +16,15 @@
 </head>
 
 <body class="container">
-
-	<br>
 	<?php 
 	include "NavbarUserNew.php";
 	?>
-	<br>
-	<div>
 		<div class="row"> 
-			<div class="col-md-9 ">
+			<div class="col-md-9">
 				<iframe id="calender" name="calender" src="<?php echo base_url(); ?>Calendar"></iframe>
 			</div>
 
-			<div class="col-md-3 ">
+			<div class="col-md-3">
 				<div id="holdList" style="padding: 1px; margin : 10px;">
 					<form action="<?php echo base_url(); ?>/Search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
 						<center style="font-size: 25px">รายการรถ</center>
@@ -153,13 +149,14 @@
 			</div>
 		</div>
 		<br><br>
-	</div>
 
-	<br>
 
-	<form action="<?php echo base_url(); ?>Reserve/add" method="post">
-		<div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
+
+
+	<form class="form-horizontal" action="<?php echo base_url();?>Reserve/addReserve" method="post">
+		
+		<div class="modal fade" id="reserve" role="dialog">
+			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -167,42 +164,63 @@
 					</div>
 					<div class="modal-body">
 						<div id="information">
-							<b>เลือกรถ: </b>
-							<select name="cars"  id="cartype" onchange="changeDetect()" class="form-control">
-								<option>เลือกประเภทรถ</option>
-								<option value="1">เก๋ง</option>
-								<option value="2">ปิ๊กอัพ</option>
-								<option value="3">ตุ๊กตุ๊ก</option>
-								<option value="4">ซาเล้ง</option>						
-							</select>
+						<div class="form-group">
+							<label for="cartype" class="col-md-2 control-label">ประเภทรถ </label>
+							<div class="col-md-10">
+								<select name="cars"  id="cartype" onchange="changeType()" class="form-control">
+									<option value="0">เลือกประเภทรถ</option>
+									<option value="1">เก๋ง</option>
+									<option value="2">ปิ๊กอัพ</option>
+									<option value="3">ตุ๊กตุ๊ก</option>
+									<option value="4">ซาเล้ง</option>						
+								</select>
+							</div>	
+						</div>
 
-							<br>
+						<div class="form-group">
+							<label for="plate" class="col-md-2 control-label">ทะเบียนรถ </label>
+							<div class="col-md-10">
+								<select name="plateLicense" id="plate" class="form-control">
+									<option value='นม 66'>เลือกประเภทรถก่อน</option>
+								</select>
+							</div>	
+						</div>
 
-							<b>วันที่: </b><input type="date" name="date" id="day"  value="เลือกวันที่ปฏิทิน" class="form-control" >
+						<div class="form-group">
+							<label for="dateS" class="col-md-2 control-label">วันที่เดินทาง </label>
+							<div class="col-md-4">
+								<input type="date" name="dateS" id="dateS"  value="เลือกวันที่ปฏิทิน" class="form-control" >
+							</div>	
+							<label for="timeS" class="col-md-2 control-label">เวลาออกรถ </label>
+							<div class="col-md-4">
+								<input type="time" class="form-control" id="timeS" name="timeS" placeholder="ชช:นน:วว"> 
+							</div>	
+						</div>	
 
-							<input type="hidden" value="2" name="driver" id="driverr">
-							<br><br>
-
-							<div class="form-inline">
-								<b>เวลา: </b> ตั้งแต่ <input type="time" class="form-control" name="timeS" placeholder="ชช:นน:วว"> 
-								ถึง <input type="time" class="form-control" name="timeE" placeholder="ชช:นน:วว">
-							</div>
-							<br>
-							<b>เลือกทะเบียนรถ:</b>
-							<select name="plateLicense" id="plate" class="form-control" onchange="driver()">
-								<option value='นม 66'>เลือกประเภทรถก่อน</option>
-							</select>
-							<br>
+						<div class="form-group">
+							<label for="dateE" class="col-md-2 control-label">วันที่กลับ </label>
+							<div class="col-md-4">
+								<input type="date" name="dateE" id="dateE"  value="เลือกวันที่ปฏิทิน" class="form-control" >
+							</div>	
+							<label for="timeS" class="col-md-2 control-label">เวลาถึง </label>
+							<div class="col-md-4">
+								<input type="time" class="form-control" id="timeS" name="timeE" placeholder="ชช:นน:วว"> 
+							</div>	
+						</div>	
+							
 							<b>สถานที่:</b>
 							<textarea class="form-control" name="place"></textarea>
-							<br><br>
-						</div>
+							<br>
+							<div style="color: red; width: 100%" id="$warning"> 
+								
+							</div>
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-primary" >ยืนยันการจอง</button>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</form>
 	
@@ -239,9 +257,60 @@
 				list[i].checked = false;
 			}
 		}
+
+
+		function changeType(){
+			select = document.getElementById('plate');
+			e = document.getElementById('cartype');
+			v = e.options[e.selectedIndex].value;
+			 for (var i=0; i<select.length; i++){
+				     select.remove(i);
+				  }
+			if(v==1){
+				<?php foreach ($Type1 as $value) { ?>
+					var opt = document.createElement('option');
+					    opt.value = "<?php echo $value->getCarId(); ?>";
+					    opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					    select.appendChild(opt);
+				<?php } ?>
+			}else if(v==2){
+				<?php foreach ($Type2 as $value) { ?>
+					var opt = document.createElement('option');
+					    opt.value = "<?php echo $value->getCarId(); ?>";
+					    opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					    select.appendChild(opt);
+				<?php } ?>
+
+			}else if(v==3){
+				<?php foreach ($Type3 as $value) { ?>
+					var opt = document.createElement('option');
+					    opt.value = "<?php echo $value->getCarId(); ?>";
+					    opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					    select.appendChild(opt);
+				<?php } ?>
+			}else if(v==4){
+				<?php foreach ($Type4 as $value) { ?>
+					var opt = document.createElement('option');
+					    opt.value = "<?php echo $value->getCarId(); ?>";
+					    opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					    select.appendChild(opt);
+				<?php } ?>
+			}else if(v==5){
+				<?php foreach ($Type5 as $value) { ?>
+					var opt = document.createElement('option');
+					    opt.value = "<?php echo $value->getCarId(); ?>";
+					    opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					    select.appendChild(opt);
+				<?php } ?>
+			}
+			
+				
+			
+		}
 		</script>
-		<?php 
-		include "Footer.php";
-		?>
+		<?php include "Footer.php"; ?>
+			}
+			}
+			}
 	</body>
 	</html>
