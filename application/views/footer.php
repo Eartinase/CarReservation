@@ -1,46 +1,21 @@
 <link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/footer.css' />
 <div class="container">
     <!----------- Footer ------------>
-    <footer class="footer-bs">
+
+    <footer class="footer-bs" style="padding-bottom: 20px;padding-top: 30px;">
         <div class="row">
-        	<div class="col-md-3 footer-brand animated fadeInLeft">
-            	<h2>วัตถุประสงค์</h2>
-                <p>เพื่อช่วยให้บุคลากรภายในมหาวิทยาลัย (มจธ.) สามารถใช้บริการรถของมหาวิทยาลัยได้สะดวกมากยิ่งขึ้น 
-                	โดยระบบจะอำนวยความสะดวกในด้าน การค้นหารถที่พร้อมให้บริการ การจองขอใช้บริการรถ การออกรายงาน ฯลฯ ด้วยหน้าเว็บไซต์ที่ออกแบบมาให้ใช้งานได้ง่าย
-               	ทำให้การใช้บริการรถของทางมหาวิทยาลัยจะไม่ใช่เรื่องยุ่งยากอีกต่อไป ทางผู้พัฒนาหวังว่าผู้ใช้งานจะเกิดความประทับใจกับเว็บไซต์ของเรา ขอบคุณครับ/ค่ะ</p>
-                <p>© 2017 Senior project, All rights reserved</p>
+            <div class="col-md-3 footer-brand animated fadeInLeft">
+                <a href="http://www2.kmutt.ac.th/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%AA%E0%B8%B1%E0%B8%8D%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B8%B1%E0%B8%A2%E0%B8%97%E0%B8%B1%E0%B8%A8%E0%B8%99%E0%B9%8C_%E0%B8%A1%E0%B8%88%E0%B8%98_Graphic_notext.svg/2000px-%E0%B8%95%E0%B8%A3%E0%B8%B2%E0%B8%AA%E0%B8%B1%E0%B8%8D%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B9%8C%E0%B8%A7%E0%B8%B4%E0%B8%AA%E0%B8%B1%E0%B8%A2%E0%B8%97%E0%B8%B1%E0%B8%A8%E0%B8%99%E0%B9%8C_%E0%B8%A1%E0%B8%88%E0%B8%98_Graphic_notext.svg.png"
+                width="128" height="128"></a>
+                <p style="margin-top:20px">© 2017 Senior project, Calendar Base Car Reservation System</p>
             </div>
-        	<div class="col-md-4 footer-nav animated fadeInUp">
-        		<h4>Menu</h4>
-            	<div class="col-md-6">
-                    <ul class="pages">
-                        <li><a href="#">Travel</a></li>
-                        <li><a href="#">Nature</a></li>
-                        <li><a href="#">Explores</a></li>
-                        <li><a href="#">Science</a></li>
-                        <li><a href="#">Advice</a></li>
-                    </ul>
-                </div>
-            	<div class="col-md-6">
-                    <ul class="list">
-                        <li><a href="#">เกี่ยวกับผู้พัฒนา</a></li>
-                        <li><a href="#">ติดต่อเจ้าหน้าที่</a></li>
-                        <li><a href="#">ข้อตกลงและเงื่อนไข</a></li>
-                    </ul>
-                </div>
+
+            <div class="col-md-3 footer-nav animated fadeInUp" style="margin-top:45px">
+            <a href="https://www4.sit.kmutt.ac.th/frontpage" style="margin-left:60px"><img src="http://elective.sit.kmutt.ac.th/MSC/check/img/SIT_logo.png"></a>
             </div>
-        	<div class="col-md-2 footer-social animated fadeInDown">
-            	<h4>Follow Us</h4>
-            	<ul>
-                	<li><a href="#">Facebook</a></li>
-                	<li><a href="#">Twitter</a></li>
-                	<li><a href="#">Instagram</a></li>
-                	<li><a href="#">RSS</a></li>
-                </ul>
-            </div>
-        	<div class="col-md-3 footer-ns animated fadeInRight">
-            	<h4>Newsletter</h4>
-                <p>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
+            <div class="col-md-4 footer-nav animated fadeInUp" style="margin-top:18px;margin-left:150px">
+                <h3>รายงานปัญหา</h3>
+                <p>กรอกข้อความ เกี่ยวกับปัญหาที่พบในการใช้งานระบบ</p>
                 <p>
                     <div class="input-group">
                       <input type="text" class="form-control" placeholder="Search for...">
@@ -55,3 +30,5 @@
     <section style="text-align:center; margin:10px auto;"><p>Powered by <a href="http://www.sit.kmutt.ac.th">SIT students</a></p></section>
 
 </div>
+        	
+            	
