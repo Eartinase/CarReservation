@@ -18,7 +18,7 @@
                 <p>กรอกข้อความ เกี่ยวกับปัญหาที่พบในการใช้งานระบบ</p>
                 <p>
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
+                      <input type="text" class="form-control" placeholder="รายงานปัญหาที่นี่...">
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="button" style="width:40px;height:34px"><span class="glyphicon glyphicon-envelope"></span></button>
                       </span>
@@ -27,8 +27,6 @@
             </div>
         </div>
     </footer>
-    <section style="text-align:center; margin:10px auto;"><p>Powered by <a href="http://www.sit.kmutt.ac.th">SIT students</a></p></section>
-
 </div>
         	
             	
