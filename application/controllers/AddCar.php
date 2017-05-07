@@ -22,10 +22,13 @@ class AddCar extends CI_Controller {
 			'seat' 			=> $this->input->post('seat'),
 			'carTypeId' 	=> $this->input->post('carType'),	
 			'driverId' 		=> $this->input->post('driver'),
-			'Img'	=>$this->input->post('pic')		 	
+			'Img'			=>$this->input->post('pic')		 	
 			);		
 		$this -> AddCarModel -> add($data);
-		$this->load->view('result');
+		$message = array(
+			'message' => 'Success'
+			);
+		$this->load->view('Result', $message);
 	}
 	    
 
