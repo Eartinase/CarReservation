@@ -144,8 +144,8 @@
 							<div class="form-group">
 								<label for="cartype" class="col-md-2 control-label">ประเภทรถ </label>
 								<div class="col-md-10">
-									<select name="cars"  id="cartype" onchange="changeType()" class="form-control">
-										<option value="0">เลือกประเภทรถ</option>
+									<select name="cars" required id="cartype" onchange="changeType()" class="form-control">
+										<option value="">เลือกประเภทรถ</option>
 										<option value="1">เก๋ง</option>
 										<option value="2">กระบะ</option>
 										<option value="3">ตู้</option>
@@ -157,8 +157,8 @@
 							<div class="form-group">
 								<label for="plate" class="col-md-2 control-label">ทะเบียนรถ </label>
 								<div class="col-md-10">
-									<select name="plateLicense" id="plate" class="form-control">
-										<option value='นม 66'>เลือกประเภทรถก่อน</option>
+									<select required name="plateLicense" id="plate" class="form-control">
+										<option value="">เลือกประเภทรถก่อน</option>
 									</select>
 								</div>	
 							</div>
@@ -166,22 +166,22 @@
 							<div class="form-group">
 								<label for="dateS" class="col-md-2 control-label">วันที่เดินทาง </label>
 								<div class="col-md-4">
-									<input type="date" name="dateS" id="dateS"  value="เลือกวันที่ปฏิทิน" class="form-control" >
+									<input type="date"  required name="dateS" id="dateS"  value="เลือกวันที่ปฏิทิน" class="form-control" >
 								</div>	
-								<label for="timeS" class="col-md-2 control-label">เวลาออกรถ </label>
+								<label for="timeS"  class="col-md-2 control-label">เวลาออกรถ </label>
 								<div class="col-md-4">
-									<input type="time" class="form-control" id="timeS" name="timeS" placeholder="ชช:นน:วว"> 
+									<input type="time" required class="form-control" id="timeS" name="timeS" placeholder="ชช:นน:วว"> 
 								</div>	
 							</div>	
 
 							<div class="form-group">
 								<label for="dateE" class="col-md-2 control-label">วันที่กลับ </label>
 								<div class="col-md-4">
-									<input type="date" name="dateE" id="dateE"  value="เลือกวันที่ปฏิทิน" class="form-control" >
+									<input type="date" required name="dateE" id="dateE"  value="เลือกวันที่ปฏิทิน" class="form-control" >
 								</div>	
 								<label for="timeS" class="col-md-2 control-label">เวลาถึง </label>
 								<div class="col-md-4">
-									<input type="time" class="form-control" id="timeS" name="timeE" placeholder="ชช:นน:วว"> 
+									<input type="time" required class="form-control" id="timeS" name="timeE" placeholder="ชช:นน:วว"> 
 								</div>	
 							</div>	
 							
@@ -233,9 +233,9 @@
 		select = document.getElementById('plate');
 		e = document.getElementById('cartype');
 		v = e.options[e.selectedIndex].value;
-		for (var i=0; i<select.length; i++){
-			select.remove(i);
-		}
+		
+		select.innerHTML = "";
+		
 
 		if(v==1){
 			<?php foreach ($Type1 as $value) { ?>
@@ -269,6 +269,7 @@
 
 		}
 		</script>
+
 	<?php include "Footer.php"; ?>
 
 
