@@ -11,7 +11,7 @@
 	
 </head>
 <body style="margin:2%">
-	<form action="Add" method="post">
+	<form action="<?php echo base_url(); ?>AddCar/Add" method="post">
 		ทะเบียน: <input type="text" name="plateLicense" class="form-control" required> <br>
 		ประเภทรถ: <select name ="carType" class="form-control" required>
 					<?php 
@@ -20,7 +20,8 @@
 					?>
 				</select><br>
 		จำนวนที่นั่ง: <input type="number" class="form-control" name="seat" required> <br>
-		คนขับ: <select name = "driver" class="form-control" required>
+		คนขับ: <select name = "driver" class="form-control">
+		<option> -- </option>
 					<?php 
 					echo $driver ;
 					//echo var_dump($driver);
