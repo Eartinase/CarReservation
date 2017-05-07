@@ -21,8 +21,8 @@ class Reserve extends CI_Controller {
 		}else{
 			$data['message']="Fail";
 		}
-
-			$this->load->view('Result',$data);
+			redirect(base_url().'homeInfo','refresh');
+			
 	}
 
 }
