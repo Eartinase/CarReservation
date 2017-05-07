@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/login-new.css' />
+  <link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/login.css' />
   <title></title>
   <?php 
   include "Header.php";
   ?>
 </head>
-<body style="margin:2%;">
+<body>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <div class="main">
     <div class="container">
@@ -36,7 +36,7 @@
 
             </div> <!-- end login -->
             <div class="logo"><img src="<?php echo base_url(); ?>application/views/img/Kmutt.png"
-              width="128" height="128">
+              width="138" height="138">
               <div class="clearfix"></div>
             </div>
           </div>
