@@ -10,7 +10,6 @@ class AddDriver extends CI_Controller {
 
 	public function index()	
 	{
-
 		$this->load->view('AddDriverView');
 	}
 
@@ -20,7 +19,12 @@ class AddDriver extends CI_Controller {
 			'DriverName'	=> $this->input->post('DriverName'),  	
 			);		
 		$this -> AddDriverModel -> add($data);
-		$this->load->view('result');
+
+		$message = array(
+			'message' => 'Success'
+			);
+		$this->load->view('Result', $message);
+		
 	}
 	
 
