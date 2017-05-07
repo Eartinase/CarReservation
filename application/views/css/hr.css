@@ -33,6 +33,10 @@
 		padding-left: 25px;
 	}
 
+	.dr-menu {
+		padding-left: 0px;
+	}
+
 	ul{
 		list-style-type: none;
 		padding-left: 0px;
