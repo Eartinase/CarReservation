@@ -52,7 +52,7 @@ $(document).ready(function() {
 });
 </script>
 
-<body>
+<body style="background-color:#fafafa;">
 	<div >
 		<div id='calendar'></div>
 	</div>

@@ -15,7 +15,7 @@
 	
 </head>
 
-<body class="container">
+<body class="container" style="background-color:#fafafa">
 	<?php 
 	include "NavbarUserNew.php";
 	?>
