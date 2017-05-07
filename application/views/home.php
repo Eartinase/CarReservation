@@ -20,18 +20,18 @@
 	include "NavbarUserNew.php";
 	?>
 	<div class="row"> 
-		<div class="col-md-9">
+		<div class="col-md-10">
 			<iframe id="calender" name="calender" src="<?php echo base_url(); ?>Calendar"></iframe>
 		</div>
 
-		<div class="col-md-3">
-			<div id="holdList" style="padding: 1px; margin : 10px;">
+		<div class="col-md-2">
+			<div id="holdList" style="padding: 1px; margin : 0px;">
 				<form action="<?php echo base_url(); ?>/Search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
 					<center style="font-size: 25px">รายการรถ</center>
 
 					<div id="divCarList1">
 						<ul>
-							<div class="headList" style="background-color:#3B94B1">
+							<div class="headList" style="background-color:#E1628B">
 								<li >
 									<div class="checkbox" >
 										<input  id="listCar1" name='carType[]' onchange='uncheckFunc(1)' type='checkbox' value=1>
@@ -53,7 +53,7 @@
 					</div>
 					<div id="divCarList2">
 						<ul>
-							<div class="headList" style="background-color:#8DE748">
+							<div class="headList" style="background-color:#FEDB6F">
 								<li >
 									<div class="checkbox" >
 										<input id="listCar2" name='carType[]' onchange='uncheckFunc(2)' type='checkbox' value=2>
@@ -74,7 +74,7 @@
 					</div>
 					<div id="divCarList3">
 						<ul>
-							<div class="headList" style="background-color:#FFF44F">
+							<div class="headList" style="background-color:#4D7FA3">
 								<li >
 									<div class="checkbox" >
 										<input id="listCar3"  name='carType[]' onchange='uncheckFunc(3)' type='checkbox' value=3>
@@ -97,11 +97,11 @@
 					</div>					
 					<div id="divCarList4">
 						<ul >
-							<div class="headList" style="background-color:#EF4A6D">
+							<div class="headList" style="background-color:#9FE363">
 								<li>
 									<div class="checkbox" >
 										<input id="listCar4" name='carType[]' onchange='uncheckFunc(4)' type='checkbox' value=4> 
-										<label for="listCar4"> รถบัส </label>
+										<label for="listCar4"> ไมโครบัส </label>
 									</div> 
 
 								</li>
@@ -117,27 +117,7 @@
 							</li>
 						</ul>
 					</div>	
-					<div id="divCarList5">
-						<ul>
-							<div class="headList" style="background-color:#FF964F">
-								<li>
-									<div class="checkbox" >
-										<input id="listCar5" name='carType[]' onchange='uncheckFunc(5)' type='checkbox' value=5>
-										<label for="listCar5"> ไมโครบัส </label>
-									</div> 
-								</li>
-							</div>
-							<li >
-								<?php 
-								foreach ($Type5 as  $value) {
-									echo "<ul><li><div class='checkbox'>";
-									echo "<input name='carId[]' class='list5' onchange='checkFunc(5)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-									echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-								}
-								?>
-							</li>
-						</ul>
-					</div>	
+					
 					<hr>
 					<center>
 						<button id="searchbut" type="submit" data-target="#calender" class="btn btn-primary">ค้นหารถ</button>
@@ -169,8 +149,7 @@
 										<option value="1">เก๋ง</option>
 										<option value="2">กระบะ</option>
 										<option value="3">ตู้</option>
-										<option value="4">บัส</option>			
-										<option value="5">ไมโครบัส</option>			
+										<option value="4">ไมโครบัส</option>						
 									</select>
 								</div>	
 							</div>
@@ -234,6 +213,7 @@
 	}
 
 	function uncheckFunc(ch){
+		list = null;
 		switch(ch){
 			case(1): list = document.getElementsByClassName("list1"); break;
 			case(2): list = document.getElementsByClassName("list2"); break;
@@ -241,7 +221,7 @@
 			case(4): list = document.getElementsByClassName("list4"); break;
 			case(5): list = document.getElementsByClassName("list5"); 
 		}
-		list = null;
+		
 		
 		for (var i = 0; i < list.length; i++) {
 			list[i].checked = false;
@@ -256,39 +236,36 @@
 		for (var i=0; i<select.length; i++){
 			select.remove(i);
 		}
-		var opt = document.createElement('option');
 
 		if(v==1){
-			<?php foreach ($Type1 as $value) { ?>				
+			<?php foreach ($Type1 as $value) { ?>
+				var opt = document.createElement('option');				
+				opt.value = "<?php echo $value->getCarId(); ?>";
+				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+				select.appendChild(opt);
+			<?php } ?>
+		}else if(v==2){
+			<?php foreach ($Type2 as $value) { ?>	
+				var opt = document.createElement('option');				
 				opt.value = "<?php echo $value->getCarId(); ?>";
 				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
 				select.appendChild(opt);
 				<?php } ?>
-			}else if(v==2){
-				<?php foreach ($Type2 as $value) { ?>					
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-					<?php } ?>
-			}else if(v==3){
-					<?php foreach ($Type3 as $value) { ?>						
-						opt.value = "<?php echo $value->getCarId(); ?>";
-						opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-						select.appendChild(opt);
-						<?php } ?>
-			}else if(v==4){
-						<?php foreach ($Type4 as $value) { ?>							
-							opt.value = "<?php echo $value->getCarId(); ?>";
-							opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-							select.appendChild(opt);
-							<?php } ?>
-			}else if(v==5){
-							<?php foreach ($Type5 as $value) { ?>								
-								opt.value = "<?php echo $value->getCarId(); ?>";
-								opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-								select.appendChild(opt);
-								<?php } ?>
-			}
+		}else if(v==3){
+			<?php foreach ($Type3 as $value) { ?>		
+				var opt = document.createElement('option');				
+				opt.value = "<?php echo $value->getCarId(); ?>";
+				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+				select.appendChild(opt);
+			<?php } ?>
+		}else if(v==4){
+			<?php foreach ($Type4 as $value) { ?>	
+				var opt = document.createElement('option');						
+				opt.value = "<?php echo $value->getCarId(); ?>";
+				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+				select.appendChild(opt);
+			<?php } ?>
+		}
 
 		}
 		</script>
