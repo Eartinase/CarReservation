@@ -37,6 +37,21 @@ $(document).ready(function() {
 		?>
 		],
 
+		
+		eventMouseover: function (calEvent,event, jsEvent) {
+        $(this).popover({
+            placement: 'top',
+            trigger: 'hover',
+            html:true,
+            content: 'วันที่ออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br />วันที่กลับ : '
+            +moment(calEvent.end).format('DD/MM h:mm a'),
+            container: '#calendar'
+
+        });
+        $(this).popover('show');
+    },
+
+	
 		dayClick: function(date, jsEvent, view) {
 					//alert('Clicked on: ' + date.format());
 					//document.getElementById('day').value = date.format();
@@ -58,5 +73,12 @@ $(document).ready(function() {
 	</div>
 
 </body>
+
+<style type="text/css">
+	.popover{
+		max-height: 70px;
+		width: 250px;
+	}
+</style>
 
 </html>
