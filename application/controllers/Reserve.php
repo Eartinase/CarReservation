@@ -16,12 +16,17 @@ class Reserve extends CI_Controller {
 		$carId = $_POST['plateLicense'];
 		$place = $_POST['place'];
 		
-		if( $this-> ReservationModel -> addReservation($carId ,$startDate , $endDate, $code,$place )){
-			$data['message']="Success";
+		$check = $this-> ReservationModel -> addReservation($carId ,$startDate , $endDate,$code,$place);
+		
+		if( $check ) {
+			$data['check'] = true;
 		}else{
-			$data['message']="Fail";
+			$data['check'] = false;
+			$data['message']="ไม่สามารถทำการจองได้เนื่องจากรถได้ถูกจองแล้ว";
 		}
-			redirect(base_url().'homeInfo','refresh');
+
+		$this->load->view('Result', $data);
+			
 			
 	}
 

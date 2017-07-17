@@ -17,16 +17,25 @@
 
 <body class="container" style="background-color:#fafafa">
 	<?php 
-	include "NavbarUserNew.php";
+		if (isset($this->session->userdata['logged_in'])) {
+			$username = ($this->session->userdata['logged_in']['username']);
+			$employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
+			$name = ($this->session->userdata['logged_in']['name']);
+			$department = ($this->session->userdata['logged_in']['department']);
+			$role = ($this->session->userdata['logged_in']['role']);
+			include "navbarUserLogged_in.php";
+		}else{
+			include "navbarHome.php";
+		}
 	?>
 	<div class="row"> 
 		<div class="col-md-10">
-			<iframe id="calender" name="calender" src="<?php echo base_url(); ?>Calendar"></iframe>
+			<iframe id="calendar" name="calendar" src="<?php echo base_url(); ?>Calendar"></iframe>
 		</div>
 
 		<div class="col-md-2">
 			<div id="holdList" style="padding: 1px; margin : 0px;">
-				<form action="<?php echo base_url(); ?>/Search/searchCar" class="form-horizontal" target="calender"  method="POST" accept-charset="utf-8" style="align-items:center;">
+				<form action="<?php echo base_url(); ?>/Search/searchCar" class="form-horizontal" target="calendar"  method="POST" accept-charset="utf-8" style="align-items:center;">
 					<center style="font-size: 25px">รายการรถ</center>
 
 					<div id="divCarList1">
@@ -120,8 +129,8 @@
 					
 					<hr>
 					<center>
-						<button id="searchbut" type="submit" data-target="#calender" class="btn btn-primary">ค้นหารถ</button>
-						<button class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
+						<button id="searchbut" type="submit" data-target="#calendar" class="btn btn-primary">ค้นหารถ</button>
+						<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
 					</center>
 				</form>					
 			</div>	
@@ -130,16 +139,17 @@
 	</div>
 	<br><br>
 
-	<form class="form-horizontal" action="<?php echo base_url();?>Reserve/addReserve" method="post">
+	<form class="form-horizontal" id="formReserve" target="sendform" action="<?php echo base_url();?>Reserve/addReserve" method="post">
 		
 		<div class="modal fade" id="reserve" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
 					</div>
 					<div class="modal-body">
+
 						<div id="information">
 							<div class="form-group">
 								<label for="cartype" class="col-md-2 control-label">ประเภทรถ </label>
@@ -181,19 +191,18 @@
 								</div>	
 								<label for="timeS" class="col-md-2 control-label">เวลาถึง </label>
 								<div class="col-md-4">
-									<input type="time" required class="form-control" id="timeS" name="timeE" placeholder="ชช:นน:วว"> 
+									<input type="time" required class="form-control" id="timeS" name="timeE"> 
 								</div>	
 							</div>	
 							
 							<b>สถานที่:</b>
-							<textarea class="form-control" name="place"></textarea>
+							<textarea class="form-control" name="place" required ></textarea>
 							<br>
-							<div style="color: red; width: 100%" id="$warning"> 
-								
-							</div>
+							<iframe style = "height: 0px; width: 100%" target="" src="/senior/application/views/Result.php" id="sendform" name="sendform"></iframe>
+							
 						</div>
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary" >ยืนยันการจอง</button>
+							<button type="submit"  class="btn btn-primary" >ยืนยันการจอง</button>
 						</div>
 					</div>
 				</div>
@@ -237,37 +246,51 @@
 		select.innerHTML = "";
 		
 
-		if(v==1){
-			<?php foreach ($Type1 as $value) { ?>
-				var opt = document.createElement('option');				
-				opt.value = "<?php echo $value->getCarId(); ?>";
-				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-				select.appendChild(opt);
-			<?php } ?>
-		}else if(v==2){
-			<?php foreach ($Type2 as $value) { ?>	
-				var opt = document.createElement('option');				
-				opt.value = "<?php echo $value->getCarId(); ?>";
-				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-				select.appendChild(opt);
+			if(v==1){
+				<?php foreach ($Type1 as $value) { ?>
+					var opt = document.createElement('option');				
+					opt.value = "<?php echo $value->getCarId(); ?>";
+					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					select.appendChild(opt);
 				<?php } ?>
-		}else if(v==3){
-			<?php foreach ($Type3 as $value) { ?>		
-				var opt = document.createElement('option');				
-				opt.value = "<?php echo $value->getCarId(); ?>";
-				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-				select.appendChild(opt);
-			<?php } ?>
-		}else if(v==4){
-			<?php foreach ($Type4 as $value) { ?>	
-				var opt = document.createElement('option');						
-				opt.value = "<?php echo $value->getCarId(); ?>";
-				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-				select.appendChild(opt);
-			<?php } ?>
-		}
+			}else if(v==2){
+				<?php foreach ($Type2 as $value) { ?>	
+					var opt = document.createElement('option');				
+					opt.value = "<?php echo $value->getCarId(); ?>";
+					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					select.appendChild(opt);
+					<?php } ?>
+			}else if(v==3){
+				<?php foreach ($Type3 as $value) { ?>		
+					var opt = document.createElement('option');				
+					opt.value = "<?php echo $value->getCarId(); ?>";
+					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					select.appendChild(opt);
+				<?php } ?>
+			}else if(v==4){
+				<?php foreach ($Type4 as $value) { ?>	
+					var opt = document.createElement('option');						
+					opt.value = "<?php echo $value->getCarId(); ?>";
+					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					select.appendChild(opt);
+				<?php } ?>
+			}
 
 		}
+
+		
+
+		function resetForm(){
+			select = document.getElementById('plate');
+			select.innerHTML = "";
+			var opt = document.createElement('option');	
+			opt.innerHTML = "เลือกประเภทรถก่อน";
+			select.appendChild(opt);
+			document.getElementById("formReserve").reset();
+			document.getElementById("sendform").style.height = '0px';
+			
+		}
+
 		</script>
 
 	<?php include "Footer.php"; ?>
