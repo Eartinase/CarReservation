@@ -28,6 +28,7 @@
 			include "navbarHome.php";
 		}
 	?>
+
 	<div class="row"> 
 		<div class="col-md-10">
 			<iframe id="calendar" name="calendar" src="<?php echo base_url(); ?>Calendar"></iframe>
@@ -211,6 +212,8 @@
 	</form>
 	
 	<script type="text/javascript">
+
+
 	function checkFunc(ch){
 		switch(ch){
 			case(1):document.getElementById("listCar1").checked = true; break;
@@ -290,6 +293,7 @@
 			document.getElementById("sendform").style.height = '0px';
 			
 		}
+		
 
 		</script>
 

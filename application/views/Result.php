@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
    		<?php  if($check){  ?>
-   			parent.location = "<?php echo base_url(); ?>homeInfo"
+   			parent.location = "<?php echo base_url(); ?>UserHistoryInfo"
 
    		<?php  }else{ 	?>
    			

@@ -287,7 +287,7 @@
 	font-family: tharlon;	/* zawgyi-one is non-unicode compliant but in wide usage ; ayar is also not strictly compliant */
 }
 :lang("th"), :lang("tha")  {	/* THAI */
-	font-family: garuda;
+	font-family: thsarabun;
 }
 
 

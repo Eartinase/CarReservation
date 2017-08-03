@@ -28,7 +28,7 @@ class Search extends CI_Controller {
 			foreach ($carTypeId as $value) {
 				$r =$this -> ReservationModel -> getReserveFromCarType($value , $carId);
 				if($r != null){
-					$reserve = array_merge($reserve ,$r);
+					array_push($reserve ,$r);
 				}
 				
 			}

@@ -20,16 +20,20 @@
       </button>
       <a style="margin-left:22px" float class="navbar-brand" href="#">
         <img src="<?php echo base_url(); ?>application/views/img/home-128.png" width="26" height="26"></a>
-        <a style="font-size:25px;color:white" class="navbar-brand" href="#" >เมนูหลัก</a>
+        <a style="font-size:25px;color:white" class="navbar-brand" href="<?php echo base_url(); ?>HomeInfo" >เมนูหลัก</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a style="font-size:16px;color:white" href="#" data-toggle="dropdown">ใช้บริการรถภายนอก <span class="sr-only">(current)</span></a></li>
-        <li><a style="font-size:16px;color:white"href="#" data-toggle="dropdown">ดูประวัติการใช้บริการรถ</a></li>
+        <li>
+          <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>UserHistoryInfo" >ดูประวัติการใช้บริการรถ
+          </a>
+        </li>
         <li class="dropdown">
-          <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สร้างรายงาน<span class="caret"></span></a>
+          <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สร้างรายงาน<span class="caret"></span>
+          </a>
           <ul class="dropdown-menu">
             <!--<li><a href="#">Something else here</a></li>-->
             <li class="dr-menu"><a href="#">รายงานประวัติการใช้บริการรถ</a></li>

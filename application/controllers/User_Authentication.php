@@ -16,7 +16,12 @@ class User_Authentication extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('Login.php');
+		if(isset($this->session->userdata['logged_in'])){
+				redirect('homeInfo','refresh');
+			}else{
+				$this->load->view('Login.php');
+			}
+		
 	}
 
 	public function Authen()

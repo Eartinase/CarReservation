@@ -12,7 +12,7 @@ class Reserve extends CI_Controller {
 	public function addReserve(){
 		$startDate = $_POST['dateS'].' '.$_POST['timeS'];
 		$endDate = $_POST['dateE'].' '.$_POST['timeE'];
-		$code = '567';
+		$code = $this->session->userdata['logged_in']['employeeCode'];
 		$carId = $_POST['plateLicense'];
 		$place = $_POST['place'];
 		
@@ -20,14 +20,19 @@ class Reserve extends CI_Controller {
 		
 		if( $check ) {
 			$data['check'] = true;
+			
 		}else{
 			$data['check'] = false;
 			$data['message']="ไม่สามารถทำการจองได้เนื่องจากรถได้ถูกจองแล้ว";
+			
 		}
 
 		$this->load->view('Result', $data);
-			
-			
+				
+	}
+
+	public function outsideCar(){
+		$this->load->view('outsideCar');
 	}
 
 }

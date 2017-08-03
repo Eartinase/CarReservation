@@ -139,8 +139,6 @@ class ReservationModel extends CI_Model {
 		
 		return $r;
 	
-
-
 	}
 
 	public function getReserveFromCarType($carTypeId ,$carId){
@@ -203,7 +201,7 @@ class ReservationModel extends CI_Model {
 			{			
 				$input["driverId"] = $row->driverId;
 			}		
-
+			
 			
 			return $this->db->insert('currentreservation', $data);
 			
@@ -215,6 +213,7 @@ class ReservationModel extends CI_Model {
 
 	}
 
+	// function for check that Reservation is not duplicate
 	private function checkReservation($carId , $startDate , $endDate){
 			$query = $this->db->query('SELECT carId FROM currentreservation WHERE carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
 			$row = $query->row();
@@ -227,10 +226,24 @@ class ReservationModel extends CI_Model {
 			 //SELECT carId FROM currentreservation WHERE carId = 1 AND (EndDate BETWEEN 10-5-2017 AND 13-5-2017 AND StartDate BETWEEN 10-5-2017 AND 13-5-2017) OR (StartDate < 10-5-2017 AND EndDate > 13-5-2017) 
 	}
 
+	public function getCurReserveFormEmpCode($employeeCode){
+		$currentReserve = null;
+		$r = "";
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.EmployeeCode = '.$employeeCode);
+		foreach ($query->result() as $row)
+		{
+				$currentReserve = new ReservationModel;
+				$this->matchReservationObject($currentReserve,$row);
+				if($r === "") 
+				{
+					$r = array();
+				}
+				array_push($r,$currentReserve);
+		}
+		
+		return $r;
 
-
-
-
+	}
 	
 
 	private function matchReservationObject($reserveInfo,$row)

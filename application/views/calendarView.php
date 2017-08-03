@@ -36,7 +36,6 @@ $(document).ready(function() {
 		echo substr($info, 0, -2);
 		?>
 		],
-
 		
 		eventMouseover: function (calEvent,event, jsEvent) {
         $(this).popover({
@@ -49,7 +48,8 @@ $(document).ready(function() {
 
         });
         $(this).popover('show');
-    },
+    	},
+
 
 	
 		dayClick: function(date, jsEvent, view) {
@@ -63,7 +63,8 @@ $(document).ready(function() {
 					center: '',
 					right : 'today month,agendaWeek,agendaDay prev,next listWeek'
 				},
-			});
+		
+		});
 });
 </script>
 

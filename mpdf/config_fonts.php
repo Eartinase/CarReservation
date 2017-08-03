@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -211,11 +212,12 @@ $this->fontdata = array(
 		'BI' => "Garuda-BoldOblique.ttf",
 		'useOTL' => 0xFF,
 		),
-	"THSaraban" => array( /* Thai */
-		'R' => "THSaraban.ttf",
-		'B' => "THSaraban Bold.ttf",
-		'I'  => "THSaraban Italic",
-		'BI'   =>  "THSaraban BoldItalic",
+	"thsarabun" => array( /* Thai */
+		'R' => "THSarabun.ttf",
+		'B' => "THSarabun-Bold.ttf",
+		'I'  => "THSarabun-Italic.ttf",
+		'BI'   =>  "THSarabun-Bold-Italic.ttf",
+		
 		),
 
 	"khmeros" => array(	/* Khmer */
