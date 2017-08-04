@@ -18,19 +18,14 @@ class Search extends CI_Controller {
 	public function searchCar()
 	{	
 		$reserve = array();
-		//$startDateTime = '\''.$_POST['startDate'].' '.$_POST['startTime'].'\'';
-		//$endDateTime = '\''.$_POST['endDate'].' '.$_POST['endTime'].'\'';
-		//$data["searchCar"] =  $this -> CarsModel -> searchCars($startDateTime,$endDateTime,$carTypeId);
-		// get Car Object that All availiable
 		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
 		$carId = (isset($_POST['carId']))?$_POST['carId']:"";
 		if(!$carTypeId == ""){
 			foreach ($carTypeId as $value) {
-				$r =$this -> ReservationModel -> getReserveFromCarType($value , $carId);
-				if($r != null){
-					array_push($reserve ,$r);
+				$r = $this -> ReservationModel -> getReserveFromCarType($value , $carId);
+				if($r != ""){
+					$reserve = array_merge($reserve ,$r);
 				}
-				
 			}
 
 		}else{

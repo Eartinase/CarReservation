@@ -1,4 +1,4 @@
-<html>
+
 <head>
 	<meta charset="utf-8">
 	<title></title>
@@ -24,16 +24,16 @@ $(document).ready(function() {
 
 		events: [
 		<?php
-		$info = "";
-		foreach ($Reservation as $value)
-		{
-			$info .= "{title: '".$value->getPlateLicese().
-			"',\nstart: '".$value->getStartDate().
-			"',\nend: '".$value->getEndDate().	
-			"',\ncolor: '".$value->getColor().
-			"'},\n";
-		}
-		echo substr($info, 0, -2);
+			$info = "";
+			foreach ($Reservation as $value)
+			{
+				$info .= "{title: '".$value->getPlateLicese().
+				"',\nstart: '".$value->getStartDate().
+				"',\nend: '".$value->getEndDate().	
+				"',\ncolor: '".$value->getColor().
+				"'},\n";
+			}
+			echo substr($info, 0, -2);
 		?>
 		],
 		
@@ -64,7 +64,7 @@ $(document).ready(function() {
 					right : 'today month,agendaWeek,agendaDay prev,next listWeek'
 				},
 		
-		});
+	});
 });
 </script>
 
@@ -82,4 +82,3 @@ $(document).ready(function() {
 	}
 </style>
 
-</html>
