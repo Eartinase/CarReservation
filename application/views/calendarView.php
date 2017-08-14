@@ -1,4 +1,4 @@
-
+<html>
 <head>
 	<meta charset="utf-8">
 	<title></title>
@@ -82,3 +82,4 @@ $(document).ready(function() {
 	}
 </style>
 
+</html>

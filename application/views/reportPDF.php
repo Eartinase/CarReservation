@@ -22,7 +22,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 <html>
 	<body>
 	<div class="con">
-		<table >
+		<table style="font-size:50px" >
 		  <tr>
 		    <th>ทะเบียนรถ</th>
 		    <th>วันที่-เวลาเดินทาง</th>
@@ -69,7 +69,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 <?php
 $html = ob_get_contents();
 ob_end_clean();
-$pdf = new mPDF('th', 'A4-L', '0', 'thsarabun'); //การตั้งค่ากระดาษถ้าต้องการแนวตั้ง ก็ A4 เฉยๆครับ ถ้าต้องการแนวนอนเท่ากับ A4-L
+$pdf = new mPDF('tha', 'A4-L', '0', 'thsarabun'); //การตั้งค่ากระดาษถ้าต้องการแนวตั้ง ก็ A4 เฉยๆครับ ถ้าต้องการแนวนอนเท่ากับ A4-L
 //$pdf->SetAutoFont();
 
 $pdf->SetDisplayMode('fullpage');

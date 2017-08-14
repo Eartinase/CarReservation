@@ -28,7 +28,7 @@
       <ul class="nav navbar-nav">
         <li><a style="font-size:16px;color:white" href="#" data-toggle="dropdown">ใช้บริการรถภายนอก <span class="sr-only">(current)</span></a></li>
         <li>
-          <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>UserHistoryInfo" >ดูประวัติการใช้บริการรถ
+          <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ดูประวัติการใช้บริการรถ
           </a>
         </li>
         <li class="dropdown">

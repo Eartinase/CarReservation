@@ -131,9 +131,9 @@
 					<hr>
 					<center>
 						<button id="searchbut" type="submit" data-target="#calendar" class="btn btn-primary">ค้นหารถ</button>
-			
+						<?php if (isset($this->session->userdata['logged_in'])) { ?>
 						<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
-					
+						<?php } ?>
 					</center>
 				</form>					
 			</div>	

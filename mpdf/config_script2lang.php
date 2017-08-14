@@ -1,3 +1,4 @@
+
 <?php
 $this->script2lang = array(
 

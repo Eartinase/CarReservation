@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CarsModel extends CI_Model {
 
 	private $carId;
+	private $carTypeId;
 	private $carType;
 	private $plateLicense;
 	private $seat;
@@ -18,6 +19,10 @@ class CarsModel extends CI_Model {
 	public function getCarId()
 	{
 		return $this->carId;
+	}
+
+	public function getCarTypeId(){
+		return $this->carTypeId;
 	}
 
 	public function getCarType()
@@ -44,6 +49,10 @@ class CarsModel extends CI_Model {
 		$this->carId = $carId;
 	}
 
+	public function setCarTypeId($carTypeId){
+		$this->carTypeId = $carTypeId;
+	}
+
 	public function setCarType($carType)
 	{
 		$this->carType = $carType;
@@ -67,7 +76,7 @@ class CarsModel extends CI_Model {
 	{
 		$car = null;
 		$r = "";
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.Cartype FROM cars c LEFT JOIN carType ct ON c.carTypeId= ct.carTypeId');
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.* FROM cars c LEFT JOIN carType ct ON c.carTypeId= ct.carTypeId');
 		foreach ($query->result() as $row)
 		{
 			$car = new CarsModel;
@@ -83,7 +92,7 @@ class CarsModel extends CI_Model {
 
 	public function getCarById($carId){
 		$car = null;
-		$query = $this->db->query('SELECT c.carId , c.plateLicense, c.seat, ct.carType FROM cars c JOIN cartype ct ON c.carTypeId = 
+		$query = $this->db->query('SELECT c.carId , c.plateLicense, c.seat, ct.* FROM cars c JOIN cartype ct ON c.carTypeId = 
 			ct.carTypeId WHERE c.carId =  '. $carId);
 		foreach ($query->result() as $row)
 		{
@@ -97,7 +106,7 @@ class CarsModel extends CI_Model {
 	{
 		$car = null;
 		$r = "";
-		$query = $this->db->query('SELECT c.carId , c.plateLicense , c.seat, ct.carType FROM cars c LEFT JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type);
+		$query = $this->db->query('SELECT c.carId , c.plateLicense , c.seat, ct.* FROM cars c LEFT JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type);
 		foreach ($query->result() as $row)
 		{
 			$car = new CarsModel;
@@ -116,7 +125,7 @@ class CarsModel extends CI_Model {
 	{
 		$car = null;
 		$r = array();;
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.CarType , ct.carTypeId FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId NOT IN( SELECT cr.carId FROM currentreservation cr WHERE (cr.EndDate BETWEEN '. $startDateTime .' AND '. $endDateTime .'AND cr.StartDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')OR (StartDate <'.$startDateTime.' AND EndDate >'.$endDateTime.') )');
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.* FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId NOT IN( SELECT cr.carId FROM currentreservation cr WHERE (cr.EndDate BETWEEN '. $startDateTime .' AND '. $endDateTime .'AND cr.StartDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')OR (StartDate <'.$startDateTime.' AND EndDate >'.$endDateTime.') )');
 		foreach ($query->result() as $row)
 		{
 			if($carTypeId == null || in_array($row->carTypeId,$carTypeId) )
@@ -132,13 +141,11 @@ class CarsModel extends CI_Model {
 	private function matchCarObject($car,$row)
 	{
 		$car->setCarId($row->carId);
+		$car->setCarTypeId($row->CarTypeId);
 		$car->setSeat($row->seat);	
 		$car->setPlateLicense($row->plateLicense);	
-		$car->setCarType($row->carType);
+		$car->setCarType($row->CarType);
 	}	
-
-
-
 
 
 	public function add($input){

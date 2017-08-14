@@ -212,7 +212,7 @@ $this->fontdata = array(
 		'BI' => "Garuda-BoldOblique.ttf",
 		'useOTL' => 0xFF,
 		),
-	"THSarabun" => array( /* Thai */
+	"thsarabun" => array( /* Thai */
 		'R' => "THSarabun.ttf",
 		'B' => "THSarabun-Bold.ttf",
 		'I'  => "THSarabun-Italic.ttf",

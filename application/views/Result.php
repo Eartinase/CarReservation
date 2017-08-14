@@ -20,7 +20,7 @@
 <script type="text/javascript">
 
    		<?php  if($check){  ?>
-   			parent.location = "<?php echo base_url(); ?>UserHistoryInfo"
+   			parent.location = "<?php echo base_url(); ?>Reserve/showReserveHistory"
 
    		<?php  }else{ 	?>
    			
