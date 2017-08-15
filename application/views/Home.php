@@ -242,14 +242,12 @@
 		}
 	}
 
-
 	function changeType(){
 		select = document.getElementById('plate');
 		e = document.getElementById('cartype');
 		v = e.options[e.selectedIndex].value;
 		
-		select.innerHTML = "";
-		
+		select.innerHTML = "";		
 
 			if(v==1){
 				<?php foreach ($Type1 as $value) { ?>
@@ -281,9 +279,7 @@
 				<?php } ?>
 			}
 
-		}
-
-		
+		}		
 
 		function resetForm(){
 			select = document.getElementById('plate');
@@ -292,15 +288,13 @@
 			opt.innerHTML = "เลือกประเภทรถก่อน";
 			select.appendChild(opt);
 			document.getElementById("formReserve").reset();
-			document.getElementById("sendform").style.height = '0px';
-			
+			document.getElementById("sendform").style.height = '0px';			
 		}
 		
 
 		</script>
 
 	<?php include "Footer.php"; ?>
-
 
 	</body>
 	</html>

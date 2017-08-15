@@ -10,7 +10,7 @@ class genReport extends CI_Controller {
 
 	public function genReportPDF()
 	{				
-		$this->load->view('reportPDF');
+		$this->load->view('ReportPDF');
 	}
 
 }
