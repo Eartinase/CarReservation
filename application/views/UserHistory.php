@@ -31,8 +31,6 @@
 			$department = ($this->session->userdata['logged_in']['department']);
 			$role = ($this->session->userdata['logged_in']['role']);
 			include "NavbarUserLogged_in.php";
-		}else{
-			include "NavbarUserLogged_in.php";
 		}	
 
 	?>
@@ -272,19 +270,21 @@
 		
 	    //datatables
 	    table = $('#table').DataTable({ 
-	       
+
+	       	"processing": true, //Feature control the processing indicator.
+       		"serverSide": true, //Feature control DataTables' server-side processing mode.
 	        "order": [], //Initial no order.
 
 	        // Load data for the table's content from an Ajax source
 	        "ajax": {
-	            url: "<?php echo base_url(); ?>Reserve/ajax_reservelist",
-	            type: "POST"
+	            "url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
+	            "type" : "POST"
 	        },
 
 	        //Set column definition initialisation properties.
 	        "columnDefs": [
 	        { 
-	            "targets": [ -1 ], //last column
+	            "targets": [ 0 ], //last column
 	            "orderable": false, //set not orderable
 	        },
 	        ],
