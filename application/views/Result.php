@@ -22,8 +22,7 @@
    		<?php  if($check){  ?>
    			parent.location = "<?php echo base_url(); ?>Reserve/showReserveHistory"
 
-   		<?php  }else{ 	?>
-   			
+   		<?php  }else{ 	?>   			
    			parent.document.getElementById("sendform").style.height = '50px';
    		<?php }  ?>
 </script>

@@ -42,14 +42,13 @@ $(document).ready(function() {
             placement: 'top',
             trigger: 'hover',
             html:true,
-            content: 'วันที่ออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br />วันที่กลับ : '
+            content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br />เวลากลับ : '
             +moment(calEvent.end).format('DD/MM h:mm a'),
             container: '#calendar'
 
         });
         $(this).popover('show');
     	},
-
 
 	
 		dayClick: function(date, jsEvent, view) {
@@ -62,8 +61,7 @@ $(document).ready(function() {
 					left: 'title',
 					center: '',
 					right : 'today month,agendaWeek,agendaDay prev,next listWeek'
-				},
-		
+				},		
 	});
 });
 </script>

@@ -68,7 +68,7 @@ class User_Authentication extends CI_Controller {
 
 		$this->session->unset_userdata('logged_in');
 		session_destroy();
-		$this->load->view('login');
+		$this->load->view('Login');
 	}
 
 }
