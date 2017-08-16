@@ -16,6 +16,8 @@
 	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
+
+	
 </head>
 <style type="text/css">
 
@@ -272,7 +274,6 @@
 	    table = $('#table').DataTable({ 
 
 	       	"processing": true, //Feature control the processing indicator.
-       		"serverSide": true, //Feature control DataTables' server-side processing mode.
 	        "order": [], //Initial no order.
 
 	        // Load data for the table's content from an Ajax source

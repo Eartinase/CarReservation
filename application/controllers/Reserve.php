@@ -109,8 +109,8 @@ class Reserve extends CI_Controller {
 		$empCode = $this->session->userdata['logged_in']['employeeCode'];
 		$currentReserve = $this->ReservationModel->getCurReserveFormEmpCode($empCode);
 		$data = array();
-		$no=$_POST['start'];
-		if($currentReserve != ''){
+		$no=0;
+		//if($currentReserve != ''){
 			foreach ($currentReserve as $value) {
 				$car = $this->CarsModel->getCarById($value->getCarId());
 				$no++;
@@ -128,9 +128,9 @@ class Reserve extends CI_Controller {
 
 			
 			}
-		}
+		//}
 		 $output = array(
-               "draw" => $_POST['draw'],
+               "draw" => $draw,
                 "recordsTotal" => $no,
                 "recordsFiltered" => $no,
                 "data" => $data
