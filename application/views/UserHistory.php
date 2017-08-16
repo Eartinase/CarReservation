@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>ระบบบริหารจัดการรถยนต์</title>
 	<meta charset="utf-8">
-	<title></title>
-
-
-
 	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
@@ -33,15 +30,9 @@
 			$role = ($this->session->userdata['logged_in']['role']);
 			include "NavbarUserLogged_in.php";
 		}	
-
 	?>
-
-
 		
-		<div  style="margin: 100px;">
-			
-		
-			
+		<div  style="margin: 100px;">			
 				<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 					<thead>
 						<tr>
@@ -57,10 +48,8 @@
 					</thead>
 					<tbody>
 					
-					</tbody>
-							
+					</tbody>							
 				</table>
-	
 		</div>
 		
 
@@ -150,8 +139,7 @@
 		                alert('Error deleting data');
 		            }
 		        });
-		    }
-			
+		    }			
 
 		}
 		
@@ -185,15 +173,12 @@
 		    });
 		}
 
-
-
 	function changeType(){
 		select = document.getElementById('plateL');
 		e = document.getElementById('carType');
 		v = e.options[e.selectedIndex].value;
 		
-		select.innerHTML = "";
-		
+		select.innerHTML = "";		
 
 			if(v==1){
 				<?php foreach ($Type1 as $value) { ?>
@@ -323,9 +308,6 @@
 	    table.ajax.reload(null,false); //reload datatable ajax 
 	}
 
-
 	</script>
-
-	
 
 </html>

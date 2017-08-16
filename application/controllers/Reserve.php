@@ -62,7 +62,7 @@ class Reserve extends CI_Controller {
 	}
 
 	public function outsideCar(){
-		$this->load->view('outsideCar');
+		$this->load->view('OutsideCar');
 	}
 
 	public function showReserveHistory(){

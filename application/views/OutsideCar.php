@@ -19,9 +19,9 @@
 				$name = ($this->session->userdata['logged_in']['name']);
 				$department = ($this->session->userdata['logged_in']['department']);
 				$role = ($this->session->userdata['logged_in']['role']);
-				include "navbarUserLogged_in.php";
+				include "NavbarUserLogged_in.php";
 			}else{
-				include "navbarUserLogged_in.php";
+				include "NavbarHome.php";
 			}	
 
 		?>
