@@ -26,7 +26,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a style="font-size:16px;color:white" href="#" data-toggle="dropdown">ใช้บริการรถภายนอก <span class="sr-only">(current)</span></a></li>
+        <li><a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ใช้บริการรถภายนอก <span class="sr-only">(current)</span></a></li>
         <li>
           <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ดูประวัติการใช้บริการรถ
           </a>

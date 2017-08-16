@@ -13,6 +13,8 @@ class genReport extends CI_Controller {
 		$this->load->view('ReportPDF');
 	}
 
+
+
 }
 
 /* End of file CarController.php */
