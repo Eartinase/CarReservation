@@ -21,7 +21,7 @@
 				$role = ($this->session->userdata['logged_in']['role']);
 				include "NavbarUserLogged_in.php";
 			}else{
-				include "NavbarHome.php";
+				redirect('/HomeInfo','refresh');
 			}	
 
 		?>

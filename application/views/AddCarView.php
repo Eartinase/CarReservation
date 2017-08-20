@@ -19,6 +19,8 @@
 		$department = ($this->session->userdata['logged_in']['department']);
 		$role = ($this->session->userdata['logged_in']['role']);
 		include "NavbarUserLogged_in.php";
+	}else{
+		redirect('/HomeInfo','refresh');
 	}	
 	?>
 	<div  class="container" style="margin-top: 50px;">	
