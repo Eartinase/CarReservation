@@ -21,13 +21,13 @@
 		include "NavbarUserLogged_in.php";
 	}	
 	?>
-	<div  class="container" style="margin: 100px;">	
+	<div  class="container" style="margin-top: 50px;">	
 		<center>
 			<h3>เพิ่มรถ</h3>
 		</center>
 		<form action="<?php echo base_url(); ?>AddCar/Add" method="post">
 			ทะเบียน: <input type="text" name="plateLicense" class="form-control" required> <br>
-			ทะเบียนตัวถัง: <input type="text" name="serial" class="form-control" required> <br>
+			หมายเลขเครื่อง: <input type="text" name="serial" class="form-control" required> <br>
 			ประเภทรถ: <select name ="carType" class="form-control" required>
 			<?php 
 			echo $cartype ;
