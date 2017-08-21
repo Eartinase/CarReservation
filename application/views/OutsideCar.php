@@ -21,13 +21,12 @@
 				$role = ($this->session->userdata['logged_in']['role']);
 				include "NavbarUserLogged_in.php";
 			}else{
-				include "NavbarHome.php";
+				redirect('/HomeInfo','refresh');
 			}	
 
 		?>
 	<div class="col-md-7 col-sm-offset-2">
-		
-	
+			
 	<center>
 		<h3>คำร้องขอจ้างเหมารถจากภายนอก</h3>
 	</center>
@@ -72,7 +71,7 @@
 						<input class="form-control" name="place" required >
 					</div>	
 				</div>	
-				<input type="submit" >	
+				<button type="submit"  class="btn btn-primary" >ยืนยัน</button>	
 		</form>
 		</div>
 </body>

@@ -196,11 +196,7 @@ class ReservationModel extends CI_Model {
 				}
 			}
 		}
-		
-
-		return $r;
-			
-		
+		return $r;		
 	}
 
 	public function addReservation($carId ,$startDate , $endDate, $code,$place){
@@ -222,11 +218,8 @@ class ReservationModel extends CI_Model {
 			foreach ($query->result() as $row)
 			{			
 				$input["driverId"] = $row->driverId;
-			}		
-			
-			
-			return $this->db->insert('currentreservation', $data);
-			
+			}			
+			return $this->db->insert('currentreservation', $data);		
 
 		}else{
 			return false;
@@ -274,16 +267,13 @@ class ReservationModel extends CI_Model {
 					$r = array();
 				}
 				array_push($r,$currentReserve);
-		}
-		
+		}		
 		return $r;
-
 	}
 
 	public function deleteReserve($rID){
 		$this->db->where('CurrentId', $rID);
 		$this->db->delete('currentreservation');
-
 	}
 
 	public function updateReserve($where , $data){
@@ -311,10 +301,7 @@ class ReservationModel extends CI_Model {
 		$reserveInfo->setDriverId($row->DriverId);
 		$reserveInfo->setColor($row->color);
 		$reserveInfo->setCarId($row->carId);
-
-	}
-
-	
+	}	
 
 }
 
