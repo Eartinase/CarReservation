@@ -18,6 +18,8 @@ class Search extends CI_Controller {
 	public function searchCar()
 	{	
 		$reserve = array();
+		$carTypeId = array(1,2);
+		//$carId = $this->input->post('carId');
 		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
 		$carId = (isset($_POST['carId']))?$_POST['carId']:"";
 		if(!$carTypeId == ""){
@@ -31,9 +33,23 @@ class Search extends CI_Controller {
 		}else{
 			$reserve = $this-> ReservationModel->getCurrentReservation();
 		}
-			
-		$data["Reservation"] = $reserve;	
-		$this->load->view('CalendarView',$data);		
+
+		$data = array();
+
+		foreach ($reserve as $value) {	
+				$data[] = array(
+					'id' => $value->getReserveId(),
+	                "title" => $value->getPlateLicese(),
+	                "start" => $value->getStartDate(),
+	                "end" => $value->getEndDate(),
+	                "color" => $value->getColor(),
+	              	"editable" => false
+	               );
+			}
+
+		echo json_encode($data);
+		exit();
+	
 		
 	}	
 }

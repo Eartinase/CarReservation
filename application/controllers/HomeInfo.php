@@ -18,8 +18,28 @@ class homeInfo extends CI_Controller {
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
  		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
  		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
-
+ 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
 		$this->load->view('Home', $data);
+	}
+
+	public function ajax_loadEvent(){
+		$reserve = $this-> ReservationModel->getCurrentReservation();
+		$data = array();
+	
+		foreach ($reserve as $value) {
+				
+				$data[] = array(
+					'id' => $value->getReserveId(),
+	                 "title" => $value->getPlateLicese(),
+	                 "start" => $value->getStartDate(),
+	                 "end" => $value->getEndDate(),
+	                 "color" => $value->getColor(),
+	                "editable" => false
+	               );
+			}
+		
+		echo json_encode($data);
+		exit();
 	}
 
 }

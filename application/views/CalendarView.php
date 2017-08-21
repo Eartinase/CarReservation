@@ -21,7 +21,6 @@ $(document).ready(function() {
 		eventLimit: true, 
 		editable: false,
 		navLinks: true,
-
 		events: [
 		<?php
 			$info = "";
@@ -66,18 +65,6 @@ $(document).ready(function() {
 });
 </script>
 
-<body style="background-color:#fafafa;">
-	<div >
-		<div id='calendar'></div>
-	</div>
 
-</body>
-
-<style type="text/css">
-	.popover{
-		max-height: 70px;
-		width: 250px;
-	}
-</style>
 
 </html>

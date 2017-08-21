@@ -10,8 +10,8 @@ class Reserve extends CI_Controller {
 	}
 
 	public function addReserve(){
-		$startDate = $_POST['dateS'].' '.$_POST['timeS'];
-		$endDate = $_POST['dateE'].' '.$_POST['timeE'];
+		$startDate = $_POST['dateS'];
+		$endDate = $_POST['dateE'];
 		$code = $this->session->userdata['logged_in']['employeeCode'];
 		$carId = $_POST['plateLicense'];
 		$place = $_POST['place'];
@@ -43,7 +43,7 @@ class Reserve extends CI_Controller {
 		$data = array(
 			'reserveId' => $ReserveInfo->getReserveID(),
 			'carId'	=> $ReserveInfo->getCarId(),
-			'carType' => $selectCar->getCarType(),
+			'carTypeId' => $selectCar->getCarTypeId(),
 			'plateLicense' => $ReserveInfo->getPlateLicese(),
 			'startDate' => $ReserveInfo->getStartDate(),
 			'endDate' => $ReserveInfo->getEndDate(),
@@ -78,8 +78,8 @@ class Reserve extends CI_Controller {
 		$reserveId = $this->input->post('id');
 		$carId = $this->input->post('plateL');
 		$empCode =  $this->session->userdata['logged_in']['employeeCode'];
-		$dateS = $this->input->post('dateS');
-		$dateE = $this->input->post('dateE');
+		$dateS = $this->input->post('dateS2');
+		$dateE = $this->input->post('dateE2');
 		$place = $this->input->post('place');
 		if($this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
 			$data = array(
@@ -141,6 +141,33 @@ class Reserve extends CI_Controller {
 		echo json_encode($output);
 		exit;
 	}
+
+
+	public function ajax_reserve_history()
+	{
+		$empCode = $this->session->userdata['logged_in']['employeeCode'];
+		$currentReserve = $this->ReservationModel->getCurReserveFormEmpCode($empCode);
+		$data = array();
+		//if($currentReserve != ''){
+			foreach ($currentReserve as $value) {
+				$data[] = array(
+					'id' => $value->getReserveId(),
+	                "title" => $value->getPlateLicese(),
+	                "start" => $value->getStartDate(),
+	                "end" => $value->getEndDate(),
+	                "color" => $value->getColor(),
+	                "editable" => true
+	               );
+
+			
+			}
+		echo json_encode($data);
+		exit;
+	}
+
+
+
+
 
 }
 
