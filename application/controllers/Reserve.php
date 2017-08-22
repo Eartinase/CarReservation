@@ -15,7 +15,8 @@ class Reserve extends CI_Controller {
 		$code = $this->session->userdata['logged_in']['employeeCode'];
 		$carId = $_POST['plateLicense'];
 		$place = $_POST['place'];
-		$check = $this-> ReservationModel -> addReservation($carId ,$startDate , $endDate,$code,$place);
+		$tel = $_POST['tel'];
+		$check = $this-> ReservationModel -> addReservation($carId, $startDate, $endDate, $code, $place, $tel);
 		
 		if( $check ) {
 			$data['check'] = true;

@@ -183,18 +183,24 @@
 							<div class="form-group">
 		                        <label class="col-md-3 control-label">วันที่เดินทาง</label>
 		                        <div class="col-md-8 ">
-		                            <input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off">
+		                            <input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off" required>
 		                            <span class="help-block"></span>
 		                        </div>	                    
 		                    </div>
 		                    <div class="form-group">
 		                        <label class="col-md-3 control-label" >วันที่กลับ</label>
 		                        <div class="col-md-8 ">
-		                            <input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off">
+		                            <input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off" required>
 		                            <span class="help-block"></span>
 		                        </div>
 		                    </div>
-
+		                    <div class="form-group">
+		                        <label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+		                        <div class="col-md-8 ">
+		                            <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" required>
+		                            <span class="help-block"></span>
+		                        </div>
+		                    </div>
 		                     <div class="form-group">
 		                        <label class="col-md-3 control-label" >สถานที่ </label>
 		                        <div class="col-md-8">

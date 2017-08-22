@@ -12,106 +12,95 @@ class ReservationModel extends CI_Model {
 	private $driverId;
 	private $color;
 	private $carId;
+	private $tel;
 
  	
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		
 	}
 
-	public function getReserveId()
-	{
+	public function getReserveId(){
 		return $this->reserveId;
 	}
 
-	public function getEmployeeCode()
-	{
+	public function getEmployeeCode(){
 		return $this->employeeCode;
 	}
 
-	public function getPlateLicese()
-	{
+	public function getPlateLicese(){
 		return $this->plateLicense;
 	}
 
-	public function getStartDate()
-	{
+	public function getStartDate(){
 		return $this->startDate;
 	}
 
-	public function getEndDate()
-	{
+	public function getEndDate(){
 		return $this->endDate;
 	}
 
-	public function getPlace()
-	{
+	public function getPlace(){
 		return $this->place;
 	}
 
-	public function getDriverId()
-	{
+	public function getTel(){
+		return $this->tel;
+	}
+
+	public function getDriverId(){
 		return $this->driverId;
 	}
 
-	public function getColor()
-	{
+	public function getColor(){
 		return $this->color;
 	}
 
-	public function getCarId()
-	{
+	public function getCarId(){
 		return $this->carId;
 	}
 
-	public function setEmployeeCode($employeeCode)
-	{
+	public function setEmployeeCode($employeeCode){
 		$this->employeeCode = $employeeCode;
 	}
 
-	public function setPlateLicense($plateLicense)
-	{
+	public function setPlateLicense($plateLicense){
 		$this->plateLicense = $plateLicense;
 	}
 
-	public function setStartDate($startDate)
-	{
+	public function setStartDate($startDate){
 		 $this->startDate = $startDate;
 	}
 
-	public function setEndDate($endDate)
-	{
+	public function setEndDate($endDate){
 		 $this->endDate = $endDate;
 	}
 
-	public function setPlace($place)
-	{
+	public function setPlace($place){
 		 $this->place = $place;
 	}
 
-	public function setDriverId($driverId)
-	{
+	public function setDriverId($driverId){
 		 $this->driverId = $driverId;
 	}
 
-	public function setColor($color)
-	{
+	public function setColor($color){
 		 $this->color = $color;
 	}
 
-	public function setCarId($carId)
-	{
+	public function setCarId($carId){
 		 $this->carId = $carId;
 	}
 
-	public function setReserveId($reserveId)
-	{
+	public function setReserveId($reserveId){
 		 $this->reserveId = $reserveId;
 	}
 
-	public function getCurrentReservation()
-	{
+	public function setTel($tel){
+		 $this->tel = $tel;
+	}
+
+	public function getCurrentReservation(){
 		$reserveInfo = null;
 		$r = "";
 		$query = $this->db->query('SELECT cr.* , color, c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId');
@@ -180,10 +169,8 @@ class ReservationModel extends CI_Model {
 				}
 				array_push($r,$reserveInfo);
 			}
-		}
-		
+		}		
 		return $r;
-
 	}
 
 	private function checkCarIdType($carId){
@@ -199,15 +186,16 @@ class ReservationModel extends CI_Model {
 		return $r;		
 	}
 
-	public function addReservation($carId ,$startDate , $endDate, $code,$place){
-		if($this->checkReservation($carId,$startDate , $endDate)){
+	public function addReservation($carId, $startDate, $endDate, $code, $place, $tel){
+		if($this->checkReservation($carId, $startDate, $endDate)){
 			$data = array(		
 				'carId' => $carId,
 				'driverId' => 'driver',
 				'employeeCode' => $code,	
 				'StartDate' => $startDate,
 				'EndDate' =>$endDate,			
-				'place' => $place
+				'place' => $place,
+				'tel' => $tel
 				);
 
 			$query = $this->db->select('driverId')
