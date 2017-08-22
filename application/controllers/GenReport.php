@@ -16,6 +16,10 @@ class genReport extends CI_Controller {
 		$this->load->view('ReserveHistoryByCar');
 	}
 
+	public function genReserveSummary(){				
+		$this->load->view('ReserveSummary');
+	}
+
 }
 
 /* End of file CarController.php */

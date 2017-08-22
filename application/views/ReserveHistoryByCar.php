@@ -22,7 +22,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 				<td style="text-align:center">เวลาไป</td>
 				<td style="text-align:center">เวลากลับ</td>
 				<td style="text-align:center">สถานที่</td>
-				<td style="text-align:center">หน่วยงstyle="text-align:center"าน</td>
+				<td style="text-align:center">หน่วยงาน</td>
 				<td style="text-align:center">เบอร์ติดต่อ</td>
 			</tr>
 			<tr>
@@ -56,7 +56,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 				<td style="text-align:center">เวลาไป</td>
 				<td style="text-align:center">เวลากลับ</td>
 				<td style="text-align:center">สถานที่</td>
-				<td style="text-align:center">หน่วยงstyle="text-align:center"าน</td>
+				<td style="text-align:center">หน่วยงาน</td>
 				<td style="text-align:center">เบอร์ติดต่อ</td>
 			</tr>
 			<tr>
@@ -91,7 +91,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 				<td style="text-align:center">เวลาไป</td>
 				<td style="text-align:center">เวลากลับ</td>
 				<td style="text-align:center">สถานที่</td>
-				<td style="text-align:center">หน่วยงstyle="text-align:center"าน</td>
+				<td style="text-align:center">หน่วยงาน</td>
 				<td style="text-align:center">เบอร์ติดต่อ</td>
 			</tr>
 			<tr>
@@ -126,7 +126,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 				<td style="text-align:center">เวลาไป</td>
 				<td style="text-align:center">เวลากลับ</td>
 				<td style="text-align:center">สถานที่</td>
-				<td style="text-align:center">หน่วยงstyle="text-align:center"าน</td>
+				<td style="text-align:center">หน่วยงาน</td>
 				<td style="text-align:center">เบอร์ติดต่อ</td>
 			</tr>
 			<tr>
@@ -161,7 +161,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 				<td style="text-align:center">เวลาไป</td>
 				<td style="text-align:center">เวลากลับ</td>
 				<td style="text-align:center">สถานที่</td>
-				<td style="text-align:center">หน่วยงstyle="text-align:center"าน</td>
+				<td style="text-align:center">หน่วยงาน</td>
 				<td style="text-align:center">เบอร์ติดต่อ</td>
 			</tr>
 			<tr>
