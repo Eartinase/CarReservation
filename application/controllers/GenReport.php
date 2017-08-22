@@ -8,9 +8,12 @@ class genReport extends CI_Controller {
 		//$this->load->model('CarsModel','CarsModel');		
 	}
 
-	public function genReportPDF()
-	{				
+	public function genReportPDF(){				
 		$this->load->view('ReportPDF');
+	}
+
+	public function genReserveHistoryByCar(){				
+		$this->load->view('ReserveHistoryByCar');
 	}
 
 
