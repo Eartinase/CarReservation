@@ -5,7 +5,6 @@ $stylesheet = file_get_contents(base_url().'application/views/css/table.css');
 ob_start(); // ทำการเก็บค่า html นะครับ
 ?>
 
-
 <style type="text/css">
 <!--
 @page rotated { size: landscape; }
@@ -18,69 +17,65 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 	font-size: 50px;
 }r
 -->
-
 </style>
+
 <!DOCTYPE html>
 <html>
-<head>
-
-
- </head>
 <body>
 <div class="con">
-<h2 style="text-align:center">รายงานประวัติการใช้บริการรถ</h2>
-<p>ชื่อ-นามสกุลผู้จอง นางสาว จิรดา วิวิธอำพน ภาควิชา เทคโนโลยีสารสนเทศ คณะ เทคโนโลยีสารสนเทศ ตำแหน่ง นักศึกษา</p>
+<h2 style="text-align:center;font-size:40px">รายงานประวัติการใช้บริการรถ</h2>
+<p style="font-size:22px">ชื่อ-นามสกุลผู้จอง นางสาว จิรดา วิวิธอำพน ภาควิชา เทคโนโลยีสารสนเทศ คณะ เทคโนโลยีสารสนเทศ ตำแหน่ง นักศึกษา</p>
 
-<table style="font-size:20px;" >
+<table style="font-size:20px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 100%" >
   <tr>
-    <th>หมายเลขการจอง</th>
-    <th>ประเภทรถ</th>
-    <th>ทะเบียนรถ</th>
-    <th>วันที่เดินทาง</th>
-    <th>วันที่กลับ</th>
-    <th>เวลาไป</th>
-    <th>เวลากลับ</th>
-    <th>สถานที่</th>
+    <th style="padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
+    <th style="padding: 15px;border: 1px solid #ddd">ประเภทรถ</th>
+    <th style="padding: 15px;border: 1px solid #ddd">ทะเบียนรถ</th>
+    <th style="padding: 15px;border: 1px solid #ddd">วันที่เดินทาง</th>
+    <th style="padding: 15px;border: 1px solid #ddd">วันที่กลับ</th>
+    <th style="padding: 15px;border: 1px solid #ddd">เวลาไป</th>
+    <th style="padding: 15px;border: 1px solid #ddd">เวลากลับ</th>
+    <th style="padding: 15px;border: 1px solid #ddd">สถานที่</th>
   </tr>
   <tr>
-    <td>001</td>
-    <td>รถตู้</td>
-    <td>ฮพ6971</td>
-    <td>21/07/2560</td>
-    <td>21/07/2560</td>
-    <th>09:00</th>
-    <th>16:00</th>
-    <th>บางขุนเทียน</th>
+    <td style="padding: 15px;border: 1px solid #ddd">001</td>
+    <td style="padding: 15px;border: 1px solid #ddd">รถตู้</td>
+    <td style="padding: 15px;border: 1px solid #ddd">ฮพ 6971</td>
+    <td style="padding: 15px;border: 1px solid #ddd">21/07/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">21/07/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">09:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">16:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">บางขุนเทียน</td>
   </tr>
   <tr>
-    <td>002</td>
-    <td>รถเก๋ง</td>
-    <td>4กย 7904</td>
-    <td>19/07/2560</td>
-    <td>20/07/2560</td>
-    <th>06:00</th>
-    <th>12:00</th>
-    <th>เชียงใหม่</th>
+    <td style="padding: 15px;border: 1px solid #ddd">002</td>
+    <td style="padding: 15px;border: 1px solid #ddd">รถเก๋ง</td>
+    <td style="padding: 15px;border: 1px solid #ddd">4กย 7904</td>
+    <td style="padding: 15px;border: 1px solid #ddd">19/07/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">20/07/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">06:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">12:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">เชียงใหม่</td>
   </tr>
   <tr>
-    <td>003</td>
-    <td>รถตู้</td>
-    <td>ฮข 448</td>
-    <td>16/08/2560</td>
-    <td>16/08/2560</td>
-    <th>11:00</th>
-    <th>17:00</th>
-    <th>นวนคร</th>
+    <td style="padding: 15px;border: 1px solid #ddd">003</td>
+    <td style="padding: 15px;border: 1px solid #ddd">รถตู้</td>
+    <td style="padding: 15px;border: 1px solid #ddd">ฮข 448</td>
+    <td style="padding: 15px;border: 1px solid #ddd">16/08/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">16/08/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">11:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">17:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">นวนคร</td>
   </tr>
   <tr>
-    <td>004</td>
-    <td>รถไมโคบัส</td>
-    <td>41 6954</td>
-    <td>22/08/2560</td>
-    <td>22/08/2560</td>
-    <th>08:00</th>
-    <th>19:00</th>
-    <th>อยุธยา</th>
+    <td style="padding: 15px;border: 1px solid #ddd">004</td>
+    <td style="padding: 15px;border: 1px solid #ddd">รถไมโคบัส</td>
+    <td style="padding: 15px;border: 1px solid #ddd">41 6954</td>
+    <td style="padding: 15px;border: 1px solid #ddd">22/08/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">22/08/2560</td>
+    <td style="padding: 15px;border: 1px solid #ddd">08:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">19:00</td>
+    <td style="padding: 15px;border: 1px solid #ddd">อยุธยา</td>
   </tr>
 </table>
 
