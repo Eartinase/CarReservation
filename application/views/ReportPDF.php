@@ -3,7 +3,7 @@ require_once('mpdf/mpdf.php'); //ที่อยู่ของไฟล์ mpdf
 ob_start(); // ทำการเก็บค่า html นะครับ
 ?>
 
-
+<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/table.css' />
 <style type="text/css">
 <!--
 @page rotated { size: landscape; }
@@ -20,51 +20,65 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 </style>
 <!DOCTYPE html>
 <html>
-	<body>
-	<div class="con">
-		<table style="font-size:50px" >
-		  <tr>
-		    <th>ทะเบียนรถ</th>
-		    <th>วันที่-เวลาเดินทาง</th>
-		    <th>วันที่-เวลากลับ</th>
-		    <th>สถานที่ไป</th>
-		    <th>ไมล์เร่ิม</th>
-		    <th>ไมล์สิ้นสุด</th>
-		    <th>รวม(กม.)</th>
-		    <th>รวม(บาท)</th>
-		    <th>หน่วยงานผู้ขอใช้</th>
-		    <th>จำนวนคนเดินทาง</th>
-		    <th>ค่าOT</th>
-		    <th>ค่าที่จอดรถ</th>
-		    <th>ค่าทางด่วน</th>
-		    <th>ค่าใช้จ่ายรวมที่จอดรถ</th>
-		  </tr>
-		  <tr>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		    <td></td>
-		  </tr>
-		  <tr>
-		    <td>February</td>
-		    <td>$80</td>
-		  </tr>
-		</table>
-	</div>
+<body>
 
-	
-	
-	</body>
+<h2>รายงานประวัติการใช้บริการรถ</h2>
+<p>ชื่อ-นามสกุลผู้จอง นางสาว จิรดา วิวิธอำพน ภาควิชา เทคโนโลยีสารสนเทศ คณะ เทคโนโลยีสารสนเทศ ตำแหน่ง นักศึกษา</p>
+
+<table>
+  <tr>
+    <th>หมายเลขการจอง</th>
+    <th>ประเภทรถ</th>
+    <th>ทะเบียนรถ</th>
+    <th>วันที่เดินทาง</th>
+    <th>วันที่กลับ</th>
+    <th>เวลาไป</th>
+    <th>เวลากลับ</th>
+    <th>สถานที่</th>
+  </tr>
+  <tr>
+    <td>001</td>
+    <td>รถตู้</td>
+    <td>ฮพ6971</td>
+    <td>21/07/2560</td>
+    <td>21/07/2560</td>
+    <th>09:00</th>
+    <th>16:00</th>
+    <th>บางขุนเทียน</th>
+  </tr>
+  <tr>
+    <td>002</td>
+    <td>รถเก๋ง</td>
+    <td>4กย 7904</td>
+    <td>19/07/2560</td>
+    <td>20/07/2560</td>
+    <th>06:00</th>
+    <th>12:00</th>
+    <th>เชียงใหม่</th>
+  </tr>
+  <tr>
+    <td>003</td>
+    <td>รถตู้</td>
+    <td>ฮข 448</td>
+    <td>16/08/2560</td>
+    <td>16/08/2560</td>
+    <th>11:00</th>
+    <th>17:00</th>
+    <th>นวนคร</th>
+  </tr>
+  <tr>
+    <td>004</td>
+    <td>รถไมโคบัส</td>
+    <td>41 6954</td>
+    <td>22/08/2560</td>
+    <td>22/08/2560</td>
+    <th>08:00</th>
+    <th>19:00</th>
+    <th>อยุธยา</th>
+  </tr>
+</table>
+
+</body>
 </html>	
 <?php
 $html = ob_get_contents();
