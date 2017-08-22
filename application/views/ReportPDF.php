@@ -1,9 +1,11 @@
+<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/table.css' />
 <?php
 require_once('mpdf/mpdf.php'); //ที่อยู่ของไฟล์ mpdf.php ในเครื่องเรานะครับ
+$stylesheet = file_get_contents(base_url().'application/views/css/table.css');
 ob_start(); // ทำการเก็บค่า html นะครับ
 ?>
 
-<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/table.css' />
+
 <style type="text/css">
 <!--
 @page rotated { size: landscape; }
@@ -14,18 +16,22 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 .con {
 	font-family: "THSarabun";
 	font-size: 50px;
-}
+}r
 -->
 
 </style>
 <!DOCTYPE html>
 <html>
-<body>
+<head>
 
-<h2>รายงานประวัติการใช้บริการรถ</h2>
+
+ </head>
+<body>
+<div class="con">
+<h2 style="text-align:center">รายงานประวัติการใช้บริการรถ</h2>
 <p>ชื่อ-นามสกุลผู้จอง นางสาว จิรดา วิวิธอำพน ภาควิชา เทคโนโลยีสารสนเทศ คณะ เทคโนโลยีสารสนเทศ ตำแหน่ง นักศึกษา</p>
 
-<table>
+<table style="font-size:20px;" >
   <tr>
     <th>หมายเลขการจอง</th>
     <th>ประเภทรถ</th>

@@ -81,3 +81,16 @@ span.mpdf_toc_t_level_2 {	/* Title level 2 */
 span.mpdf_toc_p_level_2 {	/* Page no. level 2 - may be inside <a> */
 }
 
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
