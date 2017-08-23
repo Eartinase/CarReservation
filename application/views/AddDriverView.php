@@ -29,6 +29,7 @@
 		</center>
 	<form action="addDriver/addDriver" method="post">
 		ชื่อคนขับ: <input type="text" name="DriverName" class="form-control" required> <br>
+		เลขใบขับขี่: <input type="text" name="DriverLicense" class="form-control" required> <br>
 		<center><button type="submit" class="btn btn-primary" >เพิ่มคนขับ</button></center>
 	</form>
 	</div>

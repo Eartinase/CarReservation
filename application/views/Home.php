@@ -37,7 +37,7 @@
 
 		<div class="col-md-2">
 			<?php if (isset($this->session->userdata['logged_in'])) { ?>						
-				<button type='button' onclick="ajax_myHistory()" class="btn btn-default">ดูประวัติการจองของฉัน</button>
+				<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button>
 			<?php } ?>
 			<div id="holdList" style="padding: 1px; margin : 0px;">
 				<form  class="form-horizontal" style="align-items:center;">

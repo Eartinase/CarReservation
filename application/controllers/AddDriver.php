@@ -16,7 +16,8 @@ class AddDriver extends CI_Controller {
 	public function addDriver()
 	{
 		$data = array(		
-			'DriverName'	=> $this->input->post('DriverName'),  	
+			'DriverName'	=> $this->input->post('DriverName'),
+			'DriverLicense'	=> $this->input->post('DriverLicense')
 			);		
 		$this -> AddDriverModel -> add($data);
 
