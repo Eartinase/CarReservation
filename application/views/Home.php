@@ -283,7 +283,8 @@
 		            </div>
 		            <div class="modal-footer">
 		                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-		                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+		                <button type="button" id="btnDelete" onclick="deleteRes(this.value)" class="btn btn-danger">Delete</button>
+		                <button type="button" id="btnCancle" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 		            </div>
 		        </div><!-- /.modal-content -->
 		    </div><!-- /.modal-dialog -->
@@ -395,7 +396,7 @@
 
 		}		
 
-		function resetForm(){
+	function resetForm(){
 			select = document.getElementById('plate');
 			select.innerHTML = "";
 			var opt = document.createElement('option');	
@@ -449,8 +450,15 @@
 			    eventClick: function(calEvent, jsEvent, view) {
 			    	if(calEvent.editable){
 			    		edit_reserve(calEvent.id);
+			    		$("#btnCancle").hide();
+			    		$("#btnSave, #btnDelete").show();
+			    		$('#formEdit').find('input, textarea, select').attr('disabled',false);
 			    	}else{
-			    		alert("ดูข้อมูลการจอง แก้ไขและยกเลิก โดยกด \" ดูประวัติการจองของฉัน\"")
+			    		edit_reserve(calEvent.id);
+			    		$("#btnCancle").show();
+			    		$("#btnSave, #btnDelete").hide();
+			    		$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
+			    		//$("#btnDelete").hide();
 			    	}
 			        
 			        // change the border color just for fun
@@ -464,15 +472,10 @@
 	}
 
 
-	function refresh_calendar(){
-		$('#calendar').fullCalendar('destroy');
-		getDefualt_Calendar();
-	}
-
 	function reload_calendar(){
-		   //createCalendar();
-		 $('#calendar').fullCalendar('destroy');
-		 getDefualt_Calendar()
+		//createCalendar();
+		$('#calendar').fullCalendar('destroy');
+		getDefualt_Calendar()
 		   //$('#calendar').fullCalendar('refetchEvents');
 	}
 
@@ -532,6 +535,7 @@
 		            $('[name="dateS2"]').datetimepicker('update',data.startDate);
 		            $('[name="dateE2"]').datetimepicker('update',data.endDate);
 		            $('[name="place"]').val(data.place);
+		            $('#btnDelete').val(data.reserveId);
 		          	//changeType();
 		            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
 		            
@@ -543,6 +547,28 @@
 		        }
 		    });
 		}	
+
+	function deleteRes(rID){
+		var con = confirm("คุณต้องการยกเลิกการจองนี้ใช่หรือไม่");
+		if(con){
+			$.ajax({
+				url : "<?php echo site_url('Reserve/ajax_deleteReserve')?>/"+rID,
+				type: "POST",
+				dataType: "JSON",
+				success: function(data)
+				{
+					$('#modal_form').modal('hide');
+			     	ajax_myHistory();     
+			    },
+			    error: function (jqXHR, textStatus, errorThrown)
+			    {
+			        alert('Error deleting data');
+			    }
+			});
+		}			
+
+
+	}
 
 	function save()
 	{
@@ -612,7 +638,8 @@
 
 		$('#dateS').datetimepicker('setStartDate', dateToday);
 		$('#dateE').datetimepicker('setStartDate', dateToday);
-		
+		$('#dateS2').datetimepicker('setStartDate', dateToday);
+		$('#dateE2').datetimepicker('setStartDate', dateToday);
 	});
 		</script>
 

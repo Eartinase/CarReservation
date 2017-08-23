@@ -260,8 +260,8 @@ function edit_reserve(rID){
 	    table = $('#table').DataTable({ 
 
 	       	"processing": true, //Feature control the processing indicator.
+	       	"serverSide" : true,
 	        "order": [], //Initial no order.
-
 	        // Load data for the table's content from an Ajax source
 	        "ajax": {
 	        	"url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
