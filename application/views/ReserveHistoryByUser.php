@@ -1,30 +1,14 @@
-<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/table.css' />
 <?php
 require_once('mpdf/mpdf.php'); //ที่อยู่ของไฟล์ mpdf.php ในเครื่องเรานะครับ
-$stylesheet = file_get_contents(base_url().'application/views/css/table.css');
 ob_start(); // ทำการเก็บค่า html นะครับ
 ?>
-
-<style type="text/css">
-<!--
-@page rotated { size: landscape; }
-@font-face {
-    font-family: "THSarabun";
-    src: url(<?php echo base_url(); ?>/application/views/Fonts/THSarabun.ttf);
-}
-.con {
-	font-family: "THSarabun";
-	font-size: 50px;
-}r
--->
-</style>
 
 <!DOCTYPE html>
 <html>
 <body>
 <div class="con">
 <h2 style="text-align:center;font-size:40px">รายงานประวัติการใช้บริการรถ</h2>
-<p style="font-size:22px">ชื่อ-นามสกุลผู้จอง นางสาว จิรดา วิวิธอำพน ภาควิชา เทคโนโลยีสารสนเทศ คณะ เทคโนโลยีสารสนเทศ ตำแหน่ง นักศึกษา</p>
+<p style="font-size:20px">ชื่อ-นามสกุลผู้จอง นางสาว จิรดา วิวิธอำพน ภาควิชา เทคโนโลยีสารสนเทศ คณะ เทคโนโลยีสารสนเทศ ตำแหน่ง นักศึกษา</p>
 
 <table style="font-size:20px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 100%" >
   <tr>
@@ -84,10 +68,10 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 <?php
 $html = ob_get_contents();
 ob_end_clean();
-$pdf = new mPDF('tha', 'A4-L', '0', 'thsarabun'); //การตั้งค่ากระดาษถ้าต้องการแนวตั้ง ก็ A4 เฉยๆครับ ถ้าต้องการแนวนอนเท่ากับ A4-L
+$pdf = new mPDF('tha', 'A4', '0', 'thsarabun'); //การตั้งค่ากระดาษถ้าต้องการแนวตั้ง ก็ A4 เฉยๆครับ ถ้าต้องการแนวนอนเท่ากับ A4-L
 //$pdf->SetAutoFont();
 
 $pdf->SetDisplayMode('fullpage');
 $pdf->WriteHTML($html, 2);
-$pdf->Output();
+$pdf->Output('รายงานประวัติการใช้บริการรถ.pdf', 'I');
 ?>

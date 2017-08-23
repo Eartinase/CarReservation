@@ -8,8 +8,8 @@ class genReport extends CI_Controller {
 		//$this->load->model('CarsModel','CarsModel');		
 	}
 
-	public function genReportPDF(){				
-		$this->load->view('ReportPDF');
+	public function genReserveHistoryByUser(){				
+		$this->load->view('ReserveHistoryByUser');
 	}
 
 	public function genReserveHistoryByCar(){				
