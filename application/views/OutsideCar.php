@@ -71,7 +71,7 @@
 						<input class="form-control" name="place" required >
 					</div>	
 				</div>	
-				<button type="submit"  class="btn btn-primary" >ยืนยัน</button>	
+				<center><button type="submit"  class="btn btn-primary" >ยืนยัน</button></center>	
 		</form>
 		</div>
 </body>
