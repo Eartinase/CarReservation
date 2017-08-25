@@ -13,7 +13,7 @@
 	
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
-
+	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
 	
 </head>
 <style type="text/css">
