@@ -6,7 +6,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 <!DOCTYPE html>
 <html>
 <head>
-
+	
 </head>
 <body>
 	<div class="con">
