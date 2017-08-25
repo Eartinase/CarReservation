@@ -39,7 +39,7 @@
     margin: 2%;
     padding-top: 30px;
   } 
- 
+  
 
   </style>
 
@@ -68,7 +68,7 @@
     <div class="row">
       <div style="text-align:center">
         <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
-        <button class="btn btn-danger" onclick="location.href='<?php echo base_url(); ?>GenReport/genPDFUserHistory';">ดาวน์โหลดเป็น PDF</button>
+        <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button>
       </div>      
     </div>
 
@@ -117,6 +117,11 @@
       });
 
     });
+
+    function openInNewTab(url) {
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
     </script>
 
     <br>
