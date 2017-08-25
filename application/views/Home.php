@@ -13,7 +13,7 @@
 	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hr.css' />
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
-
+	<script src='fullcalendar/locale-all.js'></script>
 </head>
 
 <body class="container" style="background-color:#fafafa">
@@ -428,6 +428,7 @@
 				eventLimit: true, 
 				editable: false,
 				navLinks: true,
+				locale: 'th',
 				header: {
 					left: 'title',
 					center: '',
