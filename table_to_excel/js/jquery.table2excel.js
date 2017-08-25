@@ -50,10 +50,8 @@
                 });
                 e.tableRows.push(tempRows);
             });
-
             e.tableToExcel(e.tableRows, e.settings.name, e.settings.sheetName);
         },
-
         tableToExcel: function (table, name, sheetName) {
             var e = this, fullTemplate="", i, link, a;
 
@@ -138,7 +136,6 @@
 		return ( settings.filename ? settings.filename : "table2excel" ) +
 			   ( settings.fileext ? settings.fileext : ".xlsx" );
     }
-
     $.fn[ pluginName ] = function ( options ) {
         var e = this;
             e.each(function() {
@@ -146,9 +143,7 @@
                     $.data( e, "plugin_" + pluginName, new Plugin( this, options ) );
                 }
             });
-
         // chain jQuery functions
         return e;
     };
-
 })( jQuery, window, document );

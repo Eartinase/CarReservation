@@ -22,7 +22,6 @@ class genExcel extends CI_Controller {
 			$carType[$id] = $v;
 		}
 
-
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
