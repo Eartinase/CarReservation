@@ -3,7 +3,7 @@
 <div class="container">
     <!----------- Footer ------------>
 
-    <footer class="footer-bs" style="padding-bottom: 20px;padding-top: 30px;" id="topnav">
+    <footer class="footer-bs" style="padding-bottom: 1px;padding-top: 7px;" id="topnav">
         <div class="row">
             <div class="col-md-3 footer-brand animated fadeInLeft">
                 <a href="http://www2.kmutt.ac.th/"><img src="<?php echo base_url(); ?>application/views/img/Kmutt.png"

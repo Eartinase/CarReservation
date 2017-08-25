@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class genReport extends CI_Controller {
+class genExcel extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('ReservationModel','ReservationModel');
 		$this->load->model('CarsModel','CarsModel');	
-		$this->load->model('UserModel','UserModel');		
+		$this->load->model('UserModel','UserModel');
 	}
 
-	public function genPDFUserHistory(){	
+	public function genExcelUserHistory(){	
 		//$empCode = $this->session->userdata['logged_in']['employeeCode'];
 		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode(0);
 		$userInfo = $this-> UserModel->getUserInfo('admin');
@@ -22,23 +22,10 @@ class genReport extends CI_Controller {
 			$carType[$id] = $v;
 		}
 
-
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
-		$this->load->view('GenPDFUserHistory',$data);
-	}
-
-
-	public function genReserveHistoryByCar(){				
-		$this->load->view('ReserveHistoryByCar');
-	}
-
-	public function genReserveSummary(){				
-		$this->load->view('ReserveSummary');
+		$this->load->view('GenExcelUserHistory',$data);
 	}
 
 }
-
-/* End of file CarController.php */
-/* Location: ./application/controllers/CarController.php */
