@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ระบบบริหารจัดการรถยนต์</title>
 	<meta charset="utf-8">
-	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
-	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
-	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+	<?php 
+	include "Header.php";
+	?>
 	
-	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
-	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
-	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
-	
+	<style type="text/css">
+		td{
+			text-align: center;
+		}
+	</style>
 </head>
-<style type="text/css">
-td{
-	text-align: center;
-}
-
-</style>
-<body  style="background-color:#fafafa">
-	
+<body>
 	<?php 
 	if (isset($this->session->userdata['logged_in'])) {
 		$username = ($this->session->userdata['logged_in']['username']);
@@ -34,29 +25,28 @@ td{
 		include "NavbarUserLogged_in.php";
 	}else{
 		redirect('/HomeInfo','refresh');
-	}		
+	}	
 	?>
-	
+
 	<div  style="margin: 100px;">			
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
 					<td>Car ID</td>
-					<td>ประเภทรถ</td> 
 					<td>ทะเบียนรถ</td> 
+					<td>ผู้จอง</td> 
+					<td>สถานที่</td> 
 					<td>วันที่เดินทาง</td>
 					<td>วันที่กลับ</td>
-					<td>สถานที่</td>
 					<td>สถานะ</td>
-					<td></td>
+					<td style="width:150px" ></td>
 				</tr>
 			</thead>
 			<tbody>
 				
 			</tbody>							
 		</table>
-	</div>
-	
+	</div>	
 
 	<div class="modal fade" id="modal_form" role="dialog">
 		<div class="modal-dialog">
@@ -123,10 +113,11 @@ td{
 	<!-- End Bootstrap modal -->
 </body>
 
+
 <script type="text/javascript">
 
 function deleteRes(rID){
-	var con = confirm("คุณต้องการยกเลิกการจองนี้หรือไม่");
+	var con = confirm("คุณต้องการยกเลิกการจองนี้ใช่หรือไม่");
 	if(con){
 		$.ajax({
 			url : "<?php echo site_url('Reserve/ajax_deleteReserve')?>/"+rID,
@@ -305,5 +296,5 @@ function reload_table()
 	}
 
 	</script>
-
-	</html>
+</body>
+</html>

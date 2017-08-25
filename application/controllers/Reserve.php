@@ -19,8 +19,7 @@ class Reserve extends CI_Controller {
 		$check = $this-> ReservationModel -> addReservation($carId, $startDate, $endDate, $code, $place, $tel);
 		
 		if( $check ) {
-			$data['check'] = true;
-			
+			$data['check'] = true;			
 		}else{
 			$data['check'] = false;
 			$data['message']="ไม่สามารถทำการจองได้เนื่องจากรถได้ถูกจองแล้ว";
@@ -51,8 +50,7 @@ class Reserve extends CI_Controller {
 			'place' => $ReserveInfo->getPlace()
 			);
 		echo json_encode($data);
-		
-		
+				
 		//$carlist = $this->CarsModel-> getCarsByType($selectCar);
 		//$key = array_search($selectCar, $carlist);
 		//if($key !== FALSE) {

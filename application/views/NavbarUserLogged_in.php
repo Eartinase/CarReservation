@@ -52,6 +52,10 @@
                 <li class="dr-menu"><a href="#">รายงานขอเบิกงบประมาณ</a></li>
               </ul>
             </li>
+            <li style="padding-left: 0px" >
+              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Driver" >พนักงานขับรถ
+              </a>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
