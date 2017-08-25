@@ -39,9 +39,7 @@
     margin: 2%;
     padding-top: 30px;
   } 
-  #but{
-   /*float: right;*/
-  }
+ 
 
   </style>
 
@@ -69,8 +67,8 @@
     <p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $userInfo->getName() ?> หน่วยงาน <?php echo $userInfo->getDepartment() ?> ตำแหน่ง <?php echo $userInfo->getRole() ?></p>
     <div class="row">
       <div style="text-align:center">
-        <button class="btn btn-success" id="but">ดาวน์โหลดเป็น Excel</button> &nbsp;
-        <button class="btn btn-danger" id="but" href="#">ดาวน์โหลดเป็น PDF</button>
+        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
+        <button class="btn btn-danger" onclick="location.href='<?php echo base_url(); ?>GenReport/genPDFUserHistory';">ดาวน์โหลดเป็น PDF</button>
       </div>      
     </div>
 
@@ -103,7 +101,8 @@
 
     <script>
     $(function() {
-      $("button").click(function(){
+
+      $(document.getElementById("excel")).click(function(){
 
         $(".table2excel").table2excel({
           exclude: ".noExl",
