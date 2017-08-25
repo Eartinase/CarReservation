@@ -47,7 +47,7 @@
               </a>
               <ul class="dropdown-menu">
                 <!--<li><a href="#">Something else here</a></li>-->
-                <li class="dr-menu"><a href="#">รายงานประวัติการใช้บริการรถ</a></li>
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>GenExcel/genExcelUserHistory">รายงานประวัติการใช้บริการรถ</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dr-menu"><a href="#">รายงานขอเบิกงบประมาณ</a></li>
               </ul>
