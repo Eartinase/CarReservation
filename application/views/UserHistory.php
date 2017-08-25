@@ -7,9 +7,10 @@
 	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	
 	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+	
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 
@@ -69,7 +70,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">ประเภทรถ</label>
 								<div class="col-md-8">
-									<select id="carType" class="form-control" onchange="changeType()" name="carType">
+									<select id="carType" class="form-control" onchange="changeType(this.value)" name="carType">
 										<option value="1">เก๋ง</option>
 										<option value="2">กระบะ</option>
 										<option value="3">ตู้</option>
@@ -158,12 +159,12 @@ function edit_reserve(rID){
 		    	success: function(data)
 		    	{
 		    		$('#id').val(data.reserveId);
-		    		$('[name="carType"] select').val(data.carType);
-		    		$('[name="plateL"]').append('<option value=' + data.carId + '>' + data.plateLicense + '</option>');
+		    		$('[name="carType"]').val(data.carTypeId).change();
+		    		$('[name="plateL"]').val(data.carId).change();
 		    		$('[name="dateS"]').datetimepicker('update',data.startDate);
 		    		$('[name="dateE"]').datetimepicker('update',data.endDate);
 		    		$('[name="place"]').val(data.place);
-		    		changeType();
+		    		
 		            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
 		            
 
@@ -175,11 +176,8 @@ function edit_reserve(rID){
 		    });
 		}
 
-		function changeType(){
+		function changeType(v){
 			select = document.getElementById('plateL');
-			e = document.getElementById('carType');
-			v = e.options[e.selectedIndex].value;
-			
 			select.innerHTML = "";		
 
 			if(v==1){
@@ -252,16 +250,14 @@ function edit_reserve(rID){
 	    });
 	}
 
-
+	var dateToday = new Date();
 	var table;
 	$(document).ready(function() {
 		
 	    //datatables
 	    table = $('#table').DataTable({ 
-
+	    	"bPaginate":true,
 	       	"processing": true, //Feature control the processing indicator.
-	       	"serverSide" : true,
-	        "order": [], //Initial no order.
 	        // Load data for the table's content from an Ajax source
 	        "ajax": {
 	        	"url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
@@ -269,12 +265,7 @@ function edit_reserve(rID){
 	        },
 
 	        //Set column definition initialisation properties.
-	        "columnDefs": [
-	        { 
-	            "targets": [ 0 ], //last column
-	            "orderable": false, //set not orderable
-	        },
-	        ],
+	       
 
 	    });
 
@@ -303,6 +294,8 @@ function edit_reserve(rID){
 	    	$(this).next().empty();
 	    });
 
+	    $('#dateS').datetimepicker('setStartDate', dateToday);
+		$('#dateE').datetimepicker('setStartDate', dateToday);
 	});
 
 function reload_table()

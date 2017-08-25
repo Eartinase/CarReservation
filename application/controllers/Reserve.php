@@ -131,9 +131,7 @@ class Reserve extends CI_Controller {
 			}
 		//}
 		 $output = array(
-               "draw" => $draw,
-                "recordsTotal" => $no,
-                "recordsFiltered" => $no,
+            
                 "data" => $data
             );
 

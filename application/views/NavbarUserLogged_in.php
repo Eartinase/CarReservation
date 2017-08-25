@@ -26,14 +26,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li>
+            <li style="padding-left: 0px" >
               <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ใช้บริการรถภายนอก <span class="sr-only">(current)</span></a>
             </li>
-            <li>
+            <li style="padding-left: 0px" >
               <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ดูประวัติการใช้บริการรถ
               </a>
             </li>
-            <li class="dropdown">
+            <li style="padding-left: 0px"  class="dropdown">
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">จัดการ<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
@@ -42,7 +42,7 @@
                 <li class="dr-menu"><a href="<?php echo base_url(); ?>AddDriver">เพิ่มคนขับ</a></li>
               </ul>              
             </li>
-            <li class="dropdown">
+            <li style="padding-left: 0px"  class="dropdown">
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สร้างรายงาน<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
@@ -55,7 +55,7 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            <li style="padding-left: 0px" class="dropdown">
               <a style="font-size:18px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $name.' ' ?><span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li class="dr-menu"><a href="#" >แก้ไขข้อมูลส่วนตัว</a></li>
