@@ -271,7 +271,7 @@
 		                        <div class="form-group">
 		                            <label class="col-md-3 control-label">สถานที่</label>
 		                            <div class="col-md-8">
-		                                <textarea id="placeEdit" name="place" placeholder="place" class="form-control"></textarea>
+		                                <textarea id="placeEdit" name="placeEdit" placeholder="place" class="form-control"></textarea>
 		                            </div>
 		                        </div>
 		            			<div class='alertEdit' style="background-color: #FFB9B4;font-size: 15px;height: 25px;">
