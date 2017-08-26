@@ -48,7 +48,8 @@ class Reserve extends CI_Controller {
 			'plateLicense' => $ReserveInfo->getPlateLicese(),
 			'startDate' => $ReserveInfo->getStartDate(),
 			'endDate' => $ReserveInfo->getEndDate(),
-			'place' => $ReserveInfo->getPlace()
+			'place' => $ReserveInfo->getPlace(),
+			'tel' => $ReserveInfo->getTel()
 			);
 		echo json_encode($data);
 		
@@ -82,6 +83,7 @@ class Reserve extends CI_Controller {
 		$dateS = $this->input->post('dateS2');
 		$dateE = $this->input->post('dateE2');
 		$place = $this->input->post('place');
+		$tel = $this-> input->post('telEdit');
 		if($this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
 			$data = array(
 				'carId' => $carId,
@@ -90,6 +92,7 @@ class Reserve extends CI_Controller {
 				'dateS' =>$dateS ,
 				'dateE' => $dateE,
 				'place' => $place,
+				'tel' => $tel,
 				'accept' => 0
 			);
 			

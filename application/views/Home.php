@@ -270,10 +270,17 @@
 		                                <span class="help-block"></span>
 		                            </div>
 		                        </div>
+		                        <div class="form-group" id='telEditG'>
+			                        <label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+			                        <div class="col-md-8 ">
+			                            <input id="telEdit" name="telEdit" class="form-control" type="text" autocomplete="off" required>
+			                            <span class="help-block"></span>
+			                        </div>
+			                    </div>
 		                        <div class="form-group">
 		                            <label class="col-md-3 control-label">สถานที่</label>
 		                            <div class="col-md-8">
-		                                <textarea id="place" name="place" placeholder="place" class="form-control"></textarea>
+		                                <textarea id="placeEdit" name="place" placeholder="place" class="form-control"></textarea>
 		                                <span class="help-block"></span>
 		                            </div>
 		                        </div>
@@ -455,12 +462,13 @@
 			    		$("#btnCancle").hide();
 			    		$("#btnSave, #btnDelete").show();
 			    		$('#formEdit').find('input, textarea, select').attr('disabled',false);
+			    		$('#telEditG').show();
 			    	}else{
 			    		edit_reserve(calEvent.id);
 			    		$("#btnCancle").show();
 			    		$("#btnSave, #btnDelete").hide();
 			    		$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
-			    		//$("#btnDelete").hide();
+			    		$('#telEditG').hide();
 			    	}
 			        
 			        // change the border color just for fun
@@ -477,7 +485,7 @@
 	function reload_calendar(){
 		//createCalendar();
 		$('#calendar').fullCalendar('destroy');
-		getDefualt_Calendar()
+		getDefualt_Calendar();
 		   //$('#calendar').fullCalendar('refetchEvents');
 	}
 
@@ -491,7 +499,7 @@
 	                success: function (doc) {
 	                	data =JSON.parse(doc);	
 	                	$('#calendar').fullCalendar('destroy');
-						createCalendar(data)   
+						createCalendar(data) ;  
 		              
 	                },error: function (err) {
 	                    alert('Error in fetching data');
@@ -512,7 +520,7 @@
 						createCalendar(data)   
 		              
 	                },error: function (err) {
-	                    alert('Error in fetching data');
+	                    alert(err.Message);
 	                }
 	            });
 		
@@ -536,8 +544,10 @@
 		            $('[name="plateL"]').val(data.carId).change();
 		            $('[name="dateS2"]').datetimepicker('update',data.startDate);
 		            $('[name="dateE2"]').datetimepicker('update',data.endDate);
-		            $('[name="place"]').val(data.place);
+		            $('[name="placeEdit"]').val(data.place);
+		            $('[name="telEdit"]').val(data.tel);
 		            $('#btnDelete').val(data.reserveId);
+
 		          	//changeType();
 		            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
 		            
@@ -651,7 +661,7 @@
 	<style type="text/css">
 	.popover{
 		max-height: 70px;
-		width: 200px;
+		width: 250px;
 	}
 
 </style>

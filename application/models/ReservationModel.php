@@ -234,7 +234,7 @@ class ReservationModel extends CI_Model {
 			foreach ($query->result() as $row){
 				$num++;
 			}
-			 if($num == 1){
+			 if($num <= 1){
 			 	return true;
 			 }else{
 			 	return false;
@@ -272,7 +272,8 @@ class ReservationModel extends CI_Model {
     				'employeeCode' => $empCode , 
     				'place' => $place , 
     				'startDate' => $dateS,
-    				'endDate' => $dateE
+    				'endDate' => $dateE,
+    				'Tel' => $tel
     			));
 		return true;
 	}
@@ -289,6 +290,7 @@ class ReservationModel extends CI_Model {
 		$reserveInfo->setDriverId($row->DriverId);
 		$reserveInfo->setColor($row->color);
 		$reserveInfo->setCarId($row->carId);
+		$reserveInfo->setTel($row->Tel);
 	}	
 
 }

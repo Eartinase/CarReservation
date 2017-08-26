@@ -101,6 +101,13 @@
 									<span class="help-block"></span>
 								</div>
 							</div>
+							 <div class="form-group" id='telEditG'>
+			                        <label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+			                        <div class="col-md-8 ">
+			                            <input id="telEdit" name="telEdit" class="form-control" type="text" autocomplete="off" required>
+			                            <span class="help-block"></span>
+			                        </div>
+			                    </div>
 							<div class="form-group">
 								<label class="col-md-3 control-label">สถานที่</label>
 								<div class="col-md-8">
@@ -164,7 +171,7 @@ function edit_reserve(rID){
 		    		$('[name="dateS"]').datetimepicker('update',data.startDate);
 		    		$('[name="dateE"]').datetimepicker('update',data.endDate);
 		    		$('[name="place"]').val(data.place);
-		    		
+		    		$('[name="telEdit"]').val(data.tel);
 		            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
 		            
 
