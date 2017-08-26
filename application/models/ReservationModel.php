@@ -228,13 +228,16 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function checkReservationforEdit($carId , $startDate , $endDate , $reserveId){
-			$query = $this->db->query('SELECT carId FROM currentreservation WHERE  carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
+			$query = $this->db->query('SELECT CurrentId FROM currentreservation WHERE  carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
 			$row = $query->row();
 			$num = 0;
 			foreach ($query->result() as $row){
-				$num++;
+				if($row->CurrentId != $reserveId){
+					$num++;
+				}
+				
 			}
-			 if($num <= 1){
+			 if($num < 1){
 			 	return true;
 			 }else{
 			 	return false;

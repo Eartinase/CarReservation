@@ -272,10 +272,11 @@
 		                            <label class="col-md-3 control-label">สถานที่</label>
 		                            <div class="col-md-8">
 		                                <textarea id="placeEdit" name="place" placeholder="place" class="form-control"></textarea>
-		                                <span class="help-block"></span>
 		                            </div>
 		                        </div>
-		            
+		            			<div class='alertEdit' style="background-color: #FFB9B4;font-size: 15px;height: 25px;">
+		            					<center><b>ไม่สามารถทำการแก้ไขได้เนื่องจากรถได้ถูกจองแล้ว</b></center>
+		            			</div>
 
 		                 </div>
 		                </form>
@@ -448,6 +449,7 @@
 			    	},
 			    
 			    eventClick: function(calEvent, jsEvent, view) {
+			    	$('.alertEdit').hide();
 			    	if(calEvent.editable){
 			    		edit_reserve(calEvent.id);
 			    		$("#btnCancle").hide();
@@ -552,6 +554,7 @@
 		}	
 
 	function deleteRes(rID){
+		$('.alertEdit').hide();
 		var con = confirm("คุณต้องการยกเลิกการจองนี้ใช่หรือไม่");
 		if(con){
 			$.ajax({
@@ -577,7 +580,6 @@
 	{
 	    $('#btnSave').text('saving...'); //change button text
 	    $('#btnSave').attr('disabled',true); //set button disable 
-
 	    // ajax adding data to database
 	    $.ajax({
 	        url : "<?php echo site_url('Reserve/ajax_update')?>",
@@ -594,7 +596,7 @@
 	            }
 	            else
 	            {
-	               alert('false');
+	               $('.alertEdit').show();
 	            }
 	            $('#btnSave').text('save'); //change button text
             	$('#btnSave').attr('disabled',false); //set button enable 
