@@ -49,22 +49,13 @@
 </head>
 
 <body>
-  <?php 
-  if (isset($this->session->userdata['logged_in'])) {
-    $username = ($this->session->userdata['logged_in']['username']);
-    $employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
-    $name = ($this->session->userdata['logged_in']['name']);
-    $department = ($this->session->userdata['logged_in']['department']);
-    $role = ($this->session->userdata['logged_in']['role']);
-    include "NavbarUserLogged_in.php";
-  }else{
-    redirect('/HomeInfo','refresh');
-  }
+    <?php 
+  include "NavbarChooser.php";
   ?>
 
   <div class="con">
     <h2 style="text-align:center;font-size:36px">รายงานประวัติการใช้บริการรถ</h2>
-    <p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $userInfo->getName() ?> หน่วยงาน <?php echo $userInfo->getDepartment() ?> ตำแหน่ง <?php echo $userInfo->getRole() ?></p>
+    <p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $this->session->userdata['logged_in']['name'] ?> หน่วยงาน <?php echo $this->session->userdata['logged_in']['department'] ?> ตำแหน่ง <?php echo $this->session->userdata['logged_in']['role'] ?></p>
     <div class="row">
       <div style="text-align:center">
         <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;

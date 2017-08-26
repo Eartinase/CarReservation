@@ -1,53 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ระบบบริหารจัดการรถยนต์</title>
 	<meta charset="utf-8">
-	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
-	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
-	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+	<?php 
+	include "Header.php";
+	?>
 	
-	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
-	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
-	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
-	
+	<style type="text/css">
+	td{
+		text-align: center;
+	}
+	</style>
 </head>
-<style type="text/css">
-td{
-	text-align: center;
-}
-
-</style>
-<body  style="background-color:#fafafa">
-	
+<body>
 	<?php 
 	include "NavbarChooser.php";
 	?>
-	
+
 	<div  style="margin: 100px;">			
-		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
+		<table  id="tablee" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
-					<td>Car ID</td>
-					<td>ประเภทรถ</td> 
+					<td>รหัสการจอง</td>
+					<td>ประเภทรถ</td>
 					<td>ทะเบียนรถ</td> 
+					<td>ผู้จอง</td> 
+					<td>สถานที่</td> 
 					<td>วันที่เดินทาง</td>
 					<td>วันที่กลับ</td>
-					<td>สถานที่</td>
 					<td>สถานะ</td>
-					<td></td>
+					<td style="width:150px" ></td>
 				</tr>
 			</thead>
 			<tbody>
 				
 			</tbody>							
 		</table>
-	</div>
-	
+	</div>	
 
 	<div class="modal fade" id="modal_form" role="dialog">
 		<div class="modal-dialog">
@@ -94,13 +85,6 @@ td{
 									<span class="help-block"></span>
 								</div>
 							</div>
-							 <div class="form-group" id='telEditG'>
-			                        <label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
-			                        <div class="col-md-8 ">
-			                            <input id="telEdit" name="telEdit" class="form-control" type="text" autocomplete="off" required>
-			                            <span class="help-block"></span>
-			                        </div>
-			                    </div>
 							<div class="form-group">
 								<label class="col-md-3 control-label">สถานที่</label>
 								<div class="col-md-8">
@@ -121,26 +105,25 @@ td{
 	<!-- End Bootstrap modal -->
 </body>
 
+
 <script type="text/javascript">
 
 function deleteRes(rID){
-	var con = confirm("คุณต้องการยกเลิกการจองนี้หรือไม่");
+	var con = confirm("คุณต้องการยกเลิกการจองนี้ใช่หรือไม่");
 	if(con){
 		$.ajax({
 			url : "<?php echo site_url('Reserve/ajax_deleteReserve')?>/"+rID,
 			type: "POST",
 			dataType: "JSON",
-			success: function(data)
-			{
-		                //if success reload ajax table
-		                //$('#modal_form').modal('hide');
-		                reload_table();
-		            },
-		            error: function (jqXHR, textStatus, errorThrown)
-		            {
-		            	alert('Error deleting data');
-		            }
-		        });
+			success: function(data){
+		        //if success reload ajax table
+		        //$('#modal_form').modal('hide');
+		        reload_table();
+		    },
+		    error: function (jqXHR, textStatus, errorThrown){
+		    	alert('Error deleting data');
+		    }
+		});
 	}			
 
 }
@@ -163,7 +146,7 @@ function edit_reserve(rID){
 		    		$('[name="dateS"]').datetimepicker('update',data.startDate);
 		    		$('[name="dateE"]').datetimepicker('update',data.endDate);
 		    		$('[name="place"]').val(data.place);
-		    		$('[name="telEdit"]').val(data.tel);
+		    		
 		            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
 		            
 
@@ -208,6 +191,7 @@ function edit_reserve(rID){
 								select.appendChild(opt);
 								<?php } ?>
 							}
+
 						}
 
 						function save(){
@@ -252,18 +236,15 @@ function edit_reserve(rID){
 	$(document).ready(function() {
 		
 	    //datatables
-	    table = $('#table').DataTable({ 
+	    table = $('#tablee').DataTable({ 
 	    	"bPaginate":true,
 	       	"processing": true, //Feature control the processing indicator.
 	        // Load data for the table's content from an Ajax source
 	        "ajax": {
-	        	"url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
+	        	"url" : "<?php echo base_url(); ?>Reserve/DriverList",
 	        	"type" : "POST"
 	        },
-
 	        //Set column definition initialisation properties.
-	        
-
 	    });
 
 	    $('.datetimepicker').datetimepicker({
@@ -295,11 +276,10 @@ function edit_reserve(rID){
 	    $('#dateE').datetimepicker('setStartDate', dateToday);
 	});
 
-function reload_table()
-{
+function reload_table(){
 	    table.ajax.reload(null,false); //reload datatable ajax 
 	}
 
 	</script>
-
-	</html>
+</body>
+</html>

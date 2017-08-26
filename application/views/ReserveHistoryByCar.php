@@ -13,7 +13,6 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 		<h2 style="text-align:center">รายงานการจองรถมหาวิทยาลัย</h2>
 		<h3 style="text-align:center">ตั้งแต่วันที่ _____ ถึง _____</h3>
 
-
 		<table>	
 			<tr>
 				<th colspan="5" style="text-align:center">4กย 7904</th>

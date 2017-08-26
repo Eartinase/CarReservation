@@ -8,24 +8,28 @@ class AddDriver extends CI_Controller {
 		$this->load->model('AddDriverModel');
 	}
 
-	public function index()	
-	{
+	public function index(){
 		$this->load->view('AddDriverView');
 	}
 
-	public function addDriver()
-	{
+	public function addDriver(){
 		$data = array(		
-			'DriverName'	=> $this->input->post('DriverName'),
-			'DriverLicense'	=> $this->input->post('DriverLicense')
+			'EmployeeCode'	=> $this->input->post('EmployeeCode'),
+			'Username'		=> $this->input->post('Username'),
+			'Password'		=> $this->input->post('Password'),
+			'Name'			=> $this->input->post('Name'),
+			'Email'			=> $this->input->post('Email'),
+			'Department'	=> "ฝ่ายอาคารสถานที่",
+			'Role'			=> "driver",			
+			'Tel'			=> $this->input->post('Tel'),
+			'DriverLicense'	=> $this->input->post('DriverLicense'),			
 			);		
 		$this -> AddDriverModel -> add($data);
 
 		$message = array(
 			'message' => 'Success'
 			);
-		$this->load->view('Result', $message);
-		
+		$this->load->view('Result', $message);		
 	}
 	
 

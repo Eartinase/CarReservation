@@ -25,33 +25,11 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav">                        
             <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ใช้บริการรถภายนอก <span class="sr-only">(current)</span></a>
-            </li>
-            <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ดูประวัติการใช้บริการรถ
+              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Driver" >พนักงานขับรถ
               </a>
             </li>
-            <li style="padding-left: 0px"  class="dropdown">
-              <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">จัดการ<span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>AddCar">เพิ่มรถ</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>AddDriver">เพิ่มคนขับ</a></li>
-              </ul>              
-            </li>
-            <li style="padding-left: 0px"  class="dropdown">
-              <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สร้างรายงาน<span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <!--<li><a href="#">Something else here</a></li>-->
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>GenExcel/genExcelUserHistory">รายงานประวัติการใช้บริการรถ</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dr-menu"><a href="#">รายงานขอเบิกงบประมาณ</a></li>
-              </ul>
-            </li>            
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

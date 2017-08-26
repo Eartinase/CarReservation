@@ -2,8 +2,7 @@
 defined('BASEPATH') || exit('No direct script access allowed');
 
 class Reserve extends CI_Controller {
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->load->model('ReservationModel');
 		$this->load->model('CarsModel');
@@ -19,16 +18,13 @@ class Reserve extends CI_Controller {
 		$check = $this-> ReservationModel -> addReservation($carId, $startDate, $endDate, $code, $place, $tel);
 		
 		if( $check ) {
-			$data['check'] = true;
-			
+			$data['check'] = true;			
 		}else{
 			$data['check'] = false;
 			$data['message']="ไม่สามารถทำการจองได้เนื่องจากรถได้ถูกจองแล้ว";
 			
 		}
-
-		$this->load->view('Result', $data);
-				
+		$this->load->view('Result', $data);				
 	}
 
 	public function ajax_deleteReserve($reserveID){
@@ -37,8 +33,7 @@ class Reserve extends CI_Controller {
 
 	}	
 
-	public function ajax_edit($rID)
-	{
+	public function ajax_edit($rID){
 		$ReserveInfo = $this->ReservationModel->getCurrentReservationFromID($rID);
 		$selectCar = $this->CarsModel->getCarById($ReserveInfo->getCarId());
 		$data = array(
@@ -52,8 +47,7 @@ class Reserve extends CI_Controller {
 			'tel' => $ReserveInfo->getTel()
 			);
 		echo json_encode($data);
-		
-		
+				
 		//$carlist = $this->CarsModel-> getCarsByType($selectCar);
 		//$key = array_search($selectCar, $carlist);
 		//if($key !== FALSE) {
@@ -100,14 +94,10 @@ class Reserve extends CI_Controller {
 			echo json_encode(array("status" => TRUE));
 		}else{
 			echo json_encode(array("status" => FALSE));
-		}
-	
-		
+		}		
 	}
 
-
-	public function ajax_reservelist()
-	{
+	public function ajax_reservelist(){
 		$draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
 		$empCode = $this->session->userdata['logged_in']['employeeCode'];
@@ -128,25 +118,18 @@ class Reserve extends CI_Controller {
 	                   '<center>active</center>',
 	                   '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_reserve('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
 	                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
-	               );
-
-			
+	               );			
 			}
 		//}
-		 $output = array(
-            
+		 $output = array(            
                 "data" => $data
-            );
-
-		
+            );		
 		//output to json format
 		echo json_encode($output);
 		exit;
 	}
 
-
-	public function ajax_reserve_history()
-	{
+	public function ajax_reserve_history(){
 		$empCode = $this->session->userdata['logged_in']['employeeCode'];
 		$currentReserve = $this->ReservationModel->getCurReserveFormEmpCode($empCode);
 		$data = array();
@@ -159,18 +142,44 @@ class Reserve extends CI_Controller {
 	                "end" => $value->getEndDate(),
 	                "color" => $value->getColor(),
 	                "editable" => true
-	               );
-
-			
+	               );			
 			}
 		echo json_encode($data);
 		exit;
 	}
 
+	public function DriverList(){
+		$draw = intval($this->input->get("draw"));
+        $start = intval($this->input->get("start"));
+		$empCode = $this->session->userdata['logged_in']['employeeCode'];
+		$currentReserve = $this->ReservationModel->getCurReserveFormEmpCode($empCode);
+		$data = array();
+		$no=0;
+		//if($currentReserve != ''){
+			foreach ($currentReserve as $value) {
+				$car = $this->CarsModel->getCarById($value->getCarId());
+				$no++;
+				$data[] = array(
+	                   "<center>รหัส</center>",
+	                   "<center>".$car->getCarType()."</center>",
+	                   "<center>".$value->getPlateLicese()."</center>",
+	                   "<center>".$value->employeeCode."</center>",
+	                   $value->getPlace(),
+	                   "<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
+	                   "<center>".date("Y-m-d H:i", strtotime($value->getEndDate()))."</center>",
 
-
-
-
+	                   '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_reserve('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+	                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
+	               );			
+			}
+		//}
+		 $output = array(            
+                "data" => $data
+            );		
+		//output to json format
+		echo json_encode($output);
+		exit;
+	}
 }
 
 /* End of file CarController.php */

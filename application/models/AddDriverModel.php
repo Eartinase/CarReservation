@@ -4,7 +4,7 @@ defined('BASEPATH') || exit('No direct script access allowed');
 class AddDriverModel extends CI_Model {
 
 	public function add($input){		
-		return $this->db->insert('drivers', $input);
+		return $this->db->insert('user', $input);
 	}
 
 
