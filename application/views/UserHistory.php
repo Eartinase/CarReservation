@@ -25,16 +25,7 @@ td{
 <body  style="background-color:#fafafa">
 	
 	<?php 
-	if (isset($this->session->userdata['logged_in'])) {
-		$username = ($this->session->userdata['logged_in']['username']);
-		$employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
-		$name = ($this->session->userdata['logged_in']['name']);
-		$department = ($this->session->userdata['logged_in']['department']);
-		$role = ($this->session->userdata['logged_in']['role']);
-		include "NavbarUserLogged_in.php";
-	}else{
-		redirect('/HomeInfo','refresh');
-	}		
+	include "NavbarChooser.php";
 	?>
 	
 	<div  style="margin: 100px;">			
@@ -210,11 +201,9 @@ function edit_reserve(rID){
 								select.appendChild(opt);
 								<?php } ?>
 							}
-
 						}
 
-						function save()
-						{
+						function save(){
 	    $('#btnSave').text('saving...'); //change button text
 	    $('#btnSave').attr('disabled',true); //set button disable 
 
@@ -266,7 +255,7 @@ function edit_reserve(rID){
 	        },
 
 	        //Set column definition initialisation properties.
-	       
+	        
 
 	    });
 
@@ -296,7 +285,7 @@ function edit_reserve(rID){
 	    });
 
 	    $('#dateS').datetimepicker('setStartDate', dateToday);
-		$('#dateE').datetimepicker('setStartDate', dateToday);
+	    $('#dateE').datetimepicker('setStartDate', dateToday);
 	});
 
 function reload_table()

@@ -49,17 +49,8 @@
 </head>
 
 <body>
-  <?php 
-  if (isset($this->session->userdata['logged_in'])) {
-    $username = ($this->session->userdata['logged_in']['username']);
-    $employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
-    $name = ($this->session->userdata['logged_in']['name']);
-    $department = ($this->session->userdata['logged_in']['department']);
-    $role = ($this->session->userdata['logged_in']['role']);
-    include "NavbarUserLogged_in.php";
-  }else{
-    redirect('/HomeInfo','refresh');
-  }
+    <?php 
+  include "NavbarChooser.php";
   ?>
 
   <div class="con">

@@ -9,30 +9,22 @@
 	?>
 	
 	<style type="text/css">
-		td{
-			text-align: center;
-		}
+	td{
+		text-align: center;
+	}
 	</style>
 </head>
 <body>
 	<?php 
-	if (isset($this->session->userdata['logged_in'])) {
-		$username = ($this->session->userdata['logged_in']['username']);
-		$employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
-		$name = ($this->session->userdata['logged_in']['name']);
-		$department = ($this->session->userdata['logged_in']['department']);
-		$role = ($this->session->userdata['logged_in']['role']);
-		include "NavbarUserLogged_in.php";
-	}else{
-		redirect('/HomeInfo','refresh');
-	}	
+	include "NavbarChooser.php";
 	?>
 
 	<div  style="margin: 100px;">			
-		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
+		<table  id="tablee" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
-					<td>Car ID</td>
+					<td>รหัสการจอง</td>
+					<td>ประเภทรถ</td>
 					<td>ทะเบียนรถ</td> 
 					<td>ผู้จอง</td> 
 					<td>สถานที่</td> 
@@ -123,17 +115,15 @@ function deleteRes(rID){
 			url : "<?php echo site_url('Reserve/ajax_deleteReserve')?>/"+rID,
 			type: "POST",
 			dataType: "JSON",
-			success: function(data)
-			{
-		                //if success reload ajax table
-		                //$('#modal_form').modal('hide');
-		                reload_table();
-		            },
-		            error: function (jqXHR, textStatus, errorThrown)
-		            {
-		            	alert('Error deleting data');
-		            }
-		        });
+			success: function(data){
+		        //if success reload ajax table
+		        //$('#modal_form').modal('hide');
+		        reload_table();
+		    },
+		    error: function (jqXHR, textStatus, errorThrown){
+		    	alert('Error deleting data');
+		    }
+		});
 	}			
 
 }
@@ -204,8 +194,7 @@ function edit_reserve(rID){
 
 						}
 
-						function save()
-						{
+						function save(){
 	    $('#btnSave').text('saving...'); //change button text
 	    $('#btnSave').attr('disabled',true); //set button disable 
 
@@ -247,18 +236,15 @@ function edit_reserve(rID){
 	$(document).ready(function() {
 		
 	    //datatables
-	    table = $('#table').DataTable({ 
+	    table = $('#tablee').DataTable({ 
 	    	"bPaginate":true,
 	       	"processing": true, //Feature control the processing indicator.
 	        // Load data for the table's content from an Ajax source
 	        "ajax": {
-	        	"url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
+	        	"url" : "<?php echo base_url(); ?>Reserve/DriverList",
 	        	"type" : "POST"
 	        },
-
 	        //Set column definition initialisation properties.
-	       
-
 	    });
 
 	    $('.datetimepicker').datetimepicker({
@@ -287,11 +273,10 @@ function edit_reserve(rID){
 	    });
 
 	    $('#dateS').datetimepicker('setStartDate', dateToday);
-		$('#dateE').datetimepicker('setStartDate', dateToday);
+	    $('#dateE').datetimepicker('setStartDate', dateToday);
 	});
 
-function reload_table()
-{
+function reload_table(){
 	    table.ajax.reload(null,false); //reload datatable ajax 
 	}
 

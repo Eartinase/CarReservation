@@ -14,13 +14,7 @@ class Driver extends CI_Controller {
 		$this->load->view('DriverView');
 	}
 
-	public function showReserveHistory(){
-		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
- 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
- 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
- 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
-		$this->load->view('UserHistory',$data);
-	}
+	
 
 }
 

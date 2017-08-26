@@ -12,17 +12,9 @@
 <body>
 
 	<?php 
-	if (isset($this->session->userdata['logged_in'])) {
-		$username = ($this->session->userdata['logged_in']['username']);
-		$employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
-		$name = ($this->session->userdata['logged_in']['name']);
-		$department = ($this->session->userdata['logged_in']['department']);
-		$role = ($this->session->userdata['logged_in']['role']);
-		include "NavbarUserLogged_in.php";
-	}else{
-		redirect('/HomeInfo','refresh');
-	}	
+	include "NavbarChooser.php";
 	?>
+	
 	<div  class="container" style="margin-top: 50px;">	
 		<center>
 			<h3>เพิ่มรถ</h3>
