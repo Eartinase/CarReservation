@@ -104,7 +104,7 @@ td{
 							<div class="form-group">
 								<label class="col-md-3 control-label">สถานที่</label>
 								<div class="col-md-8">
-									<textarea id="place" name="place" placeholder="place" class="form-control"></textarea>
+									<textarea id="placeEdit" name="placeEdit" placeholder="place" class="form-control"></textarea>
 									<span class="help-block"></span>
 								</div>
 							</div>

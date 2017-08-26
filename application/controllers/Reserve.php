@@ -76,7 +76,7 @@ class Reserve extends CI_Controller {
 		$empCode =  $this->session->userdata['logged_in']['employeeCode'];
 		$dateS = $this->input->post('dateS2');
 		$dateE = $this->input->post('dateE2');
-		$place = $this->input->post('place');
+		$place = $this->input->post('placeEdit');
 		$tel = $this-> input->post('telEdit');
 		if($this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
 			$data = array(
