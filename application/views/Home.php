@@ -654,7 +654,7 @@
 	<style type="text/css">
 	.popover{
 		max-height: 70px;
-		width: 250px;
+		width: 230px;
 	}
 
 </style>
