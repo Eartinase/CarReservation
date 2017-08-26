@@ -1,6 +1,9 @@
 <?php
 require_once('mpdf/mpdf.php'); //ที่อยู่ของไฟล์ mpdf.php ในเครื่องเรานะครับ
 ob_start(); // ทำการเก็บค่า html นะครับ
+$name = ($this->session->userdata['logged_in']['name']);
+$department = ($this->session->userdata['logged_in']['department']);
+$role = ($this->session->userdata['logged_in']['role']);
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +11,7 @@ ob_start(); // ทำการเก็บค่า html นะครับ
 <body>
 <div class="con">
 <h2 style="text-align:center;font-size:40px">รายงานประวัติการใช้บริการรถ</h2>
-<p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $userInfo->getName() ?> หน่วยงาน <?php echo $userInfo->getDepartment() ?> ตำแหน่ง <?php echo $userInfo->getRole() ?></p>
+<p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $name ?> หน่วยงาน <?php echo $department ?> ตำแหน่ง <?php echo $role ?></p>
 
 <table style="font-size:20px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 100%" >
   <tr>

@@ -88,8 +88,7 @@ class Reserve extends CI_Controller {
 				'place' => $place,
 				'tel' => $tel,
 				'accept' => 0
-			);
-			
+			);			
 			$this->ReservationModel->updateReserve($reserveId , $data);
 			echo json_encode(array("status" => TRUE));
 		}else{

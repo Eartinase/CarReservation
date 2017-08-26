@@ -46,8 +46,7 @@ td{
 				
 			</tbody>							
 		</table>
-	</div>
-	
+	</div>	
 
 	<div class="modal fade" id="modal_form" role="dialog">
 		<div class="modal-dialog">
@@ -141,116 +140,104 @@ function deleteRes(rID){
 		            	alert('Error deleting data');
 		            }
 		        });
-	}			
-
+	}	
 }
 
 function edit_reserve(rID){
-		    $('#form')[0].reset(); // reset form on modals
-		    $('.form-group').removeClass('has-error'); // clear error class
-		    $('.help-block').empty(); // clear error string
+	$('#form')[0].reset(); // reset form on modals
+	$('.form-group').removeClass('has-error'); // clear error class
+	$('.help-block').empty(); // clear error string
 
 		    //Ajax Load data from ajax
-		    $.ajax({
-		    	url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
-		    	type: "GET",
-		    	dataType: "JSON",
-		    	success: function(data)
-		    	{
-		    		$('#id').val(data.reserveId);
-		    		$('[name="carType"]').val(data.carTypeId).change();
-		    		$('[name="plateL"]').val(data.carId).change();
-		    		$('[name="dateS"]').datetimepicker('update',data.startDate);
-		    		$('[name="dateE"]').datetimepicker('update',data.endDate);
-		    		$('[name="place"]').val(data.place);
-		    		$('[name="telEdit"]').val(data.tel);
-		            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-		            
-
-		        },
-		        error: function (jqXHR, textStatus, errorThrown)
-		        {
-		        	alert('Error get data from ajax');
-		        }
-		    });
+    $.ajax({
+    	url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
+    	type: "GET",
+    	dataType: "JSON",
+    	success: function(data){
+		    $('#id').val(data.reserveId);
+		    $('[name="carType"]').val(data.carTypeId).change();
+		    $('[name="plateL"]').val(data.carId).change();
+		    $('[name="dateS"]').datetimepicker('update',data.startDate);
+		    $('[name="dateE"]').datetimepicker('update',data.endDate);
+		    $('[name="place"]').val(data.place);
+		    $('[name="telEdit"]').val(data.tel);
+		    $('#modal_form').modal('show'); // show bootstrap modal when complete loaded	            
+        },
+		error: function (jqXHR, textStatus, errorThrown){
+		   	alert('Error get data from ajax');
 		}
+	});
+}
 
-		function changeType(v){
-			select = document.getElementById('plateL');
-			select.innerHTML = "";		
+function changeType(v){
+	select = document.getElementById('plateL');
+	select.innerHTML = "";		
 
-			if(v==1){
-				<?php foreach ($Type1 as $value) { ?>
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-					<?php } ?>
-				}else if(v==2){
-					<?php foreach ($Type2 as $value) { ?>	
-						var opt = document.createElement('option');				
-						opt.value = "<?php echo $value->getCarId(); ?>";
-						opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-						select.appendChild(opt);
-						<?php } ?>
-					}else if(v==3){
-						<?php foreach ($Type3 as $value) { ?>		
-							var opt = document.createElement('option');				
-							opt.value = "<?php echo $value->getCarId(); ?>";
-							opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-							select.appendChild(opt);
-							<?php } ?>
-						}else if(v==4){
-							<?php foreach ($Type4 as $value) { ?>	
-								var opt = document.createElement('option');						
-								opt.value = "<?php echo $value->getCarId(); ?>";
-								opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-								select.appendChild(opt);
-								<?php } ?>
-							}
-						}
-
-						function save(){
-	    $('#btnSave').text('saving...'); //change button text
-	    $('#btnSave').attr('disabled',true); //set button disable 
-
-	    // ajax adding data to database
-	    $.ajax({
-	    	url : "<?php echo site_url('Reserve/ajax_update')?>",
-	    	type: "POST",
-	    	data: $('#form').serialize(),
-	    	dataType: "JSON",
-	    	success: function(data)
-	    	{
-
-	            if(data.status) //if success close modal and reload ajax table
-	            {
-	            	$('#modal_form').modal('hide');
-	            	reload_table();
-	            }
-	            else
-	            {
-	            	alert('false');
-	            }
-	            $('#btnSave').text('save'); //change button text
-            	$('#btnSave').attr('disabled',false); //set button enable 
-
-
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-            	alert('Error adding / update data');
-	            $('#btnSave').text('save'); //change button text
-	            $('#btnSave').attr('disabled',false); //set button enable 
-
-	        }
-	    });
+	if(v==1){
+		<?php foreach ($Type1 as $value) { ?>
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==2){
+		<?php foreach ($Type2 as $value) { ?>	
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==3){
+		<?php foreach ($Type3 as $value) { ?>		
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==4){
+		<?php foreach ($Type4 as $value) { ?>	
+			var opt = document.createElement('option');						
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
 	}
+}
+
+function save(){
+    $('#btnSave').text('saving...'); //change button text
+    $('#btnSave').attr('disabled',true); //set button disable 
+
+    // ajax adding data to database
+    $.ajax({
+    	url : "<?php echo site_url('Reserve/ajax_update')?>",
+    	type: "POST",
+    	data: $('#form').serialize(),
+    	dataType: "JSON",
+    	success: function(data){
+            if(data.status) //if success close modal and reload ajax table
+            {
+            	$('#modal_form').modal('hide');
+            	reload_table();
+            }
+            else{
+            	alert('false');
+            }
+            $('#btnSave').text('save'); //change button text
+        	$('#btnSave').attr('disabled',false); //set button enable 
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+        	alert('Error adding / update data');
+            $('#btnSave').text('save'); //change button text
+            $('#btnSave').attr('disabled',false); //set button enable 
+        }
+	    });
+}
 
 	var dateToday = new Date();
 	var table;
-	$(document).ready(function() {
-		
+	$(document).ready(function() {		
 	    //datatables
 	    table = $('#table').DataTable({ 
 	    	"bPaginate":true,
@@ -295,11 +282,10 @@ function edit_reserve(rID){
 	    $('#dateE').datetimepicker('setStartDate', dateToday);
 	});
 
-function reload_table()
-{
-	    table.ajax.reload(null,false); //reload datatable ajax 
-	}
+function reload_table(){
+	table.ajax.reload(null,false); //reload datatable ajax 
+}
 
-	</script>
+</script>
 
-	</html>
+</html>

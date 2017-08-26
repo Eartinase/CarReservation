@@ -42,8 +42,7 @@
 									<div class="checkbox" >
 										<input  id="listCar1" name='carType[]' class="carType" onchange='uncheckFunc(1)' type='checkbox' value=1>
 										<label for="listCar1"> เก๋ง </label>
-									</div> 
-
+									</div>
 								</li>
 							</div>
 							<li  >
@@ -60,14 +59,14 @@
 					<div id="divCarList2">
 						<ul>
 							<div class="headList" style="background-color:#FEDB6F">
-								<li >
+								<li>
 									<div class="checkbox" >
 										<input id="listCar2" name='carType[]' class="carType" onchange='uncheckFunc(2)' type='checkbox' value=2>
 										<label for="listCar2"> กระบะ(ปิ๊กอัพ)  </label>
 									</div> 
 								</li>
 							</div>
-							<li >
+							<li>
 								<?php 
 								foreach ($Type2 as  $value) {
 									echo "<ul><li><div class='checkbox'>";
@@ -86,7 +85,6 @@
 										<input id="listCar3"  name='carType[]' class="carType" onchange='uncheckFunc(3)' type='checkbox' value=3>
 										<label for="listCar3"> รถตู้ </label>
 									</div> 
-
 								</li>
 							</div>
 							<li >
@@ -99,7 +97,6 @@
 								?>
 							</li>
 						</ul>
-
 					</div>					
 					<div id="divCarList4">
 						<ul >
@@ -108,11 +105,10 @@
 									<div class="checkbox" >
 										<input id="listCar4" name='carType[]' class="carType" onchange='uncheckFunc(4)' type='checkbox' value=4> 
 										<label for="listCar4"> ไมโครบัส </label>
-									</div> 
-
+									</div>
 								</li>
 							</div>
-							<li >
+							<li>
 								<?php 
 								foreach ($Type4 as  $value) {
 									echo "<ul><li><div class='checkbox'>";
@@ -199,9 +195,7 @@
 		                           <textarea class="form-control" name="place" required ></textarea>
 		                            <span class="help-block"></span>
 		                        </div>
-		                    </div>
-
-							
+		                    </div>					
 							
 							<br>
 							<iframe style = "height: 0px; width: 100%" target="" src="/senior/application/views/Result.php" id="sendform" name="sendform"></iframe>
@@ -277,7 +271,6 @@
 		            			<div class='alertEdit' style="background-color: #FFB9B4;font-size: 15px;height: 25px;">
 		            					<center><b>ไม่สามารถทำการแก้ไขได้เนื่องจากรถได้ถูกจองแล้ว</b></center>
 		            			</div>
-
 		                 </div>
 		                </form>
 		            </div>
@@ -292,7 +285,6 @@
 		<!-- End Bootstrap modal -->
 </body>
 	<script type="text/javascript">
-
 
 	function checkFunc(ch){
 		switch(ch){
@@ -393,7 +385,6 @@
 					select.appendChild(opt);
 				<?php } ?>
 			}
-
 		}		
 
 	function resetForm(){
@@ -409,18 +400,17 @@
 
 	
 	function getDefualt_Calendar(){
-			 $.ajax({
-	                url: '<?php echo base_url('HomeInfo/ajax_loadEvent'); ?>',
-	                type: "POST",
-	                datatype: 'json',
-	                success: function (doc) {
-	                	data =JSON.parse(doc);	
-						createCalendar(data)     
-		              	
-	                },error: function (err) {
-	                    alert('Error in fetching data');
-	                }
-	            });
+		$.ajax({
+	        url: '<?php echo base_url('HomeInfo/ajax_loadEvent'); ?>',
+	        type: "POST",
+	        datatype: 'json',
+	        success: function (doc) {
+	           	data =JSON.parse(doc);	
+				createCalendar(data)     
+		    },error: function (err) {
+	            alert('Error in fetching data');
+	        }
+	    });
 	}
 
 	function createCalendar(data){
@@ -443,7 +433,6 @@
 			            content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br />เวลากลับ : '
 			            +moment(calEvent.end).format('DD/MM h:mm a'),
 			            container: '#calendar'
-
 			        });
 			        $(this).popover('show');
 			    	},
@@ -462,16 +451,11 @@
 			    		$("#btnSave, #btnDelete").hide();
 			    		$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
 			    		$('#telEditG').hide();
-			    	}
-			        
+			    	}			        
 			        // change the border color just for fun
 
-			    }
-
-					           				
+			    }					           				
 			});  
-
-
 	}
 
 
@@ -482,75 +466,68 @@
 		   //$('#calendar').fullCalendar('refetchEvents');
 	}
 
-	function ajax_search(){
-		
-			 $.ajax({
-	                url: '<?php echo base_url('Search/searchCar'); ?>',
-	                type: "POST",
-	              	data: $('.carType:checked').serialize()+"&"+$('[name="carId[]"]:checked').serialize(),
-	                datatype: 'json',
-	                success: function (doc) {
-	                	data =JSON.parse(doc);	
-	                	$('#calendar').fullCalendar('destroy');
-						createCalendar(data) ;  
-		              
-	                },error: function (err) {
-	                    alert('Error in fetching data');
-	                }
-	            });
-		
+	function ajax_search(){		
+		$.ajax({
+            url: '<?php echo base_url('Search/searchCar'); ?>',
+            type: "POST",
+            	data: $('.carType:checked').serialize()+"&"+$('[name="carId[]"]:checked').serialize(),
+                datatype: 'json',
+                success: function (doc) {
+                	data =JSON.parse(doc);	
+                	$('#calendar').fullCalendar('destroy');
+					createCalendar(data) ;  	             
+                },error: function (err) {
+                    alert('Error in fetching data');
+                }
+            });		
 	}
 
-	function ajax_myHistory(){
-		
-			 $.ajax({
-	                url: '<?php echo base_url('Reserve/ajax_reserve_history'); ?>',
-	                type: "POST",
-	                datatype: 'json',
-	                success: function (doc) {
-	                	data =JSON.parse(doc);	
-	                	$('#calendar').fullCalendar('destroy');
-						createCalendar(data)   
-		              
-	                },error: function (err) {
-	                    alert(err.Message);
-	                }
-	            });
-		
-
+	function ajax_myHistory(){		
+		$.ajax({
+	        url: '<?php echo base_url('Reserve/ajax_reserve_history'); ?>',
+	        type: "POST",
+	        datatype: 'json',
+	        success: function (doc) {
+	          	data =JSON.parse(doc);	
+	          	$('#calendar').fullCalendar('destroy');
+				createCalendar(data)	              
+	        },error: function (err) {
+	            alert(err.Message);
+	        }
+	    });
 	}
 
 	function edit_reserve(rID){
-		    $('#formEdit')[0].reset(); // reset form on modals
-		    $('.form-group').removeClass('has-error'); // clear error class
-		    $('.help-block').empty(); // clear error string
+	    $('#formEdit')[0].reset(); // reset form on modals
+	    $('.form-group').removeClass('has-error'); // clear error class
+	    $('.help-block').empty(); // clear error string
 
-		    //Ajax Load data from ajax
-		    $.ajax({
-		        url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
-		        type: "GET",
-		        dataType: "JSON",
-		        success: function(data)
-		        {
-		            $('#id').val(data.reserveId);
-		            $('[name="carType"]').val(data.carTypeId).change();
-		            $('[name="plateL"]').val(data.carId).change();
-		            $('[name="dateS2"]').datetimepicker('update',data.startDate);
-		            $('[name="dateE2"]').datetimepicker('update',data.endDate);
-		            $('[name="placeEdit"]').val(data.place);
-		            $('[name="telEdit"]').val(data.tel);
-		            $('#btnDelete').val(data.reserveId);
+	    //Ajax Load data from ajax
+	    $.ajax({
+	        url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
+	        type: "GET",
+	        dataType: "JSON",
+	        success: function(data)
+	        {
+	            $('#id').val(data.reserveId);
+	            $('[name="carType"]').val(data.carTypeId).change();
+	            $('[name="plateL"]').val(data.carId).change();
+	            $('[name="dateS2"]').datetimepicker('update',data.startDate);
+	            $('[name="dateE2"]').datetimepicker('update',data.endDate);
+	            $('[name="placeEdit"]').val(data.place);
+	            $('[name="telEdit"]').val(data.tel);
+	            $('#btnDelete').val(data.reserveId);
 
-		          	//changeType();
-		            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-		            
+	          	//changeType();
+	            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+	            
 
-		        },
-		        error: function (jqXHR, textStatus, errorThrown)
-		        {
-		            alert('Error get data from ajax');
-		        }
-		    });
+	        },
+	        error: function (jqXHR, textStatus, errorThrown)
+	        {
+	            alert('Error get data from ajax');
+	        }
+	    });
 		}	
 
 	function deleteRes(rID){
@@ -571,13 +548,10 @@
 			        alert('Error deleting data');
 			    }
 			});
-		}			
-
-
+		}		
 	}
 
-	function save()
-	{
+	function save(){
 	    $('#btnSave').text('saving...'); //change button text
 	    $('#btnSave').attr('disabled',true); //set button disable 
 	    // ajax adding data to database
@@ -588,7 +562,6 @@
 	        dataType: "JSON",
 	        success: function(data)
 	        {
-
 	            if(data.status) //if success close modal and reload ajax table
 	            {
 	                $('#modal_form').modal('hide');
@@ -617,8 +590,7 @@
 	var dateToday = new Date(); 
 	var urls = 'HomeInfo/ajax_loadEvent';
 	$(document).ready(function() {
-			getDefualt_Calendar();
-		
+			getDefualt_Calendar();		
 		  
 		$('.datetimepicker').datetimepicker({
 	    	container:'#reserve',

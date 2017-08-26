@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,8 +32,6 @@
 			</tbody>							
 		</table>
 	</div>
-
-
 </body>
 </html>
 
@@ -51,17 +46,10 @@ var table;
 	        	"url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
 	        	"type" : "POST"
 	        },
-
-
 	        //Set column definition initialisation properties.
-	       
-
 	    });
 
-
 	    //set input/textarea/select event when change value, remove class error and remove text help block 
+	});
 
-
-		});
-
-	</script>
+</script>
