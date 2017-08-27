@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-		
+	
 	<?php 
 	include "Header.php";
 	?>
@@ -24,12 +24,12 @@
 
 	<div class="row"> 
 		<div  id="calendar" class="col-md-10">
-		
+			
 		</div>
 
 		<div class="col-md-2">
 			<?php if (isset($this->session->userdata['logged_in'])) { ?>						
-				<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button>
+			<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button>
 			<?php } ?>
 			<div id="holdList" style="padding: 1px; margin : 0px;">
 				<form  class="form-horizontal" style="align-items:center;">
@@ -123,9 +123,15 @@
 					<hr>
 					<center>	
 						<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-primary">ค้นหารถ</button>
-						<?php if (isset($this->session->userdata['logged_in'])) { ?>
-						<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
-						<?php } ?>
+						<?php 
+						if (isset($this->session->userdata['logged_in'])) { 
+							if($role != "driver"){ 
+								?>
+								<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
+								<?php 
+							}
+						} 
+						?>
 					</center>
 				</form>					
 			</div>	
@@ -169,33 +175,33 @@
 							</div>
 
 							<div class="form-group">
-		                        <label class="col-md-3 control-label">วันที่เดินทาง</label>
-		                        <div class="col-md-8 ">
-		                            <input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off" required>
-		                            <span class="help-block"></span>
-		                        </div>	                    
-		                    </div>
-		                    <div class="form-group">
-		                        <label class="col-md-3 control-label" >วันที่กลับ</label>
-		                        <div class="col-md-8 ">
-		                            <input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off" required>
-		                            <span class="help-block"></span>
-		                        </div>
-		                    </div>
-		                    <div class="form-group">
-		                        <label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
-		                        <div class="col-md-8 ">
-		                            <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" required>
-		                            <span class="help-block"></span>
-		                        </div>
-		                    </div>
-		                     <div class="form-group">
-		                        <label class="col-md-3 control-label" >สถานที่ </label>
-		                        <div class="col-md-8">
-		                           <textarea class="form-control" name="place" required ></textarea>
-		                            <span class="help-block"></span>
-		                        </div>
-		                    </div>					
+								<label class="col-md-3 control-label">วันที่เดินทาง</label>
+								<div class="col-md-8 ">
+									<input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off" required>
+									<span class="help-block"></span>
+								</div>	                    
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >วันที่กลับ</label>
+								<div class="col-md-8 ">
+									<input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off" required>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+								<div class="col-md-8 ">
+									<input id="tel" name="tel" class="form-control" type="text" autocomplete="off" required>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >สถานที่ </label>
+								<div class="col-md-8">
+									<textarea class="form-control" name="place" required ></textarea>
+									<span class="help-block"></span>
+								</div>
+							</div>					
 							
 							<br>
 							<iframe style = "height: 0px; width: 100%" target="" src="/senior/application/views/Result.php" id="sendform" name="sendform"></iframe>
@@ -211,312 +217,312 @@
 	</form>
 
 	<div class="modal fade" id="modal_form" role="dialog">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		                <h3 class="modal-title">Reservation</h3>
-		            </div>
-		            <div class="modal-body form">
-		                <form action="#" id="formEdit" class="form-horizontal">
-		                    <input type="hidden" value="" id='id' name="id"/>
-		                    <div class="form-body"> 	                
-		                        <div class="form-group">
-		                            <label class="col-md-3 control-label">ประเภทรถ</label>
-		                            <div class="col-md-8">
-		                                <select id="carType" class="form-control" onchange="changeTypeforEdit(this.value)" name="carType">
-											<option value="1">เก๋ง</option>
-											<option value="2">กระบะ</option>
-											<option value="3">ตู้</option>
-											<option value="4">ไมโครบัส</option>		
-		                                </select>
-		                                <span class="help-block"></span>
-		                            </div>
-		                        </div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title">Reservation</h3>
+				</div>
+				<div class="modal-body form">
+					<form action="#" id="formEdit" class="form-horizontal">
+						<input type="hidden" value="" id='id' name="id"/>
+						<div class="form-body"> 	                
+							<div class="form-group">
+								<label class="col-md-3 control-label">ประเภทรถ</label>
+								<div class="col-md-8">
+									<select id="carType" class="form-control" onchange="changeTypeforEdit(this.value)" name="carType">
+										<option value="1">เก๋ง</option>
+										<option value="2">กระบะ</option>
+										<option value="3">ตู้</option>
+										<option value="4">ไมโครบัส</option>		
+									</select>
+									<span class="help-block"></span>
+								</div>
+							</div>
 
-		                        <div class="form-group">
-		                            <label class="col-md-3 control-label">ทะเบียนรถ</label>
-		                            <div class="col-md-8">
-		                                <select id="plateL" class="form-control" name="plateL"></select>
-		                                <span class="help-block"></span>
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label class="col-md-3 control-label">วันที่เดินทาง</label>
-		                            <div class="col-md-8">
-		                                 <input id="dateS2" name="dateS2"  class="form-control datetimepicker2" type="text" autocomplete="off">
-		                                <span class="help-block"></span>
-		                            </div>	                    
-		                        </div>
-		                        <div class="form-group">
-		                            <label class="col-md-3 control-label" >วันที่กลับ</label>
-		                            <div class="col-md-8">
-		                                <input id="dateE2" name="dateE2" class="form-control datetimepicker2" type="text" autocomplete="off">
-		                                <span class="help-block"></span>
-		                            </div>
-		                        </div>
-		                        <div class="form-group" id='telEditG'>
-			                        <label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
-			                        <div class="col-md-8 ">
-			                            <input id="telEdit" name="telEdit" class="form-control" type="text" autocomplete="off" required>
-			                            <span class="help-block"></span>
-			                        </div>
-			                    </div>
-		                        <div class="form-group">
-		                            <label class="col-md-3 control-label">สถานที่</label>
-		                            <div class="col-md-8">
-		                                <textarea id="placeEdit" name="placeEdit" placeholder="place" class="form-control"></textarea>
-		                            </div>
-		                        </div>
-		            			<div class='alertEdit' style="background-color: #FFB9B4;font-size: 15px;height: 25px;">
-		            					<center><b>ไม่สามารถทำการแก้ไขได้เนื่องจากรถได้ถูกจองแล้ว</b></center>
-		            			</div>
-		                 </div>
-		                </form>
-		            </div>
-		            <div class="modal-footer">
-		                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-		                <button type="button" id="btnDelete" onclick="deleteRes(this.value)" class="btn btn-danger">Delete</button>
-		                <button type="button" id="btnCancle" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-		            </div>
-		        </div><!-- /.modal-content -->
-		    </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-		<!-- End Bootstrap modal -->
+							<div class="form-group">
+								<label class="col-md-3 control-label">ทะเบียนรถ</label>
+								<div class="col-md-8">
+									<select id="plateL" class="form-control" name="plateL"></select>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">วันที่เดินทาง</label>
+								<div class="col-md-8">
+									<input id="dateS2" name="dateS2"  class="form-control datetimepicker2" type="text" autocomplete="off">
+									<span class="help-block"></span>
+								</div>	                    
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >วันที่กลับ</label>
+								<div class="col-md-8">
+									<input id="dateE2" name="dateE2" class="form-control datetimepicker2" type="text" autocomplete="off">
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group" id='telEditG'>
+								<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+								<div class="col-md-8 ">
+									<input id="telEdit" name="telEdit" class="form-control" type="text" autocomplete="off" required>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">สถานที่</label>
+								<div class="col-md-8">
+									<textarea id="placeEdit" name="placeEdit" placeholder="place" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class='alertEdit' style="background-color: #FFB9B4;font-size: 15px;height: 25px;">
+								<center><b>ไม่สามารถทำการแก้ไขได้เนื่องจากรถได้ถูกจองแล้ว</b></center>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+					<button type="button" id="btnDelete" onclick="deleteRes(this.value)" class="btn btn-danger">Delete</button>
+					<button type="button" id="btnCancle" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- End Bootstrap modal -->
 </body>
-	<script type="text/javascript">
+<script type="text/javascript">
 
-	function checkFunc(ch){
-		switch(ch){
-			case(1):document.getElementById("listCar1").checked = true; break;
-			case(2):document.getElementById("listCar2").checked = true; break;
-			case(3):document.getElementById("listCar3").checked = true; break;
-			case(4):document.getElementById("listCar4").checked = true; break;
-			case(5):document.getElementById("listCar5").checked = true; 
-		}
+function checkFunc(ch){
+	switch(ch){
+		case(1):document.getElementById("listCar1").checked = true; break;
+		case(2):document.getElementById("listCar2").checked = true; break;
+		case(3):document.getElementById("listCar3").checked = true; break;
+		case(4):document.getElementById("listCar4").checked = true; break;
+		case(5):document.getElementById("listCar5").checked = true; 
 	}
+}
 
-	function uncheckFunc(ch){
-		list = null;
-		switch(ch){
-			case(1): list = document.getElementsByClassName("list1"); break;
-			case(2): list = document.getElementsByClassName("list2"); break;
-			case(3): list = document.getElementsByClassName("list3"); break;
-			case(4): list = document.getElementsByClassName("list4"); break;
-			case(5): list = document.getElementsByClassName("list5"); 
-		}
-		
-		
-		for (var i = 0; i < list.length; i++) {
-			list[i].checked = false;
-		}
+function uncheckFunc(ch){
+	list = null;
+	switch(ch){
+		case(1): list = document.getElementsByClassName("list1"); break;
+		case(2): list = document.getElementsByClassName("list2"); break;
+		case(3): list = document.getElementsByClassName("list3"); break;
+		case(4): list = document.getElementsByClassName("list4"); break;
+		case(5): list = document.getElementsByClassName("list5"); 
 	}
-
-	function changeType(){
-		select = document.getElementById('plate');
-		e = document.getElementById('cartype');
-		v = e.options[e.selectedIndex].value;
-		
-		select.innerHTML = "";		
-
-			if(v==1){
-				<?php foreach ($Type1 as $value) { ?>
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-				<?php } ?>
-			}else if(v==2){
-				<?php foreach ($Type2 as $value) { ?>	
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-					<?php } ?>
-			}else if(v==3){
-				<?php foreach ($Type3 as $value) { ?>		
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-				<?php } ?>
-			}else if(v==4){
-				<?php foreach ($Type4 as $value) { ?>	
-					var opt = document.createElement('option');						
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-				<?php } ?>
-			}
-
-		}
-		function changeTypeforEdit(v){
-		select = document.getElementById('plateL');
-		
-		
-		select.innerHTML = "";		
-
-			if(v==1){
-				<?php foreach ($Type1 as $value) { ?>
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-				<?php } ?>
-			}else if(v==2){
-				<?php foreach ($Type2 as $value) { ?>	
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-					<?php } ?>
-			}else if(v==3){
-				<?php foreach ($Type3 as $value) { ?>		
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-				<?php } ?>
-			}else if(v==4){
-				<?php foreach ($Type4 as $value) { ?>	
-					var opt = document.createElement('option');						
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-				<?php } ?>
-			}
-		}		
-
-	function resetForm(){
-			select = document.getElementById('plate');
-			select.innerHTML = "";
-			var opt = document.createElement('option');	
-			opt.innerHTML = "เลือกประเภทรถก่อน";
-			select.appendChild(opt);
-			document.getElementById("formReserve").reset();
-			document.getElementById("sendform").style.height = '0px';			
-		}
-
-
 	
-	function getDefualt_Calendar(){
-		$.ajax({
-	        url: '<?php echo base_url('HomeInfo/ajax_loadEvent'); ?>',
-	        type: "POST",
-	        datatype: 'json',
-	        success: function (doc) {
-	           	data =JSON.parse(doc);	
-				createCalendar(data)     
-		    },error: function (err) {
-	            alert('Error in fetching data');
-	        }
-	    });
+	
+	for (var i = 0; i < list.length; i++) {
+		list[i].checked = false;
 	}
+}
 
-	function createCalendar(data){
-		  $('#calendar').fullCalendar({
-				eventLimit: true, 
-				editable: false,
-				navLinks: true,
-				locale: 'th',
-				header: {
-					left: 'title',
-					center: '',
-					right : 'today month,agendaWeek,agendaDay prev,next listWeek'
-				},	
-				events: data,
-				eventMouseover: function (calEvent,event, jsEvent) {
-			        $(this).popover({
-			            placement: 'top',
-			            trigger: 'hover',
-			            html:true,
-			            content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br />เวลากลับ : '
-			            +moment(calEvent.end).format('DD/MM h:mm a'),
-			            container: '#calendar'
-			        });
-			        $(this).popover('show');
-			    	},
-			    
-			    eventClick: function(calEvent, jsEvent, view) {
-			    	$('.alertEdit').hide();
-			    	if(calEvent.editable){
-			    		edit_reserve(calEvent.id);
-			    		$("#btnCancle").hide();
-			    		$("#btnSave, #btnDelete").show();
-			    		$('#formEdit').find('input, textarea, select').attr('disabled',false);
-			    		$('#telEditG').show();
-			    	}else{
-			    		edit_reserve(calEvent.id);
-			    		$("#btnCancle").show();
-			    		$("#btnSave, #btnDelete").hide();
-			    		$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
-			    		$('#telEditG').hide();
-			    	}			        
+function changeType(){
+	select = document.getElementById('plate');
+	e = document.getElementById('cartype');
+	v = e.options[e.selectedIndex].value;
+	
+	select.innerHTML = "";		
+
+	if(v==1){
+		<?php foreach ($Type1 as $value) { ?>
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+			<?php } ?>
+		}else if(v==2){
+			<?php foreach ($Type2 as $value) { ?>	
+				var opt = document.createElement('option');				
+				opt.value = "<?php echo $value->getCarId(); ?>";
+				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+				select.appendChild(opt);
+				<?php } ?>
+			}else if(v==3){
+				<?php foreach ($Type3 as $value) { ?>		
+					var opt = document.createElement('option');				
+					opt.value = "<?php echo $value->getCarId(); ?>";
+					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+					select.appendChild(opt);
+					<?php } ?>
+				}else if(v==4){
+					<?php foreach ($Type4 as $value) { ?>	
+						var opt = document.createElement('option');						
+						opt.value = "<?php echo $value->getCarId(); ?>";
+						opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+						select.appendChild(opt);
+						<?php } ?>
+					}
+
+				}
+				function changeTypeforEdit(v){
+					select = document.getElementById('plateL');
+					
+					
+					select.innerHTML = "";		
+
+					if(v==1){
+						<?php foreach ($Type1 as $value) { ?>
+							var opt = document.createElement('option');				
+							opt.value = "<?php echo $value->getCarId(); ?>";
+							opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+							select.appendChild(opt);
+							<?php } ?>
+						}else if(v==2){
+							<?php foreach ($Type2 as $value) { ?>	
+								var opt = document.createElement('option');				
+								opt.value = "<?php echo $value->getCarId(); ?>";
+								opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+								select.appendChild(opt);
+								<?php } ?>
+							}else if(v==3){
+								<?php foreach ($Type3 as $value) { ?>		
+									var opt = document.createElement('option');				
+									opt.value = "<?php echo $value->getCarId(); ?>";
+									opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+									select.appendChild(opt);
+									<?php } ?>
+								}else if(v==4){
+									<?php foreach ($Type4 as $value) { ?>	
+										var opt = document.createElement('option');						
+										opt.value = "<?php echo $value->getCarId(); ?>";
+										opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+										select.appendChild(opt);
+										<?php } ?>
+									}
+								}		
+
+								function resetForm(){
+									select = document.getElementById('plate');
+									select.innerHTML = "";
+									var opt = document.createElement('option');	
+									opt.innerHTML = "เลือกประเภทรถก่อน";
+									select.appendChild(opt);
+									document.getElementById("formReserve").reset();
+									document.getElementById("sendform").style.height = '0px';			
+								}
+
+
+								
+								function getDefualt_Calendar(){
+									$.ajax({
+										url: '<?php echo base_url('HomeInfo/ajax_loadEvent'); ?>',
+										type: "POST",
+										datatype: 'json',
+										success: function (doc) {
+											data =JSON.parse(doc);	
+											createCalendar(data)     
+										},error: function (err) {
+											alert('Error in fetching data');
+										}
+									});
+								}
+
+								function createCalendar(data){
+									$('#calendar').fullCalendar({
+										eventLimit: true, 
+										editable: false,
+										navLinks: true,
+										locale: 'th',
+										header: {
+											left: 'title',
+											center: '',
+											right : 'today month,agendaWeek,agendaDay prev,next listWeek'
+										},	
+										events: data,
+										eventMouseover: function (calEvent,event, jsEvent) {
+											$(this).popover({
+												placement: 'top',
+												trigger: 'hover',
+												html:true,
+												content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br />เวลากลับ : '
+												+moment(calEvent.end).format('DD/MM h:mm a'),
+												container: '#calendar'
+											});
+											$(this).popover('show');
+										},
+										
+										eventClick: function(calEvent, jsEvent, view) {
+											$('.alertEdit').hide();
+											if(calEvent.editable){
+												edit_reserve(calEvent.id);
+												$("#btnCancle").hide();
+												$("#btnSave, #btnDelete").show();
+												$('#formEdit').find('input, textarea, select').attr('disabled',false);
+												$('#telEditG').show();
+											}else{
+												edit_reserve(calEvent.id);
+												$("#btnCancle").show();
+												$("#btnSave, #btnDelete").hide();
+												$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
+												$('#telEditG').hide();
+											}			        
 			        // change the border color just for fun
 
 			    }					           				
 			});  
-	}
+}
 
 
-	function reload_calendar(){
+function reload_calendar(){
 		//createCalendar();
 		$('#calendar').fullCalendar('destroy');
 		getDefualt_Calendar();
 		   //$('#calendar').fullCalendar('refetchEvents');
-	}
+		}
 
-	function ajax_search(){		
-		$.ajax({
-            url: '<?php echo base_url('Search/searchCar'); ?>',
-            type: "POST",
-            	data: $('.carType:checked').serialize()+"&"+$('[name="carId[]"]:checked').serialize(),
-                datatype: 'json',
-                success: function (doc) {
-                	data =JSON.parse(doc);	
-                	$('#calendar').fullCalendar('destroy');
+		function ajax_search(){		
+			$.ajax({
+				url: '<?php echo base_url('Search/searchCar'); ?>',
+				type: "POST",
+				data: $('.carType:checked').serialize()+"&"+$('[name="carId[]"]:checked').serialize(),
+				datatype: 'json',
+				success: function (doc) {
+					data =JSON.parse(doc);	
+					$('#calendar').fullCalendar('destroy');
 					createCalendar(data) ;  	             
-                },error: function (err) {
-                    alert('Error in fetching data');
-                }
-            });		
-	}
+				},error: function (err) {
+					alert('Error in fetching data');
+				}
+			});		
+		}
 
-	function ajax_myHistory(){		
-		$.ajax({
-	        url: '<?php echo base_url('Reserve/ajax_reserve_history'); ?>',
-	        type: "POST",
-	        datatype: 'json',
-	        success: function (doc) {
-	          	data =JSON.parse(doc);	
-	          	$('#calendar').fullCalendar('destroy');
-				createCalendar(data)	              
-	        },error: function (err) {
-	            alert(err.Message);
-	        }
-	    });
-	}
+		function ajax_myHistory(){		
+			$.ajax({
+				url: '<?php echo base_url('Reserve/ajax_reserve_history'); ?>',
+				type: "POST",
+				datatype: 'json',
+				success: function (doc) {
+					data =JSON.parse(doc);	
+					$('#calendar').fullCalendar('destroy');
+					createCalendar(data)	              
+				},error: function (err) {
+					alert(err.Message);
+				}
+			});
+		}
 
-	function edit_reserve(rID){
+		function edit_reserve(rID){
 	    $('#formEdit')[0].reset(); // reset form on modals
 	    $('.form-group').removeClass('has-error'); // clear error class
 	    $('.help-block').empty(); // clear error string
 
 	    //Ajax Load data from ajax
 	    $.ajax({
-	        url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
-	        type: "GET",
-	        dataType: "JSON",
-	        success: function(data)
-	        {
-	            $('#id').val(data.reserveId);
-	            $('[name="carType"]').val(data.carTypeId).change();
-	            $('[name="plateL"]').val(data.carId).change();
-	            $('[name="dateS2"]').datetimepicker('update',data.startDate);
-	            $('[name="dateE2"]').datetimepicker('update',data.endDate);
-	            $('[name="placeEdit"]').val(data.place);
-	            $('[name="telEdit"]').val(data.tel);
-	            $('#btnDelete').val(data.reserveId);
+	    	url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
+	    	type: "GET",
+	    	dataType: "JSON",
+	    	success: function(data)
+	    	{
+	    		$('#id').val(data.reserveId);
+	    		$('[name="carType"]').val(data.carTypeId).change();
+	    		$('[name="plateL"]').val(data.carId).change();
+	    		$('[name="dateS2"]').datetimepicker('update',data.startDate);
+	    		$('[name="dateE2"]').datetimepicker('update',data.endDate);
+	    		$('[name="placeEdit"]').val(data.place);
+	    		$('[name="telEdit"]').val(data.tel);
+	    		$('#btnDelete').val(data.reserveId);
 
 	          	//changeType();
 	            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
@@ -525,10 +531,10 @@
 	        },
 	        error: function (jqXHR, textStatus, errorThrown)
 	        {
-	            alert('Error get data from ajax');
+	        	alert('Error get data from ajax');
 	        }
 	    });
-		}	
+	}	
 
 	function deleteRes(rID){
 		$('.alertEdit').hide();
@@ -541,12 +547,12 @@
 				success: function(data)
 				{
 					$('#modal_form').modal('hide');
-			     	ajax_myHistory();     
-			    },
-			    error: function (jqXHR, textStatus, errorThrown)
-			    {
-			        alert('Error deleting data');
-			    }
+					ajax_myHistory();     
+				},
+				error: function (jqXHR, textStatus, errorThrown)
+				{
+					alert('Error deleting data');
+				}
 			});
 		}		
 	}
@@ -556,29 +562,29 @@
 	    $('#btnSave').attr('disabled',true); //set button disable 
 	    // ajax adding data to database
 	    $.ajax({
-	        url : "<?php echo site_url('Reserve/ajax_update')?>",
-	        type: "POST",
-	        data: $('#formEdit').serialize(),
-	        dataType: "JSON",
-	        success: function(data)
-	        {
+	    	url : "<?php echo site_url('Reserve/ajax_update')?>",
+	    	type: "POST",
+	    	data: $('#formEdit').serialize(),
+	    	dataType: "JSON",
+	    	success: function(data)
+	    	{
 	            if(data.status) //if success close modal and reload ajax table
 	            {
-	                $('#modal_form').modal('hide');
-	                ajax_myHistory();
+	            	$('#modal_form').modal('hide');
+	            	ajax_myHistory();
 	            }
 	            else
 	            {
-	               $('.alertEdit').show();
+	            	$('.alertEdit').show();
 	            }
 	            $('#btnSave').text('save'); //change button text
             	$('#btnSave').attr('disabled',false); //set button enable 
 
 
-	        },
-	        error: function (jqXHR, textStatus, errorThrown)
-	        {
-	            alert('Error adding / update data');
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+            	alert('Error adding / update data');
 	            $('#btnSave').text('save'); //change button text
 	            $('#btnSave').attr('disabled',false); //set button enable 
 
@@ -590,45 +596,45 @@
 	var dateToday = new Date(); 
 	var urls = 'HomeInfo/ajax_loadEvent';
 	$(document).ready(function() {
-			getDefualt_Calendar();		
-		  
+		getDefualt_Calendar();		
+		
 		$('.datetimepicker').datetimepicker({
-	    	container:'#reserve',
-	        autoclose: true,
-	        format: "yyyy-mm-dd hh:ii",
-	        todayHighlight: true,
-	       	orientation: "top auto",
-	        todayBtn: true,
-	        todayHighlight: true, 
-	        
-         });
+			container:'#reserve',
+			autoclose: true,
+			format: "yyyy-mm-dd hh:ii",
+			todayHighlight: true,
+			orientation: "top auto",
+			todayBtn: true,
+			todayHighlight: true, 
+			
+		});
 		$('.datetimepicker2').datetimepicker({
-	    	container:'#modal_form',
-	        autoclose: true,
-	        format: "yyyy-mm-dd hh:ii",
-	        todayHighlight: true,
-	       	orientation: "top auto",
-	        todayBtn: true,
-	        todayHighlight: true, 
-	        
-         });
+			container:'#modal_form',
+			autoclose: true,
+			format: "yyyy-mm-dd hh:ii",
+			todayHighlight: true,
+			orientation: "top auto",
+			todayBtn: true,
+			todayHighlight: true, 
+			
+		});
 
 		$('#dateS').datetimepicker('setStartDate', dateToday);
 		$('#dateE').datetimepicker('setStartDate', dateToday);
 		$('#dateS2').datetimepicker('setStartDate', dateToday);
 		$('#dateE2').datetimepicker('setStartDate', dateToday);
 	});
-		</script>
+	</script>
 
 	<?php include "Footer.php"; ?>
 
-	</body>
-	<style type="text/css">
-	.popover{
-		max-height: 70px;
-		width: 230px;
-	}
+</body>
+<style type="text/css">
+.popover{
+	max-height: 70px;
+	width: 230px;
+}
 
 </style>
 
-	</html>
+</html>
