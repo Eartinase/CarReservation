@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	
+
 	<?php 
 	include "Header.php";
 	?>
@@ -24,12 +24,23 @@
 
 	<div class="row"> 
 		<div  id="calendar" class="col-md-10">
-			
+
 		</div>
 
 		<div class="col-md-2">
-			<?php if (isset($this->session->userdata['logged_in'])) { ?>						
-			<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button>
+
+			<?php 
+			if (isset($this->session->userdata['logged_in'])) { 
+				if($role != "driver"){ 
+					?>
+					<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button>
+					<?php 
+				}
+			} 
+			?>
+
+			<?php if (isset($this->session->userdata['logged_in'])) { ?>	
+			
 			<?php } ?>
 			<div id="holdList" style="padding: 1px; margin : 0px;">
 				<form  class="form-horizontal" style="align-items:center;">
@@ -311,8 +322,8 @@ function uncheckFunc(ch){
 		case(4): list = document.getElementsByClassName("list4"); break;
 		case(5): list = document.getElementsByClassName("list5"); 
 	}
-	
-	
+
+
 	for (var i = 0; i < list.length; i++) {
 		list[i].checked = false;
 	}
@@ -322,7 +333,7 @@ function changeType(){
 	select = document.getElementById('plate');
 	e = document.getElementById('cartype');
 	v = e.options[e.selectedIndex].value;
-	
+
 	select.innerHTML = "";		
 
 	if(v==1){
@@ -358,8 +369,8 @@ function changeType(){
 				}
 				function changeTypeforEdit(v){
 					select = document.getElementById('plateL');
-					
-					
+
+
 					select.innerHTML = "";		
 
 					if(v==1){
@@ -404,7 +415,7 @@ function changeType(){
 								}
 
 
-								
+
 								function getDefualt_Calendar(){
 									$.ajax({
 										url: '<?php echo base_url('HomeInfo/ajax_loadEvent'); ?>',
@@ -442,7 +453,7 @@ function changeType(){
 											});
 											$(this).popover('show');
 										},
-										
+
 										eventClick: function(calEvent, jsEvent, view) {
 											$('.alertEdit').hide();
 											if(calEvent.editable){
@@ -597,7 +608,7 @@ function reload_calendar(){
 	var urls = 'HomeInfo/ajax_loadEvent';
 	$(document).ready(function() {
 		getDefualt_Calendar();		
-		
+
 		$('.datetimepicker').datetimepicker({
 			container:'#reserve',
 			autoclose: true,
@@ -606,7 +617,7 @@ function reload_calendar(){
 			orientation: "top auto",
 			todayBtn: true,
 			todayHighlight: true, 
-			
+
 		});
 		$('.datetimepicker2').datetimepicker({
 			container:'#modal_form',
@@ -616,7 +627,7 @@ function reload_calendar(){
 			orientation: "top auto",
 			todayBtn: true,
 			todayHighlight: true, 
-			
+
 		});
 
 		$('#dateS').datetimepicker('setStartDate', dateToday);
