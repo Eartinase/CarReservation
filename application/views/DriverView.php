@@ -35,7 +35,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+				<?php echo $tab ?>
 			</tbody>							
 		</table>
 	</div>	
