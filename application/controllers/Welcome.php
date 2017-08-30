@@ -20,6 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		redirect('/HomeInfo','refresh');
+		$this->load->view('testDataTable.php');
 	}
 }

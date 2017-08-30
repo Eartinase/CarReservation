@@ -11,45 +11,48 @@
 	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 
 	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+
+	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
+	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
+</head>
 </head>
 <body>
-	<div  style="margin: 100px;">			
-		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
-			<thead>
-				<tr>
-					<td style="text-align: center;" >Car ID</td>
-					<td style="text-align: center;" >ประเภทรถ</td> 
-					<td style="text-align: center;" >ทะเบียนรถ</td> 
-					<td style="text-align: center;" >วันที่เดินทาง</td>
-					<td style="text-align: center;" >วันที่กลับ</td>
-					<td>สถานที่</td>
-					<td style="text-align: center;" style="width:1000px">สถานะ</td>
-					<td style="width:150px" ></td>
-				</tr>
-			</thead>
-			<tbody>
+						
+	<form action="<?php echo base_url(); ?>Search/reccommendCars" method="post" id="formEdit" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-md-3 control-label">วันที่เดินทาง</label>
+								<div class="col-md-8">
+									<input id="dateS2" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off">
+									<span class="help-block"></span>
+								</div>	                    
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >วันที่กลับ</label>
+								<div class="col-md-8">
+									<input id="dateE2" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off">
+									<span class="help-block"></span>
+								</div>
+							</div>
+							
+						<input type="submit" value="submit">
+					</form>
 				
-			</tbody>							
-		</table>
-	</div>
-</body>
-</html>
+<script>
 
-<script type="text/javascript">
-var table;
-	$(document).ready(function() {
-		
-	    //datatables
-	    table = $('#table').DataTable({ 
-	       "processing": true,
-	       "ajax": {
-	        	"url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
-	        	"type" : "POST"
-	        },
-	        //Set column definition initialisation properties.
-	    });
+	$( document ).ready(function(){
 
-	    //set input/textarea/select event when change value, remove class error and remove text help block 
+		$('.datetimepicker').datetimepicker({
+			autoclose: true,
+			format: "yyyy-mm-dd hh:ii",
+			todayHighlight: true,
+
+			todayBtn: true,
+			todayHighlight: true,
+			startDate: new Date()
+		});
+
 	});
 
 </script>
+
+</html>

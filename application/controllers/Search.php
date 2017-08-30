@@ -52,6 +52,33 @@ class Search extends CI_Controller {
 	
 		
 	}	
+
+	public function test(){
+		$startDate = (isset($_POST['dateS']))?$_POST['dateS']:"";
+		$endDate = (isset($_POST['dateE']))?$_POST['dateE']:"";
+		$data['availiableCars'] = $this->CarsModel->searchAvailableCars($startDate , $endDate , 1); 
+		$this->load->view('testDataTable', $data);
+	}
+
+
+	public function reccommendCars(){
+		$carTypeId = $this->input->post('cartype');
+		$startDate = $this->input->post('dateS');
+		$endDate = $this->input->post('dateE');
+		$availiableCars = $this->CarsModel->searchAvailableCars($startDate , $endDate , $carTypeId); 
+		$data = array();
+		foreach ($availiableCars as $value) {	
+				 $data[] = array(
+				 	'carId' => $value->getCarId(),
+					'carType' => $value->getCarType(),
+	               	"plateL" => $value->getPlateLicese(),
+	               	"start" => $startDate,
+	               	"end" => $endDate
+	       );
+		}
+		echo json_encode($data);
+		exit();
+	}
 }
 
 /* End of file CarController.php */
