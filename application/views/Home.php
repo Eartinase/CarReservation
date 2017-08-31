@@ -14,7 +14,12 @@
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 	<script src='fullcalendar/locale-all.js'></script>
-	
+	<style type="text/css">
+	.popover{
+	max-height: 70px;
+	width: 230px;
+}
+	</style>
 </head>
 
 <body class="container" style="background-color:#fafafa">
@@ -653,12 +658,5 @@ function reload_calendar(){
 	<?php include "Footer.php"; ?>
 
 </body>
-<style type="text/css">
-.popover{
-	max-height: 70px;
-	width: 230px;
-}
-
-</style>
 
 </html>

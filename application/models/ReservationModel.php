@@ -111,6 +111,16 @@ class ReservationModel extends CI_Model {
 		return $query;
 	}
 
+	public function depart($CurrentId, $driverId, $Departure, $CarMilesStart){
+		$sql='insert into previousreservation (StatusId, DriverId, Departure, Arrival) values ()';
+	//***************************************
+
+
+
+
+		
+	}
+
 	public function getCurrentReservation(){
 		$reserveInfo = null;
 		$r = "";
@@ -144,8 +154,7 @@ class ReservationModel extends CI_Model {
 			if($carTypeId == null || in_array($row->carTypeId,$carTypeId) ){
 				$reserveInfo = new ReservationModel;
 				$this->matchReservationObject($reserveInfo,$row);
-				if($r === "") 
-				{
+				if($r === ""){
 					$r = array();
 				}
 				array_push($r,$reserveInfo);

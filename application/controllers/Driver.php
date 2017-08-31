@@ -15,9 +15,17 @@ class Driver extends CI_Controller {
 		$send = array(
 			'tab' => $data
 		);
-
 		$this->load->view('DriverView', $send);
 	}	
+
+	public function depart(){
+		$CurrentId = $_POST['CurrentId'];
+		$driverId = $_POST['driverId'];
+		$Departure = $_POST['Departure'];
+		$CarMilesStart = $_POST['CarMilesStart'];
+
+		$this-> ReservationModel -> depart($CurrentId, $driverId, $Departure, $CarMilesStart);
+	}
 
 }
 
