@@ -11,6 +11,6 @@ if (isset($this->session->userdata['logged_in'])) {
 		include "NavbarUserLogged_in.php";
 	}			
 }else{
-	include "NavbarHome.php";
+	redirect($base_url."HomeInfo");
 }
 ?>
