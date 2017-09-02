@@ -39,7 +39,11 @@
 			</thead>
 			
 			<tbody>
-				<?php foreach($tab->result() as $row){
+				<?php 
+				if($incar){
+					$dis = "disabled";
+				}
+				foreach($tab->result() as $row){
 					//$plate = $row->PlateLicense.replace(/ /g, '+');
 					echo "<tr>\n";
 					echo "<td>".$row->currentid."</td>\n";
@@ -49,15 +53,16 @@
 					echo "<td>".$row->place."</td>\n";
 					echo "<td>".$row->StartDate."</td>\n";
 					echo "<td>".$row->EndDate."</td>\n";
-					echo "<td><button class='btn btn-success' data-toggle='modal' onclick='changeData(".$row->currentid.")' data-target='#confirm'>ยืนยัน</button>";
+					echo "<td><button ".$dis." class='btn btn-success' data-toggle='modal' onclick='changeData(".$row->currentid.")' data-target='#confirm'>ยืนยัน</button>";
 					echo "</td>\n";
 					echo "</tr>\n";
-				} ?>
+				} 
+				?>
 			</tbody>						
 		</table>
 	</div>	
 
-	<form action="<?php echo base_url();?>Driver/depart">
+	<form action="<?php echo base_url();?>Driver/depart" method="post">
 		<div class="modal fade" id="confirm">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -76,7 +81,7 @@
 								รหัสการจอง:
 							</div>
 							<div class="col-md-9">
-								<input type="text" disabled class="form-control" id="lic" name="CurrentId">
+								<input type="text" readonly class="form-control" id="lic" name="CurrentId" required value="">
 							</div>
 						</div>
 						<br>
@@ -95,7 +100,7 @@
 								<p>เวลาออกรถ: </p>
 							</div>
 							<div class="col-md-9">
-								<input type="time" class="form-control" name="Departure">
+								<input type="time" class="form-control" name="Departure" required>
 							</div>
 						</div>
 						<br>
@@ -104,14 +109,14 @@
 								<p>เลขไมล์:</p>
 							</div>
 							<div class="col-md-9">
-								<input type="number" class="form-control" name="CarMilesStart">
+								<input type="number" class="form-control" name="CarMilesStart" required>
 							</div>
 						</div>					
 
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-						<button type="button" class="btn btn-primary">ยืนยัน</button>
+						<button type="submit" class="btn btn-primary">ยืนยัน</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -120,7 +125,8 @@
 	
 <script>
 	function changeData(license) {
-		document.getElementById("lic").value = license;
+		//document.getElementById("lic").value = license;
+		document.getElementById("lic").setAttribute('value', license);
 	}
 </script>
 	

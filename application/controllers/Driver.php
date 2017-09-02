@@ -9,11 +9,18 @@ class Driver extends CI_Controller {
 		//$this->load->model('ReservationModel','ReservationModel');				
 	}
 
-	public function index(){		
+	public function index(){
+		$emId = $this->session->userdata['logged_in']['employeeCode'];
+		$incar = $this->ReservationModel->checkDriver($emId);
+		if($incar = null){
+			$incar = false;
+		}else{
+			$incar = true;
+		}
 		$data = $this->ReservationModel->driverReserve();
-		$table = "";
 		$send = array(
-			'tab' => $data
+			'tab' => $data,
+			'incar' => $incar
 		);
 		$this->load->view('DriverView', $send);
 	}	
@@ -25,6 +32,24 @@ class Driver extends CI_Controller {
 		$CarMilesStart = $_POST['CarMilesStart'];
 
 		$this-> ReservationModel -> depart($CurrentId, $driverId, $Departure, $CarMilesStart);
+		
+		$emId = $this->session->userdata['logged_in']['employeeCode'];
+		$result = $this-> ReservationModel -> driving($emId);
+		$data = array(
+			'tab' => $result
+		);
+		$this->load->view('Driving', $data);
+	}
+
+	public function Driving(){
+		$emId = $this->session->userdata['logged_in']['employeeCode'];
+
+		$result = $this-> ReservationModel -> driving($emId);
+		$data = array(
+			'tab' => $result
+		);
+
+		$this->load->view('Driving',$data);
 	}
 
 }
