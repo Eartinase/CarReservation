@@ -40,6 +40,7 @@
 			
 			<tbody>
 				<?php 
+				$dis = "";
 				if($incar){
 					$dis = "disabled";
 				}

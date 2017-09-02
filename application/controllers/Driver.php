@@ -11,12 +11,19 @@ class Driver extends CI_Controller {
 
 	public function index(){
 		$emId = $this->session->userdata['logged_in']['employeeCode'];
-		$incar = $this->ReservationModel->checkDriver($emId);
+		$check = $this->ReservationModel->checkDriver($emId);
+		$incar = false;
+		foreach ($check->result() as $row){
+			$incar = true;
+		}
+
+		/*
 		if($incar = null){
 			$incar = false;
 		}else{
 			$incar = true;
 		}
+		*/
 		$data = $this->ReservationModel->driverReserve();
 		$send = array(
 			'tab' => $data,

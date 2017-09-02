@@ -100,6 +100,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function driverReserve(){
+		$emId = $this->session->userdata['logged_in']['employeeCode'];
 		$sql='SELECT cr.currentid, ct.CarType, c.PlateLicense, u.Name, cr.place, cr.StartDate, cr.EndDate '.
 		'FROM currentreservation cr '.
 		'join cars c on cr.carid = c.carId '.
