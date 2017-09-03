@@ -131,6 +131,17 @@ class ReservationModel extends CI_Model {
 		$this->db->update('currentreservation', $data);	
 	}
 
+	public function arrive($id, $Arrival, $driverId){
+		/*
+		$inserToPrevious = 'INSERT INTO previousreservation (carid, driverid, employeecode, startdate, enddate, place, arrival, de[arture])'.
+		'SELECT carid, driverid, employeecode, startdate, enddate,place, enddate'.
+		'FROM currentreservation where currentId = '.$id;
+
+		$deleteFromCurrent = 'DELETE FROM currentreservation'.
+		'WHERE StartDate < CURDATE()';
+	*/
+	}
+
 	public function driving($driverId){		
 		$sql='SELECT cr.currentid, ct.CarType, c.PlateLicense, u.Name, cr.place, cr.StartDate, cr.EndDate '.
 		'FROM currentreservation cr '.

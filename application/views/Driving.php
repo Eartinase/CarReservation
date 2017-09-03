@@ -47,7 +47,7 @@
 					echo "<td>".$row->place."</td>\n";
 					echo "<td>".$row->StartDate."</td>\n";
 					echo "<td>".$row->EndDate."</td>\n";
-					echo "<td><button class='btn btn-success' data-toggle='modal' data-target='#arrive'>กลับมาถึงมหาวิทยาลัย</button>";
+					echo "<td><button class='btn btn-success' data-toggle='modal' onclick='changeData(".$row->currentid.")' data-target='#arrive'>กลับมาถึงมหาวิทยาลัย</button>";
 					echo "</td>\n";
 					echo "</tr>\n";
 				} ?>
@@ -56,27 +56,54 @@
 	</div>
 
 
+	<form action="<?php echo base_url();?>Driver/arrival">
+		<div class="modal fade" id="arrive">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							<span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">กลับถึงมหาวิทยาลัย</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-3">รหัสการจอง</div>
+							<div class="col-md-9">
+								<input class="form-control" name="CurrentId" id="reserveid" readonly>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-3">เวลากลับ</div>
+							<div class="col-md-9">
+								<input type="time" class="form-control" name="Arrival" required>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-3">ไมล์รถสิ้นสุด</div>
+							<div class="col-md-9">
+								<input type="number" class="form-control" name="CarMilesEnd" required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+						<button type="submit" class="btn btn-primary">ยืนยัน</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</form>
 
-	<div class="modal fade" id="arrive">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						<span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<p>One fine body&hellip;</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	<script>
+	function changeData(license) {
+		//document.getElementById("lic").value = license;
+		document.getElementById("reserveid").setAttribute('value', license);
+	}
+</script>
 
 </body>
 </html>

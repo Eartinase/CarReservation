@@ -63,7 +63,7 @@
 		</table>
 	</div>	
 
-	<form action="<?php echo base_url();?>Driver/depart" method="post">
+	<form action="<?php echo base_url();?>Driver/departure" method="post">
 		<div class="modal fade" id="confirm">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">

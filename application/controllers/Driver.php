@@ -17,13 +17,6 @@ class Driver extends CI_Controller {
 			$incar = true;
 		}
 
-		/*
-		if($incar = null){
-			$incar = false;
-		}else{
-			$incar = true;
-		}
-		*/
 		$data = $this->ReservationModel->driverReserve();
 		$send = array(
 			'tab' => $data,
@@ -32,7 +25,7 @@ class Driver extends CI_Controller {
 		$this->load->view('DriverView', $send);
 	}	
 
-	public function depart(){
+	public function departure(){
 		$CurrentId = $_POST['CurrentId'];
 		$driverId = $_POST['driverId'];
 		$Departure = $_POST['Departure'];
@@ -46,6 +39,14 @@ class Driver extends CI_Controller {
 			'tab' => $result
 		);
 		$this->load->view('Driving', $data);
+	}
+
+	public function arrival(){
+		$id = $_POST['reserveid'];
+		$Arrival = $_POST['Arrival'];
+		$driverId = $_POST['CarMilesEnd'];	
+
+		$this-> ReservationModel -> driving($id, $Arrival, $driverId);
 	}
 
 	public function Driving(){
