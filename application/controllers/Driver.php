@@ -42,11 +42,16 @@ class Driver extends CI_Controller {
 	}
 
 	public function arrival(){
-		$id = $_POST['reserveid'];
+		$CurrentId = $_POST['CurrentId'];
 		$Arrival = $_POST['Arrival'];
-		$driverId = $_POST['CarMilesEnd'];	
+		$CarMilesEnd = $_POST['CarMilesEnd'];	
+		$emId = $this->session->userdata['logged_in']['employeeCode'];
 
-		$this-> ReservationModel -> driving($id, $Arrival, $driverId);
+		$this-> ReservationModel -> arrive($CurrentId, $Arrival, $CarMilesEnd, $emId);
+		$data = array(
+			'message' => "บันทึกข้อมูลเรียบร้อยแล้ว"
+		);
+		$this->load->view('Result',$data);
 	}
 
 	public function Driving(){

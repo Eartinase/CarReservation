@@ -56,7 +56,7 @@
 	</div>
 
 
-	<form action="<?php echo base_url();?>Driver/arrival">
+	<form action="<?php echo base_url();?>Driver/arrival" method="post">
 		<div class="modal fade" id="arrive">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -78,7 +78,7 @@
 						<div class="row">
 							<div class="col-md-3">เวลากลับ</div>
 							<div class="col-md-9">
-								<input type="time" class="form-control" name="Arrival" required>
+								<input type="datetime" class="form-control" name="Arrival" required>
 							</div>
 						</div>
 						<br>
@@ -97,6 +97,8 @@
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 	</form>
+
+	<h1><!--?php echo $message ?--></h1>
 
 	<script>
 	function changeData(license) {
