@@ -2,9 +2,20 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<?php 
-	include "Header.php";
-	?>
+
+	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
+
+	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+	<script src='<?php echo base_url(); ?>fullcalendar/lib/jquery.min.js'></script>	
+	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
+
+	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
+
+	<title>ระบบบริหารจัดการรถยนต์</title>
+
+
 	<style type="text/css">
 	td{
 		text-align: center;
@@ -55,7 +66,6 @@
 		</table>
 	</div>
 
-
 	<form action="<?php echo base_url();?>Driver/arrival" method="post">
 		<div class="modal fade" id="arrive">
 			<div class="modal-dialog" role="document">
@@ -78,7 +88,7 @@
 						<div class="row">
 							<div class="col-md-3">เวลากลับ</div>
 							<div class="col-md-9">
-								<input type="datetime" class="form-control" name="Arrival" required>
+								<input type="text" class="form-control datetimepicker" id="name" name="Arrival" required>
 							</div>
 						</div>
 						<br>
@@ -97,15 +107,20 @@
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 	</form>
-
-	<h1><!--?php echo $message ?--></h1>
-
+	
 	<script>
-	function changeData(license) {
-		//document.getElementById("lic").value = license;
+	function changeData(license) {		
 		document.getElementById("reserveid").setAttribute('value', license);
-	}
-</script>
+	}	
+	</script>
+
+	<script type="text/javascript">
+	$('#name').datetimepicker({
+		container:'#arrive',
+		autoclose: true,
+		format: 'yyyy-mm-dd hh:ii'
+	});
+	</script> 
 
 </body>
 </html>
