@@ -72,7 +72,7 @@
         วันที่ออกเอกสาร
          <?php
  
-        $tomorrow = date("d-m-Y", time() + 86400);
+        $tomorrow = date("Y-m-d", time() + 86400);
      
         echo $tomorrow
  

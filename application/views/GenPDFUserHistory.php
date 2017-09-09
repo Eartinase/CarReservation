@@ -14,7 +14,7 @@ $role = ($this->session->userdata['logged_in']['role']);
     <h2 style="padding-left:85%">วันที่ออกเอกสาร
     <?php
  
-    $tomorrow = date("d-m-Y", time() + 86400);
+    $tomorrow = date("Y-m-d", time() + 86400);
      
     echo $tomorrow
  
