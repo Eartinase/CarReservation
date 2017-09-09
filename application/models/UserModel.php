@@ -7,7 +7,7 @@ class UserModel extends CI_Model {
 	private $username;
 	private $name;
 	//private $surname;
-	private $department;
+	private $departmentID;
 	private $role;
 
 	public function getEmployeeCode()
@@ -31,9 +31,9 @@ class UserModel extends CI_Model {
 		return $this->surname;
 	}
 	*/
-	public function getDepartment()
+	public function getDepartmentID()
 	{
-		return $this->department;
+		return $this->departmentID;
 	}
 
 	public function getRole()
@@ -61,9 +61,9 @@ class UserModel extends CI_Model {
 		$this->surname = $surname;
 	}
 
-	public function setDepartment($department)
+	public function setDepartmentID($departmentID)
 	{
-		$this->department = $department;
+		$this->departmentID = $departmentID;
 	}
 
 	public function setRole($role)
@@ -120,7 +120,7 @@ class UserModel extends CI_Model {
 		$userInfo->setUsername($row->Username);
 		$userInfo->setName($row->Name);	
 		//$userInfo->setSurname($row->Surname);
-		$userInfo->setDepartment($row->Department);
+		$userInfo->setDepartmentID($row->depID);
 		$userInfo->setRole($row->Role);
 	}
 

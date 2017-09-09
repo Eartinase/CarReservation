@@ -30,10 +30,10 @@ class homeInfo extends CI_Controller {
 				
 				$data[] = array(
 					'id' => $value->getReserveId(),
-	                 "title" => $value->getPlateLicese(),
-	                 "start" => $value->getStartDate(),
-	                 "end" => $value->getEndDate(),
-	                 "color" => $value->getColor(),
+	                "title" => $value->getPlateLicese(),
+	                "start" => $value->getStartDate(),
+	                "end" => $value->getEndDate(),
+	                "color" => $value->getColor(),
 	                "editable" => false
 	               );
 			}

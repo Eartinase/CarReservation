@@ -159,7 +159,7 @@ function edit_reserve(rID){
 		    $('[name="plateL"]').val(data.carId).change();
 		    $('[name="dateS"]').datetimepicker('update',data.startDate);
 		    $('[name="dateE"]').datetimepicker('update',data.endDate);
-		    $('[name="place"]').val(data.place);
+		    $('[name="placeEdit"]').val(data.place);
 		    $('[name="telEdit"]').val(data.tel);
 		    $('#modal_form').modal('show'); // show bootstrap modal when complete loaded	            
         },

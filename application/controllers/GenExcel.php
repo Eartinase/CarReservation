@@ -11,8 +11,8 @@ class genExcel extends CI_Controller {
 	}
 
 	public function genExcelUserHistory(){	
-		//$empCode = $this->session->userdata['logged_in']['employeeCode'];
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode(0);
+		$depID = $this->session->userdata['logged_in']['department'];
+		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
 		$userInfo = $this-> UserModel->getUserInfo('admin');
 		$carType = array();
 		foreach ($reserveInfo as $value) {

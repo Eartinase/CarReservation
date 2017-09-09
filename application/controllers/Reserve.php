@@ -11,11 +11,11 @@ class Reserve extends CI_Controller {
 	public function addReserve(){
 		$startDate = $_POST['dateS'];
 		$endDate = $_POST['dateE'];
-		$code = $this->session->userdata['logged_in']['employeeCode'];
+		$depID = $this->session->userdata['logged_in']['department'];
 		$carId = $_POST['plateLicense'];
 		$place = $_POST['place'];
 		$tel = $_POST['tel'];
-		$check = $this-> ReservationModel -> addReservation($carId, $startDate, $endDate, $code, $place, $tel);
+		$check = $this-> ReservationModel -> addReservation($carId, $startDate, $endDate, $depID, $place, $tel);
 		
 		if( $check ) {
 			$data['check'] = true;			
@@ -73,7 +73,7 @@ class Reserve extends CI_Controller {
 	{
 		$reserveId = $this->input->post('id');
 		$carId = $this->input->post('plateL');
-		$empCode =  $this->session->userdata['logged_in']['employeeCode'];
+		$depID =  $this->session->userdata['logged_in']['department'];
 		$dateS = $this->input->post('dateS2');
 		$dateE = $this->input->post('dateE2');
 		$place = $this->input->post('placeEdit');
@@ -82,14 +82,14 @@ class Reserve extends CI_Controller {
 			$data = array(
 				'carId' => $carId,
 				'driverId'=> 0,
-				'empCode' =>$empCode ,
+				'depID' =>$depID ,
 				'dateS' =>$dateS ,
 				'dateE' => $dateE,
 				'place' => $place,
 				'tel' => $tel,
 				'accept' => 0
 			);			
-			$this->ReservationModel->updateReserve($reserveId , $data);
+			$this-> ReservationModel ->updateReserve($reserveId , $data);
 			echo json_encode(array("status" => TRUE));
 		}else{
 			echo json_encode(array("status" => FALSE));
@@ -99,11 +99,11 @@ class Reserve extends CI_Controller {
 	public function ajax_reservelist(){
 		$draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
-		$empCode = $this->session->userdata['logged_in']['employeeCode'];
-		$currentReserve = $this->ReservationModel->getCurReserveFormEmpCode($empCode);
+		$depID = $this->session->userdata['logged_in']['department'];
+		$currentReserve = $this->ReservationModel->getCurReserveFormDepID($depID);
 		$data = array();
 		$no=0;
-		//if($currentReserve != ''){
+		if($currentReserve != ''){
 			foreach ($currentReserve as $value) {
 				$car = $this->CarsModel->getCarById($value->getCarId());
 				$no++;
@@ -119,7 +119,7 @@ class Reserve extends CI_Controller {
 	                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
 	               );			
 			}
-		//}
+		}
 		 $output = array(            
                 "data" => $data
             );		
@@ -129,10 +129,10 @@ class Reserve extends CI_Controller {
 	}
 
 	public function ajax_reserve_history(){
-		$empCode = $this->session->userdata['logged_in']['employeeCode'];
-		$currentReserve = $this->ReservationModel->getCurReserveFormEmpCode($empCode);
+		$depID = $this->session->userdata['logged_in']['department'];
+		$currentReserve = $this->ReservationModel->getCurReserveFormDepID($depID);
 		$data = array();
-		//if($currentReserve != ''){
+		if($currentReserve != ''){
 			foreach ($currentReserve as $value) {
 				$data[] = array(
 					'id' => $value->getReserveId(),
@@ -143,6 +143,7 @@ class Reserve extends CI_Controller {
 	                "editable" => true
 	               );			
 			}
+		}
 		echo json_encode($data);
 		exit;
 	}
@@ -150,8 +151,8 @@ class Reserve extends CI_Controller {
 	public function DriverList(){
 		$draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
-		$empCode = $this->session->userdata['logged_in']['employeeCode'];
-		$currentReserve = $this->ReservationModel->getCurReserveFormEmpCode($empCode);
+		$depID = $this->session->userdata['logged_in']['employeeCode'];
+		$currentReserve = $this->ReservationModel->getCurReserveFormDepID($depID);
 		$data = array();
 		$no=0;
 		//if($currentReserve != ''){
