@@ -10,6 +10,15 @@ $role = ($this->session->userdata['logged_in']['role']);
 <html>
 <body>
 <div class="con">
+<br>
+    <h2 style="padding-left:85%">วันที่ออกเอกสาร
+    <?php
+ 
+    $tomorrow = date("Y-m-d", time() + 86400);
+     
+    echo $tomorrow
+ 
+    ?></h2>
 <h2 style="text-align:center;font-size:40px">รายงานประวัติการใช้บริการรถ</h2>
 <p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $name ?> หน่วยงาน <?php echo $department ?> ตำแหน่ง <?php echo $role ?></p>
 

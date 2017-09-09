@@ -465,7 +465,7 @@ function changeType(){
 												placement: 'top',
 												trigger: 'hover',
 												html:true,
-												content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br />เวลากลับ : '
+												content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br>เวลากลับ : '
 												+moment(calEvent.end).format('DD/MM h:mm a'),
 												container: '#calendar'
 											});
@@ -620,7 +620,6 @@ function reload_calendar(){
 	        }
 	    });
 	}
-
 
 	var dateToday = new Date(); 
 	var urls = 'HomeInfo/ajax_loadEvent';

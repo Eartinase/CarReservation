@@ -54,6 +54,7 @@
   ?>
 
   <div class="con">
+    
     <h2 style="text-align:center;font-size:36px">รายงานประวัติการใช้บริการรถ</h2>
     <p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $this->session->userdata['logged_in']['name'] ?> หน่วยงาน <?php echo $this->session->userdata['logged_in']['department'] ?> ตำแหน่ง <?php echo $this->session->userdata['logged_in']['role'] ?></p>
     <div class="row">
@@ -67,6 +68,16 @@
     
     <center>
       <table class="table2excel" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
+        <tr><p>
+        วันที่ออกเอกสาร
+         <?php
+ 
+        $tomorrow = date("Y-m-d", time() + 86400);
+     
+        echo $tomorrow
+ 
+         ?></p>
+        </tr>
         <tr>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ประเภทรถ</th>
@@ -87,7 +98,6 @@
         <?php } ?>
       </table>
     </center>
-
 
 
     <script>

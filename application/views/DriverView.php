@@ -3,10 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-	<?php 
-	include "Header.php";
-	?>
+	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
+
+	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+	<script src='<?php echo base_url(); ?>fullcalendar/lib/jquery.min.js'></script>	
+	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
+
+	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
+
+	<title>ระบบบริหารจัดการรถยนต์</title>
 	
 	<style type="text/css">
 	td{
@@ -63,7 +70,7 @@
 		</table>
 	</div>	
 
-	<form action="<?php echo base_url();?>Driver/depart" method="post">
+	<form action="<?php echo base_url();?>Driver/departure" method="post">
 		<div class="modal fade" id="confirm">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -101,7 +108,7 @@
 								<p>เวลาออกรถ: </p>
 							</div>
 							<div class="col-md-9">
-								<input type="time" class="form-control" name="Departure" required>
+								<input type="text" class="form-control datetimepicker" id="departTime" name="Departure" required>
 							</div>
 						</div>
 						<br>
@@ -129,6 +136,13 @@
 		//document.getElementById("lic").value = license;
 		document.getElementById("lic").setAttribute('value', license);
 	}
+
+	$('#departTime').datetimepicker({
+		container:'#confirm',
+		autoclose: true,
+		format: 'yyyy-mm-dd hh:ii'
+	});
+
 </script>
 	
 
