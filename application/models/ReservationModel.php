@@ -109,6 +109,60 @@ class ReservationModel extends CI_Model {
 	{
 		$this->departmentID = $departmentID;
 	}
+		public function driverReserve(){
+		$emId = $this->session->userdata['logged_in']['employeeCode'];
+		$sql='SELECT cr.currentid, ct.CarType, c.PlateLicense, u.Name, cr.place, cr.StartDate, cr.EndDate '.
+		'FROM currentreservation cr '.
+		'join cars c on cr.carid = c.carId '.
+		'join cartype ct on ct.CarTypeId = c.cartypeid '.
+		'join user u on cr.EmployeeCode = u.EmployeeCode '.
+		'where curdate()+1 > cr.startdate and cr.startdate> curdate() AND accept != \'1\'';
+		$query= $this->db->query($sql);
+
+		return $query;
+	}
+
+	public function checkDriver($emId){
+		$sql = 'SELECT * FROM currentreservation '.
+		'where driverid = \''.$emId.'\' and Accept = 1';
+		$query= $this->db->query($sql);
+
+		return $query;
+	}
+
+	public function depart($CurrentId, $driverId, $Departure, $CarMilesStart){		
+		$data = array(
+               'driverId' 		=> $driverId,
+               'Departure' 		=> $Departure,
+               'CarMilesStart' 	=> $CarMilesStart,
+               'Accept'			=> "1"
+            );
+		$this->db->where('CurrentId', $CurrentId);
+		$this->db->update('currentreservation', $data);	
+	}
+
+	public function arrive($id, $Arrival, $CarMilesEnd, $emId){		
+		$sql = 'UPDATE previousreservation SET DriverId = \''.$emId.'\', Arrival = \''.$Arrival.'\', CarMilesEnd = '.$CarMilesEnd.' WHERE previousreservation.StatusId = '.$id;
+		
+		$query = $this->db->query('INSERT INTO previousreservation (StatusId, CarId, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart) SELECT currentId, carid, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart FROM currentreservation WHERE CurrentId = '.$id);
+
+		$query = $this->db->query($sql);
+
+		$this->db->delete('currentreservation', array('currentid' => $id));		
+	}
+
+	public function driving($driverId){		
+		$sql='SELECT cr.currentid, ct.CarType, c.PlateLicense, u.Name, cr.place, cr.StartDate, cr.EndDate '.
+		'FROM currentreservation cr '.
+		'join cars c on cr.carid = c.carId '.
+		'join cartype ct on ct.CarTypeId = c.cartypeid '.
+		'join user u on cr.EmployeeCode = u.EmployeeCode '.
+		'where cr.DriverId = \''.$driverId.'\'';
+		
+		$query= $this->db->query($sql);
+
+		return $query;
+	}
 
 
 	public function getCurrentReservation(){
