@@ -114,7 +114,7 @@
 
 	function ajax_sendAsk(){		
 		$.ajax({
-			url: '<?php echo base_url('OutsideCarCon/sendRequest'); ?>',
+			url: '<?php echo base_url('Reserve/sendRequest'); ?>',
 			type: "POST",
 			data: $('#formRequest').serialize(),
 			datatype: 'json',

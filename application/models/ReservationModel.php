@@ -110,31 +110,6 @@ class ReservationModel extends CI_Model {
 		$this->departmentID = $departmentID;
 	}
 
-<<<<<<< HEAD
-=======
-	public function arrive($id, $Arrival, $CarMilesEnd, $emId){		
-		$sql = 'UPDATE previousreservation SET DriverId = \''.$emId.'\', Arrival = \''.$Arrival.'\', CarMilesEnd = '.$CarMilesEnd.' WHERE previousreservation.StatusId = '.$id;
-		
-		$query = $this->db->query('INSERT INTO previousreservation (StatusId, CarId, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart) SELECT currentId, carid, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart FROM currentreservation WHERE CurrentId = '.$id);
-
-		$query = $this->db->query($sql);
-
-		$this->db->delete('currentreservation', array('currentid' => $id));		
-	}
-
-	public function driving($driverId){		
-		$sql='SELECT cr.currentid, ct.CarType, c.PlateLicense, u.Name, cr.place, cr.StartDate, cr.EndDate '.
-		'FROM currentreservation cr '.
-		'join cars c on cr.carid = c.carId '.
-		'join cartype ct on ct.CarTypeId = c.cartypeid '.
-		'join user u on cr.EmployeeCode = u.EmployeeCode '.
-		'where cr.DriverId = \''.$driverId.'\'';
-		
-		$query= $this->db->query($sql);
-
-		return $query;
-	}
->>>>>>> 05f4b0cd39a211a3343498d16cfd45a9983cf30e
 
 	public function getCurrentReservation(){
 		$reserveInfo = null;
@@ -280,8 +255,6 @@ class ReservationModel extends CI_Model {
 			 }
 	}
 
-
-	
 
 	public function getCurReserveFormDepID($depID){
 		$currentReserve = null;

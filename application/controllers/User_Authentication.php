@@ -50,11 +50,7 @@ class User_Authentication extends CI_Controller {
 					'employeeCode' => $userInfo->getEmployeeCode(),
 					'name' => $userInfo->getName(),
 					//'surname' => $userInfo->getSurName(),
-<<<<<<< HEAD
 					'department'=>$userInfo->getDepartmentID(),
-=======
-					'department'=>$userInfo->getdepID(),
->>>>>>> 05f4b0cd39a211a3343498d16cfd45a9983cf30e
 					'role'=>$userInfo->getRole()
 					);
 				$this->session->set_userdata('logged_in', $session_data);

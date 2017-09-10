@@ -8,6 +8,11 @@ class Reserve extends CI_Controller {
 		$this->load->model('CarsModel');
 	}
 
+	public function sendRequest(){
+		echo json_encode(array("status" => TRUE));
+	}
+
+
 	public function addReserve(){
 		$startDate = $_POST['dateS'];
 		$endDate = $_POST['dateE'];
