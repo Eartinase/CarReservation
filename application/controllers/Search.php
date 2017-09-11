@@ -18,7 +18,6 @@ class Search extends CI_Controller {
 	public function searchCar()
 	{	
 		$reserve = array();
-		$carTypeId = array(1,2);
 		//$carId = $this->input->post('carId');
 		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
 		$carId = (isset($_POST['carId']))?$_POST['carId']:"";

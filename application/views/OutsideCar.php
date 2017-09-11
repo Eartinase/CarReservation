@@ -4,27 +4,31 @@
 	<?php 
 	include "Header.php";
 	?>
-	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
-	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
-	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script>
-	
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hr.css' />
+
+	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
 </head>
+<style type="text/css">
+	body{
+		 overflow: hidden;
+	}
+</style>
 <body>
 	<?php 
 	include "NavbarChooser.php";
 	?>		
 	<br>
-	<div class="container">
-		
-	
+	<div  style="margin-top: 100px;">
 		<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-4 col-md-offset-1">
 			<form class="form-horizontal" id="formRequest"  action="#" method="get" accept-charset="utf-8">
 				<center><legend>คำร้องขอจ้างเหมารถจากภายนอก</legend></center>
 				<div class="form-group" >
@@ -76,7 +80,7 @@
 					
 				</div>
 				
-				<div  class="col-md-2 col-md-offset-10"><button type="button" onclick="ajax_sendAsk()" class="btn btn-primary" >ยืนยัน</button></div>
+				<div  class="col-md-2 col-md-offset-10"><button type="submit" id="sendFrom" class="btn btn-primary" >ยืนยัน</button></div>
 			
 			</form>
 
@@ -103,6 +107,26 @@
 			
 			</div>
 		</div>
+		<div class="col-md-6" style="margin-left: 50px">
+			<div >			
+			<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
+				<thead>
+					<tr>
+						<td>ประเภทรถ</td> 
+						<td>วันที่เดินทาง</td>
+						<td>วันที่กลับ</td>
+						<td>สถานที่</td>
+						<td>เบอร์โทร</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>							
+			</table>
+			</div>	
+			
+		</div>
 
 		</div>
 </div>
@@ -114,12 +138,14 @@
 
 	function ajax_sendAsk(){		
 		$.ajax({
-			url: '<?php echo base_url('Reserve/sendRequest'); ?>',
+			url: '<?php echo base_url('OutsideCarCon/sendRequest'); ?>',
 			type: "POST",
 			data: $('#formRequest').serialize(),
 			datatype: 'json',
 			success: function (doc) {
-				alert(doc);              
+				alert(doc);  
+				$('#formRequest').trigger("reset");
+				$('#reasonDiv').collapse('hide');            
 			},error: function (err) {
 				alert(err.Message);
 			}
@@ -173,9 +199,29 @@
 		$('#reasonDiv').collapse('show');
 	});		
 	
+	var table;
 	$( document ).ready(function(){
 
-		
+		$("#sendFrom").submit(function(e) {
+			e.preventDefault();
+			ajax_sendAsk();
+
+		});
+
+		table = $('#table').DataTable({ 
+			"lengthChange": false,
+			"bFilter" : false,
+	    	"bPaginate":true,
+	       	"processing": true, //Feature control the processing indicator.
+	        // Load data for the table's content from an Ajax source
+	        "ajax": {
+	        	"url" : "<?php echo base_url(); ?>OutsideCarCon/ajax_list_OutsideCar",
+	        	"type" : "POST"
+	        },
+
+	        //Set column definition initialisation properties.   
+
+	    });
 
 
 		$('.datetimepicker').datetimepicker({

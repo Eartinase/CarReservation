@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class ReservationModel extends CI_Model {
+class OutsideCarModel extends CI_Model {
 	private $hireId;
 	private $plateLicense;
 	private $startDate;
@@ -103,6 +103,11 @@ class ReservationModel extends CI_Model {
 				'reason' => $reason
     		));
 		return true;
+	}
+
+	public function getOutsideCarFromDepID($depID){
+		$query = $this->db->get_where('hirecar', array('depID' => $depID));
+		return $query->result_array();
 	}
 
 
