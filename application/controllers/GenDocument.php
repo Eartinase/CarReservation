@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class genExcel extends CI_Controller {
+class genDocument extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,7 +10,7 @@ class genExcel extends CI_Controller {
 		$this->load->model('UserModel','UserModel');
 	}
 
-	public function genExcelUserHistory(){	
+	public function index(){	
 		$depID = $this->session->userdata['logged_in']['department'];
 		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
 		$userInfo = $this-> UserModel->getUserInfo('admin');
@@ -21,11 +21,11 @@ class genExcel extends CI_Controller {
 			$v = $car->getCarType();
 			$carType[$id] = $v;
 		}
-
+		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
-		$this->load->view('GenExcelUserHistory',$data);
+		$this->load->view('GenDocument', $data);
 	}
 
 }

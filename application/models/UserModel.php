@@ -126,6 +126,13 @@ class UserModel extends CI_Model {
 		$userInfo->setRole($row->Role);
 	}
 
+	public function getDepartmentName($depid){		
+		$query = $this->db->query("SELECT department from Department d join user u where d.depID = u.depID and d.depID = ".$depid);
+		foreach($query->result() as $row){
+			$depName = $row->department;
+		}
+		return $depName;
+	}
 }
 
 /* End of file LoginModel.php */

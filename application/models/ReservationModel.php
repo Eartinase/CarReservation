@@ -268,6 +268,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function addReservation($carId, $startDate, $endDate, $depID, $place, $tel){
+		$employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
 		if($this->checkReservation($carId, $startDate, $endDate)){
 			$data = array(		
 				'carId' => $carId,
@@ -276,7 +277,8 @@ class ReservationModel extends CI_Model {
 				'StartDate' => $startDate,
 				'EndDate' =>$endDate,			
 				'place' => $place,
-				'tel' => $tel
+				'tel' => $tel,
+				'EmployeeCode' =>$employeeCode
 				);
 
 			$query = $this->db->select('driverId')
