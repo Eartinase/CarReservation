@@ -14,9 +14,9 @@ $role = ($this->session->userdata['logged_in']['role']);
     <h2 style="padding-left:85%">วันที่ออกเอกสาร
     <?php
  
-    $tomorrow = date("Y-m-d", time() + 86400);
+    $date = date("Y-m-d");
      
-    echo $tomorrow
+    echo $date
  
     ?></h2>
 <h2 style="text-align:center;font-size:40px">รายงานประวัติการใช้บริการรถ</h2>

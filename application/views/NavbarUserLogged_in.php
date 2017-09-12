@@ -50,6 +50,8 @@
                 <li class="dr-menu"><a href="<?php echo base_url(); ?>GenExcel/genExcelUserHistory">รายงานประวัติการใช้บริการรถ</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dr-menu"><a href="#">รายงานขอเบิกงบประมาณ</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>GenAdmin/genAdminCarHistory">รายงานข้อมูลการใช้งานรถ</a></li>
               </ul>
             </li>            
           </ul>

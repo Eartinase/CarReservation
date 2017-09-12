@@ -55,7 +55,7 @@
 
   <div class="con">
     
-    <h2 style="text-align:center;font-size:36px">รายงานประวัติการใช้บริการรถ</h2>
+    <h2 style="text-align:center;font-size:36px">รายงานประวัติการใช้บริการรถ</h2><hr>
     <p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $this->session->userdata['logged_in']['name'] ?> หน่วยงาน <?php echo $this->session->userdata['logged_in']['department'] ?> ตำแหน่ง <?php echo $this->session->userdata['logged_in']['role'] ?></p>
     <div class="row">
       <div style="text-align:center">
@@ -72,9 +72,9 @@
         วันที่ออกเอกสาร
          <?php
  
-        $tomorrow = date("Y-m-d", time() + 86400);
+        $date = date("Y-m-d");
      
-        echo $tomorrow
+        echo $date
  
          ?></p>
         </tr>
