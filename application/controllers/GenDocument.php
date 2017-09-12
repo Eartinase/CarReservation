@@ -12,8 +12,10 @@ class genDocument extends CI_Controller {
 
 	public function index(){	
 		$depID = $this->session->userdata['logged_in']['department'];
+		$username = ($this->session->userdata['logged_in']['username']);
+
 		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
-		$userInfo = $this-> UserModel->getUserInfo('admin');
+		$userInfo = $this-> UserModel->getUserInfo($username);
 		$carType = array();
 		foreach ($reserveInfo as $value) {
 			$car =$this->CarsModel->getCarById($value->getCarId());

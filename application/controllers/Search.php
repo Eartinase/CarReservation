@@ -28,7 +28,6 @@ class Search extends CI_Controller {
 					$reserve = array_merge($reserve ,$r);
 				}
 			}
-
 		}else{
 			$reserve = $this-> ReservationModel->getCurrentReservation();
 		}
@@ -45,7 +44,6 @@ class Search extends CI_Controller {
 	              	"editable" => false
 	               );
 			}
-
 		echo json_encode($data);
 		exit();
 	

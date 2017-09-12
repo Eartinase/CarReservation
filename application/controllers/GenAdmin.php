@@ -11,9 +11,12 @@ class genAdmin extends CI_Controller {
 	}
 
 	public function genAdminCarHistory(){	
-		//$empCode = $this->session->userdata['logged_in']['employeeCode'];
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode(0);
-		$userInfo = $this-> UserModel->getUserInfo('admin');
+		$empCode = $this->session->userdata['logged_in']['employeeCode'];
+		$username = ($this->session->userdata['logged_in']['username']);
+
+		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode($empCode);
+		$userInfo = $this-> UserModel->getUserInfo($username);
+		
 		$carType = array();
 		foreach ($reserveInfo as $value) {
 			$car =$this->CarsModel->getCarById($value->getCarId());
@@ -22,12 +25,10 @@ class genAdmin extends CI_Controller {
 			$carType[$id] = $v;
 		}
 
-
 		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
  		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
  		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);	
-
 
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;

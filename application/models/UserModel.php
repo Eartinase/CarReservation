@@ -2,83 +2,60 @@
 defined('BASEPATH') || exit('No direct script access allowed');
 
 class UserModel extends CI_Model {
-
 	private $employeeCode;
 	private $username;
 	private $name;
-	//private $surname;
 	private $departmentID;
 	private $role;
 
-	public function getEmployeeCode()
-	{
+	public function getEmployeeCode(){
 		return $this->employeeCode;
 	}
 
-	public function getUsername()
-	{
+	public function getUsername(){
 		return $this->username;
 	}
 
-	public function getName()
-	{
+	public function getName(){
 		return $this->name;
 	}
 
-	/*
-	public function getSurname()
-	{
-		return $this->surname;
-	}
-	*/
-
-	public function getDepartmentID()
-	{
+	public function getDepartmentID(){
 		return $this->departmentID;
 	}
 
-
-	public function getRole()
-	{
+	public function getRole(){
 		return $this->role;
 	}
 
-	public function setEmployeeCode($employeeCode)
-	{
+	public function setEmployeeCode($employeeCode){
 		$this->employeeCode = $employeeCode;
 	}
 
-	public function setUsername($username)
-	{
+	public function setUsername($username){
 		$this->username = $username;
 	}
 
-	public function setName($name)
-	{
+	public function setName($name){
 		$this->name = $name;
 	}
 
-	public function setSurname($surname)
-	{
+	public function setSurname($surname){
 		$this->surname = $surname;
 	}
 
-
-	public function setDepartmentID($departmentID)
-	{
+	public function setDepartmentID($departmentID){
 		$this->departmentID = $departmentID;
 	}
-	public function setRole($role)
-	{
+
+	public function setRole($role){
 		$this->role = $role;
 	}
 
-	public function checkLogin($data)
-	{
+	public function checkLogin($data){
 		$query = $this->db->get('user');
 		$result = false;
-		foreach ($query->result() as $row)
-		{
+		foreach ($query->result() as $row){
 			if($row->Username == $data["username"] && $row->Password== $data["password"] ){				
 				$result = true;
 				break;				
@@ -86,7 +63,6 @@ class UserModel extends CI_Model {
 		}
 		return $result;
 	}
-
 
 	public function login($data){
 		$condition = "Username =" . "'" . $data['username'] . "' AND " . "Password =" . "'" . $data['password'] . "'";
@@ -100,28 +76,23 @@ class UserModel extends CI_Model {
 			return true;
 		} else {
 			return false;
-		}
-		
+		}		
 	}
 
 	public function getUserInfo($username){
 		$userInfo = null;
 		$query = $this->db->query('SELECT * FROM user where Username = "'.$username.'"');
-		foreach ($query->result() as $row)
-		{
+		foreach ($query->result() as $row){
 			$userInfo = new UserModel;
 			$this->matchUserObject($userInfo,$row);
-
 		}
 		return $userInfo;
 	}
 
-	private function matchUserObject($userInfo,$row)
-	{
+	private function matchUserObject($userInfo,$row){
 		$userInfo->setEmployeeCode($row->EmployeeCode);
 		$userInfo->setUsername($row->Username);
-		$userInfo->setName($row->Name);	
-		//$userInfo->setSurname($row->Surname);
+		$userInfo->setName($row->Name);			
 		$userInfo->setDepartmentID($row->depID);
 		$userInfo->setRole($row->Role);
 	}
