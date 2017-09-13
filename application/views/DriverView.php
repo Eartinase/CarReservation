@@ -30,7 +30,8 @@
 	include "NavbarChooser.php";
 	?>
 
-	<div  style="margin: 100px;">			
+	<div  class="container" style="margin-top: 50px">
+	<div>			
 		<table  id="tablee" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
@@ -130,6 +131,7 @@
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 	</form>
+	</div>
 	
 <script>
 	function changeData(license) {

@@ -8,7 +8,7 @@
   }
   ?>
   <link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/shade_color.css' />
-  <nav class="navbar navbar-default navbar-fixed-top" id="topnav" >
+  <nav class="navbar navbar-default " id="topnav" >
     <div class="container-fluid" >
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -27,10 +27,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ใช้บริการรถภายนอก <span class="sr-only">(current)</span></a>
+              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ขอใช้รถภายนอก <span class="sr-only">(current)</span></a>
             </li>
             <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ดูประวัติการใช้บริการรถ
+              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ประวัติการใช้
               </a>
             </li>
             <li style="padding-left: 0px"  class="dropdown">
