@@ -9,12 +9,15 @@ class CarsModel extends CI_Model {
 	private $plateLicense;
 	private $seat;
 	private $detail;
+	private $depID;
 	
 	public function __construct()
 	{
 		parent::__construct();
 		
 	}
+
+	
 
 	public function getCarId()
 	{

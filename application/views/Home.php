@@ -15,14 +15,16 @@
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 	<script src='fullcalendar/locale-all.js'></script>
 	<style type="text/css">
-	.popover{
-	max-height: 70px;
-	width: 230px;
-}
+		body{
+			font-family: 'Prompt', sans-serif;
+		}
+		.popover{
+			max-height: 70px;
+			width: 230px;
+		}
 	</style>
 </head>
-
-<body class="container" style="background-color:#fafafa">
+<body style="background-color:#fafafa">
 	<?php 
 if (isset($this->session->userdata['logged_in'])) {
 	$username = ($this->session->userdata['logged_in']['username']);
@@ -39,7 +41,9 @@ if (isset($this->session->userdata['logged_in'])) {
 	include "NavbarHome.php";
 }
 ?>
-
+	<div class = "container" style="margin-top: 50px">
+		
+	
 	<div class="row"> 
 		<div  id="calendar" class="col-md-10">
 
@@ -66,7 +70,7 @@ if (isset($this->session->userdata['logged_in'])) {
 
 					<div id="divCarList1">
 						<ul>
-							<div class="headList" style="background-color:#E1628B">
+							<div class="headList" style="background-color:#ea8066">
 								<li >
 									<div class="checkbox" >
 										<input  id="listCar1" name='carType[]' class="carType" onchange='uncheckFunc(1)' type='checkbox' value=1>
@@ -87,7 +91,7 @@ if (isset($this->session->userdata['logged_in'])) {
 					</div>
 					<div id="divCarList2">
 						<ul>
-							<div class="headList" style="background-color:#FEDB6F">
+							<div class="headList" style="background-color:#ffad05">
 								<li>
 									<div class="checkbox" >
 										<input id="listCar2" name='carType[]' class="carType" onchange='uncheckFunc(2)' type='checkbox' value=2>
@@ -108,7 +112,7 @@ if (isset($this->session->userdata['logged_in'])) {
 					</div>
 					<div id="divCarList3">
 						<ul>
-							<div class="headList" style="background-color:#4D7FA3">
+							<div class="headList" style="background-color:#c5d74a">
 								<li >
 									<div class="checkbox" >
 										<input id="listCar3"  name='carType[]' class="carType" onchange='uncheckFunc(3)' type='checkbox' value=3>
@@ -129,7 +133,7 @@ if (isset($this->session->userdata['logged_in'])) {
 					</div>					
 					<div id="divCarList4">
 						<ul >
-							<div class="headList" style="background-color:#9FE363">
+							<div class="headList" style="background-color:#79e5c1">
 								<li>
 									<div class="checkbox" >
 										<input id="listCar4" name='carType[]' class="carType" onchange='uncheckFunc(4)' type='checkbox' value=4> 
@@ -318,6 +322,7 @@ if (isset($this->session->userdata['logged_in'])) {
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<!-- End Bootstrap modal -->
+	</div>
 </body>
 <script type="text/javascript">
 
@@ -455,9 +460,9 @@ function changeType(){
 										navLinks: true,
 										locale: 'th',
 										header: {
-											left: 'title',
-											center: '',
-											right : 'today month,agendaWeek,agendaDay prev,next listWeek'
+											left: 'prev,next listWeek today',
+											center: 'title',
+											right : ' month,agendaWeek,agendaDay '
 										},	
 										events: data,
 										eventMouseover: function (calEvent,event, jsEvent) {

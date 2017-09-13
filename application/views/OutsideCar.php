@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
 	<?php 
 	include "Header.php";
 	?>
-
-	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
-
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
 </head>
 <style type="text/css">
 	body{
-		 overflow: hidden;
+		 font-family: 'Prompt', sans-serif;
 	}
 </style>
 <body>
@@ -26,8 +23,8 @@
 	include "NavbarChooser.php";
 	?>		
 	<br>
-	<div  style="margin-top: 100px;">
-		<div class="row">
+	<div  >
+		<div>
 		<div class="col-md-4 col-md-offset-1">
 			<form class="form-horizontal" id="formRequest"  action="#" method="get" accept-charset="utf-8">
 				<center><legend>คำร้องขอจ้างเหมารถจากภายนอก</legend></center>
@@ -86,7 +83,7 @@
 
 			
 			<div class="reccommendCars" >
-			
+					
 					<p> รถแนะนำในระบบที่สามารถจองได้ </p>
 					<table id="rec" class="table table-bordered" >
 						<thead>
@@ -108,7 +105,8 @@
 			</div>
 		</div>
 		<div class="col-md-6" style="margin-left: 50px">
-			<div >			
+			<div>
+			<h3>ประวัติคคำร้องขอใช้รถภายนอก</h3>			
 			<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 				<thead>
 					<tr>
@@ -145,7 +143,8 @@
 			success: function (doc) {
 				alert(doc);  
 				$('#formRequest').trigger("reset");
-				$('#reasonDiv').collapse('hide');            
+				$('#reasonDiv').collapse('hide');
+				reload_table();            
 			},error: function (err) {
 				alert(err.Message);
 			}

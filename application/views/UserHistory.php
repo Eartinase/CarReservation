@@ -3,11 +3,11 @@
 <head>
 	<title>ระบบบริหารจัดการรถยนต์</title>
 	<meta charset="utf-8">
-	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<?php 
+	include "Header.php";
+	?>
 	
+	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 	
@@ -17,10 +17,12 @@
 	
 </head>
 <style type="text/css">
-td{
-	text-align: center;
-}
-
+	td{
+		text-align: center;
+	}
+	body{
+		font-family: 'Prompt', sans-serif;
+	}
 </style>
 <body  style="background-color:#fafafa">
 	
@@ -28,7 +30,7 @@ td{
 	include "NavbarChooser.php";
 	?>
 	
-	<div  style="margin: 100px;">			
+	<div class = "container">			
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>

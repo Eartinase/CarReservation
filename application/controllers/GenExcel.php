@@ -28,4 +28,6 @@ class genExcel extends CI_Controller {
 		$this->load->view('GenExcelUserHistory',$data);
 	}
 
+
+
 }

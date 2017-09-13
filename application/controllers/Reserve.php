@@ -8,11 +8,6 @@ class Reserve extends CI_Controller {
 		$this->load->model('CarsModel');
 	}
 
-	public function sendRequest(){
-		echo json_encode(array("status" => TRUE));
-	}
-
-
 	public function addReserve(){
 		$startDate = $_POST['dateS'];
 		$endDate = $_POST['dateE'];
@@ -73,8 +68,7 @@ class Reserve extends CI_Controller {
 		$this->load->view('UserHistory',$data);
 	}
 
-	public function ajax_update()
-	{
+	public function ajax_update(){
 		$reserveId = $this->input->post('id');
 		$carId = $this->input->post('plateL');
 		$depID =  $this->session->userdata['logged_in']['department'];

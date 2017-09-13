@@ -11,8 +11,8 @@ class genReport extends CI_Controller {
 	}
 
 	public function genPDFUserHistory(){	
-		//$empCode = $this->session->userdata['logged_in']['employeeCode'];
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode(0);
+		$empCode = $this->session->userdata['logged_in']['employeeCode'];
+		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode($empCode);
 		$userInfo = $this-> UserModel->getUserInfo('admin');
 		$carType = array();
 		foreach ($reserveInfo as $value) {
@@ -22,7 +22,7 @@ class genReport extends CI_Controller {
 			$carType[$id] = $v;
 		}
 
-
+		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
