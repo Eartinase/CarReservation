@@ -86,7 +86,7 @@
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
         </tr>
         <?php 
-        if($reserveInfo != null){
+        if($reserveInfo != ""){
           foreach ($reserveInfo as $value) { 
             ?>
             <tr>

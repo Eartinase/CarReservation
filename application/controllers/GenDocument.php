@@ -17,11 +17,13 @@ class genDocument extends CI_Controller {
 		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
 		$userInfo = $this-> UserModel->getUserInfo($username);
 		$carType = array();
-		foreach ($reserveInfo as $value) {
-			$car =$this->CarsModel->getCarById($value->getCarId());
-			$id = $car->getCarId();
-			$v = $car->getCarType();
-			$carType[$id] = $v;
+		if($reserveInfo != ""){
+			foreach ($reserveInfo as $value) {
+				$car =$this->CarsModel->getCarById($value->getCarId());
+				$id = $car->getCarId();
+				$v = $car->getCarType();
+				$carType[$id] = $v;
+			}
 		}
 		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
 		$data['reserveInfo'] = $reserveInfo;
