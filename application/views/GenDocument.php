@@ -33,11 +33,10 @@
     font-family: Arial, Helvetica, sans-serif; 
     font-size: 11pt; 
   } 
-  BODY { 
+  body { 
     font-size: 11pt; 
     font-family: Arial, Helvetica, sans-serif; 
-    margin: 2%;
-    padding-top: 30px;
+    font-family: 'Prompt', sans-serif;
   } 
   
 
