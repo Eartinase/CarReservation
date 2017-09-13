@@ -35,6 +35,10 @@ class genAdmin extends CI_Controller {
 		$this->load->view('GenAdminCarHistory',$data);
 	}
 
+	public function ajax_changeData(){
+		echo json_encode(array("status" => TRUE));
+	}
+
 }
 
 /* End of file CarController.php */

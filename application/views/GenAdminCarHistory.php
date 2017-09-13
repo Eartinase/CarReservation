@@ -1,9 +1,9 @@
   <html>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <head>
-    <?php 
-    include "Header.php";
-    ?>
+    <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+  <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+  <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
     <title>ระบบบริหารจัดการรถยนต์</title>
 
     <style type="text/css">
@@ -56,11 +56,10 @@
     <div class="con">
       
       <h2 style="text-align:center;font-size:36px">รายงานข้อมูลการใช้งานรถ</h2><hr>
+        <form id="formChange">
             <div class="form-group" >
   					<label style="margin-left:5%" for="cartype" class="col-md-3 control-label" >เลือกประเภทรถที่ต้องการออกรายงาน</label>
   					<div class="col-md-3" >
-
-
                     <select name="cars" required id="cartype" onchange="changeType()" class="form-control">
                       <option value="">เลือกประเภทรถ</option>
                       <option value="1">เก๋ง</option>
@@ -68,17 +67,18 @@
                       <option value="3">ตู้</option>
                       <option value="4">ไมโครบัส</option>           
                     </select>
-                  </div>  
-                </div>
-                  <label for="plate" class="col-md-1 control-label">ทะเบียนรถ </label>
-                  <div class="col-md-3">
-                    <select required name="plateLicense" id="plate" class="form-control">
-                      <option value="">เลือกประเภทรถก่อน</option>
-                    </select>
-                  </div>  
-                </div>
-                <br><br>
-
+            </div>  
+            </div>
+            <label for="plate" class="col-md-1 control-label">ทะเบียนรถ </label>
+            <div class="col-md-3">
+                <select required name="plateLicense" id="plate" class="form-control">
+                    <option value="">เลือกประเภทรถก่อน</option>
+                </select>
+            </div>  
+            <button id="searchbut" type="submit" class="btn btn-primary">ยืนยัน</button>
+            <br><br>
+        </form>         
+      </div>
         <br>
       <div class="row">
         <div style="text-align:center">
@@ -110,24 +110,40 @@
             <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
           </tr>
           <?php foreach ($reserveInfo as $value) { ?>
-          <tr>
+          <!--<tr>
             <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getReserveId() ?></td>
             <td style="padding: 15px;border: 1px solid #ddd"><?php echo $this->session->userdata['logged_in']['name'] ?></td>
             <td style="padding: 15px;border: 1px solid #ddd"><?php echo $this->session->userdata['logged_in']['department'] ?></td>
             <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getStartDate() ?></td>
             <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getEndDate() ?></td>
             <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getPlace() ?></td>
-          </tr>
+          </tr>-->
           <?php } ?>
         </table>
       </center>
 
+      <br>
 
-      <script>
-      $(function() {
+    </body>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $("#formChange").submit(function(e){
+            e.preventDefault();
+              $.ajax({
+                  url : "<?php echo site_url('GenAdmin/ajax_changeData')?>/",
+                  type: "POST",
+                  dataType: "JSON",
+                  data : $('#formChange').serialize(),
+                  success: function(data){
+                      alert(data);
+                  },error: function (jqXHR, textStatus, errorThrown){
+                      alert('Error get data from ajax');
+                  }
+                });
 
-        $(document.getElementById("excel")).click(function(){
-
+          });
+      });
+      $(document.getElementById("excel")).click(function(){
           $(".table2excel").table2excel({
             exclude: ".noExl",
             name: "Excel Document Name",
@@ -140,12 +156,12 @@
           
         });
 
-      });
 
-      function openInNewTab(url) {
+
+  function openInNewTab(url) {
         var win = window.open(url, '_blank');
         win.focus();
-      }
+  }
 
   function changeType(){
     select = document.getElementById('plate');
@@ -183,59 +199,13 @@
               select.appendChild(opt);
               <?php } ?>
             }
+    }
 
-          }
-          function changeTypeforEdit(v){
-            select = document.getElementById('plateL');
+           
 
+            
 
-            select.innerHTML = "";    
+    </script>
 
-            if(v==1){
-              <?php foreach ($Type1 as $value) { ?>
-                var opt = document.createElement('option');       
-                opt.value = "<?php echo $value->getCarId(); ?>";
-                opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-                select.appendChild(opt);
-                <?php } ?>
-              }else if(v==2){
-                <?php foreach ($Type2 as $value) { ?> 
-                  var opt = document.createElement('option');       
-                  opt.value = "<?php echo $value->getCarId(); ?>";
-                  opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-                  select.appendChild(opt);
-                  <?php } ?>
-                }else if(v==3){
-                  <?php foreach ($Type3 as $value) { ?>   
-                    var opt = document.createElement('option');       
-                    opt.value = "<?php echo $value->getCarId(); ?>";
-                    opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-                    select.appendChild(opt);
-                    <?php } ?>
-                  }else if(v==4){
-                    <?php foreach ($Type4 as $value) { ?> 
-                      var opt = document.createElement('option');           
-                      opt.value = "<?php echo $value->getCarId(); ?>";
-                      opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-                      select.appendChild(opt);
-                      <?php } ?>
-                    }
-                  } 
-
-            function resetForm(){
-                    select = document.getElementById('plate');
-                    select.innerHTML = "";
-                    var opt = document.createElement('option'); 
-                    opt.innerHTML = "เลือกประเภทรถก่อน";
-                    select.appendChild(opt);
-                    document.getElementById("formReserve").reset();
-                    document.getElementById("sendform").style.height = '0px';     
-                  }
-
-      </script>
-
-      <br>
-
-    </body>
     </html>
 
