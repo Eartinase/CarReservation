@@ -7,6 +7,8 @@ if (isset($this->session->userdata['logged_in'])) {
 	$role = ($this->session->userdata['logged_in']['role']);
 	if($role == "driver"){
 		include "NavbarDriverLogged_in.php";
+	}else if($role=="admin"){
+		include "NavbarAdmin.php";
 	}else{
 		include "NavbarUserLogged_in.php";
 	}			
