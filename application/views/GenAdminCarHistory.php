@@ -40,9 +40,7 @@
       font-size: 11pt; 
       font-family: Arial, Helvetica, sans-serif; 
       font-family: 'Prompt', sans-serif;
-
-    } 
-    
+    }  
 
     </style>
 
@@ -91,12 +89,10 @@
   </div>
 
   <br><br>
-  <center><p>วันที่ออกเอกสาร<?php echo date("Y-m-d");?></p></center>
+  <center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
   <center>
     <table id="reportTable" class="table2excel table" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
       <thead>
-
-
       <tr>
         <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
         <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ชื่อผู้จอง</th>
@@ -129,7 +125,7 @@
             $("#reportTable").find("tr:gt(0)").remove();
             if(data.length > 0 ){ 
               for(var i = 0 ; i < data.length ; i++){
-                $("#reportTable").append('<tr><td>'+data[i].rId+'</td><td>'+data[i].name +'</td><td>'+data[i].department+'</td><td>'+data[i].start+'</td><td>'+data[i].end+'</td><td>'+data[i].place+'</td></tr>');
+                $("#reportTable").append('<tr><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].rId+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].name +'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].department+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].start+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].end+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].place+'</td></tr>');
                 }
               }else{
                 $("#reportTable").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
@@ -153,8 +149,6 @@
       });
 
     });
-
-
 
     function openInNewTab(url) {
       var win = window.open(url, '_blank');
@@ -197,11 +191,7 @@
                 select.appendChild(opt);
                 <?php } ?>
               }
-            }
-
-
-
-            
+            }            
 
             </script>
 
