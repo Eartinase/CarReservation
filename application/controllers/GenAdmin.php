@@ -37,7 +37,22 @@ class genAdmin extends CI_Controller {
 	}
 
 	public function ajax_changeData(){
-		echo json_encode(array("status" => TRUE));
+		$plateL = $_POST['plateLicense'];
+		$robj = $this->ReservationModel->getReserveFromCarID($plateL);
+		$data = array();
+		foreach ($robj as $value) {	
+				 $data[] = array(
+				 	'rId' => $value['CurrentId'],
+					'name' => "สมชาย เข็มมุด",
+	               	"department" => $value['depID'],
+	               	"start" => $value['StartDate'],
+	               	"end" => $value['EndDate'],
+	               	"place" => $value['Place']
+	       );
+		}
+		
+		//output to json format
+		echo json_encode($data);
 	}
 
 }

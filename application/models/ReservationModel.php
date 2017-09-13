@@ -221,6 +221,12 @@ class ReservationModel extends CI_Model {
 		return $r;	
 	}
 
+
+	public function getReserveFromCarID($carId){
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.carId = '.$carId);
+		return $query->result_array();
+	}
+
 	public function getReserveFromCarType($carTypeId ,$carId){
 		$reserveInfo = null;
 		$r = "";

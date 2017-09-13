@@ -91,15 +91,12 @@
   </div>
 
   <br><br>
-
+  <center><p>วันที่ออกเอกสาร<?php echo date("Y-m-d");?></p></center>
   <center>
-    <table class="table2excel" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
-      <tr><p>
-        วันที่ออกเอกสาร
-        <?php
-        echo date("Y-m-d");
-        ?></p>
-      </tr>
+    <table id="reportTable" class="table2excel table" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
+      <thead>
+
+
       <tr>
         <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
         <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ชื่อผู้จอง</th>
@@ -108,16 +105,11 @@
         <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่กลับ</th>
         <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
       </tr>
-      <?php foreach ($reserveInfo as $value) { ?>
-          <!--<tr>
-            <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getReserveId() ?></td>
-            <td style="padding: 15px;border: 1px solid #ddd"><?php echo $this->session->userdata['logged_in']['name'] ?></td>
-            <td style="padding: 15px;border: 1px solid #ddd"><?php echo $this->session->userdata['logged_in']['department'] ?></td>
-            <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getStartDate() ?></td>
-            <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getEndDate() ?></td>
-            <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getPlace() ?></td>
-          </tr>-->
-          <?php } ?>
+    </thead>
+        <tbody>
+          
+        </tbody>
+     
         </table>
       </center>
 
@@ -134,7 +126,14 @@
           dataType: "JSON",
           data : $('#formChange').serialize(),
           success: function(data){
-            alert(data);
+            $("#reportTable").find("tr:gt(0)").remove();
+            if(data.length > 0 ){ 
+              for(var i = 0 ; i < data.length ; i++){
+                $("#reportTable").append('<tr><td>'+data[i].rId+'</td><td>'+data[i].name +'</td><td>'+data[i].department+'</td><td>'+data[i].start+'</td><td>'+data[i].end+'</td><td>'+data[i].place+'</td></tr>');
+                }
+              }else{
+                $("#reportTable").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
+              } 
           },error: function (jqXHR, textStatus, errorThrown){
             alert('Error get data from ajax');
           }
