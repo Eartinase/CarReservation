@@ -14,13 +14,13 @@ $role = ($this->session->userdata['logged_in']['role']);
     <h2 style="padding-left:85%">วันที่ออกเอกสาร
     <?php
  
-    $tomorrow = date("Y-m-d", time() + 86400);
+    $date = date("Y-m-d");
      
-    echo $tomorrow
+    echo $date
  
-    ?></h2>
+    ?></h2><span>
 <h2 style="text-align:center;font-size:40px">รายงานประวัติการใช้บริการรถ</h2>
-<p style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง <?php echo $name ?> หน่วยงาน <?php echo $department ?> ตำแหน่ง <?php echo $role ?></p>
+<p style="text-align:center;font-size:20px"><b>ชื่อ-นามสกุลผู้จอง</b> <?php echo $name ?> <b>หน่วยงาน</b> <?php echo $departmentName ?> <b>ตำแหน่ง</b> <?php echo $role ?></p>
 
 <table style="font-size:20px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 100%" >
   <tr>

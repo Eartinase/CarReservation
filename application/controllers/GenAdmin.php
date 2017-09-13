@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class genReport extends CI_Controller {
+class genAdmin extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,10 +10,13 @@ class genReport extends CI_Controller {
 		$this->load->model('UserModel','UserModel');		
 	}
 
-	public function genPDFUserHistory(){	
+	public function genAdminCarHistory(){	
 		$empCode = $this->session->userdata['logged_in']['employeeCode'];
+		$username = ($this->session->userdata['logged_in']['username']);
+
 		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode($empCode);
-		$userInfo = $this-> UserModel->getUserInfo('admin');
+		$userInfo = $this-> UserModel->getUserInfo($username);
+		
 		$carType = array();
 		foreach ($reserveInfo as $value) {
 			$car =$this->CarsModel->getCarById($value->getCarId());
@@ -22,11 +25,15 @@ class genReport extends CI_Controller {
 			$carType[$id] = $v;
 		}
 
-		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
+ 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
+ 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
+ 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);	
+
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
-		$this->load->view('GenPDFUserHistory',$data);
+		$this->load->view('GenAdminCarHistory',$data);
 	}
 
 }

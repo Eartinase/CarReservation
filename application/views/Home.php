@@ -237,7 +237,7 @@ if (isset($this->session->userdata['logged_in'])) {
 							</div>					
 							
 							<br>
-							<iframe style = "height: 0px; width: 100%" target="" src="/senior/application/views/Result.php" id="sendform" name="sendform"></iframe>
+							<iframe style = "height: 0px; width: 100%" target="" src="/senior/application/views/UnableToReserve.php" id="sendform" name="sendform"></iframe>
 							
 						</div>
 						<div class="modal-footer">

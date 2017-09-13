@@ -21,10 +21,9 @@ class Reserve extends CI_Controller {
 			$data['check'] = true;			
 		}else{
 			$data['check'] = false;
-			$data['message']="ไม่สามารถทำการจองได้เนื่องจากรถได้ถูกจองแล้ว";
-			
+			$data['message']="ไม่สามารถทำการจองได้เนื่องจากรถได้ถูกจองแล้ว";			
 		}
-		$this->load->view('Result', $data);				
+		$this->load->view('UnableToReserve', $data);				
 	}
 
 	public function ajax_deleteReserve($reserveID){
@@ -69,8 +68,7 @@ class Reserve extends CI_Controller {
 		$this->load->view('UserHistory',$data);
 	}
 
-	public function ajax_update()
-	{
+	public function ajax_update(){
 		$reserveId = $this->input->post('id');
 		$carId = $this->input->post('plateL');
 		$depID =  $this->session->userdata['logged_in']['department'];
