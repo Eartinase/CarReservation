@@ -24,16 +24,30 @@
 		}
 	</style>
 </head>
-<body style="background-color:#fafafa">
+<body style="background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);">
 	<?php 
-include "NavbarChooser.php";
-?>
-	<div class = "container" style="margin-top: 50px">
-		
+if (isset($this->session->userdata['logged_in'])) {
+	$username = ($this->session->userdata['logged_in']['username']);
+	$employeeCode = ($this->session->userdata['logged_in']['employeeCode']);
+	$name = ($this->session->userdata['logged_in']['name']);
+	$department = ($this->session->userdata['logged_in']['department']);
+	$role = ($this->session->userdata['logged_in']['role']);
+	if($role == "driver"){
+		include "NavbarDriverLogged_in.php";
+	}else if($role=="admin"){
+		include "NavbarAdmin.php";
+	}else{
+		include "NavbarUserLogged_in.php";
+	}			
+}else{
+	include "NavbarHome.php";
 	
+}
+?>
+	<div class = "container" style="margin-top: 50px">	
 	<div class="row"> 
-		<div  id="calendar" class="col-md-10">
 
+		<div  id="calendar" class="col-md-10">
 		</div>
 
 		<div class="col-md-2">
