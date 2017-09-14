@@ -13,7 +13,7 @@ if (isset($this->session->userdata['logged_in'])) {
 		include "NavbarUserLogged_in.php";
 	}			
 }else{
-	
-	//redirect($base_url."HomeInfo");
+
+	redirect($base_url."HomeInfo");
 }
 ?>
