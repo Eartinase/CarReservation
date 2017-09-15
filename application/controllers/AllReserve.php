@@ -8,10 +8,16 @@ class AllReserve extends CI_Controller {
 		$this->load->model('CarsModel');
 		$this->load->model('UserModel');
 	}
-
-	public function index(){
-		$this->load->view('AllReserveList');
-	}	
+	
+	public function index(){				
+		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
+		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
+ 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
+ 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
+ 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
+ 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
+		$this->load->view('AllReserveList', $data);
+	}
 
 	public function ajax_reservelist(){
 		$draw = intval($this->input->get("draw"));
@@ -26,13 +32,13 @@ class AllReserve extends CI_Controller {
 				$no++;
 				$data[] = array(
 					"<center>".$value->getCarId()."</center>",
-					"<center>". $this->UserModel->getNamee($value->getEmployeeCode())."</center>",
+					"<center>".$this->UserModel->getNamee($value->getEmployeeCode())."</center>",
+					"<center>".$this->UserModel->getTel($value->getEmployeeCode())."</center>",
 					"<center>".$car->getCarType()."</center>",
 					"<center>".$value->getPlateLicese()."</center>",
 					"<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
 					"<center>".date("Y-m-d H:i", strtotime($value->getEndDate()))."</center>",
-					$value->getPlace(),
-					'<center>active</center>',
+					$value->getPlace(),					
 					'<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_reserve('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
 					<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
 					);			
@@ -44,6 +50,30 @@ class AllReserve extends CI_Controller {
 		//output to json format
 		echo json_encode($output);
 		exit;
+	}
+
+	public function ajax_deleteReserve($reserveID){
+		$this->ReservationModel->deleteReserve($reserveID);
+		echo json_encode(array("status" => TRUE));
+	}	
+
+	public function ajax_edit($rID){
+		$ReserveInfo = $this->ReservationModel->getCurrentReservationFromID($rID);
+		$selectCar = $this->CarsModel->getCarById($ReserveInfo->getCarId());
+
+		$data = array(
+			'reserveId' => $ReserveInfo->getReserveID(),
+			'carTypeId' => $selectCar->getCarTypeId(),
+			'carId' => $ReserveInfo->getPlateLicese(),			
+			'reserver' => $this->ReservationModel->getReserverName($rID),
+			'startDate' => $ReserveInfo->getStartDate(),
+			'endDate' => $ReserveInfo->getEndDate(),
+			'tel' => $this->ReservationModel->getTelFromReserveId($rID),
+			//'carId'	=> $ReserveInfo->getCarId(),
+			'place' => $ReserveInfo->getPlace()	
+			
+			);
+		echo json_encode($data);		
 	}
 
 }

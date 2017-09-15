@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class homeInfo extends CI_Controller {
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		//$this->load->model('CarsModel','CarsModel');
 		$this->load->model('ReservationModel','ReservationModel');
@@ -11,8 +10,7 @@ class homeInfo extends CI_Controller {
 		
 	}
 
-	public function index()
-	{				
+	public function index(){				
 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
 		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);

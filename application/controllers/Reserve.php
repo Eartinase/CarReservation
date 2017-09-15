@@ -52,8 +52,7 @@ class Reserve extends CI_Controller {
 		//if($key !== FALSE) {
 		//	unset($carlist[$key]);
 		//}
-		//$data['car'] = $carlist;
-		
+		//$data['car'] = $carlist;		
 	}
 
 	public function outsideCar(){

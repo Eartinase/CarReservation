@@ -36,12 +36,12 @@ body{
 				<tr>
 					<td>Car ID</td>
 					<td>ผู้จอง</td>
+					<td>เบอร์ติดต่อ</td>
 					<td>ประเภทรถ</td> 
 					<td>ทะเบียนรถ</td> 
 					<td>วันที่เดินทาง</td>
 					<td>วันที่กลับ</td>
 					<td>สถานที่</td>
-					<td>สถานะ</td>
 					<td></td>
 				</tr>
 			</thead>
@@ -79,6 +79,14 @@ body{
 								<label class="col-md-3 control-label">ทะเบียนรถ</label>
 								<div class="col-md-8">
 									<select id="plateL" class="form-control" name="plateL"></select>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">ผู้จอง</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="reserver" readonly>
+									<!--select id="plateL" class="form-control" name="reserver" readonly></select-->
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -124,12 +132,12 @@ body{
 </body>
 
 <script type="text/javascript">
-/*
+
 function deleteRes(rID){
 	var con = confirm("คุณต้องการยกเลิกการจองนี้หรือไม่");
 	if(con){
 		$.ajax({
-			url : "<?php echo site_url('Reserve/ajax_deleteReserve')?>/"+rID,
+			url : "<?php echo site_url('AllReserve/ajax_deleteReserve')?>/"+rID,
 			type: "POST",
 			dataType: "JSON",
 			success: function(data){
@@ -148,64 +156,31 @@ function edit_reserve(rID){
 	$('#form')[0].reset(); // reset form on modals
 	$('.form-group').removeClass('has-error'); // clear error class
 	$('.help-block').empty(); // clear error string
-
 		    //Ajax Load data from ajax
-	$.ajax({
-	url : "<?php echo site_url('Reserve/ajax_edit')?>/",
-	type: "GET",
-	dataType: "JSON",
-	success: function(data){
-		$('#id').val(data.reserveId);
-		$('[name="carType"]').val(data.carTypeId).change();
-		$('[name="plateL"]').val(data.carId).change();
-		$('[name="dateS"]').datetimepicker('update',data.startDate);
-		$('[name="dateE"]').datetimepicker('update',data.endDate);
-		$('[name="placeEdit"]').val(data.place);
-		$('[name="telEdit"]').val(data.tel);
-		$('#modal_form').modal('show'); // show bootstrap modal when complete loaded	            
-			},
-			error: function (jqXHR, textStatus, errorThrown){
-			alert('Error get data from ajax');
-			}
-	});
+		    $.ajax({
+		    	url : "<?php echo site_url('AllReserve/ajax_edit')?>/"+rID,
+		    	type: "GET",
+		    	dataType: "JSON",
+		    	success: function(data){
+		    		$('#id').val(data.reserveId);
+		    		$('[name="carType"]').val(data.carTypeId).change();
+		    		$('[name="plateL"]').val(data.carId).change();
+		    		$('[name="reserver"]').val(data.reserver).change();		
+		    		$('[name="dateS"]').datetimepicker('update',data.startDate);
+		    		$('[name="dateE"]').datetimepicker('update',data.endDate);
+		    		$('[name="telEdit"]').val(data.tel);
+		    		$('[name="placeEdit"]').val(data.place);		    		
+					$('#modal_form').modal('show'); // show bootstrap modal when complete loaded	            
+	},
+	error: function (jqXHR, textStatus, errorThrown){
+		alert('Error get data from ajax');
+	}
+});
 		}
 
-		function changeType(v){
-			select = document.getElementById('plateL');
-			select.innerHTML = "";		
-
-			if(v==1){
-				<?php foreach ($Type1 as $value) { ?>
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-					<?php } ?>
-				}else if(v==2){
-					<?php foreach ($Type2 as $value) { ?>	
-						var opt = document.createElement('option');				
-						opt.value = "<?php echo $value->getCarId(); ?>";
-						opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-						select.appendChild(opt);
-						<?php } ?>
-					}else if(v==3){
-						<?php foreach ($Type3 as $value) { ?>		
-							var opt = document.createElement('option');				
-							opt.value = "<?php echo $value->getCarId(); ?>";
-							opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-							select.appendChild(opt);
-							<?php } ?>
-						}else if(v==4){
-							<?php foreach ($Type4 as $value) { ?>	
-								var opt = document.createElement('option');						
-								opt.value = "<?php echo $value->getCarId(); ?>";
-								opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-								select.appendChild(opt);
-								<?php } ?>
-							}
-						}
-
-						function save(){
+		
+/*
+	function save(){
     $('#btnSave').text('saving...'); //change button text
     $('#btnSave').attr('disabled',true); //set button disable 
 
@@ -277,23 +252,45 @@ $(document).ready(function() {
 	    $('#dateS').datetimepicker('setStartDate', dateToday);
 	    $('#dateE').datetimepicker('setStartDate', dateToday);
 	});
-/*
+
 function reload_table(){
 	table.ajax.reload(null,false); //reload datatable ajax 
 }
 
-$(document).ready(function() {
-	$('#table').DataTable( {
-       // "ajax": '../ajax/data/arrays.txt'
-       "ajax": {
-       	"url" : "<?php echo base_url(); ?>AllReserve/ajax_reservelist",
-       	"type" : "POST",
-       	"bPaginate":true,
-       	"processing": true
-       }
+function changeType(v){
+	select = document.getElementById('plateL');
+	select.innerHTML = "";		
+		if(v==1){
+			<?php foreach ($Type1 as $value) { ?>
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+			<?php } ?>
+		}else if(v==2){
+			<?php foreach ($Type2 as $value) { ?>	
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+			<?php } ?>
+		}else if(v==3){
+			<?php foreach ($Type3 as $value) { ?>		
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+			<?php } ?>
+		}else if(v==4){
+			<?php foreach ($Type4 as $value) { ?>	
+			var opt = document.createElement('option');						
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+			<?php } ?>
+		}
+	}
 
-   } );
-} );*/
 </script>
 
 </html>

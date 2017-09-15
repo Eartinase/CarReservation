@@ -14,7 +14,7 @@ class ReservationModel extends CI_Model {
 	private $carId;
 	private $tel;
 	private $departmentID;
-	
+
 	public function __construct(){
 		parent::__construct();		
 	}
@@ -306,7 +306,6 @@ class ReservationModel extends CI_Model {
 			if($row->CurrentId != $reserveId){
 				$num++;
 			}
-			
 		}
 		if($num < 1){
 			return true;
@@ -320,8 +319,7 @@ class ReservationModel extends CI_Model {
 		$currentReserve = null;
 		$r = "";
 		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.depID = '.$depID);
-		foreach ($query->result() as $row)
-		{
+		foreach ($query->result() as $row){
 			$currentReserve = new ReservationModel;
 			$this->matchReservationObject($currentReserve,$row);
 			if($r === ""){
@@ -365,6 +363,29 @@ class ReservationModel extends CI_Model {
 		$reserveInfo->setTel($row->Tel);
 		$reserveInfo->setDepartmentID($row->depID);
 	}	
+
+	public function getTelFromReserveId($id){
+		$this->db->select('Tel');
+		$this->db->where('CurrentId', $id);
+		$query = $this->db->get('currentreservation');
+		$Tel = "";
+		foreach ($query->result() as $row){
+			$Tel = $row->Tel;
+		}
+		return $Tel;
+	}
+
+	public function getReserverName($id){
+		$sql = 'SELECT u.name from user u join currentreservation c on c.EmployeeCode = u.EmployeeCode';
+
+		$query = $this->db->query($sql);
+
+		$name = "";
+		foreach ($query->result() as $row){
+			$name = $row->name;
+		}
+		return $name;
+	}
 
 }
 

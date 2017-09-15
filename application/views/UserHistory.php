@@ -228,8 +228,7 @@ function save(){
             $('#btnSave').text('save'); //change button text
         	$('#btnSave').attr('disabled',false); //set button enable 
         },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
+        error: function (jqXHR, textStatus, errorThrown){
         	alert('Error adding / update data');
             $('#btnSave').text('save'); //change button text
             $('#btnSave').attr('disabled',false); //set button enable 
