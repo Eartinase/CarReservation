@@ -4,9 +4,9 @@
     <?php
     include "header.php";
     ?>
-    <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-    <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-    <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+    <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.table2excel.js"></script>
+   
     <title>ระบบบริหารจัดการรถยนต์</title>
 
     <style type="text/css">
@@ -42,10 +42,7 @@
       font-family: 'Prompt', sans-serif;
     }  
 
-    </style>
-
-    <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.table2excel.js"></script>
+    </style>   
 
   </head>
 
