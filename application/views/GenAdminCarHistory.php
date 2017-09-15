@@ -6,11 +6,10 @@
     ?>
     <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.table2excel.js"></script>
-   
+
     <title>ระบบบริหารจัดการรถยนต์</title>
 
     <style type="text/css">
-
     small { 
       font-family: Arial, Helvetica, sans-serif; 
       font-size: 9pt; 
@@ -90,107 +89,106 @@
   <center>
     <table id="reportTable" class="table2excel table" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
       <thead>
-      <tr>
-        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
-        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ชื่อผู้จอง</th>
-        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หน่วยงาน</th>
-        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่เดินทาง</th>
-        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่กลับ</th>
-        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
-      </tr>
-    </thead>
-        <tbody>
-          
-        </tbody>
-     
-        </table>
-      </center>
+        <tr>
+          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
+          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ชื่อผู้จอง</th>
+          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หน่วยงาน</th>
+          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่เดินทาง</th>
+          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่กลับ</th>
+          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
+        </tr>
+      </thead>
+      <tbody>        
+      </tbody>
 
-      <br>
+    </table>
+  </center>
 
-    </body>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $("#formChange").submit(function(e){
-        e.preventDefault();
-        $.ajax({
-          url : "<?php echo site_url('GenAdmin/ajax_changeData')?>/",
-          type: "POST",
-          dataType: "JSON",
-          data : $('#formChange').serialize(),
-          success: function(data){
-            $("#reportTable").find("tr:gt(0)").remove();
-            if(data.length > 0 ){ 
-              for(var i = 0 ; i < data.length ; i++){
-                $("#reportTable").append('<tr><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].rId+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].name +'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].department+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].start+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].end+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].place+'</td></tr>');
-                }
-              }else{
-                $("#reportTable").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
-              } 
-          },error: function (jqXHR, textStatus, errorThrown){
-            alert('Error get data from ajax');
+  <br>
+
+</body>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#formChange").submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url : "<?php echo site_url('GenAdmin/ajax_changeData')?>/",
+      type: "POST",
+      dataType: "JSON",
+      data : $('#formChange').serialize(),
+      success: function(data){
+        $("#reportTable").find("tr:gt(0)").remove();
+        if(data.length > 0 ){ 
+          for(var i = 0 ; i < data.length ; i++){
+            $("#reportTable").append('<tr><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].rId+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].name +'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].department+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].start+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].end+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].place+'</td></tr>');
           }
-        });
-
-      });
-    });
-    $(document.getElementById("excel")).click(function(){
-      $(".table2excel").table2excel({
-        exclude: ".noExl",
-        name: "Excel Document Name",
-        filename: "รายงานประวัติการใช้บริการรถ",
-        fileext: ".xls",
-        exclude_img: true,
-        exclude_links: true,
-        exclude_inputs: true
-      });
-
+        }else{
+          $("#reportTable").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
+        } 
+      },error: function (jqXHR, textStatus, errorThrown){
+        alert('Error get data from ajax');
+      }
     });
 
-    function openInNewTab(url) {
-      var win = window.open(url, '_blank');
-      win.focus();
-    }
+});
+});
+  $(document.getElementById("excel")).click(function(){
+    $(".table2excel").table2excel({
+      exclude: ".noExl",
+      name: "Excel Document Name",
+      filename: "รายงานประวัติการใช้บริการรถ",
+      fileext: ".xls",
+      exclude_img: true,
+      exclude_links: true,
+      exclude_inputs: true
+    });
 
-    function changeType(){
-      select = document.getElementById('plate');
-      e = document.getElementById('cartype');
-      v = e.options[e.selectedIndex].value;
+  });
 
-      select.innerHTML = "";    
+  function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+  }
 
-      if(v==1){
-        <?php foreach ($Type1 as $value) { ?>
+  function changeType(){
+    select = document.getElementById('plate');
+    e = document.getElementById('cartype');
+    v = e.options[e.selectedIndex].value;
+
+    select.innerHTML = "";    
+
+    if(v==1){
+      <?php foreach ($Type1 as $value) { ?>
+        var opt = document.createElement('option');       
+        opt.value = "<?php echo $value->getCarId(); ?>";
+        opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+        select.appendChild(opt);
+        <?php } ?>
+      }else if(v==2){
+        <?php foreach ($Type2 as $value) { ?> 
           var opt = document.createElement('option');       
           opt.value = "<?php echo $value->getCarId(); ?>";
           opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
           select.appendChild(opt);
           <?php } ?>
-        }else if(v==2){
-          <?php foreach ($Type2 as $value) { ?> 
+        }else if(v==3){
+          <?php foreach ($Type3 as $value) { ?>   
             var opt = document.createElement('option');       
             opt.value = "<?php echo $value->getCarId(); ?>";
             opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
             select.appendChild(opt);
             <?php } ?>
-          }else if(v==3){
-            <?php foreach ($Type3 as $value) { ?>   
-              var opt = document.createElement('option');       
+          }else if(v==4){
+            <?php foreach ($Type4 as $value) { ?> 
+              var opt = document.createElement('option');           
               opt.value = "<?php echo $value->getCarId(); ?>";
               opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
               select.appendChild(opt);
               <?php } ?>
-            }else if(v==4){
-              <?php foreach ($Type4 as $value) { ?> 
-                var opt = document.createElement('option');           
-                opt.value = "<?php echo $value->getCarId(); ?>";
-                opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-                select.appendChild(opt);
-                <?php } ?>
-              }
-            }            
+            }
+          }            
 
-            </script>
+          </script>
 
-            </html>
+          </html>
 

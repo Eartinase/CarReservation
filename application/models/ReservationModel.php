@@ -14,10 +14,9 @@ class ReservationModel extends CI_Model {
 	private $carId;
 	private $tel;
 	private $departmentID;
- 	
+	
 	public function __construct(){
-		parent::__construct();
-		
+		parent::__construct();		
 	}
 
 	public function getDepartmentID()
@@ -74,42 +73,42 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function setStartDate($startDate){
-		 $this->startDate = $startDate;
+		$this->startDate = $startDate;
 	}
 
 	public function setEndDate($endDate){
-		 $this->endDate = $endDate;
+		$this->endDate = $endDate;
 	}
 
 	public function setPlace($place){
-		 $this->place = $place;
+		$this->place = $place;
 	}
 
 	public function setDriverId($driverId){
-		 $this->driverId = $driverId;
+		$this->driverId = $driverId;
 	}
 
 	public function setColor($color){
-		 $this->color = $color;
+		$this->color = $color;
 	}
 
 	public function setCarId($carId){
-		 $this->carId = $carId;
+		$this->carId = $carId;
 	}
 
 	public function setReserveId($reserveId){
-		 $this->reserveId = $reserveId;
+		$this->reserveId = $reserveId;
 	}
 
 	public function setTel($tel){
-		 $this->tel = $tel;
+		$this->tel = $tel;
 	}
 
 	public function setDepartmentID($departmentID){
 		$this->departmentID = $departmentID;
 	}
 	
-		public function driverReserve(){
+	public function driverReserve(){
 		$emId = $this->session->userdata['logged_in']['employeeCode'];
 		$sql='SELECT cr.currentid, ct.CarType, c.PlateLicense, u.Name, cr.place, cr.StartDate, cr.EndDate '.
 		'FROM currentreservation cr '.
@@ -132,11 +131,11 @@ class ReservationModel extends CI_Model {
 
 	public function depart($CurrentId, $driverId, $Departure, $CarMilesStart){		
 		$data = array(
-               'driverId' 		=> $driverId,
-               'Departure' 		=> $Departure,
-               'CarMilesStart' 	=> $CarMilesStart,
-               'Accept'			=> "1"
-            );
+			'driverId' 		=> $driverId,
+			'Departure' 		=> $Departure,
+			'CarMilesStart' 	=> $CarMilesStart,
+			'Accept'			=> "1"
+			);
 		$this->db->where('CurrentId', $CurrentId);
 		$this->db->update('currentreservation', $data);	
 	}
@@ -250,7 +249,7 @@ class ReservationModel extends CI_Model {
 		$r = ['not','have'];
 		if($carId != null){
 			foreach ($carId as $value) {
-			$query = $this->db->query('SELECT carTypeId FROM cars where carId = '.$value);
+				$query = $this->db->query('SELECT carTypeId FROM cars where carId = '.$value);
 				foreach ($query->result() as $row){
 					array_push($r,$row->carTypeId);
 				}
@@ -274,9 +273,9 @@ class ReservationModel extends CI_Model {
 				);
 
 			$query = $this->db->select('driverId')
-				->from('cars')
-				->where('carId', $data["carId"])
-				->get();
+			->from('cars')
+			->where('carId', $data["carId"])
+			->get();
 
 			foreach ($query->result() as $row){			
 				$input["driverId"] = $row->driverId;
@@ -290,30 +289,30 @@ class ReservationModel extends CI_Model {
 
 	// function for check that Reservation is not duplicate
 	private function checkReservation($carId , $startDate , $endDate){
-			$query = $this->db->query('SELECT carId FROM currentreservation WHERE carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
-			$row = $query->row();
-			 if(!isset($row)){
-			 	return true;
-			 }else{
-			 	return false;
-			 }
+		$query = $this->db->query('SELECT carId FROM currentreservation WHERE carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
+		$row = $query->row();
+		if(!isset($row)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	public function checkReservationforEdit($carId , $startDate , $endDate , $reserveId){
-			$query = $this->db->query('SELECT CurrentId FROM currentreservation WHERE  carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
-			$row = $query->row();
-			$num = 0;
-			foreach ($query->result() as $row){
-				if($row->CurrentId != $reserveId){
-					$num++;
-				}
-				
+		$query = $this->db->query('SELECT CurrentId FROM currentreservation WHERE  carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
+		$row = $query->row();
+		$num = 0;
+		foreach ($query->result() as $row){
+			if($row->CurrentId != $reserveId){
+				$num++;
 			}
-			 if($num < 1){
-			 	return true;
-			 }else{
-			 	return false;
-			 }
+			
+		}
+		if($num < 1){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 
@@ -340,15 +339,15 @@ class ReservationModel extends CI_Model {
 
 	public function updateReserve($where , $data){
 		extract($data);
-    	$this->db->where('currentId', $where);
-    	$this->db->update('currentreservation', 
-    		array(	'carId' => $carId ,
-    				'employeeCode' => $empCode , 
-    				'place' => $place , 
-    				'startDate' => $dateS,
-    				'endDate' => $dateE,
-    				'Tel' => $tel
-    			));
+		$this->db->where('currentId', $where);
+		$this->db->update('currentreservation', 
+			array(	'carId' => $carId ,
+				'employeeCode' => $empCode , 
+				'place' => $place , 
+				'startDate' => $dateS,
+				'endDate' => $dateE,
+				'Tel' => $tel
+				));
 		return true;
 	}
 	

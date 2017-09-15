@@ -37,8 +37,11 @@
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">จัดการ<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>AddCar">เพิ่มรถ</a></li>                
-              </ul>              
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>AddCar">เพิ่มรถ</a></li> 
+                <li role="separator" class="divider"></li>
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>AllReserve">การจองทั้งหมด</a></li>                
+              </ul> 
+                       
             </li>
             <li style="padding-left: 0px"  class="dropdown">
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สร้างรายงาน<span class="caret"></span>
