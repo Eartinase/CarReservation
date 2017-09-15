@@ -8,4 +8,9 @@
 <title>ระบบบริหารจัดการรถยนต์</title>
 <link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
 
-
+<style type="text/css">
+body{
+	background: no-repeat center center fixed;
+	background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);	
+}
+</style>
