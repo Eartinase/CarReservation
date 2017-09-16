@@ -22,10 +22,15 @@ class homeInfo extends CI_Controller {
 		$this->load->view('Home', $data);
 	}
 
+	public function driverLogin(){
+		$this->load->view('HomeDriver');
+
+	}
+
 	public function ajax_loadEvent(){
 		$reserve = $this-> ReservationModel->getCurrentReservation();
 		$data = array();
-	
+		if($reserve != ''){
 		foreach ($reserve as $value) {
 				
 				$data[] = array(
@@ -37,10 +42,12 @@ class homeInfo extends CI_Controller {
 	                "editable" => false
 	               );
 			}
-		
+		}
 		echo json_encode($data);
 		exit();
 	}
+
+
 
 }
 

@@ -25,6 +25,27 @@ class Driver extends CI_Controller {
 		$this->load->view('DriverView', $send);
 	}	
 
+	public function ajax_loadEventDriver(){
+		//$reserve = $this-> ReservationModel->getCurrentReservation();
+		$emId = $this->session->userdata['logged_in']['employeeCode'];
+		$reserve = $this-> ReservationModel -> getCurrentReservationFromDriver($emId);
+		$data = array();
+		if($reserve != ''){
+			foreach ($reserve as $value) {
+				$data[] = array(
+					'id' => $value->getReserveId(),
+	                "title" => $value->getPlateLicese(),
+	                "start" => $value->getStartDate(),
+	                "end" => $value->getEndDate(),
+	                "color" => $value->getColor(),
+	                "editable" => false
+	               );
+			}
+		}
+		echo json_encode($data);
+		exit();
+	}
+
 	public function departure(){
 		$CurrentId = $_POST['CurrentId'];
 		$driverId = $_POST['driverId'];

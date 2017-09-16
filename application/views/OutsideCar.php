@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 	<?php 
@@ -14,6 +14,13 @@
 <style type="text/css">
 	body{
 		 font-family: 'Prompt', sans-serif;
+		 background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+	}
+	#formRequest{
+		background-color: #DDE0E0;
+		padding : 15px;
+		padding-top: 25px;
+		border-radius: 3%;
 	}
 </style>
 <body>
@@ -21,14 +28,15 @@
 	include "NavbarChooser.php";
 	?>		
 	<br>
-	<div  >
+	<div>
 		<div>
-		<div class="col-md-4 col-md-offset-1">
+		<div class="col-md-4 col-md-offset-1" style="margin-top: 20px">
+		
 			<form class="form-horizontal" id="formRequest"  action="#" method="get" accept-charset="utf-8">
 				<center><legend>คำร้องขอจ้างเหมารถจากภายนอก</legend></center>
 				<div class="form-group" >
 					<label for="cartype" class="col-md-3 control-label" >ประเภทรถ </label>
-					<div class="col-md-9" >
+					<div class="col-md-8" >
 						<select name="cartype" required id="cartype" onchange="reccommend()" class="form-control">
 							<option value="">เลือกประเภทรถ</option>
 							<option value="1">แท็กซี่</option>
@@ -38,11 +46,13 @@
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">วันที่เดินทาง</label>
-					<div class="col-md-4">
+					<div class="col-md-8">
 						<input id="dateS" name="dateS"  class="form-control datetimepicker" onchange="reccommend()" type="text" autocomplete="off" required>
 					</div>
-					<label class="col-md-1 control-label" >ถึง</label>
-					<div class="col-md-4">
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label" >วันที่กลับ</label>
+					<div class="col-md-8">
 						<input id="dateE" name="dateE" class="form-control datetimepicker" onchange="reccommend()"  type="text" autocomplete="off" required>
 						<span class="help-block"></span>
 					</div>	                    
@@ -52,14 +62,14 @@
 				
 				<div class="form-group" id='telEditG'>
 					<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
-					<div class="col-md-9 ">
+					<div class="col-md-8 ">
 						<input id="tel" name="tel" maxlength="10" name="tel" class="form-control" type="tel" autocomplete="off" required>
 						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">สถานที่</label>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<textarea id="place" name="place" placeholder="สถานที่" class="form-control" required></textarea>
 						<span class="help-block"></span>
 					</div>
@@ -71,15 +81,13 @@
 	  					<label class="radio-inline col-md-4" style='margin: 0' ><input   type="radio" id="radio2" value="0" name="reason" > เหตุผลอื่นๆ  </label>
 	  					<br><br>
 	  					
-					</div><div id="reasonDiv"  class="collapse col-md-9 col-md-offset-3" ><textarea id="reason" name="reasonText" placeholder="กรุณาใส่เหตุผล" class="form-control" required></textarea></div>
+					</div><div id="reasonDiv"  class="collapse col-md-8 col-md-offset-3" ><textarea id="reason" name="reasonText" placeholder="กรุณาใส่เหตุผล" class="form-control" required></textarea></div>
 					
 				</div>
 				
-				<div  class="col-md-2 col-md-offset-10"><button type="submit" id="sendFrom" class="btn btn-primary" >ยืนยัน</button></div>
-			
+				<center><button style="width: 20%" type="submit" id="sendFrom" class="btn btn-primary" >ยืนยัน</button>	</center>		
 			</form>
-
-			
+		
 			<div class="reccommendCars" >
 					
 					<p> รถแนะนำในระบบที่สามารถจองได้ </p>
@@ -127,7 +135,73 @@
 		</div>
 </div>
 	
+<form class="form-horizontal" id="formReserve" target="sendform" action="<?php echo base_url();?>Reserve/addReserve" method="post">
+		
+		<div class="modal fade" id="reserve" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
+					</div>
+					<div class="modal-body form">
 
+						<div id="form-body">
+							<div class="form-group">
+								<label for="cartype" class="col-md-3 control-label">ประเภทรถ </label>
+								<div class="col-md-8">
+									<input name="cars" id="cartype" class="form-control" disabled="true">
+								</div>	
+							</div>
+
+							<div class="form-group">
+								<label for="plate" class="col-md-3 control-label">ทะเบียนรถ </label>
+								<div class="col-md-8">
+									<input  name="plateLicense" id="plateL" class="form-control" disabled="true">
+								</div>	
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">วันที่เดินทาง</label>
+								<div class="col-md-8 ">
+									<input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off" disabled="true">
+									<span class="help-block"></span>
+								</div>	                    
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >วันที่กลับ</label>
+								<div class="col-md-8 ">
+									<input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off" disabled="true">
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+								<div class="col-md-8 ">
+									<input id="tel" name="tel" class="form-control" type="text" autocomplete="off" required>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >สถานที่ </label>
+								<div class="col-md-8">
+									<textarea class="form-control" name="place" required ></textarea>
+									<span class="help-block"></span>
+								</div>
+							</div>					
+							
+							<br>
+							<iframe style = "frameborder : 0px ; border :  0px ;height: 0px; width: 100%" target="" src="/senior/application/views/UnableToReserve.php" id="sendform" name="sendform"></iframe>
+							
+						</div>
+						<div class="modal-footer">
+							<button type="submit"  class="btn btn-primary" >ยืนยันการจอง</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
 
 <script>
@@ -164,7 +238,7 @@
 		        	$("#rec").find("tr:gt(0)").remove();
 		        	if(data.length > 0 ){	
 		        	for(var i = 0 ; i < data.length ; i++){
-						$("#rec").append('<tr><td>'+data[i].carType+'</td><td>'+data[i].plateL+'</td><td>'+data[i].start+'</td><td>'+data[i].end+'</td><td><button class="btn" value="'+data[i].carId+'" onclick="showModelRes('+data[i].plateL+')" type="button">จองรถ</button></td></tr>');
+						$("#rec").append('<tr><td>'+data[i].carType+'</td><td>'+data[i].plateL+'</td><td>'+data[i].start+'</td><td>'+data[i].end+'</td><td><button class="btn" value="'+data[i].carId+'" onclick="showModelRes('+data[i].carId+')" type="button">จองรถ</button></td></tr>');
 						$('#radio1').attr('disabled',true);
 						$('#radio2').prop("checked",true);
 						$('#reasonDiv').collapse('show');
@@ -184,8 +258,41 @@
 
 	}
 
-	function showModelRes(carID, pl ){
-		alert(carID);
+	function showModelRes(carID){
+	    $('#formEdit')[0].reset(); // reset form on modals
+	    $('.form-group').removeClass('has-error'); // clear error class
+	    $('.help-block').empty(); // clear error string
+
+	    //Ajax Load data from ajax
+	    $.ajax({
+	    	url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
+	    	type: "GET",
+	    	dataType: "JSON",
+	    	success: function(data)
+	    	{
+	    		$('#id').val(data.reserveId);
+	    		$('[name="carType"]').val(data.carTypeId).change();
+	    		$('[name="plateL"]').val(data.carId).change();
+	    		$('[name="dateS"]').datetimepicker('update',data.startDate);
+	    		$('[name="dateE"]').datetimepicker('update',data.endDate);
+	    		$('[name="placeEdit"]').val(data.place);
+	    		$('[name="telEdit"]').val(data.tel);
+	    		$('#btnDelete').val(data.reserveId);
+
+	          	//changeType();
+	           	$('#reserve').modal('show'); // show bootstrap modal when complete loaded
+	            
+
+	        },
+	        error: function (jqXHR, textStatus, errorThrown)
+	        {
+	        	alert('Error get data from ajax');
+	        }
+	    });
+	}	
+
+	function reload_table(){
+		table.ajax.reload(null,false); //reload datatable ajax 
 	}
 
 	$('#radio1').click(function(){
@@ -199,7 +306,7 @@
 	var table;
 	$( document ).ready(function(){
 
-		$("#sendFrom").submit(function(e) {
+		$("#formRequest").submit(function(e) {
 			e.preventDefault();
 			ajax_sendAsk();
 

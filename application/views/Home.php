@@ -324,6 +324,7 @@ if (isset($this->session->userdata['logged_in'])) {
 	</div><!-- /.modal -->
 	<!-- End Bootstrap modal -->
 	</div>
+	<?php include "Footer.php"; ?>
 </body>
 <script type="text/javascript">
 
@@ -538,7 +539,7 @@ function reload_calendar(){
 			});
 		}
 
-		function edit_reserve(rID){
+	function edit_reserve(rID){
 	    $('#formEdit')[0].reset(); // reset form on modals
 	    $('.form-group').removeClass('has-error'); // clear error class
 	    $('.help-block').empty(); // clear error string
@@ -660,8 +661,7 @@ function reload_calendar(){
 	});
 	</script>
 
-	<?php include "Footer.php"; ?>
 
-</body>
+
 
 </html>

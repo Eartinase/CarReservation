@@ -54,7 +54,12 @@ class User_Authentication extends CI_Controller {
 					'role'=>$userInfo->getRole()
 					);
 				$this->session->set_userdata('logged_in', $session_data);
-				redirect('homeInfo','refresh');
+				if($userInfo->getRole() == 'driver'){
+					redirect('homeInfo/driverLogin','refresh');
+				}else{
+					redirect('homeInfo','refresh');
+				}
+				
 			}else{
 				$this->load->view('Login');
 			}

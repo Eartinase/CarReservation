@@ -204,6 +204,22 @@ class ReservationModel extends CI_Model {
 		return $reserveInfo;
 	}
 
+	public function getCurrentReservationFromDriver($emp){
+		$currentReserve = null;
+		$r = "";
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.DriverId = '.$emp);
+		foreach ($query->result() as $row){
+			$currentReserve = new ReservationModel;
+			$this->matchReservationObject($currentReserve,$row);
+			if($r === ""){
+				$r = array();
+			}
+			array_push($r,$currentReserve);
+		}		
+		return $r;
+	}
+
+
 	public function getReserveFromDate($startDateTime,$endDateTime,$carTypeId){
 		$reserveInfo = null;
 		$r = "";
@@ -343,7 +359,7 @@ class ReservationModel extends CI_Model {
     	$this->db->where('currentId', $where);
     	$this->db->update('currentreservation', 
     		array(	'carId' => $carId ,
-    				'employeeCode' => $empCode , 
+    				'depID' => $depID , 
     				'place' => $place , 
     				'startDate' => $dateS,
     				'endDate' => $dateE,

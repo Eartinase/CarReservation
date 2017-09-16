@@ -20,7 +20,7 @@
         </button>
         <a style="margin-left:22px" float class="navbar-brand" href="#">
           <img src="<?php echo base_url(); ?>application/views/img/home-128.png" width="26" height="26"></a>
-          <a style="font-size:25px;color:white" class="navbar-brand" href="<?php echo base_url(); ?>HomeInfo" >เมนูหลัก</a>
+          <a style="font-size:25px;color:white" class="navbar-brand" href="<?php echo base_url(); ?>HomeInfo/driverLogin" >เมนูหลัก</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
