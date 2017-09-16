@@ -275,9 +275,6 @@
 	    		$('[name="plateL"]').val(data.carId).change();
 	    		$('[name="dateS"]').datetimepicker('update',data.startDate);
 	    		$('[name="dateE"]').datetimepicker('update',data.endDate);
-	    		$('[name="placeEdit"]').val(data.place);
-	    		$('[name="telEdit"]').val(data.tel);
-	    		$('#btnDelete').val(data.reserveId);
 
 	          	//changeType();
 	           	$('#reserve').modal('show'); // show bootstrap modal when complete loaded

@@ -33,15 +33,7 @@
               <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ประวัติการใช้
               </a>
             </li>
-            <li style="padding-left: 0px"  class="dropdown">
-              <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">จัดการ<span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>AddCar">เพิ่มรถ</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>AddDriver">เพิ่มคนขับ</a></li>
-              </ul>              
-            </li>
+            
             <li style="padding-left: 0px"  class="dropdown">
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สร้างรายงาน<span class="caret"></span>
               </a>

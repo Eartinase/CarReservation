@@ -20,6 +20,28 @@ class UserModel extends CI_Model {
 		return $this->name;
 	}
 
+	public function getNamee($id){
+		$this->db->select('Name');
+		$this->db->where('EmployeeCode', $id);
+		$query = $this->db->get('user');
+		$name = "";
+		foreach ($query->result() as $row){
+			$name = $row->Name;
+		}
+		return $name;
+	}
+	
+	public function getTel($id){
+		$this->db->select('Tel');
+		$this->db->where('EmployeeCode', $id);
+		$query = $this->db->get('user');
+		$Tel = "";
+		foreach ($query->result() as $row){
+			$Tel = $row->Tel;
+		}
+		return $Tel;
+	}
+
 	public function getDepartmentID(){
 		return $this->departmentID;
 	}
