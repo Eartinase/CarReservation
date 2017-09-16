@@ -10,6 +10,7 @@
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
+	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hunterPopup.css' />
 </head>
 <style type="text/css">
 	body{
@@ -47,13 +48,13 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">วันที่เดินทาง</label>
 					<div class="col-md-8">
-						<input id="dateS" name="dateS"  class="form-control datetimepicker" onchange="reccommend()" type="text" autocomplete="off" required>
+						<input id="dateS2" name="dateS2"  class="form-control datetimepicker" onchange="reccommend()" type="text" autocomplete="off" required>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label" >วันที่กลับ</label>
 					<div class="col-md-8">
-						<input id="dateE" name="dateE" class="form-control datetimepicker" onchange="reccommend()"  type="text" autocomplete="off" required>
+						<input id="dateE2" name="dateE2" class="form-control datetimepicker" onchange="reccommend()"  type="text" autocomplete="off" required>
 						<span class="help-block"></span>
 					</div>	                    
 				</div>
@@ -63,14 +64,14 @@
 				<div class="form-group" id='telEditG'>
 					<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
 					<div class="col-md-8 ">
-						<input id="tel" name="tel" maxlength="10" name="tel" class="form-control" type="tel" autocomplete="off" required>
+						<input id="tel2" name="tel2" maxlength="10" name="tel" class="form-control" type="tel" autocomplete="off" required>
 						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-md-3 control-label">สถานที่</label>
 					<div class="col-md-8">
-						<textarea id="place" name="place" placeholder="สถานที่" class="form-control" required></textarea>
+						<textarea id="place2" name="place/" placeholder="สถานที่" class="form-control" required></textarea>
 						<span class="help-block"></span>
 					</div>
 				</div>
@@ -87,28 +88,27 @@
 				
 				<center><button style="width: 20%" type="submit" id="sendFrom" class="btn btn-primary" >ยืนยัน</button>	</center>		
 			</form>
-		
-			<div class="reccommendCars" >
-					
+			
+				<div class="reccommendCars" >
 					<p> รถแนะนำในระบบที่สามารถจองได้ </p>
 					<table id="rec" class="table table-bordered" >
 						<thead>
-							<tr>
-								<th>ประเภท</th>
-								<th>ทะเบียน</th>
-								<th>วันทีไป</th>
-								<th>วันที่กลับ</th>
-								<th></th>
-							</tr>
+						<tr>
+							<th>ประเภท</th>
+							<th>ทะเบียน</th>
+							<th>วันทีไป</th>
+							<th>วันที่กลับ</th>
+							<th></th>
+						</tr>
 						</thead>
 						<tbody>
-							 <tr>
-							 	<td colspan = "5"><center>ไม่มีข้อมูล</center></td>
-							 </tr>
+						<tr>
+							<td colspan = "5"><center>ไม่มีข้อมูล</center></td>
+						</tr>
 						</tbody>
 					</table>
+				</div>
 			
-			</div>
 		</div>
 		<div class="col-md-6" style="margin-left: 50px">
 			<div>
@@ -141,37 +141,39 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
+						<button type="button" class="close" data-dismiss="modal"  onclick="resetForm()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
 					</div>
 					<div class="modal-body form">
+						
+						<input  name="plateLicense" id="plateLicense" class="form-control" style="display: none" >
 
 						<div id="form-body">
 							<div class="form-group">
 								<label for="cartype" class="col-md-3 control-label">ประเภทรถ </label>
 								<div class="col-md-8">
-									<input name="cars" id="cartype" class="form-control" disabled="true">
+									<input name="cars" id="cartype" class="form-control ">
 								</div>	
 							</div>
 
 							<div class="form-group">
 								<label for="plate" class="col-md-3 control-label">ทะเบียนรถ </label>
 								<div class="col-md-8">
-									<input  name="plateLicense" id="plateL" class="form-control" disabled="true">
+									<input  name="plateL" id="plateL" class="form-control " >
 								</div>	
 							</div>
 
 							<div class="form-group">
 								<label class="col-md-3 control-label">วันที่เดินทาง</label>
 								<div class="col-md-8 ">
-									<input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off" disabled="true">
+									<input id="dateS" name="dateS"  class="form-control datetimepicker " type="text" autocomplete="off" >
 									<span class="help-block"></span>
 								</div>	                    
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label" >วันที่กลับ</label>
 								<div class="col-md-8 ">
-									<input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off" disabled="true">
+									<input id="dateE" name="dateE" class="form-control datetimepicker " type="text" autocomplete="off">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -185,7 +187,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label" >สถานที่ </label>
 								<div class="col-md-8">
-									<textarea class="form-control" name="place" required ></textarea>
+									<textarea class="form-control" id="place" name="place" required ></textarea>
 									<span class="help-block"></span>
 								</div>
 							</div>					
@@ -225,8 +227,8 @@
 
 	function reccommend(){
 		var cartypeId = $('#cartype').val();
-		var startDate = $('#dateS').val();
-		var startEnd = $('#dateE').val();
+		var startDate = $('#dateS2').val();
+		var startEnd = $('#dateE2').val();
 		if(!(cartypeId == "" || startDate == "" || startEnd == "")){
 			$.ajax({
 		        url: '<?php echo base_url('Search/reccommendCars'); ?>',
@@ -257,25 +259,31 @@
 	
 
 	}
+	function resetForm(){
+		document.getElementById("formReserve").reset();
+		document.getElementById("sendform").style.height = '0px';			
+	}
 
 	function showModelRes(carID){
-	    $('#formEdit')[0].reset(); // reset form on modals
-	    $('.form-group').removeClass('has-error'); // clear error class
-	    $('.help-block').empty(); // clear error string
-
+	
+	   	var dateS = $('#dateS2').datetimepicker().val();
+		var dateE = $('#dateE2').datetimepicker().val();
 	    //Ajax Load data from ajax
 	    $.ajax({
-	    	url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
+	    	url : "<?php echo site_url('Reserve/ajax_getCar')?>/"+carID,
 	    	type: "GET",
 	    	dataType: "JSON",
 	    	success: function(data)
 	    	{
-	    		$('#id').val(data.reserveId);
-	    		$('[name="carType"]').val(data.carTypeId).change();
-	    		$('[name="plateL"]').val(data.carId).change();
-	    		$('[name="dateS"]').datetimepicker('update',data.startDate);
-	    		$('[name="dateE"]').datetimepicker('update',data.endDate);
-
+	    		$('[name="cars"]').val(data.carType);
+	    		$('[name="plateLicense"]').val(data.carId);
+	    		$('[name="plateL"]').val(data.plateLicense);
+	    		$('[name="dateS"]').datetimepicker('update',dateS);
+	    		$('[name="dateE"]').datetimepicker('update',dateE);
+	    		$('[name="cars"]').attr('disabled','disabled');
+	    		$('[name="plateL"]').attr('disabled','disabled');
+	    		$('[name="dateS"]').attr('disabled','disabled');
+	    		$('[name="dateE"]').attr('disabled','disabled');
 	          	//changeType();
 	           	$('#reserve').modal('show'); // show bootstrap modal when complete loaded
 	            

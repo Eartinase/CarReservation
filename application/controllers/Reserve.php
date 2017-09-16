@@ -60,6 +60,17 @@ class Reserve extends CI_Controller {
 		$this->load->view('OutsideCar');
 	}
 
+	public function ajax_getCar($carID){
+		$selectCar = $this->CarsModel->getCarById($carID);
+		$data = array(
+			'carId'	=> $selectCar->getCarId(),
+			'carType' => $selectCar->getCarType(),
+			'plateLicense' => $selectCar->getPlateLicese(),
+	
+			);
+		echo json_encode($data);
+	}
+
 	public function showReserveHistory(){
 		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);

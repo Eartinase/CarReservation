@@ -60,8 +60,8 @@ class Search extends CI_Controller {
 
 	public function reccommendCars(){
 		$carTypeId = $this->input->post('cartype');
-		$startDate = $this->input->post('dateS');
-		$endDate = $this->input->post('dateE');
+		$startDate = $this->input->post('dateS2');
+		$endDate = $this->input->post('dateE2');
 		$availiableCars = $this->CarsModel->searchAvailableCars($startDate , $endDate , $carTypeId); 
 		$data = array();
 		foreach ($availiableCars as $value) {	

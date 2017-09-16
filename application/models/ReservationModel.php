@@ -280,7 +280,7 @@ class ReservationModel extends CI_Model {
 		if($this->checkReservation($carId, $startDate, $endDate)){
 			$data = array(		
 				'carId' => $carId,
-				'driverId' => 'driver',
+				'DriverId' => 0,
 				'depID' => $depID,	
 				'StartDate' => $startDate,
 				'EndDate' =>$endDate,			
@@ -289,13 +289,13 @@ class ReservationModel extends CI_Model {
 				'EmployeeCode' =>$employeeCode
 				);
 
-			$query = $this->db->select('driverId')
+			$query = $this->db->select('DriverId')
 				->from('cars')
 				->where('carId', $data["carId"])
 				->get();
 
 			foreach ($query->result() as $row){			
-				$input["driverId"] = $row->driverId;
+				$input["DriverId"] = $row->DriverId;
 			}			
 			return $this->db->insert('currentreservation', $data);		
 

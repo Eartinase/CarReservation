@@ -13,10 +13,10 @@ class OutsideCarCon extends CI_Controller {
 	public function sendRequest(){
 		$carTypeId = $this->input->post('cartype');
 		$depID =  $this->session->userdata['logged_in']['department'];
-		$dateS = $this->input->post('dateS');
-		$dateE = $this->input->post('dateE');
-		$place = $this->input->post('place');
-		$tel = $this-> input->post('tel');
+		$dateS = $this->input->post('dateS2');
+		$dateE = $this->input->post('dateE2');
+		$place = $this->input->post('place2');
+		$tel = $this-> input->post('tel2');
 		$reason = ($_POST['reason']=="0")?$_POST['reasonText']:$_POST['reason'];
 		$data = array(
 				'carTypeId' => $carTypeId,
