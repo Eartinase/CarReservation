@@ -23,7 +23,7 @@ class AllReserve extends CI_Controller {
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$depID = $this->session->userdata['logged_in']['department'];
-		$currentReserve = $this->ReservationModel->getCurReserveFormDepID($depID);
+		$currentReserve = $this->ReservationModel->getCurrentReservation();
 		$data = array();
 		$no=0;
 		if($currentReserve != ''){
@@ -63,19 +63,46 @@ class AllReserve extends CI_Controller {
 
 		$data = array(
 			'reserveId' => $ReserveInfo->getReserveID(),
-			'carTypeId' => $selectCar->getCarTypeId(),
-			'carId' => $ReserveInfo->getPlateLicese(),			
+			'carTypeId' => $selectCar->getCarTypeId(),			
 			'reserver' => $this->ReservationModel->getReserverName($rID),
 			'startDate' => $ReserveInfo->getStartDate(),
 			'endDate' => $ReserveInfo->getEndDate(),
 			'tel' => $this->ReservationModel->getTelFromReserveId($rID),
-			//'carId'	=> $ReserveInfo->getCarId(),
+			'carId'	=> $ReserveInfo->getCarId(),
 			'place' => $ReserveInfo->getPlace()	
 			
 			);
 		echo json_encode($data);		
 	}
 
+	public function ajax_update(){
+		$reserveId = $this->input->post('id');
+		$carType= $this->input->post('carType');
+		$carId = $this->input->post('plateL');
+		$dateS = $this->input->post('dateS');
+		$dateE = $this->input->post('dateE');
+		$tel = $this->input->post('telEdit');
+		$place = $this->input->post('placeEdit');
+
+		//$depID =  $this->session->userdata['logged_in']['department'];		
+		
+		if($this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
+			$data = array(					
+				'carId' => $carId,
+				'dateS' =>$dateS ,
+				'dateE' => $dateE,
+				'tel' => $tel,
+				'place' => $place,
+				'driverId'=> 0,
+				//'depID' =>$depID ,				
+				'accept' => 0
+			);			
+			$this-> ReservationModel ->updateReserveAdmin($reserveId , $data);
+			echo json_encode(array("status" => TRUE));
+		}else{
+			echo json_encode(array("status" => FALSE));
+		}		
+	}
 }
 
 /* End of file AllReserve.php */
