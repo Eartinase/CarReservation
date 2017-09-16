@@ -179,14 +179,14 @@ function edit_reserve(rID){
 		}
 
 		
-/*
+
 	function save(){
     $('#btnSave').text('saving...'); //change button text
     $('#btnSave').attr('disabled',true); //set button disable 
 
     // ajax adding data to database
     $.ajax({
-    	url : "<?php echo site_url('Reserve/ajax_update')?>",
+    	url : "<?php echo site_url('AllReserve/ajax_update')?>",
     	type: "POST",
     	data: $('#form').serialize(),
     	dataType: "JSON",
@@ -202,15 +202,14 @@ function edit_reserve(rID){
             $('#btnSave').text('save'); //change button text
         	$('#btnSave').attr('disabled',false); //set button enable 
         },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
+        error: function (jqXHR, textStatus, errorThrown){
         	alert('Error adding / update data');
             $('#btnSave').text('save'); //change button text
             $('#btnSave').attr('disabled',false); //set button enable 
         }
     });
 }
-*/
+
 var dateToday = new Date();
 var table;
 $(document).ready(function() {		
