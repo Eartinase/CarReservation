@@ -48,7 +48,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">วันที่เดินทาง</label>
 					<div class="col-md-8">
-						<input id="dateS2" name="dateS2"  class="form-control datetimepicker" onchange="reccommend()" type="text" autocomplete="off" required>
+						<input id="dateS2" name="dateS2"  class="form-control datetimepicker" onchange="reccommend()" type="text" autocomplete="off" required >
 					</div>
 				</div>
 				<div class="form-group">
@@ -152,28 +152,28 @@
 							<div class="form-group">
 								<label for="cartype" class="col-md-3 control-label">ประเภทรถ </label>
 								<div class="col-md-8">
-									<input name="cars" id="cartype" class="form-control ">
+									<input name="cars" id="cartype" class="form-control " readonly >
 								</div>	
 							</div>
 
 							<div class="form-group">
 								<label for="plate" class="col-md-3 control-label">ทะเบียนรถ </label>
 								<div class="col-md-8">
-									<input  name="plateL" id="plateL" class="form-control " >
+									<input  name="plateL" id="plateL" class="form-control " readonly >
 								</div>	
 							</div>
 
 							<div class="form-group">
 								<label class="col-md-3 control-label">วันที่เดินทาง</label>
 								<div class="col-md-8 ">
-									<input id="dateS" name="dateS"  class="form-control datetimepicker " type="text" autocomplete="off" >
+									<input id="dateS" name="dateS"  class="form-control datetimepicker " type="text" autocomplete="off" readonly >
 									<span class="help-block"></span>
 								</div>	                    
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label" >วันที่กลับ</label>
 								<div class="col-md-8 ">
-									<input id="dateE" name="dateE" class="form-control datetimepicker " type="text" autocomplete="off">
+									<input id="dateE" name="dateE" class="form-control datetimepicker " type="text" autocomplete="off" readonly >
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -280,10 +280,7 @@
 	    		$('[name="plateL"]').val(data.plateLicense);
 	    		$('[name="dateS"]').datetimepicker('update',dateS);
 	    		$('[name="dateE"]').datetimepicker('update',dateE);
-	    		$('[name="cars"]').attr('disabled','disabled');
-	    		$('[name="plateL"]').attr('disabled','disabled');
-	    		$('[name="dateS"]').attr('disabled','disabled');
-	    		$('[name="dateE"]').attr('disabled','disabled');
+	    	
 	          	//changeType();
 	           	$('#reserve').modal('show'); // show bootstrap modal when complete loaded
 	            
