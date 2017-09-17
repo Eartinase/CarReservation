@@ -112,7 +112,7 @@ $(document).ready(function() {
   $("#formChange").submit(function(e){
     e.preventDefault();
     $.ajax({
-      url : "<?php echo site_url('GenAdmin/ajax_changeData')?>/",
+      url : "<?php echo site_url('GenReport/ajax_changeData')?>/",
       type: "POST",
       dataType: "JSON",
       data : $('#formChange').serialize(),
@@ -120,7 +120,13 @@ $(document).ready(function() {
         $("#reportTable").find("tr:gt(0)").remove();
         if(data.length > 0 ){ 
           for(var i = 0 ; i < data.length ; i++){
-            $("#reportTable").append('<tr><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].rId+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].name +'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].department+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].start+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].end+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'+data[i].place+'</td></tr>');
+            $("#reportTable").append('<tr><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+              +data[i].rId+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+              +data[i].name +'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+              +data[i].department+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+              +data[i].start+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+              +data[i].end+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+              +data[i].place+'</td></tr>');
           }
         }else{
           $("#reportTable").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
