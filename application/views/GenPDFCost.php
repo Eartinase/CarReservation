@@ -1,3 +1,12 @@
+<?php
+require_once('mpdf/mpdf.php'); //ที่อยู่ของไฟล์ mpdf.php ในเครื่องเรานะครับ
+ob_start(); // ทำการเก็บค่า html นะครับ
+$name = ($this->session->userdata['logged_in']['name']);
+$department = ($this->session->userdata['logged_in']['department']);
+$role = ($this->session->userdata['logged_in']['role']);
+?>
+
+<!DOCTYPE html>
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
@@ -50,44 +59,8 @@
 </style>   
 
 </head>
-
 <body>
-  <?php 
-  include "NavbarChooser.php";
-  ?>
-
-  <div class="con">
-
-    <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
-    <div class="col-md-5 " style="margin-left:3%" >
-      <div id="formChange">
-        <h3 style="margin-left:5%">รายการค่าใช้จ่าย</h3><hr>
-        
-        <div class="form-group">
-          <label style="margin-left:5%">ค่าใช้บริการรถ/ชั่วโมง <?php echo $cost?> บาท</label>
-        </div>
-
-        <div class="form-group">
-          <label style="margin-left:5%">ค่าใช้บริการรถล่วงเวลา (OT)  บาท</label>
-        </div>
-
-        <div class="form-group">
-          <label style="margin-left:5%">ระยะเวลาที่ใช้งาน <?php echo $duration ?> ชั่วโมง</label>
-        </div>
-
-        <div class="form-group">
-          <label style="margin-left:5%">ค่าใช้จ่ายอื่นๆ รวมเป็นเงิน
-            <input type="number" min="0" class="form-inline" id="addition" onchange="changeTotal()"> บาท
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label style="margin-left:5%;font-size: 25px;">ค่าใช้จ่ายทั้งหมดรวมเป็นเงิน <span id="totalCost"><?php echo $cost*$duration ?></span> บาท</label>
-        </div>
-
-      </div>
-    </div>
-    <center style="font-weight: bold;"><h3>รายงานค่าใช้จ่ายการใช้บริการรถ</h3> </center>
+<center style="font-weight: bold;"><h3>รายงานค่าใช้จ่ายการใช้บริการรถ</h3> </center>
     <center> <p>ผู้ใช้บริการ <?php echo $name ?> หน่วยงาน <?php echo $departmentt?>
      <br>ประเภทรถ <?php echo $carType ?> หมายเลขทะเบียน <?php echo $plateLicense?>
      <br>วันเวลาที่เดินทาง <?php echo $startDate?> วันเวลาที่กลับ <?php echo $endDate?> สถานที่ <?php echo $place?></p></center>
@@ -115,18 +88,6 @@
         </tr>
       </table>
     </center>
-    <br>
-    <p style="text-align: right;margin-right:20%">วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p>
-    <div class="row">
-      <div style="text-align: right;margin-right:16%">
-        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
-        <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFCost');">ดาวน์โหลดเป็น PDF</button>
-      </div> 
-
-    </div>
-  </div>
-
-  
 
 <script type="text/javascript">
   var total= <?php echo $cost*$duration ?>;
@@ -150,14 +111,18 @@
 
    }
  }
-
- function openInNewTab(url) {
-      var win = window.open(url, '_blank');
-      win.focus();
-    }
-
 </script>
 
 </body>
 </html>
 
+<?php
+$html = ob_get_contents();
+ob_end_clean();
+$pdf = new mPDF('tha', 'A4', '0', 'thsarabun'); //การตั้งค่ากระดาษถ้าต้องการแนวตั้ง ก็ A4 เฉยๆครับ ถ้าต้องการแนวนอนเท่ากับ A4-L
+//$pdf->SetAutoFont();
+
+$pdf->SetDisplayMode('fullpage');
+$pdf->WriteHTML($html, 2);
+$pdf->Output('รายงานขอเบืกงบประมาณ.pdf', 'I');
+?>

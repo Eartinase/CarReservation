@@ -92,6 +92,28 @@ class genReport extends CI_Controller {
 		$this->load->view('selectCost', $data);
 	}
 
+	public function genPDFCost(){	
+		$depID = $this->session->userdata['logged_in']['department'];
+		$username = ($this->session->userdata['logged_in']['username']);
+
+		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
+		$userInfo = $this-> UserModel->getUserInfo($username);
+		$carType = array();
+		if($reserveInfo != ""){
+			foreach ($reserveInfo as $value) {
+				$car =$this->CarsModel->getCarById($value->getCarId());
+				$id = $car->getCarId();
+				$v = $car->getCarType();
+				$carType[$id] = $v;
+			}
+		}
+		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+		$data['reserveInfo'] = $reserveInfo;
+		$data['userInfo']= $userInfo;
+		$data['carType'] = $carType;
+		$this->load->view('GenPDFCost', $data);
+	}
+
 	public function genAdminCarHistory(){	
 		$empCode = $this->session->userdata['logged_in']['employeeCode'];
 		$username = ($this->session->userdata['logged_in']['username']);
