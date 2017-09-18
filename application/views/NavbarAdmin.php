@@ -50,7 +50,7 @@
                 <!--<li><a href="#">Something else here</a></li>-->
                 <li class="dr-menu"><a href="<?php echo base_url(); ?>GenReport">รายงานประวัติการใช้บริการรถ</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="dr-menu"><a href="#">รายงานขอเบิกงบประมาณ</a></li>
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>GenReport/selectCost">รายงานขอเบิกงบประมาณ</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dr-menu"><a href="<?php echo base_url(); ?>GenReport/genAdminCarHistory">รายงานข้อมูลการใช้งานรถ</a></li>
               </ul>

@@ -128,7 +128,12 @@ class CarsModel extends CI_Model {
 	{
 		$car = null;
 		$r = array();
-		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.* FROM cars c JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE c.carId NOT IN( SELECT cr.carId FROM currentreservation cr WHERE (cr.EndDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\' AND cr.StartDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\')OR (StartDate <\''.$startDateTime.'\' AND EndDate >\''.$endDateTime.'\') )');
+		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.* FROM cars c JOIN cartype ct 
+			ON c.carTypeId= ct.carTypeId 
+			WHERE c.carId NOT IN( SELECT cr.carId FROM currentreservation cr 
+				WHERE (cr.EndDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\' 
+					AND cr.StartDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\')
+		OR (StartDate <\''.$startDateTime.'\' AND EndDate >\''.$endDateTime.'\') )');
 		foreach ($query->result() as $row)
 		{
 			if($row->CarTypeId == $carTypeId) 
@@ -163,6 +168,25 @@ class CarsModel extends CI_Model {
 		}		
 		return $this->db->insert('currentreservation', $input);
 	}	
+
+	public function getCost($carTypeId){
+		
+		$query = $this->db->query('select ((timeend-TimeStart)/10000)*CostPerHour as price from cost where CarTypeId = '.$carTypeId);
+		$result = $this->db->query($query);
+
+
+		
+	}
+
+	public function getCarTypeIdByName($carType){
+		$sql = 'SELECT CarTypeId FROM cartype WHERE CarType = \''.$carType.'\'';
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->CarTypeId;  
+		}
+		return $result;
+
+	}
 
 }
 
