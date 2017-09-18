@@ -28,8 +28,7 @@ class CarsModel extends CI_Model {
 		return $this->carTypeId;
 	}
 
-	public function getCarType()
-	{
+	public function getCarType(){
 		return $this->carType;
 	}
 

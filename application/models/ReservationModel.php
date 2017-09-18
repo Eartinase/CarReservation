@@ -426,6 +426,42 @@ class ReservationModel extends CI_Model {
 		return $r;
 	}
 
+	public function getPlateLiceseByReserve($reserveId){
+		$sql = 'select c.plateLicense from currentreservation cr join cars c on cr.carId = c.carId where cr.currentId = '.$reserveId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->plateLicense;  
+		}
+		return $result;
+	}
+
+	public function getStartDateFromReserveId($reserveId){
+		$sql = 'SELECT StartDate FROM currentreservation WHERE currentId = '.$reserveId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->StartDate;  
+		}
+		return $result;
+	}
+
+	public function getEndDateFromReserveId($reserveId){
+		$sql = 'SELECT EndDate FROM currentreservation WHERE currentId = '.$reserveId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->EndDate;  
+		}
+		return $result;
+	}
+
+	public function getPlaceFromReserveId($reserveId){
+		$sql = 'SELECT place FROM currentreservation WHERE currentId = '.$reserveId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->place;  
+		}
+		return $result;
+	}
+
 }
 
 /* End of file CarModel.php */

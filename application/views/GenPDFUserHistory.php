@@ -12,13 +12,8 @@ $role = ($this->session->userdata['logged_in']['role']);
 <div class="con">
 <br>
     <h2 style="padding-left:85%">วันที่ออกเอกสาร
-    <?php
- 
-    $date = date("Y-m-d");
-     
-    echo $date
- 
-    ?></h2><span>
+    <?php echo  date("Y-m-d")?>
+    </h2><span>
 <h2 style="text-align:center;font-size:40px">รายงานประวัติการใช้บริการรถ</h2>
 <p style="text-align:center;font-size:20px"><b>ชื่อ-นามสกุลผู้จอง</b> <?php echo $name ?> <b>หน่วยงาน</b> <?php echo $departmentName ?> <b>ตำแหน่ง</b> <?php echo $role ?></p>
 

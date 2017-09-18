@@ -59,9 +59,9 @@
   <div class="con">
 
     <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
-    <div class="col-md-6 col-md-offset-1" style="margin-left:5%" >
+    <div class="col-md-5 " style="margin-left:5%" >
       <div id="formChange">
-        <h3 style="margin-left:5%">รายการค่าใช้จ่าย</h3><br>
+        <h3 style="margin-left:5%">รายการค่าใช้จ่าย</h3><hr>
         
         <div class="form-group">
           <label style="margin-left:5%">ค่าใช้บริการรถ/ชั่วโมง <?php echo $cost?> บาท</label>
@@ -78,90 +78,80 @@
         <div class="form-group">
           <label style="margin-left:5%">ค่าใช้จ่ายอื่นๆ รวมเป็นเงิน
             <input type="number" min="0" class="form-inline" id="addition" onchange="changeTotal()"> บาท
-         </label>
-          </div>
-
-          <div class="form-group">
-            <label style="margin-left:5%;font-size: 25px;">ค่าใช้จ่ายทั้งหมดรวมทั้งสิ้น <span id="totalCost"><?php echo $cost*$duration ?></span> บาท</label>
-          </div>
-
+          </label>
         </div>
-      </div>
-      <br>
-      
-      <center style="font-weight: bold;"><h3>รายงานค่าใช้จ่ายการใช้บริการรถ</h3> </center>
-    <center> <p>ผู้ใช้บริการ <?php echo $name ?> หน่วยงาน <?php echo $department?></p></center> 
 
-      <table>
+        <div class="form-group">
+          <label style="margin-left:5%;font-size: 25px;">ค่าใช้จ่ายทั้งหมดรวมเป็นเงิน <span id="totalCost"><?php echo $cost*$duration ?></span> บาท</label>
+        </div>
 
-        <tr>    
-          <th>รายการค่าใช้จ่าย</th>
-          <th>จำนวนเงิน</th>
-        </tr>
-         <tr>    
-          <td>ค่าใช้บริการรถต่อชั่วโมง</td>
-          <td><?php echo $cost?></td>
-        </tr>
-        <tr>    
-          <td>บริการรถล่วงเวลา (OT)</td>
-          <td></td>
-        </tr>
-        <tr>    
-          <td>อื่นๆ</td>
-          <td id="other">-</td>
-        </tr>
-        <tr>
-          <td rowspan="2"  style="text-align: right;"> รวมค่าใช้จ่าย <span id="total"><?php echo $cost*$duration ?></span> บาท</td>
-        </tr>
-      </table>
-
-
-
-
-
-
-
-
-
-
-
-
-      <hr>
-      <div class="row">
-        <div style="text-align:center">
-          <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
-          <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genCost');">ดาวน์โหลดเป็น PDF</button>
-        </div> 
-        <center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>     
       </div>
     </div>
+    <center style="font-weight: bold;"><h3>รายงานค่าใช้จ่ายการใช้บริการรถ</h3> </center>
+    <center> <p>ผู้ใช้บริการ <?php echo $name ?> หน่วยงาน <?php echo $departmentt?>
+     <br>ประเภทรถ <?php echo $carType ?> หมายเลขทะเบียน <?php echo $plateLicense?>
+     <br>วันเวลาที่เดินทาง <?php echo $startDate?> วันเวลาที่กลับ <?php echo $endDate?> สถานที่ <?php echo $place?></p></center>
+     <center>
+      <table style="border: 1px solid #ddd;text-align: center;width: 50%">
+        <tr>    
+          <th style="padding: 12px;border: 1px solid #ddd"><center>รายการค่าใช้จ่าย</center></th>
+          <th style="padding: 12px;border: 1px solid #ddd"><center>จำนวนเงิน</center></th>
+        </tr>
+        <tr>    
+          <td style="padding: 12px;border: 1px solid #ddd">ค่าใช้บริการรถต่อชั่วโมง</td>
+          <td style="padding: 12px;border: 1px solid #ddd"><?php echo $cost?></td>
+        </tr>
+        <tr>    
+          <td style="padding: 12px;border: 1px solid #ddd">บริการรถล่วงเวลา (OT)</td>
+          <td style="padding: 12px;border: 1px solid #ddd">-</td>
+        </tr>
+        <tr>    
+          <td style="padding: 12px;border: 1px solid #ddd">ค่าใช้จ่ายอื่นๆ</td>
+          <td style="padding: 12px;border: 1px solid #ddd" id="other">-</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px;border: 1px solid #ddd" style="text-align: right;"> รวมเป็นเงินทั้งหมด</td>
+          <td><span id="total"><?php echo $cost*$duration ?></span> บาท</td>
+        </tr>
+      </table>
+    </center>
+    <hr>
+    <p style="text-align: right;margin-right:20%">วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p>
+    <div class="row">
+      <div style="text-align: right;margin-right:16%">
+        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
+        <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genCost');">ดาวน์โหลดเป็น PDF</button>
+      </div> 
+
+    </div>
+  </div>
 
 
 
-    <script type="text/javascript">
-      var total= <?php echo $cost*$duration ?>;
+  <script type="text/javascript">
+    var total= <?php echo $cost*$duration ?>;
 
-      function changeTotal() {
-        if(document.getElementById("addition").value != ""){
+    function changeTotal() {
+      if(document.getElementById("addition").value != ""){
 
-          var addi = document.getElementById("addition").value;
-          var math= parseInt(addi);
+        var addi = document.getElementById("addition").value;
+        var math= parseInt(addi);
 
-          document.getElementById("totalCost").innerHTML = math+total;
-          
-          document.getElementById("other").innerHTML = addi;
+        document.getElementById("totalCost").innerHTML = math+total;
 
-          document.getElementById("total").innerHTML = math+total;
-        }else{
-         document.getElementById("totalCost").innerHTML = total;
-         document.getElementById("other").innerHTML="-";
+        document.getElementById("other").innerHTML = addi;
 
-         document.getElementById("total").innerHTML = total;
-         
-       }
+        document.getElementById("total").innerHTML = math+total;
+      }else{
+       document.getElementById("totalCost").innerHTML = total;
+       document.getElementById("other").innerHTML="-";
+
+       document.getElementById("total").innerHTML = total;
+
      }
+   }
 
-   </script>
+ </script>
 
- </body>
- </html>
+</body>
+</html>

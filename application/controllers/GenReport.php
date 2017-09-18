@@ -124,11 +124,22 @@ class genReport extends CI_Controller {
 		$this->load->model('CostModel');
 		$cost = $this->CostModel->getCostPerHour($carTypeId);
 
+		$department = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
 		$duration = ceil($this->CostModel->getDuration($_GET['reserveId']));
+		$plateLicense = $this->ReservationModel->getPlateLiceseByReserve($_GET['reserveId']);
+		$startDate = $this->ReservationModel->getStartDateFromReserveId($_GET['reserveId']);
+		$endDate= $this->ReservationModel->getEndDateFromReserveId($_GET['reserveId']);
+		$place=$this->ReservationModel->getPlaceFromReserveId($_GET['reserveId']);
 		$data = array(
 			'carTypeId' => $carTypeId,
 			'cost' => $cost,
-			'duration' => $duration
+			'duration' => $duration,
+			'departmentt' => $department,
+			'carType' => $_GET['carTypeId'],
+			'plateLicense' => $plateLicense,
+			'startDate' => $startDate,
+			'endDate' => $endDate,
+			'place'=>$place
 		);
 
 		$this->load->view('GenCost',$data);
