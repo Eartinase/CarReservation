@@ -177,14 +177,13 @@ class CarsModel extends CI_Model {
 		
 	}
 
-	public function getCarTypeIdByName($carType){
-		$sql = 'SELECT CarTypeId FROM cartype WHERE CarType = \''.$carType.'\'';
+	public function getCarTypeIdByName($c){
+		$sql = 'SELECT CarTypeId FROM cartype WHERE CarType like \''.$c.'\'';
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
 			$result = $row->CarTypeId;  
 		}
 		return $result;
-
 	}
 
 }

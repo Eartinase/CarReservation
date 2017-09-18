@@ -7,7 +7,8 @@ class genReport extends CI_Controller {
 		parent::__construct();
 		$this->load->model('ReservationModel','ReservationModel');
 		$this->load->model('CarsModel','CarsModel');	
-		$this->load->model('UserModel','UserModel');		
+		$this->load->model('UserModel','UserModel');
+		$this->load->model('CostModel');		
 	}
 
 	public function genPDFUserHistory(){	
@@ -92,26 +93,59 @@ class genReport extends CI_Controller {
 		$this->load->view('SelectCost', $data);
 	}
 
-	public function genPDFCost(){	
-		$depID = $this->session->userdata['logged_in']['department'];
-		$username = ($this->session->userdata['logged_in']['username']);
+	public function genPDFCost(){			
+		$id = $_POST['reserveId'];		
+		$other = $_POST['otherr'];
+		$department = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+		$plateLicense = $this->ReservationModel->getPlateLiceseByReserve($id);
+		$startDate = $this->ReservationModel->getStartDateFromReserveId($id);
+		$endDate= $this->ReservationModel->getEndDateFromReserveId($id);
+		$place=$this->ReservationModel->getPlaceFromReserveId($id);
+		$duration = ceil($this->CostModel->getDuration($id));
 
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
-		$userInfo = $this-> UserModel->getUserInfo($username);
-		$carType = array();
-		if($reserveInfo != ""){
-			foreach ($reserveInfo as $value) {
-				$car =$this->CarsModel->getCarById($value->getCarId());
-				$id = $car->getCarId();
-				$v = $car->getCarType();
-				$carType[$id] = $v;
-			}
-		}
-		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
-		$data['reserveInfo'] = $reserveInfo;
-		$data['userInfo']= $userInfo;
-		$data['carType'] = $carType;
-		$this->load->view('GenPDFCost', $data);
+		//$carTypeId = $this->CarsModel->getCarTypeIdByName();
+		$costt = $this->CostModel->getCostPerHour($_POST['carT']);
+		$data = array(
+			'carTypeId' => $carTypeId,
+			'departmentt' => $department,
+			'carType' => $_POST['carT'],
+			'plateLicense' => $plateLicense,
+			'startDate' => $startDate,
+			'endDate' => $endDate,
+			'place'=>$place,		
+			'duration' => $duration,	
+			'cos' => $costt	,
+			'other'	=>$other	
+		);	
+		$this->load->view('GenPDFCost',$data);
+	}
+
+	public function genCost() {
+		$carTypeId = $this->CarsModel->getCarTypeIdByName($_GET['carTypeId']);
+
+		$this->load->model('CostModel');
+		$cost = $this->CostModel->getCostPerHour($carTypeId);
+
+		$department = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+		$duration = ceil($this->CostModel->getDuration($_GET['reserveId']));
+		$plateLicense = $this->ReservationModel->getPlateLiceseByReserve($_GET['reserveId']);
+		$startDate = $this->ReservationModel->getStartDateFromReserveId($_GET['reserveId']);
+		$endDate= $this->ReservationModel->getEndDateFromReserveId($_GET['reserveId']);
+		$place=$this->ReservationModel->getPlaceFromReserveId($_GET['reserveId']);
+		$data = array(
+			'carTypeId' => $carTypeId,
+			'cost' => $cost,
+			'duration' => $duration,
+			'departmentt' => $department,
+			'carType' => $_GET['carTypeId'],
+			'plateLicense' => $plateLicense,
+			'startDate' => $startDate,
+			'endDate' => $endDate,
+			'place'=>$place,
+			'reserveId'=>$_GET['reserveId']
+		);
+
+		$this->load->view('GenCost',$data);
 	}
 
 	public function genAdminCarHistory(){	
@@ -138,33 +172,6 @@ class genReport extends CI_Controller {
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
 		$this->load->view('GenAdminCarHistory',$data);
-	}
-
-	public function genCost() {
-		$carTypeId = $this->CarsModel->getCarTypeIdByName($_GET['carTypeId']);
-
-		$this->load->model('CostModel');
-		$cost = $this->CostModel->getCostPerHour($carTypeId);
-
-		$department = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
-		$duration = ceil($this->CostModel->getDuration($_GET['reserveId']));
-		$plateLicense = $this->ReservationModel->getPlateLiceseByReserve($_GET['reserveId']);
-		$startDate = $this->ReservationModel->getStartDateFromReserveId($_GET['reserveId']);
-		$endDate= $this->ReservationModel->getEndDateFromReserveId($_GET['reserveId']);
-		$place=$this->ReservationModel->getPlaceFromReserveId($_GET['reserveId']);
-		$data = array(
-			'carTypeId' => $carTypeId,
-			'cost' => $cost,
-			'duration' => $duration,
-			'departmentt' => $department,
-			'carType' => $_GET['carTypeId'],
-			'plateLicense' => $plateLicense,
-			'startDate' => $startDate,
-			'endDate' => $endDate,
-			'place'=>$place
-		);
-
-		$this->load->view('GenCost',$data);
 	}
 
 	public function ajax_changeData(){

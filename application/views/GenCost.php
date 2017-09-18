@@ -47,7 +47,7 @@
     border-radius: 3%;
   }
 
-</style>   
+  </style>   
 
 </head>
 
@@ -120,7 +120,15 @@
     <div class="row">
       <div style="text-align: right;margin-right:16%">
         <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
-        <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFCost');">ดาวน์โหลดเป็น PDF</button>
+
+
+
+        <form action="<?php echo base_url()?>GenReport/genPDFCost" method="post">    
+          <input type="text" name="carT" value="<?php echo $carTypeId ?>" hidden> 
+          <input type="text" name="reserveId" value="<?php echo $reserveId ?>" hidden> 
+          <input type="text" name="otherr" value=""  id="otherr" hidden > 
+          <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>
+        </form>
       </div> 
 
     </div>
@@ -128,33 +136,36 @@
 
   
 
-<script type="text/javascript">
+  <script type="text/javascript">
   var total= <?php echo $cost*$duration ?>;
 
   function changeTotal() {
     if(document.getElementById("addition").value != ""){
 
       var addi = document.getElementById("addition").value;
+
       var math= parseInt(addi);
 
       document.getElementById("totalCost").innerHTML = math+total;
-
-      document.getElementById("other").innerHTML = addi;
-
       document.getElementById("total").innerHTML = math+total;
+
+      document.getElementById("other").innerHTML = math;
+      document.getElementById("otherr").value = math;   
+
+      
     }else{
      document.getElementById("totalCost").innerHTML = total;
      document.getElementById("other").innerHTML="-";
-
+     document.getElementById("otherr").value = 0;
      document.getElementById("total").innerHTML = total;
 
    }
  }
 
  function openInNewTab(url) {
-      var win = window.open(url, '_blank');
-      win.focus();
-    }
+  var win = window.open(url, '_blank');
+  win.focus();
+}
 
 </script>
 
