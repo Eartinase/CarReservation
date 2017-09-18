@@ -102,13 +102,13 @@ class genReport extends CI_Controller {
 		$endDate= $this->ReservationModel->getEndDateFromReserveId($id);
 		$place=$this->ReservationModel->getPlaceFromReserveId($id);
 		$duration = ceil($this->CostModel->getDuration($id));
-
-		//$carTypeId = $this->CarsModel->getCarTypeIdByName();
+		//$carTypeName= $this->CarsModel->getTypeName($_POST['carT']);
+		$carTypeId = $this->CarsModel->getCarTypeName($_POST['carT']);
 		$costt = $this->CostModel->getCostPerHour($_POST['carT']);
 		$data = array(
 			'carTypeId' => $carTypeId,
 			'departmentt' => $department,
-			'carType' => $_POST['carT'],
+			'carType' => $carTypeId,
 			'plateLicense' => $plateLicense,
 			'startDate' => $startDate,
 			'endDate' => $endDate,
