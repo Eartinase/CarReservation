@@ -134,8 +134,6 @@ class genReport extends CI_Controller {
 		$this->load->view('GenCost',$data);
 	}
 
-
-
 	public function ajax_changeData(){
 		$plateL = $_POST['plateLicense'];
 		$robj = $this->ReservationModel->getReserveFromCarID($plateL);
@@ -149,8 +147,7 @@ class genReport extends CI_Controller {
 				"end" => $value['EndDate'],
 				"place" => $value['Place']
 			);
-		}
-		
+		}		
 		//output to json format
 		echo json_encode($data);
 	}
