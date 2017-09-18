@@ -89,7 +89,7 @@ class genReport extends CI_Controller {
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
-		$this->load->view('selectCost', $data);
+		$this->load->view('SelectCost', $data);
 	}
 
 	public function genPDFCost(){	

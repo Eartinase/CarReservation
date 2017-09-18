@@ -2,7 +2,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <head>
     <?php
-    include "header.php";
+    include "Header.php";
     ?>
     <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.table2excel.js"></script>
