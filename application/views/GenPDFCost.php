@@ -12,7 +12,7 @@ $role = ($this->session->userdata['logged_in']['role']);
   <h2 style="padding-left:85%">วันที่ออกเอกสาร
     <?php echo  date("Y-m-d")?>
   </h2>
-<p style="font-size: 40px;font-weight: bold;text-align: center;">รายงานค่าใช้จ่ายการใช้บริการรถ</p>
+    <p style="font-size: 40px;font-weight: bold;text-align: center;">รายงานค่าใช้จ่ายการใช้บริการรถ</p>
      <p style="font-size: 20px">ผู้ใช้บริการ <?php echo $name ?> หน่วยงาน <?php echo $departmentt ?>
      <br>ประเภทรถ <?php echo $carType?>  หมายเลขทะเบียน <?php echo $plateLicense ?>
      <br>วันเวลาที่เดินทาง <?php echo $startDate?> วันเวลาที่กลับ <?php echo $endDate?> สถานที่ <?php echo $place?></p>

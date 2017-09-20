@@ -57,25 +57,19 @@
 
     <h2 style="text-align:center;font-size:36px">รายงานประวัติการใช้บริการรถ</h2><hr>
     <p style="text-align:center;font-size:20px"><b style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง</b> <?php echo $this->session->userdata['logged_in']['name'] ?> <b style="text-align:center;font-size:20px">หน่วยงาน</b> <?php echo $departmentName ?> <b style="text-align:center;font-size:20px">ตำแหน่ง</b> <?php echo $this->session->userdata['logged_in']['role'] ?></p>
+    <br>
     <div class="row">
       <div style="text-align:center">
-        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
         <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button>
+        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
       </div>      
     </div>
 
     <br>
     
+    <center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
     <center>
       <table class="table2excel" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
-        <tr><p>
-          วันที่ออกเอกสาร
-          <?php        
-
-          echo date("d-m-Y");
-
-          ?></p>
-        </tr>
         <tr>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ประเภทรถ</th>

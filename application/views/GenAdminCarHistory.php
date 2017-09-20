@@ -79,8 +79,8 @@
   <br>
   <div class="row">
     <div style="text-align:center">
-      <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
       <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button>
+      <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
     </div>      
   </div>
 

@@ -61,8 +61,7 @@
 
     <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
     <div class="col-md-5 " style="margin-left:3%" >
-      <a href="<?php echo base_url(); ?>GenReport/SelectCost">
-        <button id="searchbut" type="submit" class="btn btn-primary">กลับไปหน้าเลือกรายงาน</button></a><br><br>
+
         <div id="formChange">
           <h3 style="margin-left:5%">รายการค่าใช้จ่าย</h3><hr>
 
@@ -87,8 +86,11 @@
           <div class="form-group">
             <label style="margin-left:5%;font-size: 25px;">ค่าใช้จ่ายทั้งหมดรวมเป็นเงิน <span id="totalCost"><?php echo $cost*$duration ?></span> บาท</label>
           </div>
-
         </div>
+        <br>
+        <a href="<?php echo base_url(); ?>GenReport/SelectCost">
+        <button id="searchbut" type="submit" class="btn btn-primary"><< กลับไปหน้าเลือกรายงาน</button></a>
+
       </div>
       <center style="font-weight: bold;"><h3>รายงานค่าใช้จ่ายการใช้บริการรถ</h3> </center>
       <center> <p>ผู้ใช้บริการ <?php echo $name ?> หน่วยงาน <?php echo $departmentt?>
@@ -126,18 +128,19 @@
     <br>
     <p style="text-align: right;margin-right:20%">วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p>
     <div class="row">
-      
       <div style="text-align: right;margin-right:16%">
-        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
-        <form action="<?php echo base_url()?>GenReport/genPDFCost" method="post"> 
-          <input type="text" name="carT" value="<?php echo $carTypeId ?>" hidden> 
-          <input type="text" name="reserveId" value="<?php echo $reserveId ?>" hidden> 
-          <input type="text" name="otherr" value=""  id="otherr" hidden > 
-          <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>
-        </form>
+        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button>
+        <div class="col-md-10" style="margin-left: 3%">
+          <form action="<?php echo base_url()?>GenReport/genPDFCost" method="post"> 
+            <input type="text" name="carT" value="<?php echo $carTypeId ?>" hidden> 
+            <input type="text" name="reserveId" value="<?php echo $reserveId ?>" hidden> 
+            <input type="text" name="otherr" value=""  id="otherr" hidden > 
+            <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>
+          </form>
+        </div>
       </div> 
-
     </div>
+
   </div>
 
   
@@ -177,12 +180,11 @@
         document.getElementById("otherr").value = math+" บาท";   
 
 
-      }else{
-       document.getElementById("totalCost").innerHTML = total;
-       document.getElementById("other").innerHTML="0"+" บาท";
-       document.getElementById("otherr").value = 0+" บาท";
-       document.getElementById("total").innerHTML = total;
-
+      } else {
+        document.getElementById("totalCost").innerHTML = total;
+        document.getElementById("other").innerHTML="0"+" บาท";
+        document.getElementById("otherr").value = 0+" บาท";
+        document.getElementById("total").innerHTML = total;
      }
    }
 
