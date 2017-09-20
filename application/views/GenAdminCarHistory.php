@@ -41,103 +41,102 @@
       font-family: 'Prompt', sans-serif;
     }  
 
-    </style>   
+  </style>   
 
-  </head>
+</head>
 
-  <body>
-    <?php 
-    include "NavbarChooser.php";
-    ?>
+<body>
+  <?php 
+  include "NavbarChooser.php";
+  ?>
 
-    <div class="con">
+  <div class="con">
+    <h2 style="text-align:center;font-size:36px">รายงานข้อมูลการใช้งานรถ</h2><hr>
 
-      <h2 style="text-align:center;font-size:36px">รายงานข้อมูลการใช้งานรถ</h2><hr>
-      <form id="formChange">
-        <div class="form-group" >
-         <label style="margin-left:5%" for="cartype" class="col-md-3 control-label" >เลือกประเภทรถที่ต้องการออกรายงาน</label>
-         <div class="col-md-3" >
-          <select name="cars" required id="cartype" onchange="changeType()" class="form-control">
-            <option value="">เลือกประเภทรถ</option>
-            <option value="1">เก๋ง</option>
-            <option value="2">กระบะ</option>
-            <option value="3">ตู้</option>
-            <option value="4">ไมโครบัส</option>           
-          </select>
-        </div>  
-      </div>
-      <label for="plate" class="col-md-1 control-label">ทะเบียนรถ </label>
-      <div class="col-md-3">
-        <select required name="plateLicense" id="plate" class="form-control">
-          <option value="">เลือกประเภทรถก่อน</option>
+    <div class="row">
+      <div style="text-align:center">
+        <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button>
+        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
+      </div>      
+    </div>
+    <br>
+    <form id="formChange">
+      <div class="form-group" >
+       <label style="margin-left:5%" for="cartype" class="col-md-3 control-label" >เลือกประเภทรถที่ต้องการออกรายงาน</label>
+       <div class="col-md-3" >
+        <select name="cars" required id="cartype" onchange="changeType()" class="form-control">
+          <option value="">เลือกประเภทรถ</option>
+          <option value="1">เก๋ง</option>
+          <option value="2">กระบะ</option>
+          <option value="3">ตู้</option>
+          <option value="4">ไมโครบัส</option>           
         </select>
       </div>  
-      <button id="searchbut" type="submit" class="btn btn-primary">ยืนยัน</button>
-      <br><br>
-    </form>         
-  </div>
-  <br>
-  <div class="row">
-    <div style="text-align:center">
-      <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button>
-      <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
-    </div>      
-  </div>
+    </div>
+    <label for="plate" class="col-md-1 control-label">ทะเบียนรถ </label>
+    <div class="col-md-3">
+      <select required name="plateLicense" id="plate" class="form-control">
+        <option value="">เลือกประเภทรถก่อน</option>
+      </select>
+    </div>  
+    <button id="searchbut" type="submit" class="btn btn-primary">ยืนยัน</button>
+    <br><br>
+  </form>         
+</div>
 
-  <br><br>
-  <center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
-  <center>
-    <table id="reportTable" class="table2excel table" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
-      <thead>
-        <tr>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ชื่อผู้จอง</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หน่วยงาน</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่เดินทาง</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่กลับ</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
-        </tr>
-      </thead>
-      <tbody>        
-      </tbody>
+<center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
+<center>
+  <table id="reportTable" class="table2excel table" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
+    <thead>
+      <tr>
+        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
+        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ชื่อผู้จอง</th>
+        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หน่วยงาน</th>
+        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่เดินทาง</th>
+        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่กลับ</th>
+        <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
+      </tr>
+    </thead>
+    <tbody>        
+    </tbody>
 
-    </table>
-  </center>
+  </table>
+</center>
 
-  <br>
+<br>
 
 </body>
 <script type="text/javascript">
-$(document).ready(function() {
-  $("#formChange").submit(function(e){
-    e.preventDefault();
-    $.ajax({
-      url : "<?php echo site_url('GenReport/ajax_changeData')?>/",
-      type: "POST",
-      dataType: "JSON",
-      data : $('#formChange').serialize(),
-      success: function(data){
-        $("#reportTable").find("tr:gt(0)").remove();
-        if(data.length > 0 ){ 
-          for(var i = 0 ; i < data.length ; i++){
-            $("#reportTable").append('<tr><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
-              +data[i].rId+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
-              +data[i].name +'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
-              +data[i].department+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
-              +data[i].start+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
-              +data[i].end+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
-              +data[i].place+'</td></tr>');
-          }
-        }else{
-          $("#reportTable").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
-        } 
-      },error: function (jqXHR, textStatus, errorThrown){
-        alert('Error get data from ajax');
-      }
-    });
+  $(document).ready(function() {
+    $("#formChange").submit(function(e){
+      e.preventDefault();
+      $.ajax({
+        url : "<?php echo site_url('GenReport/ajax_changeData')?>/",
+        type: "POST",
+        dataType: "JSON",
+        data : $('#formChange').serialize(),
+        success: function(data){
+          $("#reportTable").find("tr:gt(0)").remove();
+          if(data.length > 0 ){ 
+            for(var i = 0 ; i < data.length ; i++){
+              $("#reportTable").append('<tr><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+                +data[i].rId+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+                +data[i].name +'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+                +data[i].department+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+                +data[i].start+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+                +data[i].end+'</td><td style="text-align:center;padding: 15px;border: 1px solid #ddd">'
+                +data[i].place+'</td></tr>');
+            }
+          }else{
+            $("#reportTable").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
+          } 
+        },error: function (jqXHR, textStatus, errorThrown){
+          alert('Error get data from ajax');
+        }
+      });
 
-});
-});
+    });
+  });
   $(document.getElementById("excel")).click(function(){
     $(".table2excel").table2excel({
       exclude: ".noExl",
@@ -194,7 +193,7 @@ $(document).ready(function() {
             }
           }            
 
-          </script>
+        </script>
 
-          </html>
+        </html>
 
