@@ -36,7 +36,7 @@ $role = ($this->session->userdata['logged_in']['role']);
         </tr>
         <tr>    
           <td style="padding: 12px;border: 1px solid #ddd">ค่าใช้จ่ายอื่นๆ</td>
-          <td style="padding: 12px;border: 1px solid #ddd" id="other"><center><?php echo $other ?><center></td>
+          <td style="padding: 12px;border: 1px solid #ddd" id="other"><center><?php echo $other ?> บาท<center></td>
           </tr>
           <tr>
             <td style="padding: 12px;border: 1px solid #ddd" style="text-align: right;"> รวมเป็นเงินทั้งหมด</td>

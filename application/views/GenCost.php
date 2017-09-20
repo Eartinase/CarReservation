@@ -70,7 +70,7 @@
         </div>
 
         <div class="form-group">
-          <label style="margin-left:5%">ค่าใช้บริการรถล่วงเวลา (OT) บาท</label>
+          <label style="margin-left:5%">ค่าใช้บริการรถล่วงเวลา (OT) 0 บาท</label>
         </div>
 
         <div class="form-group">
@@ -141,7 +141,7 @@
               <form action="<?php echo base_url()?>GenReport/genPDFCost" method="post"> 
                 <input type="text" name="carT" value="<?php echo $carTypeId ?>" hidden> 
                 <input type="text" name="reserveId" value="<?php echo $reserveId ?>" hidden> 
-                <input type="text" name="otherr" value=""  id="otherr" hidden > 
+                <input type="text" name="otherr" value="0"  id="otherr" hidden > 
                 <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>
               </form>
             </div>
@@ -184,13 +184,13 @@
             document.getElementById("total").innerHTML = math+total;
 
             document.getElementById("other").innerHTML = math+" บาท";
-            document.getElementById("otherr").value = math+" บาท";   
+            document.getElementById("otherr").value = math;   
 
 
           } else {
             document.getElementById("totalCost").innerHTML = total;
-            document.getElementById("other").innerHTML="0"+" บาท";
-            document.getElementById("otherr").value = 0+" บาท";
+            document.getElementById("other").innerHTML=0+" บาท";
+            document.getElementById("otherr").value = 0;
             document.getElementById("total").innerHTML = total;
           }
         }
