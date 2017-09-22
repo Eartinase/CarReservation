@@ -22,22 +22,20 @@
 	include "NavbarChooser.php";
 	?>
 	<div class="container">
-	<a href="<?php echo base_url() ?>ManageCar/AddCar"><button class="btn btn-primary">เพิ่มรถ</button></a>
-	<br>
-	<br>
-	<table id="table" class="table table-striped table-bordered table-hover" width="100%">
+
+		<a href="<?php echo base_url() ?>ManageCar/AddCar"><button class="btn btn-primary">เพิ่มรถ</button></a>
+		<br>
+		<br>
+
+		<table id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
 					<td class="head">ทะเบียนรถ</td>					
-					<td class="head">ประเภทรถ</td> 
-					<td class="head">วันที่จดทะเบียน</td>
-					<td class="head">ราคา</td>
+					<td class="head">ประเภทรถ</td> 					
 					<td class="head">ยี่ห้อ รุ่น</td>
 					<td class="head">หมายเลขเครื่อง</td>
-					<td class="head">ปีที่ซื้อ</td>
 					<td class="head">จำนวนที่นั่ง</td>
-					<td class="head">รหัสครุภัณฑ์</td>
-					<td class="head">พนักงานขับรถ</td>
+					<td class="head">รหัสครุภัณฑ์</td>					
 					<td class="head">เชื้อเพลิง</td>
 					<td class="head">หน่วยงาน</td>
 					<td class="head">หมายเหตุ</td>
@@ -48,7 +46,7 @@
 				
 			</tbody>							
 		</table>
-	
+
 	</div>
 </body>
 </html>
