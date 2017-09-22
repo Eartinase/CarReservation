@@ -47,6 +47,16 @@ class homeInfo extends CI_Controller {
 		exit();
 	}
 
+	public function adminLogin(){
+		
+		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
+ 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
+ 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
+ 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
+ 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
+ 		$this->load->view('HomeAdmin', $data);
+	}
+
 
 
 }

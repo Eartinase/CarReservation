@@ -56,6 +56,8 @@ class User_Authentication extends CI_Controller {
 				$this->session->set_userdata('logged_in', $session_data);
 				if($userInfo->getRole() == 'driver'){
 					redirect('homeInfo/driverLogin','refresh');
+				}else if($userInfo->getRole() == 'admin'){
+					redirect('homeInfo/adminLogin','refresh');
 				}else{
 					redirect('homeInfo','refresh');
 				}
