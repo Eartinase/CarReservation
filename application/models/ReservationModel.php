@@ -19,8 +19,7 @@ class ReservationModel extends CI_Model {
 		parent::__construct();		
 	}
 
-	public function getDepartmentID()
-	{
+	public function getDepartmentID(){
 		return $this->departmentID;
 	}
 
@@ -166,7 +165,7 @@ class ReservationModel extends CI_Model {
 	public function getCurReserveFormEmpCode($employeeCode){
 		$currentReserve = null;
 		$r = "";
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.EmployeeCode = '.$employeeCode);
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.EmployeeCode = '.$employeeCode);
 		foreach ($query->result() as $row){
 			$currentReserve = new ReservationModel;
 			$this->matchReservationObject($currentReserve,$row);
@@ -181,7 +180,7 @@ class ReservationModel extends CI_Model {
 	public function getCurrentReservation(){
 		$reserveInfo = null;
 		$r = "";
-		$query = $this->db->query('SELECT cr.* , color, c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId');
+		$query = $this->db->query('SELECT cr.* , ct.Color, c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId');
 		foreach ($query->result() as $row){
 			$reserveInfo = new ReservationModel;
 			$this->matchReservationObject($reserveInfo,$row);
@@ -195,7 +194,7 @@ class ReservationModel extends CI_Model {
 
 	public function getCurrentReservationFromID($rID){
 		$reserveInfo = null;
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where CurrentId = '.$rID);
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where CurrentId = '.$rID);
 		foreach ($query->result() as $row){
 			$reserveInfo = new ReservationModel;
 			$this->matchReservationObject($reserveInfo,$row);
@@ -205,7 +204,7 @@ class ReservationModel extends CI_Model {
 
 	public function getAllReserve(){
 		$reserveInfo = null;
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId');
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId');
 		foreach ($query->result() as $row){
 			$reserveInfo = new ReservationModel;
 			$this->matchReservationObject($reserveInfo,$row);
@@ -216,7 +215,7 @@ class ReservationModel extends CI_Model {
 	public function getReserveFromDate($startDateTime,$endDateTime,$carTypeId){
 		$reserveInfo = null;
 		$r = "";
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId WHERE (startDate BETWEEN '. $startDateTime .' AND '. $endDateTime .') OR (endDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')');
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId WHERE (startDate BETWEEN '. $startDateTime .' AND '. $endDateTime .') OR (endDate BETWEEN '. $startDateTime .' AND '. $endDateTime .')');
 		foreach ($query->result() as $row){
 			if($carTypeId == null || in_array($row->carTypeId,$carTypeId) )	{
 				$reserveInfo = new ReservationModel;
@@ -231,7 +230,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function getReserveFromCarID($carId){
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.carId = '.$carId);
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.carId = '.$carId);
 		return $query->result_array();
 	}
 
@@ -239,7 +238,7 @@ class ReservationModel extends CI_Model {
 		$reserveInfo = null;
 		$r = "";
 		$carIdCheck = $this->checkCarIdType($carId);
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.cartypeId = '.$carTypeId);
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.cartypeId = '.$carTypeId);
 
 		foreach ($query->result() as $row) {
 			if($carId == null || in_array($row->carId,$carId) || !in_array($row->carTypeId, $carIdCheck) ){
@@ -328,7 +327,7 @@ class ReservationModel extends CI_Model {
 	public function getCurReserveFormDepID($depID){
 		$currentReserve = null;
 		$r = "";
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.depID = '.$depID);
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.depID = '.$depID);
 		foreach ($query->result() as $row){
 			$currentReserve = new ReservationModel;
 			$this->matchReservationObject($currentReserve,$row);
@@ -371,8 +370,7 @@ class ReservationModel extends CI_Model {
 				'Tel' => $tel
 				));
 		return true;
-	}
-	
+	}	
 
 	private function matchReservationObject($reserveInfo,$row){
 		$reserveInfo->setReserveId($row->CurrentId);
@@ -382,7 +380,7 @@ class ReservationModel extends CI_Model {
 		$reserveInfo->setEndDate($row->EndDate);
 		$reserveInfo->setPlace($row->Place);
 		$reserveInfo->setDriverId($row->DriverId);
-		$reserveInfo->setColor($row->color);
+		$reserveInfo->setColor($row->Color);
 		$reserveInfo->setCarId($row->carId);
 		$reserveInfo->setTel($row->Tel);
 		$reserveInfo->setDepartmentID($row->depID);
@@ -414,7 +412,7 @@ class ReservationModel extends CI_Model {
 	public function getCurrentReservationFromDriver($emp){
 		$currentReserve = null;
 		$r = "";
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.DriverId = '.$emp);
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.DriverId = '.$emp);
 		foreach ($query->result() as $row){
 			$currentReserve = new ReservationModel;
 			$this->matchReservationObject($currentReserve,$row);

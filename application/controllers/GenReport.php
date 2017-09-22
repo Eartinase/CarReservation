@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class genReport extends CI_Controller {
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->load->model('ReservationModel','ReservationModel');
 		$this->load->model('CarsModel','CarsModel');	
@@ -191,7 +190,6 @@ class genReport extends CI_Controller {
 		//output to json format
 		echo json_encode($data);
 	}
-
 }
 
 /* End of file CarController.php */

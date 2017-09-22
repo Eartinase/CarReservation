@@ -3,8 +3,7 @@ defined('BASEPATH') || exit('No direct script access allowed');
 
 class AddCarModel extends CI_Model {
 
-	public function CarTypeDriver()
-	{
+	public function CarTypeDriver(){
 		$this->db->select('*');
 		$query = $this->db->get('cartype');
 

@@ -11,8 +11,7 @@ class homeInfo extends CI_Controller {
 		
 	}
 
-	public function index()
-	{				
+	public function index(){				
 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
 		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
@@ -31,8 +30,7 @@ class homeInfo extends CI_Controller {
 		$reserve = $this-> ReservationModel->getCurrentReservation();
 		$data = array();
 		if($reserve != ''){
-		foreach ($reserve as $value) {
-				
+		foreach ($reserve as $value) {				
 				$data[] = array(
 					'id' => $value->getReserveId(),
 	                "title" => $value->getPlateLicese(),

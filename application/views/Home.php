@@ -24,7 +24,7 @@
 		}
 	</style>
 </head>
-<body style="background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);">
+<body>
 	<?php 
 if (isset($this->session->userdata['logged_in'])) {
 	$username = ($this->session->userdata['logged_in']['username']);
