@@ -4,7 +4,7 @@
   <?php 
   include "Header.php";
   ?>
-  <title>ระบบบริหารจัดการรถยนต์</title>
+  
   <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.table2excel.js"></script>
 
