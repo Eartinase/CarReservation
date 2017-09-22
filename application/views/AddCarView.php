@@ -15,7 +15,7 @@
 	include "NavbarChooser.php";
 	?>
 	
-	<div  class="container" style="margin-top: 50px;">	
+	<div  class="container">	
 		<center>
 			<h3>เพิ่มรถ</h3>
 		</center>
@@ -86,8 +86,8 @@
 				</div>				
 				<div class="col-md-6">
 					พนักงานขับรถ: 
-					<select class="form-control">
-						<option></option>
+					<select class="form-control" name="driverId" id="driverOption">
+						<option> - - </option>
 					</select> 
 				</div>
 			</div>	
@@ -99,8 +99,8 @@
 				</div>
 				<div class="col-md-6">
 					หน่วยงานเจ้าของ:
-					<select>
-						<option></option>
+					<select class="form-control" name="depId">
+						<option> - - </option>
 					</select> 					
 				</div>				
 			</div>
@@ -108,7 +108,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					หมายเหตุ:
-				<textarea class="form-control"></textarea>
+				<textarea class="form-control" name="description"></textarea>
 				</div>				
 			</div>
 			<br>
