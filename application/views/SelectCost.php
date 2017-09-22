@@ -5,43 +5,6 @@
   include "Header.php";
   ?>
   <title>ระบบบริหารจัดการรถยนต์</title>
-
-  <style type="text/css">
-
-  small { 
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 9pt; 
-  } 
-  input, textarea,select { 
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 11pt; 
-  } 
-  b { 
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 11pt; 
-  } 
-  big { 
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 14pt; 
-  } 
-  strong { 
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 11pt; 
-    font-weight : extra-bold; 
-  } 
-  font, td { 
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 11pt; 
-  } 
-  body { 
-    font-size: 11pt; 
-    font-family: Arial, Helvetica, sans-serif; 
-    font-family: 'Prompt', sans-serif;
-  } 
-  
-
-  </style>
-
   <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.table2excel.js"></script>
 
@@ -49,14 +12,20 @@
 
 <body>
   <?php 
-   include "NavbarChooser.php";
-   //echo $department;
+   include "NavbarChooser.php";   
   ?>
 
   <div class="con">
 
     <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
-    <p style="text-align:center;font-size:20px"><b style="text-align:center;font-size:20px">ชื่อ-นามสกุลผู้จอง</b> <?php echo $this->session->userdata['logged_in']['name'] ?> <b style="text-align:center;font-size:20px">หน่วยงาน</b> <?php echo $departmentName ?> <b style="text-align:center;font-size:20px">ตำแหน่ง</b> <?php echo $this->session->userdata['logged_in']['role'] ?></p>
+    <p style="text-align:center;font-size:20px">
+      <span style="text-align:center;font-size:20px;font-weight: bold;">ชื่อ-นามสกุลผู้จอง</span> 
+      <?php echo $this->session->userdata['logged_in']['name'] ?> 
+      <span style="text-align:center;font-size:20px;font-weight: bold;">หน่วยงาน</span> 
+      <?php echo $departmentName ?> 
+      <span style="text-align:center;font-size:20px;font-weight: bold;">ตำแหน่ง</span> 
+      <?php echo $this->session->userdata['logged_in']['role'] ?>
+    </p>
 
     <br>
     
@@ -64,11 +33,10 @@
       <table class="table2excel" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
         <tr><p>
           วันที่ออกเอกสาร
-          <?php        
-
+          <?php    
           echo date("d-m-Y");
-
-          ?></p>
+          ?>            
+          </p>
         </tr>
         <tr>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
@@ -103,7 +71,6 @@
         ?>
       </table>
     </center>
-
     
     <br>
 

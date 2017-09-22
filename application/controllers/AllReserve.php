@@ -9,13 +9,11 @@ class AllReserve extends CI_Controller {
 		$this->load->model('UserModel');
 	}
 	
-	public function index(){				
-		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
+	public function index(){		
 		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
  		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
- 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
- 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
+ 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4); 		
 		$this->load->view('AllReserveList', $data);
 	}
 

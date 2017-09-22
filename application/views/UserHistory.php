@@ -23,6 +23,9 @@
 	body{
 		font-family: 'Prompt', sans-serif;
 	}
+	.head{
+		font-weight: bold;
+	}
 </style>
 <body  style="background-color:#fafafa">
 	
@@ -34,14 +37,14 @@
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
-					<td>Car ID</td>
-					<td>ประเภทรถ</td> 
-					<td>ทะเบียนรถ</td> 
-					<td>วันที่เดินทาง</td>
-					<td>วันที่กลับ</td>
-					<td>สถานที่</td>
-					<td>สถานะ</td>
-					<td></td>
+					<td class="head">Car ID</td>
+					<td class="head">ประเภทรถ</td> 
+					<td class="head">ทะเบียนรถ</td> 
+					<td class="head">วันที่เดินทาง</td>
+					<td class="head">วันที่กลับ</td>
+					<td class="head">สถานที่</td>
+					<td class="head">สถานะ</td>
+					<td class="head"></td>
 				</tr>
 			</thead>
 			<tbody>

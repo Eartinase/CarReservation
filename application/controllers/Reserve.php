@@ -65,8 +65,7 @@ class Reserve extends CI_Controller {
 		$data = array(
 			'carId'	=> $selectCar->getCarId(),
 			'carType' => $selectCar->getCarType(),
-			'plateLicense' => $selectCar->getPlateLicese(),
-	
+			'plateLicense' => $selectCar->getPlateLicese()	
 			);
 		echo json_encode($data);
 	}

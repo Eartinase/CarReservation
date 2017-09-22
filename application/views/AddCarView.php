@@ -23,23 +23,21 @@
 			ทะเบียน: <input type="text" name="plateLicense" class="form-control" required> <br>
 			หมายเลขเครื่อง: <input type="text" name="serial" class="form-control" required> <br>
 			ประเภทรถ: <select name ="carType" class="form-control" required>
-			<?php 
-			echo $cartype ;
+				<?php 
+				echo $cartype ;
 					//echo var_dump($rslt);
-			?>
-		</select><br>
-		จำนวนที่นั่ง: <input type="number" class="form-control" name="seat" required> <br>
-		คนขับ: <select name = "driver" class="form-control">
-		<option> -- </option>
-		<?php 
-		echo $driver ;
-					//echo var_dump($driver);
-		?>
-	</select>
-	<br>
-	<!--center><input type="file" name="pic" accept="image/*" ></center><br-->
-	<center><button type="submit" class="btn btn-primary" >เพิ่มรถ</button></center>
-</form>
-</div>
+				?>
+			</select><br>
+			จำนวนที่นั่ง: <input type="number" class="form-control" name="seat" required> <br>
+			คนขับ: <select name = "driver" class="form-control">
+				<option> -- </option>
+				<?php 
+				echo $driver ;			
+				?>
+			</select>
+			<br>	
+			<center><button type="submit" class="btn btn-primary" >เพิ่มรถ</button></center>
+		</form>
+	</div>
 </body>
 </html>

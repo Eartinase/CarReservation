@@ -2,21 +2,17 @@
 defined('BASEPATH') || exit('No direct script access allowed');
 
 class AddCar extends CI_Controller {   
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->load->model('AddCarModel');
 	}
 
-	public function index()	
-	{		
+	public function index(){		
 		$cartype = $this-> AddCarModel ->CarTypeDriver();
 		$this->load->view('AddCarView', $cartype);
 	}
 
-	public function Add()
-	{
-		
+	public function Add(){		
 		$data = array(		
 			'plateLicense'	=> $this->input->post('plateLicense'), 
 			'seat' 			=> $this->input->post('seat'),
@@ -30,8 +26,7 @@ class AddCar extends CI_Controller {
 			'message' => 'Success'
 			);
 		$this->load->view('Result', $message);
-	}
-	    
+	}   
 
 }
 

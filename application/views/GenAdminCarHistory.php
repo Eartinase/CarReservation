@@ -9,38 +9,6 @@
 
     <title>ระบบบริหารจัดการรถยนต์</title>
 
-    <style type="text/css">
-    small { 
-      font-family: Arial, Helvetica, sans-serif; 
-      font-size: 9pt; 
-    } 
-    input, textarea,select { 
-      font-family: Arial, Helvetica, sans-serif; 
-      font-size: 11pt; 
-    } 
-    b { 
-      font-family: Arial, Helvetica, sans-serif; 
-      font-size: 11pt; 
-    } 
-    big { 
-      font-family: Arial, Helvetica, sans-serif; 
-      font-size: 14pt; 
-    } 
-    strong { 
-      font-family: Arial, Helvetica, sans-serif; 
-      font-size: 11pt; 
-      font-weight : extra-bold; 
-    } 
-    font, td { 
-      font-family: Arial, Helvetica, sans-serif; 
-      font-size: 11pt; 
-    } 
-    body { 
-      font-size: 11pt; 
-      font-family: Arial, Helvetica, sans-serif; 
-      font-family: 'Prompt', sans-serif;
-    }  
-
   </style>   
 
 </head>
@@ -78,8 +46,11 @@
       <select required name="plateLicense" id="plate" class="form-control">
         <option value="">เลือกประเภทรถก่อน</option>
       </select>
-    </div>  
-    <button id="searchbut" type="submit" class="btn btn-primary">ยืนยัน</button>
+    </div> 
+    <div style="text-align: center;">
+      <button id="searchbut" type="submit" class="btn btn-primary">ยืนยัน</button>
+    </div> 
+    
     <br><br>
   </form>         
 </div>
