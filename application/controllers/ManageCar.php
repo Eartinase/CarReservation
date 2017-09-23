@@ -30,12 +30,11 @@ class ManageCar extends CI_Controller {
 		$no=0;
 		if($allCar != ''){
 			foreach ($allCar as $value) {
-				$car = $this->CarsModel->getCarById($value->getCarId());
+				//$car = $this->CarsModel->getCarById($value->getCarId());
 				$no++;
-				$data[] = array(
-					
-	            	"<center>".$value->getPlateLicense()."</center>",
-	               	"<center>".$value->getCarTypeId()."</center>",	      	         
+				$data[] = array(					
+	            	"<center>".$value->getPlateLicese()."</center>",
+	               	"<center>".$value->getCarType()."</center>",	   	         
 	                "<center>".$value->getBrand()." ".$value->getGeneration()."</center>",
 	                "<center>".$value->getSerial()."</center>",
 	                "<center>".$value->getSeat()."</center>",
@@ -43,20 +42,8 @@ class ManageCar extends CI_Controller {
 	                "<center>".$value->getFuel()."</center>",
 	                "<center>".$value->getDepID()."</center>",
 	                "<center>".$value->getDescription()."</center>",
-	                "<p>...</p>"
-
-
-	                   /*
-	                   "<center>".$car->getCarType()."</center>",
-	                   "<center>".$value->getPlateLicese()."</center>",
-	                   "<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
-	                   "<center>".date("Y-m-d H:i", strtotime($value->getEndDate()))."</center>",
-	                   $value->getPlace(),
-	                   '<center>active</center>',
-	                   '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_reserve('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-	                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
-	                   */
-	               );			
+	               	"<p>...</p>"
+	            );			
 			}
 		}
 		 $output = array(            

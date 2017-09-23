@@ -18,6 +18,7 @@ class CarsModel extends CI_Model {
 	private $driverId;
 	private $fuel;
 	private $depID;
+	private $department;
 	private $description;
 	
 	private $carType;	
@@ -168,19 +169,26 @@ class CarsModel extends CI_Model {
 		return $this->detail;
 	}
 
-	public function setDetail(){
+	public function setDetail($detail){
 		$this->detail = $detail;
 	}
 
+	public function getDepartment(){
+		return $this->department;
+	}
+
+	public function setDepartment($department){
+		$this->department = $department;
+	}
 
 	public function getAllCar(){
 		$car = null;
 		$r = "";
-		$sql = 'SELECT c.carId, c.PlateLicense, c.Color, c.RegisterDate,'.
+		$sql = 'SELECT c.carId, c.PlateLicense, ct.CarType, c.RegisterDate, c.Color, '.
 			' c.Price, c.Brand, c.Generation, c.serial, c.PurchaseYear, '.
-			'c.Seat, c.itemLabel, c.fuel, d.department '.
+			'c.Seat, c.itemLabel, c.fuel, d.department, c.Description '.
 			'FROM cars c '.
-			'JOIN carType ct ON c.carTypeId= ct.carTypeId '.
+			'JOIN cartype ct ON c.carTypeId= ct.carTypeId '.
 			'JOIN Department d ON d.depID = c.depID';
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
@@ -196,20 +204,20 @@ class CarsModel extends CI_Model {
 
 	private function matchCarObject2($car,$row){
 		$car->setCarId($row->carId);
-		$car->setPlateLicense($row->plateLicense);	
+		$car->setPlateLicense($row->PlateLicense);	
 		$car->setColor($row->Color);	
-		$car->setCarTypeId($row->CarTypeId);
+		//$car->setCarTypeId($row->CarTypeId);
 		$car->setRegisterDate($row->RegisterDate);
 		$car->setPrice($row->Price);
 		$car->setBrand($row->Brand);
 		$car->setGeneration($row->Generation);
 		$car->setSerial($row->serial);
 		$car->setPurchaseYear($row->PurchaseYear);		
-		$car->setSeat($row->seat);
+		$car->setSeat($row->Seat);
 		$car->setItemLabel($row->itemLabel);
-		$car->setDriverId($row->DriverId);
+		//$car->setDriverId($row->DriverId);
 		$car->setFuel($row->fuel);
-		$car->setDepID($row->depID);
+		$car->setDepartment($row->department);
 		$car->setDescription($row->Description);
 		$car->setCarType($row->CarType);
 	}
