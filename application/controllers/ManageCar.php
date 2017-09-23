@@ -24,15 +24,29 @@ class ManageCar extends CI_Controller {
 		$draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
 		//$depID = $this->session->userdata['logged_in']['department'];
-		$currentReserve = $this->CarsModel->getCurReserveFormDepID($depID);
+		$this->load->model('CarsModel');
+		$allCar = $this->CarsModel->getAllCar();
 		$data = array();
 		$no=0;
-		if($currentReserve != ''){
-			foreach ($currentReserve as $value) {
+		if($allCar != ''){
+			foreach ($allCar as $value) {
 				$car = $this->CarsModel->getCarById($value->getCarId());
 				$no++;
 				$data[] = array(
-	                   "<center>".$value->getCarId()."</center>",
+					
+	            	"<center>".$value->getPlateLicense()."</center>",
+	               	"<center>".$value->getCarTypeId()."</center>",	      	         
+	                "<center>".$value->getBrand()." ".$value->getGeneration()."</center>",
+	                "<center>".$value->getSerial()."</center>",
+	                "<center>".$value->getSeat()."</center>",
+	                "<center>".$value->getItemLabel()."</center>",
+	                "<center>".$value->getFuel()."</center>",
+	                "<center>".$value->getDepID()."</center>",
+	                "<center>".$value->getDescription()."</center>",
+	                "<p>...</p>"
+
+
+	                   /*
 	                   "<center>".$car->getCarType()."</center>",
 	                   "<center>".$value->getPlateLicese()."</center>",
 	                   "<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
@@ -41,6 +55,7 @@ class ManageCar extends CI_Controller {
 	                   '<center>active</center>',
 	                   '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_reserve('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
 	                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
+	                   */
 	               );			
 			}
 		}

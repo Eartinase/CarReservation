@@ -178,9 +178,9 @@ class CarsModel extends CI_Model {
 		$r = "";
 		$sql = 'SELECT c.carId, c.PlateLicense, c.Color, c.RegisterDate,'.
 			' c.Price, c.Brand, c.Generation, c.serial, c.PurchaseYear, '.
-			'c.Seat, c.itemLabel, c.fuel, d.department'.
+			'c.Seat, c.itemLabel, c.fuel, d.department '.
 			'FROM cars c '.
-			'JOIN carType ct ON c.carTypeId= ct.carTypeId'.
+			'JOIN carType ct ON c.carTypeId= ct.carTypeId '.
 			'JOIN Department d ON d.depID = c.depID';
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
@@ -199,8 +199,18 @@ class CarsModel extends CI_Model {
 		$car->setPlateLicense($row->plateLicense);	
 		$car->setColor($row->Color);	
 		$car->setCarTypeId($row->CarTypeId);
-		$car->setSeat($row->seat);	
-		
+		$car->setRegisterDate($row->RegisterDate);
+		$car->setPrice($row->Price);
+		$car->setBrand($row->Brand);
+		$car->setGeneration($row->Generation);
+		$car->setSerial($row->serial);
+		$car->setPurchaseYear($row->PurchaseYear);		
+		$car->setSeat($row->seat);
+		$car->setItemLabel($row->itemLabel);
+		$car->setDriverId($row->DriverId);
+		$car->setFuel($row->fuel);
+		$car->setDepID($row->depID);
+		$car->setDescription($row->Description);
 		$car->setCarType($row->CarType);
 	}
 
