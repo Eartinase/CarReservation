@@ -392,6 +392,21 @@ class ReservationModel extends CI_Model {
 		return true;
 	}
 
+	public function updateAdminReserve($where , $data){
+		extract($data);
+    	$this->db->where('currentId', $where);
+    	$this->db->update('currentreservation', 
+    		array(	'carId' => $carId ,
+    				'depID' => $depID ,
+    				'DriverId' => $driverId, 
+    				'place' => $place , 
+    				'startDate' => $dateS,
+    				'endDate' => $dateE,
+    				'Tel' => $tel
+    			));
+		return true;
+	}
+
 	public function updateReserveAdmin($where , $data){
 		extract($data);
 		$this->db->where('currentId', $where);

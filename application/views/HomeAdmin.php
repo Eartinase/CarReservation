@@ -587,7 +587,7 @@ function reload_calendar(){
 	    $('#btnSave').attr('disabled',true); //set button disable 
 	    // ajax adding data to database
 	    $.ajax({
-	    	url : "<?php echo site_url('Reserve/ajax_update')?>",
+	    	url : "<?php echo site_url('Reserve/ajax_admin_update')?>",
 	    	type: "POST",
 	    	data: $('#formEdit').serialize(),
 	    	dataType: "JSON",

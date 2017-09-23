@@ -47,15 +47,8 @@ class Reserve extends CI_Controller {
 			'tel' => $ReserveInfo->getTel()
 			);
 		echo json_encode($data);
-				
-		//$carlist = $this->CarsModel-> getCarsByType($selectCar);
-		//$key = array_search($selectCar, $carlist);
-		//if($key !== FALSE) {
-		//	unset($carlist[$key]);
-		//}
-		//$data['car'] = $carlist;
-		
 	}
+
 
 	public function outsideCar(){
 		$this->load->view('OutsideCar');
@@ -83,14 +76,13 @@ class Reserve extends CI_Controller {
 		$reserveId = $this->input->post('id');
 		$carId = $this->input->post('plateL');
 		$depID =  $this->session->userdata['logged_in']['department'];
-		$dateS = $this->input->post('dateS');
-		$dateE = $this->input->post('dateE');
+		$dateS = $this->input->post('dateS2');
+		$dateE = $this->input->post('dateE2');
 		$place = $this->input->post('placeEdit');
 		$tel = $this-> input->post('telEdit');
 		if($this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
 			$data = array(
 				'carId' => $carId,
-				'driverId'=> 0,
 				'depID' =>$depID ,
 				'dateS' =>$dateS ,
 				'dateE' => $dateE,
@@ -104,6 +96,34 @@ class Reserve extends CI_Controller {
 			echo json_encode(array("status" => FALSE));
 		}		
 	}
+
+	public function ajax_admin_update(){
+		$reserveId = $this->input->post('id');
+		$carId = $this->input->post('plateL');
+		$depID =  $this->session->userdata['logged_in']['department'];
+		$driverId = $this->input->post('driverEdit');
+		$dateS = $this->input->post('dateS2');
+		$dateE = $this->input->post('dateE2');
+		$place = $this->input->post('placeEdit');
+		$tel = $this-> input->post('telEdit');
+		if($this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
+			$data = array(
+				'carId' => $carId,
+				'driverId'=> $driverId,
+				'depID' =>$depID ,
+				'dateS' =>$dateS ,
+				'dateE' => $dateE,
+				'place' => $place,
+				'tel' => $tel,
+				'accept' => 0
+			);			
+			$this-> ReservationModel ->updateAdminReserve($reserveId , $data);
+			echo json_encode(array("status" => TRUE));
+		}else{
+			echo json_encode(array("status" => FALSE));
+		}		
+	}
+
 
 	public function ajax_reservelist(){
 		$draw = intval($this->input->get("draw"));
