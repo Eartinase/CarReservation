@@ -13,7 +13,7 @@
 	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hr.css' />
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
-	<script src='fullcalendar/locale-all.js'></script>
+	<script src='<?php echo base_url(); ?>fullcalendar/locale-all.js'></script>
 	<style type="text/css">
 		body{
 			font-family: 'Prompt', sans-serif;
@@ -37,133 +37,123 @@
 		</div>
 
 		<div class="col-md-2">
-
-			<?php 
-			if (isset($this->session->userdata['logged_in'])) { 
-				if($role != "driver"){ 
-					?>
-					<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button>
-					<?php 
-				}
-			} 
-			?>
-
-			<?php if (isset($this->session->userdata['logged_in'])) { ?>	
-			
-			<?php } ?>
-			<div id="holdList" style="padding: 1px; margin : 0px;">
-				<form  class="form-horizontal" style="align-items:center;">
-					<center style="font-size: 25px">รายการรถ</center>
-
-					<div id="divCarList1">
-						<ul>
-							<div class="headList" style="background-color:#ea8066">
-								<li >
-									<div class="checkbox" >
-										<input  id="listCar1" data-toggle="collapse" data-target="#list1"  name='carType[]' class="carType" onchange='uncheckFunc(1)' type='checkbox' value=1>
-										<label for="listCar1"> เก๋ง </label>
-									</div>
-								</li>
-							</div>
-							<div id="list1" class="collapse">
-								<li>
-									<?php 
-									foreach ($Type1 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list1' onchange='checkFunc(1)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-									?>
-								</li>
-							</div>
-						</ul>
-					</div>
-					<div id="divCarList2">
-						<ul>
-							<div class="headList" style="background-color:#ffad05">
-								<li>
-									<div class="checkbox" >
-										<input id="listCar2" data-toggle="collapse" data-target="#list2" name='carType[]' class="carType" onchange='uncheckFunc(2)' type='checkbox' value=2>
-										<label for="listCar2"> กระบะ(ปิ๊กอัพ)  </label>
-									</div> 
-								</li>
-							</div>
-							<div id="list2" class="collapse">
-								<li>
-									<?php 
-									foreach ($Type2 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-									?>
-								</li>
-							</div>
-						</ul>	
-					</div>
-					<div id="divCarList3">
-						<ul>
-							<div class="headList" style="background-color:#c5d74a">
-								<li >
-									<div class="checkbox" >
-										<input id="listCar3" data-toggle="collapse" data-target="#list3" name='carType[]' class="carType" onchange='uncheckFunc(3)' type='checkbox' value=3>
-										<label for="listCar3"> รถตู้ </label>
-									</div> 
-								</li>
-							</div>
-							<div id="list3" class="collapse">
-								<li >
-									<?php 
-									foreach ($Type3 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list3' onchange='checkFunc(3)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-									?>
-								</li>
-							</div>
-						</ul>
-					</div>					
-					<div id="divCarList4">
-						<ul >
-							<div class="headList" style="background-color:#79e5c1">
-								<li>
-									<div class="checkbox" >
-										<input id="listCar4" data-toggle="collapse" data-target="#list4"  name='carType[]' class="carType" onchange='uncheckFunc(4)' type='checkbox' value=4> 
-										<label for="listCar4"> ไมโครบัส </label>
-									</div>
-								</li>
-							</div>
-							<div id="list4" class="collapse">
-								<li>
-									<?php 
-									foreach ($Type4 as  $value) {
-										echo "<ul><li><div class='checkbox'>";
-										echo "<input name='carId[]' class='list4' onchange='checkFunc(4)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-										echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-									}
-									?>
-								</li>
-							</div>
-						</ul>
-					</div>	
-					
-					<hr>
-					<center>	
-						<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-primary">ค้นหารถ</button>
-						<?php 
-						if (isset($this->session->userdata['logged_in'])) { 
-							if($role != "driver"){ 
-								?>
-								<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
-								<?php 
-							}
-						} 
-						?>
-					</center>
-				</form>					
-			</div>	
+		<form  class="form-horizontal" id="formS" style="align-items:center;">
+			<select id="filterDriver" class="form-control" name="filterDriver">
+				<option value="all">เลือกคนขับทั้งหมด</option>
+				<option value="0">การจองที่ไม่มีคนขับ</option>
+				<?php foreach ($driver as  $value) { ?>		
+				<option value="<?php echo $value['EmployeeCode'];?>"><?php echo $value['Name'];?></option>
+				<?php }  ?>	
+			</select>
 			<br>
+			<div id="holdList" style="padding: 1px; margin : 0px;">
+				
+					<div class="panel panel-default" >
+						<div class="panel-heading" style="padding:3px">
+							<center style="font-size: 25px">รายการรถ</center>
+						</div>
+					
+						<div class="panel-body" style="padding:10px ; background-color: #F5F2E5">
+						<div id="divCarList1">
+							<ul>
+								<div class="headList" style="background-color:#ea8066">
+									<li >
+										<div class="checkbox" >
+											<input  id="listCar1" data-toggle="collapse" data-target="#list1"  name='carType[]' class="carType" onchange='uncheckFunc(1)' type='checkbox' value=1>
+											<label for="listCar1"> เก๋ง </label>
+										</div>
+									</li>
+								</div>
+								<div id="list1" class="collapse">
+									<li>
+										<?php 
+										foreach ($Type1 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list1' onchange='checkFunc(1)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>
+						</div>
+						<div id="divCarList2">
+							<ul>
+								<div class="headList" style="background-color:#ffad05">
+									<li>
+										<div class="checkbox" >
+											<input id="listCar2" data-toggle="collapse" data-target="#list2" name='carType[]' class="carType" onchange='uncheckFunc(2)' type='checkbox' value=2>
+											<label for="listCar2"> กระบะ(ปิ๊กอัพ)  </label>
+										</div> 
+									</li>
+								</div>
+								<div id="list2" class="collapse">
+									<li>
+										<?php 
+										foreach ($Type2 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>	
+						</div>
+						<div id="divCarList3">
+							<ul>
+								<div class="headList" style="background-color:#c5d74a">
+									<li >
+										<div class="checkbox" >
+											<input id="listCar3" data-toggle="collapse" data-target="#list3" name='carType[]' class="carType" onchange='uncheckFunc(3)' type='checkbox' value=3>
+											<label for="listCar3"> รถตู้ </label>
+										</div> 
+									</li>
+								</div>
+								<div id="list3" class="collapse">
+									<li >
+										<?php 
+										foreach ($Type3 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list3' onchange='checkFunc(3)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>
+						</div>					
+						<div id="divCarList4">
+							<ul >
+								<div class="headList" style="background-color:#79e5c1">
+									<li>
+										<div class="checkbox" >
+											<input id="listCar4" data-toggle="collapse" data-target="#list4"  name='carType[]' class="carType" onchange='uncheckFunc(4)' type='checkbox' value=4> 
+											<label for="listCar4"> ไมโครบัส </label>
+										</div>
+									</li>
+								</div>
+								<div id="list4" class="collapse">
+									<li>
+										<?php 
+										foreach ($Type4 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list4' onchange='checkFunc(4)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>
+						</div>	
+					
+					</div>	
+				</div>
+				<center><button style="width: 100%" id="searchbut" onclick="ajax_search()" type="button" class="btn btn-primary">ค้นหารถ</button></center>
+				</form>	<br>
+				<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>		
+			</div>	
+			
 		</div>
 	</div>
 	<br><br>
@@ -174,7 +164,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
 					</div>
 					<div class="modal-body form">
@@ -248,7 +238,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
 					<h3 class="modal-title">Reservation</h3>
 				</div>
 				<div class="modal-body form">
@@ -273,6 +263,17 @@
 								<div class="col-md-8">
 									<select id="plateL" class="form-control" name="plateL"></select>
 									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">คนขับรถ</label>
+								<div class="col-md-8">
+								<select id="driverEdit" class="form-control" name="driverEdit">
+									<option value="0">ไม่มีคนขับ</option>
+									<?php foreach ($driver as  $value) { ?>		
+									<option value="<?php echo $value['EmployeeCode'];?>"><?php echo $value['Name'];?></option>
+									<?php }  ?>	
+								</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -449,49 +450,38 @@ function changeType(){
 									});
 								}
 
-								function createCalendar(data){
-									$('#calendar').fullCalendar({
-										eventLimit: true, 
-										editable: false,
-										navLinks: true,
-										locale: 'th',
-										header: {
-											left: 'prev,next listWeek today',
-											center: 'title',
-											right : ' month,agendaWeek,agendaDay '
-										},	
-										events: data,
-										eventMouseover: function (calEvent,event, jsEvent) {
-											$(this).popover({
-												placement: 'top',
-												trigger: 'hover',
-												html:true,
-												content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br>เวลากลับ : '
-												+moment(calEvent.end).format('DD/MM h:mm a'),
-												container: '#calendar'
-											});
-											$(this).popover('show');
-										},
+	function createCalendar(data){
+		$('#calendar').fullCalendar({
+			eventLimit: true, 
+			editable: false,
+			navLinks: true,
+			locale: 'th',
+			header: {
+			left: 'prev,next listWeek today',
+			center: 'title',
+			right : ' month,agendaWeek,agendaDay '
+			},	
+			events: data,
+			eventMouseover: function (calEvent,event, jsEvent) {
+				$(this).popover({
+					placement: 'top',
+					trigger: 'hover',
+					html:true,
+					content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br>เวลากลับ : '
+					+moment(calEvent.end).format('DD/MM h:mm a'),
+					container: '#calendar'
+			});
+			$(this).popover('show');
+			},
 
-										eventClick: function(calEvent, jsEvent, view) {
-											$('.alertEdit').hide();
-											if(calEvent.editable){
-												edit_reserve(calEvent.id);
-												$("#btnCancle").hide();
-												$("#btnSave, #btnDelete").show();
-												$('#formEdit').find('input, textarea, select').attr('disabled',false);
-												$('#telEditG').show();
-											}else{
-												edit_reserve(calEvent.id);
-												$("#btnCancle").show();
-												$("#btnSave, #btnDelete").hide();
-												$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
-												$('#telEditG').hide();
-											}			        
-			        // change the border color just for fun
+			eventClick: function(calEvent, jsEvent, view) {
+				$('.alertEdit').hide();
+				edit_reserve(calEvent.id);
+				$("#btnCancle").hide(); 
+				        // change the border color just for fun
 
-			    }					           				
-			});  
+		}					           				
+	});  
 }
 
 
@@ -506,7 +496,7 @@ function reload_calendar(){
 			$.ajax({
 				url: '<?php echo base_url('Search/searchCar'); ?>',
 				type: "POST",
-				data: $('.carType:checked').serialize()+"&"+$('[name="carId[]"]:checked').serialize(),
+				data: $('.carType:checked').serialize()+"&"+$('[name="carId[]"]:checked').serialize()+"&"+$('#filterDriver').serialize(),
 				datatype: 'json',
 				success: function (doc) {
 					data =JSON.parse(doc);	
@@ -548,6 +538,7 @@ function reload_calendar(){
 	    		$('#id').val(data.reserveId);
 	    		$('[name="carType"]').val(data.carTypeId).change();
 	    		$('[name="plateL"]').val(data.carId).change();
+	    		$('[name="driverEdit"]').val(data.driverId).change();
 	    		$('[name="dateS2"]').datetimepicker('update',data.startDate);
 	    		$('[name="dateE2"]').datetimepicker('update',data.endDate);
 	    		$('[name="placeEdit"]').val(data.place);

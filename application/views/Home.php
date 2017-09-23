@@ -367,137 +367,132 @@ function changeType(){
 			opt.value = "<?php echo $value->getCarId(); ?>";
 			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
 			select.appendChild(opt);
-			<?php } ?>
-		}else if(v==2){
-			<?php foreach ($Type2 as $value) { ?>	
-				var opt = document.createElement('option');				
-				opt.value = "<?php echo $value->getCarId(); ?>";
-				opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-				select.appendChild(opt);
-				<?php } ?>
-			}else if(v==3){
-				<?php foreach ($Type3 as $value) { ?>		
-					var opt = document.createElement('option');				
-					opt.value = "<?php echo $value->getCarId(); ?>";
-					opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-					select.appendChild(opt);
-					<?php } ?>
-				}else if(v==4){
-					<?php foreach ($Type4 as $value) { ?>	
-						var opt = document.createElement('option');						
-						opt.value = "<?php echo $value->getCarId(); ?>";
-						opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-						select.appendChild(opt);
-						<?php } ?>
-					}
+		<?php } ?>
+	}else if(v==2){
+		<?php foreach ($Type2 as $value) { ?>	
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==3){
+		<?php foreach ($Type3 as $value) { ?>		
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==4){
+		<?php foreach ($Type4 as $value) { ?>	
+			var opt = document.createElement('option');						
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}
 
-				}
-				function changeTypeforEdit(v){
-					select = document.getElementById('plateL');
+}
+function changeTypeforEdit(v){
+	select = document.getElementById('plateL');
+	select.innerHTML = "";		
+	if(v==1){
+		<?php foreach ($Type1 as $value) { ?>
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==2){
+		<?php foreach ($Type2 as $value) { ?>	
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==3){
+		<?php foreach ($Type3 as $value) { ?>		
+			var opt = document.createElement('option');				
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}else if(v==4){
+		<?php foreach ($Type4 as $value) { ?>	
+			var opt = document.createElement('option');						
+			opt.value = "<?php echo $value->getCarId(); ?>";
+			opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
+			select.appendChild(opt);
+		<?php } ?>
+	}
+}		
 
+function resetForm(){
+	select = document.getElementById('plate');
+	select.innerHTML = "";
+	var opt = document.createElement('option');	
+	opt.innerHTML = "เลือกประเภทรถก่อน";
+	select.appendChild(opt);
+	document.getElementById("formReserve").reset();
+	document.getElementById("sendform").style.height = '0px';			
+}
 
-					select.innerHTML = "";		
+function getDefualt_Calendar(){
+	$.ajax({
+		url: '<?php echo base_url('HomeInfo/ajax_loadEvent'); ?>',
+		type: "POST",
+		datatype: 'json',
+		success: function (doc) {
+			data =JSON.parse(doc);	
+			createCalendar(data)     
+		},error: function (err) {
+			alert('Error in fetching data');
+		}
+	});
+}
 
-					if(v==1){
-						<?php foreach ($Type1 as $value) { ?>
-							var opt = document.createElement('option');				
-							opt.value = "<?php echo $value->getCarId(); ?>";
-							opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-							select.appendChild(opt);
-							<?php } ?>
-						}else if(v==2){
-							<?php foreach ($Type2 as $value) { ?>	
-								var opt = document.createElement('option');				
-								opt.value = "<?php echo $value->getCarId(); ?>";
-								opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-								select.appendChild(opt);
-								<?php } ?>
-							}else if(v==3){
-								<?php foreach ($Type3 as $value) { ?>		
-									var opt = document.createElement('option');				
-									opt.value = "<?php echo $value->getCarId(); ?>";
-									opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-									select.appendChild(opt);
-									<?php } ?>
-								}else if(v==4){
-									<?php foreach ($Type4 as $value) { ?>	
-										var opt = document.createElement('option');						
-										opt.value = "<?php echo $value->getCarId(); ?>";
-										opt.innerHTML = "<?php echo $value->getPlateLicese(); ?>";
-										select.appendChild(opt);
-										<?php } ?>
-									}
-								}		
+function createCalendar(data){
+	$('#calendar').fullCalendar({
+		eventLimit: true, 
+		editable: false,
+		navLinks: true,
+		locale: 'th',
+		header: {
+			left: 'prev,next listWeek today',
+			center: 'title',
+			right : ' month,agendaWeek,agendaDay '
+		},	
+		events: data,
+		eventMouseover: function (calEvent,event, jsEvent) {
+			$(this).popover({
+				placement: 'top',
+				trigger: 'hover',
+				html:true,
+				content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br>เวลากลับ : '
+				+moment(calEvent.end).format('DD/MM h:mm a'),
+				container: '#calendar'
+			});
+			$(this).popover('show');
+		},
 
-								function resetForm(){
-									select = document.getElementById('plate');
-									select.innerHTML = "";
-									var opt = document.createElement('option');	
-									opt.innerHTML = "เลือกประเภทรถก่อน";
-									select.appendChild(opt);
-									document.getElementById("formReserve").reset();
-									document.getElementById("sendform").style.height = '0px';			
-								}
-
-
-
-								function getDefualt_Calendar(){
-									$.ajax({
-										url: '<?php echo base_url('HomeInfo/ajax_loadEvent'); ?>',
-										type: "POST",
-										datatype: 'json',
-										success: function (doc) {
-											data =JSON.parse(doc);	
-											createCalendar(data)     
-										},error: function (err) {
-											alert('Error in fetching data');
-										}
-									});
-								}
-
-								function createCalendar(data){
-									$('#calendar').fullCalendar({
-										eventLimit: true, 
-										editable: false,
-										navLinks: true,
-										locale: 'th',
-										header: {
-											left: 'prev,next listWeek today',
-											center: 'title',
-											right : ' month,agendaWeek,agendaDay '
-										},	
-										events: data,
-										eventMouseover: function (calEvent,event, jsEvent) {
-											$(this).popover({
-												placement: 'top',
-												trigger: 'hover',
-												html:true,
-												content: 'เวลาออก : '+moment(calEvent.start).format('DD/MM h:mm a')+'<br>เวลากลับ : '
-												+moment(calEvent.end).format('DD/MM h:mm a'),
-												container: '#calendar'
-											});
-											$(this).popover('show');
-										},
-
-										eventClick: function(calEvent, jsEvent, view) {
-											$('.alertEdit').hide();
-											if(calEvent.editable){
-												edit_reserve(calEvent.id);
-												$("#btnCancle").hide();
-												$("#btnSave, #btnDelete").show();
-												$('#formEdit').find('input, textarea, select').attr('disabled',false);
-												$('#telEditG').show();
-											}else{
-												edit_reserve(calEvent.id);
-												$("#btnCancle").show();
-												$("#btnSave, #btnDelete").hide();
-												$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
-												$('#telEditG').hide();
-											}			        
+		eventClick: function(calEvent, jsEvent, view) {
+			$('.alertEdit').hide();
+			if(calEvent.editable){
+				edit_reserve(calEvent.id);
+				$("#btnCancle").hide();
+				$("#btnSave, #btnDelete").show();
+				$('#formEdit').find('input, textarea, select').attr('disabled',false);
+				$('#telEditG').show();
+			}else{
+				edit_reserve(calEvent.id);
+				$("#btnCancle").show();
+				$("#btnSave, #btnDelete").hide();
+				$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
+				$('#telEditG').hide();
+			}			        
 			        // change the border color just for fun
 
-			    }					           				
-			});  
+		}					           				
+	});  
 }
 
 

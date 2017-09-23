@@ -126,6 +126,12 @@ class UserModel extends CI_Model {
 		}
 		return $depName;
 	}
+
+	public function getDriverInfo(){
+		$query = $this->db->get_where('user', array('role' => 'driver'));
+		return $query->result_array();
+	
+	}
 }
 
 /* End of file LoginModel.php */

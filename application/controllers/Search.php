@@ -15,48 +15,54 @@ class Search extends CI_Controller {
 		$this->load->view('SearchView',$data);
 	}
 
+	
+
 	public function searchCar()
 	{	
 		$reserve = array();
+		$driverId =  $_POST['filterDriver'];
 		//$carId = $this->input->post('carId');
 		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
 		$carId = (isset($_POST['carId']))?$_POST['carId']:"";
-		if(!$carTypeId == ""){
+		if(!$carTypeId == ""  && $driverId == "all"){
 			foreach ($carTypeId as $value) {
-				$r = $this -> ReservationModel -> getReserveFromCarType($value , $carId);
+				$r = $this -> ReservationModel -> getReserveFromCarTypeALLDriver($value , $carId);
 				if($r != ""){
 					$reserve = array_merge($reserve ,$r);
 				}
 			}
+		}else if($carTypeId != "" && $driverId != "all" ){
+			foreach ($carTypeId as $value) {
+				$r = $this -> ReservationModel -> getReserveFromCarTypeDriver($value , $carId , $driverId);
+				if($r != ""){
+					$reserve = array_merge($reserve ,$r);
+				}
+			}
+		}else if($driverId != "all"){
+			$reserve = $this-> ReservationModel->getReserveFromDriver($driverId);
 		}else{
 			$reserve = $this-> ReservationModel->getCurrentReservation();
 		}
 
 		$data = array();
-
-		foreach ($reserve as $value) {	
-				$data[] = array(
-					'id' => $value->getReserveId(),
-	                "title" => $value->getPlateLicese(),
-	                "start" => $value->getStartDate(),
-	                "end" => $value->getEndDate(),
-	                "color" => $value->getColor(),
-	              	"editable" => false
-	               );
-			}
+		if($reserve != ""){
+			foreach ($reserve as $value) {	
+					$data[] = array(
+						'id' => $value->getReserveId(),
+		                "title" => $value->getPlateLicese(),
+		                "start" => $value->getStartDate(),
+		                "end" => $value->getEndDate(),
+		                "color" => $value->getColor(),
+		              	"editable" => false
+		               );
+				}
+		}
+		
 		echo json_encode($data);
 		exit();
 	
 		
 	}	
-
-	public function test(){
-		$startDate = (isset($_POST['dateS']))?$_POST['dateS']:"";
-		$endDate = (isset($_POST['dateE']))?$_POST['dateE']:"";
-		$data['availiableCars'] = $this->CarsModel->searchAvailableCars($startDate , $endDate , 1); 
-		$this->load->view('testDataTable', $data);
-	}
-
 
 	public function reccommendCars(){
 		$carTypeId = $this->input->post('cartype');

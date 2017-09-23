@@ -234,11 +234,11 @@ class ReservationModel extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function getReserveFromCarType($carTypeId ,$carId){
+	public function getReserveFromCarTypeDriver($carTypeId ,$carId, $driverId){
 		$reserveInfo = null;
 		$r = "";
 		$carIdCheck = $this->checkCarIdType($carId);
-		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.cartypeId = '.$carTypeId);
+		$query = $this->db->query("SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.cartypeId = '".$carTypeId."' AND cr.DriverId = '". $driverId . "'" );
 
 		foreach ($query->result() as $row) {
 			if($carId == null || in_array($row->carId,$carId) || !in_array($row->carTypeId, $carIdCheck) ){
@@ -249,6 +249,40 @@ class ReservationModel extends CI_Model {
 				}
 				array_push($r,$reserveInfo);
 			}
+		}		
+		return $r;
+	}
+
+	public function getReserveFromCarTypeALLDriver($carTypeId ,$carId ){
+		$reserveInfo = null;
+		$r = "";
+		$carIdCheck = $this->checkCarIdType($carId);
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where c.cartypeId = '.$carTypeId );
+
+		foreach ($query->result() as $row) {
+			if($carId == null || in_array($row->carId,$carId) || !in_array($row->carTypeId, $carIdCheck) ){
+				$reserveInfo = new ReservationModel;
+				$this->matchReservationObject($reserveInfo,$row);
+				if($r === "") {
+					$r = array();
+				}
+				array_push($r,$reserveInfo);
+			}
+		}		
+		return $r;
+	}
+	public function getReserveFromDriver($driverId){
+		$reserveInfo = null;
+		$r = "";
+		$query = $this->db->query("SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.DriverId = '". $driverId . "'" );
+
+		foreach ($query->result() as $row) {
+				$reserveInfo = new ReservationModel;
+				$this->matchReservationObject($reserveInfo,$row);
+				if($r === "") {
+					$r = array();
+				}
+				array_push($r,$reserveInfo);
 		}		
 		return $r;
 	}

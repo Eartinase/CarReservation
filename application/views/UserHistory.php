@@ -27,13 +27,13 @@
 		font-weight: bold;
 	}
 </style>
-<body  style="background-color:#fafafa">
+<body  style="background-color:#fafafa;width: 100%">
 	
 	<?php 
 	include "NavbarChooser.php";
 	?>
 	
-	<div class = "container">			
+	<div  class = "container">			
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>

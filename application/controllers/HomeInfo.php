@@ -8,7 +8,7 @@ class homeInfo extends CI_Controller {
 		//$this->load->model('CarsModel','CarsModel');
 		$this->load->model('ReservationModel','ReservationModel');
 		$this->load->model('CarsModel','CarsModel');
-		
+		$this->load->model('UserModel','UserModel');
 	}
 
 	public function index(){				
@@ -51,6 +51,7 @@ class homeInfo extends CI_Controller {
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
  		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
  		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
+ 		$data["driver"] = $this-> UserModel -> getDriverInfo();
  		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
  		$this->load->view('HomeAdmin', $data);
 	}

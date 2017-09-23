@@ -40,6 +40,7 @@ class Reserve extends CI_Controller {
 			'carId'	=> $ReserveInfo->getCarId(),
 			'carTypeId' => $selectCar->getCarTypeId(),
 			'plateLicense' => $ReserveInfo->getPlateLicese(),
+			'driverId' => $ReserveInfo->getDriverId(),
 			'startDate' => $ReserveInfo->getStartDate(),
 			'endDate' => $ReserveInfo->getEndDate(),
 			'place' => $ReserveInfo->getPlace(),

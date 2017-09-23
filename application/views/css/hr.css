@@ -1,5 +1,7 @@
-
-
+	p, span {
+	    font-size: 10pt !important;
+	}
+	
 	hr {
 	    display: block;
 	    height: 1px;
@@ -17,7 +19,6 @@
 		height: 120%;
 		overflow: hidden;
 		
-	
 	}
 
 	label{
@@ -26,7 +27,7 @@
 
 	li{
 		list-style-type: none;
-		padding-left: 25px;
+		padding-left: 15px;
 	}
 
 	.dr-menu {
