@@ -25,10 +25,10 @@ class AddCar extends CI_Controller {
 			'PurchaseYear'	=> $this->input->post('PurchaseYear'),
 			'Seat' 			=> $this->input->post('seat'),
 			'itemLabel'		=> $this->input->post('itemLabel'),
-			'DriverId' 		=> $this->input->post('driver'),
-			'fuel'			=>$this->input->post('Fuel'),
-			'depID'			=>$this->input->post('depID'),
-			'description'	=>$this->input->post('description')			 	
+			'DriverId' 		=> $this->input->post('driverId'),
+			'fuel'			=> $this->input->post('Fuel'),
+			'depID'			=> $this->input->post('depId'),
+			'description'	=> $this->input->post('description')	
 			);		
 		$this -> AddCarModel -> add($data);
 		$message = array(

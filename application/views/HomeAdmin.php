@@ -7,13 +7,17 @@
 	?>
 	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
 	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
+	<script src='<?php echo base_url(); ?>fullcalendar/locale/th.js'></script>
 	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script>
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.css' />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hr.css' />
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
-	<script src='<?php echo base_url(); ?>fullcalendar/locale-all.js'></script>
+
+	
+	
+
 	<style type="text/css">
 		body{
 			font-family: 'Prompt', sans-serif;

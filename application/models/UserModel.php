@@ -127,10 +127,35 @@ class UserModel extends CI_Model {
 		return $depName;
 	}
 
+
 	public function getDriverInfo(){
 		$query = $this->db->get_where('user', array('role' => 'driver'));
 		return $query->result_array();
-	
+	}
+
+	public function getDriver(){
+		$query = $this->db->get_where('user', array('role' => 'driver'));
+
+		$option = "";
+		
+		foreach($query->result() as $row){
+			$option .= "<option value=".$row->EmployeeCode.">".$row->Name."</option>/n";
+		}
+
+		return $option;
+	}
+
+	public function getDepartment(){
+		$query = $this->db->get('Department');
+
+		$depOption = "";
+
+		foreach ($query->result() as $row) {
+			$depOption .= "<option value=".$row->depID.">".$row->department."</option>/n";
+		}
+
+		return $depOption;
+
 	}
 }
 

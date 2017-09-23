@@ -20,7 +20,6 @@ class AddCarModel extends CI_Model {
 		foreach ($query->result() as $row) {
 			$rslt["driver"] .= "<option value='".$row->DriverId."'>".$row->DriverName."</option> \n";
 		}
-
 		return $rslt;
 	}
 
@@ -30,6 +29,5 @@ class AddCarModel extends CI_Model {
 
 
 }
-
 /* End of file AddCarModel.php */
 /* Location: ./application/models/AddCarModel.php */

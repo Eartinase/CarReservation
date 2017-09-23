@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
 	<?php 
-	include "Header.php";
-	?>
+  include "Header.php";
+  ?>
 	
 </head>
 <body>
-
-	<?php 
-	include "NavbarChooser.php";
-	?>
-	
-	<div  class="container">	
-		<center>
+	 <?php 
+   include "NavbarChooser.php";   
+  ?>
+<div class="container">
+  <center>
 			<h3>เพิ่มรถ</h3>
 		</center>
 		<form action="<?php echo base_url(); ?>AddCar/Add" method="post">
@@ -88,7 +83,10 @@
 					พนักงานขับรถ: 
 					<select class="form-control" name="driverId" id="driverOption">
 						<option> - - </option>
-					</select> 
+						<?php 						
+						echo $driverOption;
+						?>
+					</select> 					
 				</div>
 			</div>	
 			<br>
@@ -101,6 +99,9 @@
 					หน่วยงานเจ้าของ:
 					<select class="form-control" name="depId">
 						<option> - - </option>
+						<?php 						
+						echo $depOption;
+						?>
 					</select> 					
 				</div>				
 			</div>
@@ -114,29 +115,7 @@
 			<br>
 			
 			<center><button type="submit" class="btn btn-primary" >ยืนยัน</button></center>
-			
 			<br>
-			
-			<!--
-			ทะเบียน: <input type="text" name="plateLicense" class="form-control" required> <br>
-			หมายเลขเครื่อง: <input type="text" name="serial" class="form-control" required> <br>
-			ประเภทรถ: <select name ="carType" class="form-control" required>
-				<?php 
-				echo $cartype ;
-					//echo var_dump($rslt);
-				?>
-			</select><br>
-			จำนวนที่นั่ง: <input type="number" class="form-control" name="seat" required> <br>
-			คนขับ: <select name = "driver" class="form-control">
-				<option> -- </option>
-				<?php 
-				echo $driver ;			
-				?>
-			</select>
-			<br>	
-			<center><button type="submit" class="btn btn-primary" >เพิ่มรถ</button></center>
-		-->
-		</form>
-	</div>
+</div>
 </body>
 </html>

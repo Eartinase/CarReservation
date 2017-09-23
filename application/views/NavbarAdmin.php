@@ -37,7 +37,7 @@
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">จัดการ<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>AddCar">เพิ่มรถ</a></li> 
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>ManageCar">จัดการรถ</a></li> 
                 <li role="separator" class="divider"></li>
                 <li class="dr-menu"><a href="<?php echo base_url(); ?>AllReserve">การจองทั้งหมด</a></li>                
               </ul> 

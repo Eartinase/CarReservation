@@ -134,14 +134,12 @@ function deleteRes(rID){
 			url : "<?php echo site_url('Reserve/ajax_deleteReserve')?>/"+rID,
 			type: "POST",
 			dataType: "JSON",
-			success: function(data)
-			{
+			success: function(data){
 		                //if success reload ajax table
 		                //$('#modal_form').modal('hide');
 		                reload_table();
 		            },
-		            error: function (jqXHR, textStatus, errorThrown)
-		            {
+		            error: function (jqXHR, textStatus, errorThrown){
 		            	alert('Error deleting data');
 		            }
 		        });
@@ -252,10 +250,7 @@ function save(){
 	        	"url" : "<?php echo base_url(); ?>Reserve/ajax_reservelist",
 	        	"type" : "POST"
 	        },
-
-	        //Set column definition initialisation properties.
-	        
-
+	        //Set column definition initialisation properties. 
 	    });
 
 	    $('.datetimepicker').datetimepicker({
@@ -266,8 +261,7 @@ function save(){
 	    	orientation: "top auto",
 	    	todayBtn: true,
 	    	todayHighlight: true,  
-	    });
-	    
+	    });	    
 
 	    //set input/textarea/select event when change value, remove class error and remove text help block 
 	    $("input").change(function(){
