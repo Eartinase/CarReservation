@@ -15,9 +15,44 @@ class Search extends CI_Controller {
 		$this->load->view('SearchView',$data);
 	}
 
+	public function searchCar()
+	{	
+		$reserve = array();
+		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
+		$carId = (isset($_POST['carId']))?$_POST['carId']:"";
+		if(!$carTypeId == ""){
+			foreach ($carTypeId as $value) {
+				$r = $this -> ReservationModel -> getReserveFromCarTypeALLDriver($value , $carId);
+				if($r != ""){
+					$reserve = array_merge($reserve ,$r);
+				}
+			}
+		}else{
+			$reserve = $this-> ReservationModel->getCurrentReservation();
+		}
+
+		$data = array();
+		if($reserve != ""){
+			foreach ($reserve as $value) {	
+					$data[] = array(
+						'id' => $value->getReserveId(),
+		                "title" => $value->getPlateLicese(),
+		                "start" => $value->getStartDate(),
+		                "end" => $value->getEndDate(),
+		                "color" => $value->getColor(),
+		              	"editable" => false
+		               );
+				}
+		}
+		
+		echo json_encode($data);
+		exit();
+	
+		
+	}	
 	
 
-	public function searchCar()
+	public function adminSearchCar()
 	{	
 		$reserve = array();
 		$driverId =  $_POST['filterDriver'];

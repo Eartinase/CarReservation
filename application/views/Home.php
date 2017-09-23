@@ -7,6 +7,7 @@
 	?>
 	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
 	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
+	<script src='<?php echo base_url(); ?>fullcalendar/locale/th.js'></script>
 	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script>
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.css' />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -56,7 +57,7 @@ if (isset($this->session->userdata['logged_in'])) {
 			if (isset($this->session->userdata['logged_in'])) { 
 				if($role != "driver"){ 
 					?>
-					<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button>
+					<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button> <br><br>
 					<?php 
 				}
 			} 
@@ -65,96 +66,107 @@ if (isset($this->session->userdata['logged_in'])) {
 			<?php if (isset($this->session->userdata['logged_in'])) { ?>	
 			
 			<?php } ?>
+			<form  class="form-horizontal" style="align-items:center;">
 			<div id="holdList" style="padding: 1px; margin : 0px;">
-				<form  class="form-horizontal" style="align-items:center;">
-					<center style="font-size: 25px">รายการรถ</center>
-
+				<div class="panel panel-default" >
+					<div class="panel-heading" style="padding:3px">
+						<center style="font-size: 25px">รายการรถ</center>
+					</div>
+					<div class="panel-body" style="padding:10px ; background-color: #F5F2E5">
 					<div id="divCarList1">
-						<ul>
-							<div class="headList" style="background-color:#ea8066">
-								<li >
-									<div class="checkbox" >
-										<input  id="listCar1" name='carType[]' class="carType" onchange='uncheckFunc(1)' type='checkbox' value=1>
-										<label for="listCar1"> เก๋ง </label>
-									</div>
-								</li>
-							</div>
-							<li  >
-								<?php 
-								foreach ($Type1 as  $value) {
-									echo "<ul><li><div class='checkbox'>";
-									echo "<input name='carId[]' class='list1' onchange='checkFunc(1)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-									echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-								}
-								?>
-							</li>
-						</ul>
+							<ul>
+								<div class="headList" style="background-color:#ea8066">
+									<li >
+										<div class="checkbox" >
+											<input  id="listCar1" data-toggle="collapse" data-target="#list1"  name='carType[]' class="carType" onchange='uncheckFunc(1)' type='checkbox' value=1>
+											<label for="listCar1"> เก๋ง </label>
+										</div>
+									</li>
+								</div>
+								<div id="list1" class="collapse">
+									<li>
+										<?php 
+										foreach ($Type1 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list1' onchange='checkFunc(1)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>
+						</div>
+						<div id="divCarList2">
+							<ul>
+								<div class="headList" style="background-color:#ffad05">
+									<li>
+										<div class="checkbox" >
+											<input id="listCar2" data-toggle="collapse" data-target="#list2" name='carType[]' class="carType" onchange='uncheckFunc(2)' type='checkbox' value=2>
+											<label for="listCar2"> กระบะ(ปิ๊กอัพ)  </label>
+										</div> 
+									</li>
+								</div>
+								<div id="list2" class="collapse">
+									<li>
+										<?php 
+										foreach ($Type2 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>	
+						</div>
+						<div id="divCarList3">
+							<ul>
+								<div class="headList" style="background-color:#c5d74a">
+									<li >
+										<div class="checkbox" >
+											<input id="listCar3" data-toggle="collapse" data-target="#list3" name='carType[]' class="carType" onchange='uncheckFunc(3)' type='checkbox' value=3>
+											<label for="listCar3"> รถตู้ </label>
+										</div> 
+									</li>
+								</div>
+								<div id="list3" class="collapse">
+									<li >
+										<?php 
+										foreach ($Type3 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list3' onchange='checkFunc(3)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>
+						</div>					
+						<div id="divCarList4">
+							<ul >
+								<div class="headList" style="background-color:#79e5c1">
+									<li>
+										<div class="checkbox" >
+											<input id="listCar4" data-toggle="collapse" data-target="#list4"  name='carType[]' class="carType" onchange='uncheckFunc(4)' type='checkbox' value=4> 
+											<label for="listCar4"> ไมโครบัส </label>
+										</div>
+									</li>
+								</div>
+								<div id="list4" class="collapse">
+									<li>
+										<?php 
+										foreach ($Type4 as  $value) {
+											echo "<ul><li><div class='checkbox'>";
+											echo "<input name='carId[]' class='list4' onchange='checkFunc(4)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
+											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
+										}
+										?>
+									</li>
+								</div>
+							</ul>
+						</div>	
+					</div>				
 					</div>
-					<div id="divCarList2">
-						<ul>
-							<div class="headList" style="background-color:#ffad05">
-								<li>
-									<div class="checkbox" >
-										<input id="listCar2" name='carType[]' class="carType" onchange='uncheckFunc(2)' type='checkbox' value=2>
-										<label for="listCar2"> กระบะ(ปิ๊กอัพ)  </label>
-									</div> 
-								</li>
-							</div>
-							<li>
-								<?php 
-								foreach ($Type2 as  $value) {
-									echo "<ul><li><div class='checkbox'>";
-									echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-									echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-								}
-								?>
-							</li>
-						</ul>	
-					</div>
-					<div id="divCarList3">
-						<ul>
-							<div class="headList" style="background-color:#c5d74a">
-								<li >
-									<div class="checkbox" >
-										<input id="listCar3"  name='carType[]' class="carType" onchange='uncheckFunc(3)' type='checkbox' value=3>
-										<label for="listCar3"> รถตู้ </label>
-									</div> 
-								</li>
-							</div>
-							<li >
-								<?php 
-								foreach ($Type3 as  $value) {
-									echo "<ul><li><div class='checkbox'>";
-									echo "<input name='carId[]' class='list3' onchange='checkFunc(3)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-									echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-								}
-								?>
-							</li>
-						</ul>
-					</div>					
-					<div id="divCarList4">
-						<ul >
-							<div class="headList" style="background-color:#79e5c1">
-								<li>
-									<div class="checkbox" >
-										<input id="listCar4" name='carType[]' class="carType" onchange='uncheckFunc(4)' type='checkbox' value=4> 
-										<label for="listCar4"> ไมโครบัส </label>
-									</div>
-								</li>
-							</div>
-							<li>
-								<?php 
-								foreach ($Type4 as  $value) {
-									echo "<ul><li><div class='checkbox'>";
-									echo "<input name='carId[]' class='list4' onchange='checkFunc(4)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
-									echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";
-								}
-								?>
-							</li>
-						</ul>
-					</div>	
-					
-					<hr>
 					<center>	
 						<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-primary">ค้นหารถ</button>
 						<?php 
@@ -167,8 +179,8 @@ if (isset($this->session->userdata['logged_in'])) {
 						} 
 						?>
 					</center>
-				</form>					
-			</div>	
+				</div>
+			</form>		
 			<br>
 		</div>
 	</div>
@@ -180,7 +192,7 @@ if (isset($this->session->userdata['logged_in'])) {
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
 					</div>
 					<div class="modal-body form">
@@ -254,7 +266,7 @@ if (isset($this->session->userdata['logged_in'])) {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
 					<h3 class="modal-title">Reservation</h3>
 				</div>
 				<div class="modal-body form">

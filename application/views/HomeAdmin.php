@@ -154,9 +154,10 @@
 					</div>	
 				</div>
 				<center><button style="width: 100%" id="searchbut" onclick="ajax_search()" type="button" class="btn btn-primary">ค้นหารถ</button></center>
+				</div>
 				</form>	<br>
 				<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>		
-			</div>	
+			</div>
 			
 		</div>
 	</div>
@@ -498,7 +499,7 @@ function reload_calendar(){
 
 		function ajax_search(){		
 			$.ajax({
-				url: '<?php echo base_url('Search/searchCar'); ?>',
+				url: '<?php echo base_url('Search/adminSearchCar'); ?>',
 				type: "POST",
 				data: $('.carType:checked').serialize()+"&"+$('[name="carId[]"]:checked').serialize()+"&"+$('#filterDriver').serialize(),
 				datatype: 'json',
