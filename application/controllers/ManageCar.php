@@ -40,7 +40,7 @@ class ManageCar extends CI_Controller {
 	                "<center>".$value->getSeat()."</center>",
 	                "<center>".$value->getItemLabel()."</center>",
 	                "<center>".$value->getFuel()."</center>",
-	                "<center>".$value->getDepID()."</center>",
+	                "<center>".$value->getDepartment()."</center>",
 	                "<center>".$value->getDescription()."</center>",
 	               	"<p>...</p>"
 	            );			
