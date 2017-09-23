@@ -18,6 +18,7 @@ class CarsModel extends CI_Model {
 	private $driverId;
 	private $fuel;
 	private $depID;
+	private $department;
 	private $description;
 	
 	private $carType;	
@@ -168,20 +169,37 @@ class CarsModel extends CI_Model {
 		return $this->detail;
 	}
 
-	public function setDetail(){
+	public function setDetail($detail){
 		$this->detail = $detail;
 	}
 
+	public function getDepartment(){
+		return $this->department;
+	}
+
+	public function setDepartment($department){
+		$this->department = $department;
+	}
+
+	public function deleteCar($id){
+		$this->db->delete('cars', array('carId' => $id)); 
+	}
+
+	public function Update($data, $carId){
+		$this->db->where('carId', $carId);
+		$this->db->update('cars', $data); 
+	}
 
 	public function getAllCar(){
 		$car = null;
 		$r = "";
-		$sql = 'SELECT c.carId, c.PlateLicense, c.Color, c.RegisterDate,'.
-			' c.Price, c.Brand, c.Generation, c.serial, c.PurchaseYear, '.
-			'c.Seat, c.itemLabel, c.fuel, d.department'.
-			'FROM cars c '.
-			'JOIN carType ct ON c.carTypeId= ct.carTypeId'.
-			'JOIN Department d ON d.depID = c.depID';
+		$sql = 'SELECT c.carId, c.carId, c.PlateLicense, ct.CarType, c.RegisterDate, c.Color, '.
+		' c.Price, c.Brand, c.Generation, c.serial, c.PurchaseYear, '.
+		'c.Seat, c.itemLabel, c.fuel, d.department, c.Description '.
+		'FROM cars c '.
+		'JOIN cartype ct ON c.carTypeId= ct.carTypeId '.
+		'JOIN Department d ON d.depID = c.depID '.
+		'ORDER BY c.plateLicense';
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
 			$car = new CarsModel;
@@ -194,13 +212,79 @@ class CarsModel extends CI_Model {
 		return $r;
 	}
 
+	public function getCarForEdit($id){
+		$car = null;
+		$r = "";
+		$sql = 'SELECT c.carId, c.PlateLicense, ct.CarType, c.RegisterDate, c.Color, '.
+		' c.Price, c.Brand, c.Generation, c.serial, c.PurchaseYear, '.
+		'c.Seat, c.itemLabel, c.fuel, d.department, c.Description, '.
+		'u.Name, c.depID '.
+		'FROM cars c '.
+		'JOIN cartype ct ON c.carTypeId= ct.carTypeId '.
+		'JOIN user u ON u.EmployeeCode = c.driverId '.
+		'JOIN Department d ON d.depID = c.depID '.
+		'WHERE c.carId = '.$id.
+		' ORDER BY c.plateLicense';;
+		$query = $this->db->query($sql);
+
+		foreach ($query->result() as $row){
+			$color 			= $row->Color;
+			$plateLicense 	= $row->PlateLicense;
+			$carType 		= $row->CarType;
+			$registerDate 	= $row->RegisterDate;
+			$price 			= $row->Price;
+			$brand 			= $row->Brand;
+			$generation 	= $row->Generation;
+			$serial 		= $row->serial;
+			$purchaseYear 	= $row->PurchaseYear;
+			$seat 			= $row->Seat;
+			$itemLabel 		= $row->itemLabel;
+			$driver			= $row->Name;
+			$fuel 			= $row->fuel;
+			$department		= $row->department;
+			$description 	= $row->Description;
+			$carId 			= $row->carId;
+			$depId 			= $row->depID;
+		}
+
+		$data = array(
+			'carId'			=> $carId ,
+			'color'			=> $color ,
+			'plateLicense'	=> $plateLicense,
+			'carType'		=> $carType,
+			'registerDate'	=> $registerDate,
+			'price'			=> $price,
+			'brand'			=> $brand,
+			'generation'	=> $generation,
+			'serial'		=> $serial,
+			'purchaseYear'	=> $purchaseYear,
+			'seat'			=> $seat,
+			'itemLabel'		=> $itemLabel,
+			'driver'		=> $driver,
+			'fuel'			=> $fuel,
+			'department'	=> $department,
+			'depId'			=> $depId,
+			'description'	=> $description
+		);
+
+		return $data;
+	}
+
 	private function matchCarObject2($car,$row){
 		$car->setCarId($row->carId);
-		$car->setPlateLicense($row->plateLicense);	
+		$car->setPlateLicense($row->PlateLicense);	
 		$car->setColor($row->Color);	
-		$car->setCarTypeId($row->CarTypeId);
-		$car->setSeat($row->seat);	
-		
+		$car->setRegisterDate($row->RegisterDate);
+		$car->setPrice($row->Price);
+		$car->setBrand($row->Brand);
+		$car->setGeneration($row->Generation);
+		$car->setSerial($row->serial);
+		$car->setPurchaseYear($row->PurchaseYear);		
+		$car->setSeat($row->Seat);
+		$car->setItemLabel($row->itemLabel);		
+		$car->setFuel($row->fuel);
+		$car->setDepartment($row->department);
+		$car->setDescription($row->Description);
 		$car->setCarType($row->CarType);
 	}
 
@@ -237,9 +321,9 @@ class CarsModel extends CI_Model {
 		$query = $this->db->query('SELECT c.carId,c.plateLicense, c.seat, ct.* FROM cars c JOIN cartype ct 
 			ON c.carTypeId= ct.carTypeId 
 			WHERE c.carId NOT IN( SELECT cr.carId FROM currentreservation cr 
-				WHERE (cr.EndDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\' 
-					AND cr.StartDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\')
-		OR (StartDate <\''.$startDateTime.'\' AND EndDate >\''.$endDateTime.'\') )');
+			WHERE (cr.EndDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\' 
+			AND cr.StartDate BETWEEN \''. $startDateTime .'\' AND \''. $endDateTime .'\')
+			OR (StartDate <\''.$startDateTime.'\' AND EndDate >\''.$endDateTime.'\') )');
 		foreach ($query->result() as $row)
 		{
 			if($row->CarTypeId == $carTypeId) 

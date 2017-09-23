@@ -31,10 +31,8 @@ class AddCar extends CI_Controller {
 			'description'	=> $this->input->post('description')	
 			);		
 		$this -> AddCarModel -> add($data);
-		$message = array(
-			'message' => 'Success'
-			);
-		$this->load->view('Result', $message);
+		
+		$this->load->view('AllCar');
 	}   
 
 }
