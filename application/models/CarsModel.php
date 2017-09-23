@@ -36,15 +36,7 @@ class CarsModel extends CI_Model {
 		$this->carId = $carId;
 	}
 
-	public function getCarTypeId(){
-		return $this->carTypeId;
-	}
-
-	public function setCarTypeId($carTypeId){
-		$this->carTypeId = $carTypeId;
-	}
-
-	public function getPlateLicense(){
+	public function getPlateLicese(){
 		return $this->plateLicense;
 	}
 
@@ -60,8 +52,101 @@ class CarsModel extends CI_Model {
 		$this->color = $color;
 	}
 
+	public function getCarTypeId(){
+		return $this->carTypeId;
+	}
 
+	public function setCarTypeId($carTypeId){
+		$this->carTypeId = $carTypeId;
+	}
 
+	public function getRegisterDate(){
+		return $this->registerDate;
+	}
+
+	public function setRegisterDate($registerDate){
+		$this->registerDate = $registerDate;
+	}
+
+	public function getPrice(){
+		return $this->price;
+	}
+
+	public function setPrice($price){
+		$this->price = $price;
+	}
+
+	public function getBrand(){
+		return $this->brand;
+	}
+
+	public function setBrand($brand){
+		$this->brand = $brand;
+	}
+
+	public function getGeneration(){
+		return $this->generation;
+	}
+
+	public function setGeneration($generation){
+		$this->generation = $generation;
+	}
+
+	public function getSerial(){
+		return $this->serial;
+	}
+
+	public function setSerial($serial){
+		$this->serial = $serial;
+	}
+
+	public function getPurchaseYear(){
+		return $this->purchaseYear;
+	}
+
+	public function setPurchaseYear($purchaseYear){
+		$this->purchaseYear = $purchaseYear;
+	}
+	
+	public function getSeat(){
+		return $this->seat;
+	}
+
+	public function setSeat($seat){
+		$this->seat = $seat;
+	}
+
+	public function getItemLabel(){
+		return $this->itemLabel;
+	}
+
+	public function setItemLabel($itemLabel){
+		$this->itemLabel = $itemLabel;
+	}
+
+	public function getDriverId(){
+		return $this->driverId;
+	}
+
+	public function setDriverId($driverId){
+		$this->driverId = $driverId;
+	}
+
+	public function getFuel(){
+		return $this->fuel;
+	}
+
+	public function setFuel($fuel){
+		$this->fuel = $fuel;
+	}
+
+	public function getDepID(){
+		return $this->depID;
+	}
+
+	public function setDepID($depID){
+		$this->depID = $depID;
+	}
 
 	public function getCarType(){
 		return $this->carType;
@@ -71,21 +156,12 @@ class CarsModel extends CI_Model {
 		$this->carType = $carType;
 	}
 
-
-	public function getPlateLicese(){
-		return $this->plateLicense;
+	public function getDescription(){
+		return $this->description;
 	}
 
-	public function setPlateLicense($plateLicense){
-		$this->plateLicense = $plateLicense;
-	}
-
-	public function getSeat(){
-		return $this->seat;
-	}
-
-	public function setSeat($seat){
-		$this->seat = $seat;
+	public function setDescription($description){
+		$this->description = $description;
 	}
 
 	public function getDetail(){
@@ -109,7 +185,7 @@ class CarsModel extends CI_Model {
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
 			$car = new CarsModel;
-			$this->matchCarObject($car,$row);
+			$this->matchCarObject2($car,$row);
 			if($r === ""){
 				$r = array();
 			}
@@ -117,14 +193,17 @@ class CarsModel extends CI_Model {
 		}
 		return $r;
 	}
-/*
-	public function allCarForAdmin(){
-		$query = $this->db->get('cars');
-		foreach ($query->result() as $row) {
-			$car = new CarsModel;
-		}
+
+	private function matchCarObject2($car,$row){
+		$car->setCarId($row->carId);
+		$car->setPlateLicense($row->plateLicense);	
+		$car->setColor($row->Color);	
+		$car->setCarTypeId($row->CarTypeId);
+		$car->setSeat($row->seat);	
+		
+		$car->setCarType($row->CarType);
 	}
-*/
+
 	public function getCarById($carId){
 		$car = null;
 		$query = $this->db->query('SELECT c.carId , c.plateLicense, c.seat, ct.* FROM cars c JOIN cartype ct ON c.carTypeId = 
