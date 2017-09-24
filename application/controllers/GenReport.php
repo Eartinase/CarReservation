@@ -156,9 +156,10 @@ class genReport extends CI_Controller {
 		$robj = $this->ReservationModel->getReserveFromCarID($plateL);
 		$data = array();
 		foreach ($robj as $value) {	
+			
 			$data[] = array(
 				'rId' => $value['CurrentId'],
-				'name' => "นรินทร์ธร วรเมธีกุล",
+				'name' => $this->UserModel->getNamee($value['EmployeeCode']),
 				"department" => $value['depID'],
 				"start" => $value['StartDate'],
 				"end" => $value['EndDate'],
