@@ -17,13 +17,20 @@
   <?php 
   include "NavbarChooser.php";
   ?>
-
+<form action="<?php echo base_url(); ?>GenReport/genPDFAdminHistory" style="display:none" method="post">
+    <input type="text" name="carType" id="ct" >
+    <input type="text" name="plateLicense"  id="pl">
+    <input type="submit" name="subb" id="subb">
+</form>
   <div class="con">
     <h2 style="text-align:center;font-size:36px">รายงานข้อมูลการใช้งานรถ</h2><hr>
 
     <div class="row">
       <div style="text-align:center">
-        <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button>
+
+        <!--button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button-->
+<button class="btn btn-danger" onclick="subForm()">ดาวน์โหลดเป็น PDF</button>
+
         <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
       </div>      
     </div>
@@ -43,7 +50,7 @@
     </div>
     <label for="plate" class="col-md-1 control-label">ทะเบียนรถ </label>
     <div class="col-md-3">
-      <select required name="plateLicense" id="plate" class="form-control">
+      <select required name="plateLicense" id="plate" class="form-control" onchange="platee()">
         <option value="">เลือกประเภทรถก่อน</option>
       </select>
     </div> 
@@ -126,7 +133,16 @@
     win.focus();
   }
 
+  function subForm() {
+    document.getElementById("subb").click();
+  }
+
+  function platee() {
+    document.getElementById("pl").value = document.getElementById("plate").value;
+  }
+
   function changeType(){
+    document.getElementById("ct").value = document.getElementById("cartype").value;
     select = document.getElementById('plate');
     e = document.getElementById('cartype');
     v = e.options[e.selectedIndex].value;
