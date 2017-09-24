@@ -20,7 +20,7 @@
       font-family: Arial, Helvetica, sans-serif; 
       font-size: 11pt; 
     } 
-    big { 
+    big{ 
       font-family: Arial, Helvetica, sans-serif; 
       font-size: 14pt; 
     } 
@@ -44,6 +44,7 @@
       font-family: Arial, Helvetica, sans-serif; 
       font-family: 'Prompt', sans-serif;
     }
+    
 
   </style>   
 

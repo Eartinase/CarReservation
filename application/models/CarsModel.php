@@ -365,6 +365,7 @@ class CarsModel extends CI_Model {
 	public function getCarTypeIdByName($carType){
 		$sql = 'SELECT CarTypeId FROM cartype WHERE CarType = \''.$carType.'\'';
 		$query = $this->db->query($sql);
+		$result ="";
 		foreach ($query->result() as $row){
 			$result = $row->CarTypeId;  
 		}
@@ -374,6 +375,15 @@ class CarsModel extends CI_Model {
 	public function getCarTypeName($c){
 		$sql = 'SELECT CarType FROM cartype WHERE CarTypeId =\''.$c.'\'';
 		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->CarType;  
+		}
+		return $result;
+	}
+
+	public function getCarTypeFromCarId($carId){
+		$sql = 'SELECT ct.* from cartype ct JOIN cars c ON ct.CarTypeId = c.CarTypeId WHERE c.carId = '.$carId;
+		$query =$this->db->query($sql);
 		foreach ($query->result() as $row){
 			$result = $row->CarType;  
 		}
