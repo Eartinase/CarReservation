@@ -17,20 +17,13 @@ $role = ($this->session->userdata['logged_in']['role']);
     <h2 style="text-align:center;font-size:36px">รายงานข้อมูลการใช้งานรถ</h2>
     <h3 style="text-align:center;font-size:26px"><?php echo $name ?></h3>
     <hr>
-    <br>
-    
+    <br>    
      
        <p>ประเภทรถ: <?php echo $carType ?></p>
-       <p>ทะเบียน: <?php echo $plateLicense ?></p>
-  
-
-    
-    
+       <p>ทะเบียน: <?php echo $plateLicense ?></p>    
       
-</div>
-
-<center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
-<center>
+</div> 
+<div style="text-align: center">
   <table id="reportTable" class="table2excel table" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
     <thead>
       <tr>
@@ -42,10 +35,21 @@ $role = ($this->session->userdata['logged_in']['role']);
         <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
       </tr>
     </thead>
-    <tbody>        
+    <tbody>
+      <?php foreach ($test as $value) { ?>
+          <tr>
+          <td><?php echo $value['CurrentId'] ?></td>
+          <td><?php echo $value['EmployeeCode'] ?></td>
+          <td><?php echo $value['depID'] ?></td>
+          <td><?php echo $value['StartDate'] ?></td>
+          <td><?php echo $value['EndDate'] ?></td>
+          <td><?php echo $value['Place'] ?></td>   
+          </tr>
+      
+      <?php }  ?>  
     </tbody>
   </table>
-</center>
+</div>
 <br>
 </body>
 </html>

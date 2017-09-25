@@ -17,7 +17,7 @@
   <?php 
   include "NavbarChooser.php";
   ?>
-<form action="<?php echo base_url(); ?>GenReport/genPDFAdminHistory" style="display:none" method="post">
+<form action="<?php echo base_url(); ?>GenReport/genPDFAdminHistory" method="post" style="display:none">
     <input type="text" name="carType" id="ct" >
     <input type="text" name="plateLicense"  id="pl">
     <input type="submit" name="subb" id="subb">

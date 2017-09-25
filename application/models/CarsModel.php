@@ -389,6 +389,16 @@ class CarsModel extends CI_Model {
 		}
 		return $result;
 	}
+
+
+	public function getPlateLicenseFromCarId($carId){
+		$sql='SELECT PlateLicense FROM cars c  WHERE carId = '.$carId;
+		$query =$this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->PlateLicense;  
+		}
+		return $result;
+	}
 }
 
 /* End of file CarModel.php */
