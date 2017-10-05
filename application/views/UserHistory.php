@@ -87,14 +87,14 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">วันที่เดินทาง</label>
 								<div class="col-md-8">
-									<input id="dateS" name="dateS"  class="form-control datetimepicker" type="text">
+									<input id="dateS" name="dateS2"  class="form-control datetimepicker" type="text">
 									<span class="help-block"></span>
 								</div>	                    
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label" >วันที่กลับ</label>
 								<div class="col-md-8">
-									<input id="dateE" name="dateE" class="form-control datetimepicker" type="text">
+									<input id="dateE" name="dateE2" class="form-control datetimepicker" type="text">
 									<span class="help-block"></span>
 								</div>
 							</div>
@@ -160,8 +160,8 @@ function edit_reserve(rID){
 		    $('#id').val(data.reserveId);
 		    $('[name="carType"]').val(data.carTypeId).change();
 		    $('[name="plateL"]').val(data.carId).change();
-		    $('[name="dateS"]').datetimepicker('update',data.startDate);
-		    $('[name="dateE"]').datetimepicker('update',data.endDate);
+		    $('[name="dateS2"]').datetimepicker('update',data.startDate);
+		    $('[name="dateE2"]').datetimepicker('update',data.endDate);
 		    $('[name="placeEdit"]').val(data.place);
 		    $('[name="telEdit"]').val(data.tel);
 		    $('#modal_form').modal('show'); // show bootstrap modal when complete loaded	            

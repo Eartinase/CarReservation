@@ -597,7 +597,7 @@ function reload_calendar(){
 	            if(data.status) //if success close modal and reload ajax table
 	            {
 	            	$('#modal_form').modal('hide');
-	            	ajax_myHistory();
+	            	reload_calendar();
 	            }
 	            else
 	            {
