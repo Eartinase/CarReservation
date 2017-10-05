@@ -37,13 +37,14 @@ class OutsideCarCon extends CI_Controller {
 		$osc = $this->OutsideCarModel->getOutsideCarFromDepID($depID);
 		$data = array();
 		foreach ($osc as $value) {
+			$carType = ($value['CarTypeId']=='1')?'แท็กซี่':'ตู้';
 			$data[] = array(
-					'555555',
+					$carType ,
 					"<center>".date("Y-m-d H:i", strtotime($value['StartDate']))."</center>",
 		            "<center>".date("Y-m-d H:i", strtotime($value['EndDate']))."</center>",
 		            $value['place'],
 		            $value['Tel'],
-		            '555555'
+		            '<button class="btn btn-info">เบิกงบประมาณ</button>'
 				);
 		}
 

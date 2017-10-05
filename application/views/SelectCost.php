@@ -8,14 +8,23 @@
   <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>table_to_excel/js/jquery.table2excel.js"></script>
 
-</head>
+  <script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+  <script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+  <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 
+</head>
+<style type="text/css">
+  .head{
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
 <body>
   <?php 
-   include "NavbarChooser.php";   
+  include "NavbarChooser.php";   
   ?>
 
-  <div class="con">
+  <div class="container">
 
     <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
     <p style="text-align:center;font-size:20px">
@@ -27,17 +36,37 @@
       <?php echo $this->session->userdata['logged_in']['role'] ?>
     </p>
 
-    <br>
-    
-    <center>
-      <table class="table2excel" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
-        <tr><p>
+    <br>   
+
+      
+       <p>
           วันที่ออกเอกสาร
           <?php    
           echo date("d-m-Y");
-          ?>            
-          </p>
-        </tr>
+          ?> 
+           </p>
+
+          <table id="table" class="table table-striped table-bordered table-hover" width="100%">
+            <thead>
+              <tr>
+                <td class="head">หมายเลขการจอง</td>         
+                <td class="head">ประเภทรถ</td>          
+                <td class="head">ทะเบียนรถ</td>
+                <td class="head">วันเวลาที่เดินทาง</td>
+                <td class="head">วันเวลาที่กลับ</td>                   
+                <td class="head">สถานที่</td>
+                <td class="head">ออกรายงานเบิกงบประมาณ</td>                
+                
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>              
+          </table>
+</div>
+
+           <!--       
+         <table>
         <tr>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ประเภทรถ</th>
@@ -61,7 +90,9 @@
               <td style="text-align:center;padding: 15px;border: 1px solid #ddd">
                 <a href="<?php echo base_url(); ?>GenReport/GenCost?carTypeId=<?php echo $carType[$value->getCarId()]?>&reserveId=<?php echo $value->getReserveId()?>">
                     
-                <button id="searchbut" type="submit" class="btn btn-primary">ออกรายงาน</button></a></td>
+                <button id="searchbut" type="submit" class="btn btn-primary">ออกรายงาน</button>
+                </a>
+                </td>
             </tr>
             <?php 
           }
@@ -74,6 +105,29 @@
     
     <br>
 
+-->
+  <script type="text/javascript">
+    function reload_table(){
+      table.ajax.reload(null,false); //reload datatable ajax 
+    }
+
+    var dateToday = new Date();
+    var table;
+    $(document).ready(function() {    
+        //datatables
+        table = $('#table').DataTable({ 
+          "bPaginate":true,
+            "processing": true, //Feature control the processing indicator.
+            // Load data for the table's content from an Ajax source
+            "ajax": {
+              "url" : "<?php echo base_url(); ?>GenReport/ajax_AllReserve",
+              "type" : "POST"
+            }
+          //Set column definition initialisation properties. 
+        });
+      });
+
+    </script>
   </body>
   </html>
 

@@ -5,6 +5,7 @@ class CostModel extends CI_Model {
 	public function getCostPerHour($cartypeid){
 		$sql = 'select CostPerHour from cost where CarTypeId = \''.$cartypeid.'\'';
 		$result = $this->db->query($sql);
+		$cost ="";
 		foreach($result->result() as $row){
 			$cost = $row->CostPerHour;
 		}

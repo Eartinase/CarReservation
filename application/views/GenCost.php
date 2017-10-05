@@ -36,7 +36,7 @@
         <h3 style="margin-left:5%">รายการค่าใช้จ่าย</h3><hr>
 
         <div class="form-group">
-          <label style="margin-left:5%">ค่าใช้บริการรถ/ชั่วโมง <?php echo $cost?> บาท</label>
+          <label style="margin-left:5%">ค่าใช้บริการรถ/ชั่วโมง <?php echo $costPerHour?> บาท</label>
         </div>
 
         <div class="form-group">
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group">
-          <label style="margin-left:5%;font-size: 25px;">ค่าใช้จ่ายทั้งหมดรวมเป็นเงิน <span id="totalCost"><?php echo $cost*$duration ?></span> บาท</label>
+          <label style="margin-left:5%;font-size: 25px;">ค่าใช้จ่ายทั้งหมดรวมเป็นเงิน <span id="totalCost"><?php echo $costPerHour*$duration ?></span> บาท</label>
         </div>
       </div>
       <br>
@@ -81,7 +81,7 @@
           </tr>
           <tr>    
             <td style="padding: 12px;border: 1px solid #ddd">ค่าใช้บริการรถต่อชั่วโมง</td>
-            <td style="padding: 12px;border: 1px solid #ddd"><?php echo $cost?> บาท</td>
+            <td style="padding: 12px;border: 1px solid #ddd"><?php echo $costPerHour ?> บาท</td>
           </tr>
           <tr>    
             <td style="padding: 12px;border: 1px solid #ddd">บริการรถล่วงเวลา (OT)</td>
@@ -98,7 +98,7 @@
           <tr>
             <td style="padding: 12px;border: 1px solid #ddd" style="text-align: right;"> รวมเป็นเงินทั้งหมด</td>
             <td style="padding: 12px;border: 1px solid #ddd"><span id="total">
-              <?php echo $cost*$duration ?></span> บาท</td>
+              <?php echo $costPerHour*$duration ?></span> บาท</td>
             </tr>
           </table>
         </center>
@@ -117,11 +117,7 @@
             </div>
           </div> 
         </div>
-
       </div>
-
-
-
       <script>
         $(function() {
 
@@ -141,7 +137,7 @@
 
         });
 
-        var total= <?php echo $cost*$duration ?>;
+        var total= <?php echo $costPerHour*$duration ?>;
 
         function changeTotal() {
           if(document.getElementById("addition").value != ""){

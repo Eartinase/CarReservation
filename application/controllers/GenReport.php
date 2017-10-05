@@ -68,29 +68,7 @@ class genReport extends CI_Controller {
 		$data['carType'] = $carType;
 		$this->load->view('GenDocument', $data);
 		//$this->load->view('SelectCost', $data);
-	}
-
-	public function selectCost(){	
-		$depID = $this->session->userdata['logged_in']['department'];
-		$username = ($this->session->userdata['logged_in']['username']);
-
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
-		$userInfo = $this-> UserModel->getUserInfo($username);
-		$carType = array();
-		if($reserveInfo != ""){
-			foreach ($reserveInfo as $value) {
-				$car =$this->CarsModel->getCarById($value->getCarId());
-				$id = $car->getCarId();
-				$v = $car->getCarType();
-				$carType[$id] = $v;
-			}
-		}
-		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
-		$data['reserveInfo'] = $reserveInfo;
-		$data['userInfo']= $userInfo;
-		$data['carType'] = $carType;
-		$this->load->view('SelectCost', $data);
-	}
+	}	
 
 	public function genPDFCost(){			
 		$id = $_POST['reserveId'];		
@@ -123,25 +101,25 @@ class genReport extends CI_Controller {
 		$carTypeId = $this->CarsModel->getCarTypeIdByName($_GET['carTypeId']);
 
 		$this->load->model('CostModel');
-		$cost = $this->CostModel->getCostPerHour($carTypeId);
+		$costPerHour 	= $this->CostModel->getCostPerHour($carTypeId);
 
-		$department = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
-		$duration = ceil($this->CostModel->getDuration($_GET['reserveId']));
-		$plateLicense = $this->ReservationModel->getPlateLiceseByReserve($_GET['reserveId']);
-		$startDate = $this->ReservationModel->getStartDateFromReserveId($_GET['reserveId']);
-		$endDate= $this->ReservationModel->getEndDateFromReserveId($_GET['reserveId']);
-		$place=$this->ReservationModel->getPlaceFromReserveId($_GET['reserveId']);
+		$department 	= $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+		$duration 		= ceil($this->CostModel->getDuration($_GET['reserveId']));
+		$plateLicense 	= $this->ReservationModel->getPlateLiceseByReserve($_GET['reserveId']);
+		$startDate 		= $this->ReservationModel->getStartDateFromReserveId($_GET['reserveId']);
+		$endDate 		= $this->ReservationModel->getEndDateFromReserveId($_GET['reserveId']);
+		$place 			= $this->ReservationModel->getPlaceFromReserveId($_GET['reserveId']);
 		$data = array(
-			'carTypeId' => $carTypeId,
-			'cost' => $cost,
-			'duration' => $duration,
-			'departmentt' => $department,
-			'carType' => $_GET['carTypeId'],
-			'plateLicense' => $plateLicense,
-			'startDate' => $startDate,
-			'endDate' => $endDate,
-			'place'=>$place,
-			'reserveId'=>$_GET['reserveId']
+			'carTypeId' 	=> $carTypeId,
+			'costPerHour' 	=> $costPerHour,
+			'duration' 		=> $duration,
+			'departmentt' 	=> $department,
+			'carType' 		=> $_GET['carTypeId'],
+			'plateLicense' 	=> $plateLicense,
+			'startDate'		=> $startDate,
+			'endDate' 		=> $endDate,
+			'place'			=> $place,
+			'reserveId' 	=> $_GET['reserveId']
 		);
 
 		$this->load->view('GenCost',$data);
@@ -173,14 +151,31 @@ class genReport extends CI_Controller {
 		$this->load->view('GenAdminCarHistory',$data);
 	}
 
+	public function genPDFAdminHistory(){	
+		$ct = $this->CarsModel->getCarTypeName($_POST['carType']);
+		$pl = $this->CarsModel->getPlateLicenseFromCarId($_POST['plateLicense']);
+
+		$allReserve = $this->ReservationModel->getReserveFromCarID($_POST['plateLicense']);
+//**********************************************************************************************
+		//$allReserve['carId'];
+			$data = array(
+			'carType' 		=> $ct,
+			'plateLicense' 	=> $pl,
+			'test'			=> $allReserve
+			);
+					
+		$this->load->view('GenPDFAdminHistory',$data);
+	}
+
 	public function ajax_changeData(){
 		$plateL = $_POST['plateLicense'];
 		$robj = $this->ReservationModel->getReserveFromCarID($plateL);
 		$data = array();
 		foreach ($robj as $value) {	
+			
 			$data[] = array(
 				'rId' => $value['CurrentId'],
-				'name' => "นรินทร์ธร วรเมธีกุล",
+				'name' => $this->UserModel->getNamee($value['EmployeeCode']),
 				"department" => $value['depID'],
 				"start" => $value['StartDate'],
 				"end" => $value['EndDate'],
@@ -189,6 +184,59 @@ class genReport extends CI_Controller {
 		}		
 		//output to json format
 		echo json_encode($data);
+	}
+
+	public function selectCost(){	
+		$depID = $this->session->userdata['logged_in']['department'];
+		$username = ($this->session->userdata['logged_in']['username']);
+
+		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
+		$userInfo = $this-> UserModel->getUserInfo($username);
+		$carType = array();
+		if($reserveInfo != ""){
+			foreach ($reserveInfo as $value) {
+				$car =$this->CarsModel->getCarById($value->getCarId());
+				$id = $car->getCarId();
+				$v = $car->getCarType();
+				$carType[$id] = $v;
+			}
+		}
+		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+		$data['reserveInfo'] = $reserveInfo;
+		$data['userInfo']= $userInfo;
+		$data['carType'] = $carType;
+		$this->load->view('SelectCost', $data);
+	}
+
+	public function ajax_AllReserve(){
+		$depID = $this->session->userdata['logged_in']['department'];
+		$allReserve = $this-> ReservationModel->getCurReserveFormDepID($depID);
+		$draw = intval($this->input->get("draw"));
+		$start = intval($this->input->get("start"));	
+		$data = array();
+		$no=0;
+		if($allReserve != ''){
+			foreach ($allReserve as $value) {
+				$carType = $this->CarsModel->getCarTypeFromCarId($value->getCarId());
+				$no++;
+				$data[] = array(					
+					"<center>".$value->getReserveId()."</center>",
+					"<center>".$carType."</center>",	   	         
+					"<center>".$value->getPlateLicese()."</center>",
+					"<center>".$value->getStartDate()."</center>",
+					"<center>".$value->getEndDate()."</center>",
+					"<center>".$value->getPlace()."</center>",
+
+					"<center><a href='".base_url()."GenReport/GenCost?carTypeId=".$carType."&reserveId=".$value->getReserveId()."'>"."<button id='searchbut' type='submit' class='btn btn-primary'>ออกรายงาน</button></a></center>"
+				);			
+			}
+		}
+		$output = array(            
+			"data" => $data
+		);		
+		//output to json format
+		echo json_encode($output);
+		exit;
 	}
 }
 

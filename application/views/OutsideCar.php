@@ -112,7 +112,7 @@
 		</div>
 		<div class="col-md-6" style="margin-left: 50px">
 			<div>
-			<h3>ประวัติคคำร้องขอใช้รถภายนอก</h3>			
+			<h3>ประวัติคำร้องขอใช้รถภายนอก</h3>			
 			<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 				<thead>
 					<tr>
