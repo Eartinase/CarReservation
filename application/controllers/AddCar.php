@@ -8,8 +8,7 @@ class AddCar extends CI_Controller {
 	}
 
 	public function index(){		
-		$cartype = $this-> AddCarModel ->CarTypeDriver();
-		$this->load->view('AddCarView', $cartype);
+		redirect($base_url."HomeInfo");
 	}
 
 	public function Add(){		
