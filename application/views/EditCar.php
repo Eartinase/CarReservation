@@ -15,6 +15,10 @@
 			<h3>แก้ไขรถ</h3>
 		</center>
 		<form action="<?php echo base_url(); ?>ManageCar/EditOrDel" method="post">
+			เปิดให้จองหรือไม่?
+			<input type="radio" name="open" value="1"> เปิดให้จอง &nbsp;&nbsp;&nbsp;
+  			<input type="radio" name="open" value="0"> ไม่เปิดให้จอง<br><br>
+
 			<div class="row">
 				<div class="col-md-6">
 					ทะเบียน: 
@@ -146,8 +150,8 @@
 					<textarea class="form-control" name="description"><?php echo $description ?></textarea>
 				</div>				
 			</div>
-			<br>
-			
+			<br>  			
+
 			<center>
 				<input type="text" name="carId" hidden value="<?php echo $carId?>">
 

@@ -13,10 +13,10 @@ class homeInfo extends CI_Controller {
 
 	public function index(){				
 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
-		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
- 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
- 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
- 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
+		$data["Type1"] = $this-> CarsModel -> getCarsByTypeForReserve(1);
+ 		$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
+ 		$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
+ 		$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
  		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
 		$this->load->view('Home', $data);
 	}
@@ -47,10 +47,10 @@ class homeInfo extends CI_Controller {
 
 	public function adminLogin(){
 		
-		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
- 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
- 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
- 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4);
+		$data["Type1"] = $this-> CarsModel -> getCarsByTypeForReserve(1);
+ 		$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
+ 		$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
+ 		$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
  		$data["driver"] = $this-> UserModel -> getDriverInfo();
  		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
  		$this->load->view('HomeAdmin', $data);

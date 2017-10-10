@@ -110,7 +110,8 @@ class ManageCar extends CI_Controller {
 				'DriverId' 		=> $this->input->post('driverId'),
 				'fuel'			=> $this->input->post('Fuel'),
 				'depID'			=> $this->input->post('depId'),
-				'description'	=> $this->input->post('description')	
+				'description'	=> $this->input->post('description'),
+				'OpenReserve'	=> $this->input->post('open')
 			);		
 			$this -> CarsModel -> Update($data, $carId);
 		}elseif (isset($_POST['del'])) {

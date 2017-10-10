@@ -315,6 +315,22 @@ class CarsModel extends CI_Model {
 		return $r;
 	}
 
+	public function getCarsByTypeForReserve($Type){
+		$car = null;
+		$r = "";
+		$query = $this->db->query('SELECT c.carId , c.plateLicense , c.seat, ct.* FROM cars c LEFT JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type.' AND OpenReserve = \'1\'');
+		foreach ($query->result() as $row){
+			$car = new CarsModel;
+			$this->matchCarObject($car,$row);
+
+			if($r === "") {
+				$r = array();
+			}
+			array_push($r,$car);
+		}
+		return $r;
+	}
+
 	public function searchAvailableCars($startDateTime , $endDateTime, $carTypeId){
 		$car = null;
 		$r = array();
