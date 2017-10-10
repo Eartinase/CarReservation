@@ -42,8 +42,7 @@
 					<td class="head">ทะเบียนรถ</td> 
 					<td class="head">วันที่เดินทาง</td>
 					<td class="head">วันที่กลับ</td>
-					<td class="head">สถานที่</td>
-					<td class="head">สถานะ</td>
+					<td class="head">สถานที่</td>					
 					<td class="head"></td>
 				</tr>
 			</thead>

@@ -29,12 +29,44 @@
 			<div class="row">
 				<div class="col-md-6">
 					ประเภทรถ: 
-					<select name="carType" class="form-control" required>
-						<option>- -</option>
-						<option value="1">เก๋ง</option>
-						<option value="2">กระบะ</option>
-						<option value="3">ตู้</option>
-						<option value="4">ไมโครบัส</option>
+					<select name="carType" class="form-control" required value="<?php echo $carType?>">
+
+						<?php 
+						if ($carType == "กระบะ") {
+							?>
+							<option>- -</option>
+							<option value="1">เก๋ง</option>
+							<option value="2" selected>กระบะ</option>
+							<option value="3">ตู้</option>
+							<option value="4">ไมโครบัส</option>
+							<?php
+						}else if($carType == "เก๋ง"){
+							?>
+							<option>- -</option>
+							<option value="1" selected>เก๋ง</option>
+							<option value="2">กระบะ</option>
+							<option value="3">ตู้</option>
+							<option value="4">ไมโครบัส</option>
+							<?php
+						}else if($carType == "ตู้"){
+							?>
+							<option>- -</option>
+							<option value="1" >เก๋ง</option>
+							<option value="2">กระบะ</option>
+							<option value="3" selected>ตู้</option>
+							<option value="4">ไมโครบัส</option>
+							<?php
+						}else if($carType == "ไมโครบัส"){
+							?>
+							<option>- -</option>
+							<option value="1">เก๋ง</option>
+							<option value="2">กระบะ</option>
+							<option value="3">ตู้</option>
+							<option value="4" selected>ไมโครบัส</option>
+							<?php
+						}
+						?>
+						
 					</select>
 				</div>				
 				<div class="col-md-6" >
