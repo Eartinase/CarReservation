@@ -176,6 +176,28 @@ class UserModel extends CI_Model {
 		return $depOption;
 
 	}
+
+	public function getDepartmentForSelection($carId){
+		$sql = "SELECT depID FROM cars WHERE carId = ".$carId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row) {
+			$depId = $row->depID;
+		}
+
+		$query = $this->db->get('Department');
+
+		$option = "";		
+		foreach($query->result() as $row){
+			if($depId == $row->depID){
+				$option .= "<option selected value=".$row->depID.">".$row->department."</option>";
+			}else{
+				$option .= "<option value=".$row->depID.">".$row->department."</option>/n ";
+			}
+		}
+		return $option;
+	}
+
+
 }
 
 /* End of file LoginModel.php */
