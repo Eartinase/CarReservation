@@ -190,6 +190,15 @@ class CarsModel extends CI_Model {
 		$this->db->update('cars', $data); 
 	}
 
+	public function getIsReserve($carId){
+		$sql = "SELECT OpenReserve FROM cars WHERE carId = ".$carId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->OpenReserve;  
+		}
+		return $result;
+	}
+
 	public function getAllCar(){
 		$car = null;
 		$r = "";

@@ -61,8 +61,9 @@ class ManageCar extends CI_Controller {
 	}
 
 	public function EditCar(){
-		$driverOption = $this->UserModel->getDriver();
+		$driverOption = $this->UserModel->getDriverForSelection($_POST["carId"]);
 		$depOption = $this->UserModel->getDepartment();
+		$openReserve = $this->CarsModel->getIsReserve($_POST["carId"]);
 
 		$carDetail = $this->CarsModel->getCarForEdit($_POST["carId"]);		
 		
@@ -86,7 +87,8 @@ class ManageCar extends CI_Controller {
 			'carId' 		=> $carDetail['carId'],
 			'depId' 		=> $carDetail['depId'],
 			'depOption'		=> $depOption,
-			'driverOption'	=> $driverOption
+			'driverOption'	=> $driverOption,
+			'openReserve'	=> $openReserve
 		);
 		$this->load->view('EditCar',$data);
 	}

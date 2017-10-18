@@ -145,6 +145,25 @@ class UserModel extends CI_Model {
 		return $option;
 	}
 
+	public function getDriverForSelection($carId){
+		$sql = "SELECT DriverId FROM cars WHERE carId = ".$carId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row) {
+			$driverId = $row->DriverId;
+		}
+		$query = $this->db->get_where('user', array('role' => 'driver'));
+
+		$option = "";		
+		foreach($query->result() as $row){
+			if($driverId == $row->EmployeeCode){
+				$option .= "<option selected value=".$row->EmployeeCode.">".$row->Name."</option>";
+			}else{
+				$option .= "<option value=".$row->EmployeeCode.">".$row->Name."</option>/n ";
+			}
+		}
+		return $option;
+	}
+	
 	public function getDepartment(){
 		$query = $this->db->get('Department');
 

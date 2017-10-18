@@ -16,8 +16,20 @@
 		</center>
 		<form action="<?php echo base_url(); ?>ManageCar/EditOrDel" method="post">
 			เปิดให้จองหรือไม่?
-			<input type="radio" name="open" value="1"> เปิดให้จอง &nbsp;&nbsp;&nbsp;
-  			<input type="radio" name="open" value="0"> ไม่เปิดให้จอง<br><br>
+			<?php 
+			if($openReserve == 0){
+				?>
+				<input type="radio" name="open" value="1"> เปิดให้จอง &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="open" value="0" checked> ไม่เปิดให้จอง
+				<?php
+			}else{
+				?>
+				<input type="radio" name="open" value="1" checked> เปิดให้จอง &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="open" value="0" > ไม่เปิดให้จอง
+				<?php
+			}
+			?>
+			<br><br>
 
 			<div class="row">
 				<div class="col-md-6">
