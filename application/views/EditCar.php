@@ -15,6 +15,22 @@
 			<h3>แก้ไขรถ</h3>
 		</center>
 		<form action="<?php echo base_url(); ?>ManageCar/EditOrDel" method="post">
+			เปิดให้จองหรือไม่?
+			<?php 
+			if($openReserve == 0){
+				?>
+				<input type="radio" name="open" value="1"> เปิดให้จอง &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="open" value="0" checked> ไม่เปิดให้จอง
+				<?php
+			}else{
+				?>
+				<input type="radio" name="open" value="1" checked> เปิดให้จอง &nbsp;&nbsp;&nbsp;
+				<input type="radio" name="open" value="0" > ไม่เปิดให้จอง
+				<?php
+			}
+			?>
+			<br><br>
+
 			<div class="row">
 				<div class="col-md-6">
 					ทะเบียน: 
@@ -29,12 +45,44 @@
 			<div class="row">
 				<div class="col-md-6">
 					ประเภทรถ: 
-					<select name="carType" class="form-control" required>
-						<option>- -</option>
-						<option value="1">เก๋ง</option>
-						<option value="2">กระบะ</option>
-						<option value="3">ตู้</option>
-						<option value="4">ไมโครบัส</option>
+					<select name="carType" class="form-control" required value="<?php echo $carType?>">
+
+						<?php 
+						if ($carType == "กระบะ") {
+							?>
+							<option>- -</option>
+							<option value="1">เก๋ง</option>
+							<option value="2" selected>กระบะ</option>
+							<option value="3">ตู้</option>
+							<option value="4">ไมโครบัส</option>
+							<?php
+						}else if($carType == "เก๋ง"){
+							?>
+							<option>- -</option>
+							<option value="1" selected>เก๋ง</option>
+							<option value="2">กระบะ</option>
+							<option value="3">ตู้</option>
+							<option value="4">ไมโครบัส</option>
+							<?php
+						}else if($carType == "ตู้"){
+							?>
+							<option>- -</option>
+							<option value="1" >เก๋ง</option>
+							<option value="2">กระบะ</option>
+							<option value="3" selected>ตู้</option>
+							<option value="4">ไมโครบัส</option>
+							<?php
+						}else if($carType == "ไมโครบัส"){
+							?>
+							<option>- -</option>
+							<option value="1">เก๋ง</option>
+							<option value="2">กระบะ</option>
+							<option value="3">ตู้</option>
+							<option value="4" selected>ไมโครบัส</option>
+							<?php
+						}
+						?>
+						
 					</select>
 				</div>				
 				<div class="col-md-6" >
@@ -114,8 +162,8 @@
 					<textarea class="form-control" name="description"><?php echo $description ?></textarea>
 				</div>				
 			</div>
-			<br>
-			
+			<br>  			
+
 			<center>
 				<input type="text" name="carId" hidden value="<?php echo $carId?>">
 

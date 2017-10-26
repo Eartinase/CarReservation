@@ -142,8 +142,7 @@ class Reserve extends CI_Controller {
 	                   "<center>".$value->getPlateLicese()."</center>",
 	                   "<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
 	                   "<center>".date("Y-m-d H:i", strtotime($value->getEndDate()))."</center>",
-	                   $value->getPlace(),
-	                   '<center>active</center>',
+	                   $value->getPlace(),	                 
 	                   '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_reserve('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
 	                   <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
 	               );			

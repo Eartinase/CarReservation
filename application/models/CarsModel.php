@@ -190,6 +190,15 @@ class CarsModel extends CI_Model {
 		$this->db->update('cars', $data); 
 	}
 
+	public function getIsReserve($carId){
+		$sql = "SELECT OpenReserve FROM cars WHERE carId = ".$carId;
+		$query = $this->db->query($sql);
+		foreach ($query->result() as $row){
+			$result = $row->OpenReserve;  
+		}
+		return $result;
+	}
+
 	public function getAllCar(){
 		$car = null;
 		$r = "";
@@ -303,6 +312,22 @@ class CarsModel extends CI_Model {
 		$car = null;
 		$r = "";
 		$query = $this->db->query('SELECT c.carId , c.plateLicense , c.seat, ct.* FROM cars c LEFT JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type);
+		foreach ($query->result() as $row){
+			$car = new CarsModel;
+			$this->matchCarObject($car,$row);
+
+			if($r === "") {
+				$r = array();
+			}
+			array_push($r,$car);
+		}
+		return $r;
+	}
+
+	public function getCarsByTypeForReserve($Type){
+		$car = null;
+		$r = "";
+		$query = $this->db->query('SELECT c.carId , c.plateLicense , c.seat, ct.* FROM cars c LEFT JOIN cartype ct ON c.carTypeId= ct.carTypeId WHERE ct.CarTypeId = '.$Type.' AND OpenReserve = \'1\'');
 		foreach ($query->result() as $row){
 			$car = new CarsModel;
 			$this->matchCarObject($car,$row);
