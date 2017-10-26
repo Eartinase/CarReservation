@@ -141,7 +141,6 @@ class UserModel extends CI_Model {
 		foreach($query->result() as $row){
 			$option .= "<option value=".$row->EmployeeCode.">".$row->Name."</option>/n";
 		}
-
 		return $option;
 	}
 

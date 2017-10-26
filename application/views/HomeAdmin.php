@@ -94,7 +94,7 @@
 								<div id="list2" class="collapse">
 									<li>
 										<?php 
-										foreach ($Type2 as  $value) {
+										foreach ($Type2 as $value) {
 											echo "<ul><li><div class='checkbox'>";
 											echo "<input name='carId[]' class='list2' onchange='checkFunc(2)' id='listC". $value->getCarId()."' type='checkbox' value=". $value->getCarId()."> " ;
 											echo  "<label for='listC". $value->getCarId()."'>".$value->getPlateLicese()."</label></div></li></ul>";

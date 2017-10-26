@@ -22,7 +22,9 @@ class homeInfo extends CI_Controller {
 	}
 
 	public function driverLogin(){
-		$this->load->view('HomeDriver');
+		$empCode =  $this->session->userdata['logged_in']['employeeCode'];
+		$data['ResToday'] =  $this-> ReservationModel-> getReserveTodayforDriver($empCode );
+		$this->load->view('Homedriver' , $data);
 
 	}
 
