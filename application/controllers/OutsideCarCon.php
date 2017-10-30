@@ -7,7 +7,11 @@ class OutsideCarCon extends CI_Controller {
 		$this->load->model('ReservationModel');
 		$this->load->model('CarsModel');
 		$this->load->model('OutsideCarModel');
+	}
 
+	public function AddData(){
+		$this->OutsideCarModel->AddPlateAndCost($_POST['plate'],$_POST['cost'], $_POST['hireId']);
+		$this->load->view('GenOutsideCost');
 	}
 
 	public function sendRequest(){
@@ -36,32 +40,28 @@ class OutsideCarCon extends CI_Controller {
 		$depID =  $this->session->userdata['logged_in']['department'];
 		$osc = $this->OutsideCarModel->getOutsideInfo($this->session->userdata['logged_in']['employeeCode']);
 		$data = array();
-		foreach ($osc as $value) {
-			
+		foreach ($osc as $value) {			
 			if($value->getCarTypeId() ==='1'){
 				$carType = "แท็กซี่";
 			}else{
 				$carType = "ตู้";
-			}
-		
+			}		
 			$data[] = array(
 					$carType ,
 					"<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
 		            "<center>".date("Y-m-d H:i", strtotime($value->getEndDate()))."</center>",
 		            $value->getPlace(),
 		            $value->getTel(),
-		            '<form action="'.base_url().'GenReport/genOutsideCost">'.
-		            	'<input type="text" style="display:none;" value="'.$value->getHireId().'">'.
+		            '<form action="'.base_url().'GenReport/AddInfo" method="post">'.
+		            	'<input type="text" name="hireId" style="display:none;" value="'.$value->getHireId().'">'.
 		            	'<button class="btn btn-info" type="submit">เบิกงบประมาณ</button>'.
 		           '</form>'
 				);
 		}
-
 		 $output = array(            
                 "data" => $data
             );		
 		//output to json format
 		echo json_encode($output);
 	}
-
 }

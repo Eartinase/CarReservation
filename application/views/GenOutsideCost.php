@@ -50,6 +50,7 @@
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่กลับ</th>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">เบอร์โทร</th>
+          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ค่าใช้จ่าย</th>
         </tr>
         <?php 
         if($reserve != ""){

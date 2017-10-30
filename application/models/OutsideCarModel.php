@@ -165,4 +165,29 @@ class OutsideCarModel extends CI_Model {
 		$outside->setReason($row->reason);
 		$outside->setCarTypeId($row->CarTypeId);
 	}
+
+	public function AddPlateAndCost($plate, $cost, $hireid){
+		$data = array(
+   			'PlateLicense' => $plate ,
+   			'Cost' => $cost	
+		);
+		$this->db->where('HireId', $hireid);
+		$this->db->update('hirecar', $data); 
+		//$this->db->insert('mytable', $data); 
+	}
+
+	public function checkInfo($hireid){
+		$this->db->select('Cost, PlateLicense');
+		$this->db->from('hirecar');
+		$this->db->where('HireId', $hireid);
+		$query = $this->db->get();
+		foreach ($query->result() as $row){
+			if($row->Cost == "0" && $row->PlateLicense == " "){
+				$ans = false;
+			}else{
+				$ans = true;
+			}
+		}
+		return $ans;
+	}
 }

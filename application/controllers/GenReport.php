@@ -254,6 +254,20 @@ class genReport extends CI_Controller {
 		echo json_encode($output);
 		exit;
 	}
+
+	public function AddInfo(){	
+		$this->load->model('OutsideCarModel');
+		$id = $_POST['hireId'];
+		$isCheck = $this->OutsideCarModel->checkInfo($id);
+		if($isCheck){
+			$this->load->view('genOutsideCost');
+		}else{
+			$data = array(
+				'id' => $_POST['hireId']
+			);
+			$this->load->view('AddInfo', $data);
+		}
+	}
 }
 
 /* End of file CarController.php */
