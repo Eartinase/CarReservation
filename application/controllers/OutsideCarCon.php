@@ -43,8 +43,7 @@ class OutsideCarCon extends CI_Controller {
 			}else{
 				$carType = "ตู้";
 			}
-			
-		//	$carType = ($value->getCarTypeId=='1')?'แท็กซี่':'ตู้';
+		
 			$data[] = array(
 					$carType ,
 					"<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
