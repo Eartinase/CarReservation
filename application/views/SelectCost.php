@@ -36,9 +36,7 @@
       <?php echo $this->session->userdata['logged_in']['role'] ?>
     </p>
 
-    <br>   
-
-      
+    <br>         
        <p>
           วันที่ออกเอกสาร
           <?php    

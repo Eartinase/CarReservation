@@ -70,6 +70,19 @@ class genReport extends CI_Controller {
 		//$this->load->view('SelectCost', $data);
 	}	
 
+	public function genOutsideCost(){	
+		$depID = $this->session->userdata['logged_in']['department'];
+		$username = ($this->session->userdata['logged_in']['username']);
+
+		$this->load->model('OutsideCarModel');
+		$reserve =$this->OutsideCarModel->getOutsideInfo($this->session->userdata['logged_in']['employeeCode']);
+		
+		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+		$data['reserve'] = $reserve;
+		$this->load->view('GenOutsideCost', $data);
+		//$this->load->view('SelectCost', $data);
+	}	
+
 	public function genPDFCost(){			
 		$id = $_POST['reserveId'];		
 		$other = $_POST['otherr'];
