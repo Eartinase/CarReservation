@@ -17,11 +17,11 @@
   <?php 
   include "NavbarChooser.php";
   ?>
-<form action="<?php echo base_url(); ?>GenReport/genPDFAdminHistory" method="post" style="display:none">
+  <form action="<?php echo base_url(); ?>GenReport/genPDFAdminHistory" method="post" style="display:none">
     <input type="text" name="carType" id="ct" >
     <input type="text" name="plateLicense"  id="pl">
     <input type="submit" name="subb" id="subb">
-</form>
+  </form>
   <div class="con">
     <h2 style="text-align:center;font-size:36px">รายงานข้อมูลการใช้งานรถ</h2><hr>
 
@@ -29,7 +29,7 @@
       <div style="text-align:center">
 
         <!--button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFUserHistory');">ดาวน์โหลดเป็น PDF</button-->
-<button class="btn btn-danger" onclick="subForm()">ดาวน์โหลดเป็น PDF</button>
+        <button class="btn btn-danger" onclick="subForm()">ดาวน์โหลดเป็น PDF</button>
 
         <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button> &nbsp;
       </div>      
@@ -149,7 +149,12 @@
 
     select.innerHTML = "";    
 
+    var opt = document.createElement('option');
+    opt.value = "<?php echo '' ?>";
+    opt.innerHTML = "<?php echo 'เลือกทะเบียนรถ' ?>";
+    select.appendChild(opt);
     if(v==1){
+
       <?php foreach ($Type1 as $value) { ?>
         var opt = document.createElement('option');       
         opt.value = "<?php echo $value->getCarId(); ?>";

@@ -152,19 +152,22 @@ class genReport extends CI_Controller {
 	}
 
 	public function genPDFAdminHistory(){	
-		$ct = $this->CarsModel->getCarTypeName($_POST['carType']);
-		$pl = $this->CarsModel->getPlateLicenseFromCarId($_POST['plateLicense']);
+		if($_POST['carType'] == "" || $_POST['plateLicense'] == ""){
+			$this->genAdminCarHistory();		
+			
+		}else{
+			$ct = $this->CarsModel->getCarTypeName($_POST['carType']);
+			$pl = $this->CarsModel->getPlateLicenseFromCarId($_POST['plateLicense']);
 
-		$allReserve = $this->ReservationModel->getReserveFromCarID($_POST['plateLicense']);
-//**********************************************************************************************
-		//$allReserve['carId'];
+			$allReserve = $this->ReservationModel->getReserveFromCarID($_POST['plateLicense']);
 			$data = array(
-			'carType' 		=> $ct,
-			'plateLicense' 	=> $pl,
-			'test'			=> $allReserve
+				'carType' 		=> $ct,
+				'plateLicense' 	=> $pl,
+				'test'			=> $allReserve
 			);
-					
-		$this->load->view('GenPDFAdminHistory',$data);
+
+			$this->load->view('GenPDFAdminHistory',$data);
+		}
 	}
 
 	public function ajax_changeData(){
