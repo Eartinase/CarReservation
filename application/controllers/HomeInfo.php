@@ -11,6 +11,10 @@ class homeInfo extends CI_Controller {
 		$this->load->model('UserModel','UserModel');
 	}
 
+	public function Test(){
+		$this->load->view('testDataTable');
+	}
+
 	public function index(){				
 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
 		$data["Type1"] = $this-> CarsModel -> getCarsByTypeForReserve(1);

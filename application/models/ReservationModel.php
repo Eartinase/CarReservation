@@ -510,7 +510,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function getReserveTodayforDriver($empCode){
-		$sql = 'SELECT * FROM currentreservation cr join cars c on cr.carId = c.carId WHERE cr.DriverId = \''.$empCode .'\' AND (CAST(StartDate AS DATE) <= CAST(CURRENT_TIMESTAMP AS DATE) AND CAST(EndDate AS DATE) >= CAST(CURRENT_TIMESTAMP AS DATE))';
+		$sql = 'SELECT * FROM currentreservation cr join cars c on cr.carId = c.carId join cartype ct on c.CarTypeId = ct.CarTypeId  WHERE cr.DriverId = \''.$empCode .'\' AND (CAST(StartDate AS DATE) <= CAST(CURRENT_TIMESTAMP AS DATE) AND CAST(EndDate AS DATE) >= CAST(CURRENT_TIMESTAMP AS DATE))';
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
