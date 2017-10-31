@@ -3,22 +3,37 @@ defined('BASEPATH') || exit('No direct script access allowed');
 
 class OutsideCarModel extends CI_Model {
 	private $hireId;
-	private $plateLicense;
+	private $reserver;
+	private $depID;
+	private $carTypeId;
 	private $startDate;
 	private $endDate;
 	private $place;
 	private $tel;
-	private $departmentID;
 	private $reason;
 
-		public function __construct(){
-		parent::__construct();
-		
+	private $plateLicense;	
+	private $departmentID;
+	
+
+	public function __construct(){
+		parent::__construct();		
 	}
 
-	public function getDepartmentID()
-	{
+	public function getCarTypeId(){
+		return $this->carTypeId;
+	}
+
+	public function setCarTypeId($carTypeId){
+		$this->carTypeId = $carTypeId;
+	}
+
+	public function getDepartmentID(){
 		return $this->departmentID;
+	}
+
+	public function getReserver(){
+		return $this->reserver;
 	}
 
 	public function getHireId(){
@@ -53,12 +68,24 @@ class OutsideCarModel extends CI_Model {
 		return $this->reason;
 	}
 
+	public function getDepId(){
+		return $this->depID;
+	}
+
+	public function setDepId($depId){
+		$this->depID = $depId;
+	}
+
 	public function setEmployeeCode($employeeCode){
 		$this->employeeCode = $employeeCode;
 	}
 
 	public function setPlateLicense($plateLicense){
 		$this->plateLicense = $plateLicense;
+	}
+
+	public function setReserver($reserver){
+		$this->reserver = $reserver;
 	}
 
 	public function setStartDate($startDate){
@@ -81,8 +108,7 @@ class OutsideCarModel extends CI_Model {
 		 $this->tel = $tel;
 	}
 
-	public function setDepartmentID($departmentID)
-	{
+	public function setDepartmentID($departmentID){
 		$this->departmentID = $departmentID;
 	}
 
@@ -95,6 +121,7 @@ class OutsideCarModel extends CI_Model {
     	$this->db->insert('hirecar',
     		array(	
     			'depID' =>$depID ,
+    			'Reserver' => $this->session->userdata['logged_in']['employeeCode'],
     			'CarTypeId' => $carTypeId,
 				'StartDate' =>$dateS,
 				'EndDate' => $dateE,
@@ -110,7 +137,57 @@ class OutsideCarModel extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getOutsideInfo($id){
+		$this->db->select('*');
+		$this->db->from('hirecar');
+		$this->db->where('Reserver', $id);
+		$query = $this->db->get();
 
+		$r = "";
+		foreach ($query->result() as $row){
+			$outside = new OutsideCarModel;
+			$this->matchObject($outside,$row);
+			if($r === ""){
+				$r = array();
+			}
+			array_push($r,$outside);
+		}
+		return $r;
+	}
 
+	private function matchObject($outside,$row){
+		$outside->setHireId($row->HireId);
+		$outside->setReserver($row->Reserver);
+		$outside->setStartDate($row->StartDate);	
+		$outside->setEndDate($row->EndDate);	
+		$outside->setPlace($row->place);
+		$outside->setTel($row->Tel);
+		$outside->setReason($row->reason);
+		$outside->setCarTypeId($row->CarTypeId);
+	}
 
+	public function AddPlateAndCost($plate, $cost, $hireid){
+		$data = array(
+   			'PlateLicense' => $plate ,
+   			'Cost' => $cost	
+		);
+		$this->db->where('HireId', $hireid);
+		$this->db->update('hirecar', $data); 
+		//$this->db->insert('mytable', $data); 
+	}
+
+	public function checkInfo($hireid){
+		$this->db->select('Cost, PlateLicense');
+		$this->db->from('hirecar');
+		$this->db->where('HireId', $hireid);
+		$query = $this->db->get();
+		foreach ($query->result() as $row){
+			if($row->Cost == "0" && $row->PlateLicense == " "){
+				$ans = false;
+			}else{
+				$ans = true;
+			}
+		}
+		return $ans;
+	}
 }
