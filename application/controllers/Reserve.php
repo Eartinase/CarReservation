@@ -8,6 +8,22 @@ class Reserve extends CI_Controller {
 		$this->load->model('CarsModel');
 	}
 
+	public function add_dateS(){
+		$startDate = $_POST['dateS'];
+		$rID = $_POST['id'];
+		$milesStart = $_POST['startMiles'];
+		$this-> ReservationModel ->update_Departure($rID , $startDate , $milesStart);
+		redirect('/HomeInfo/driverLogin','refresh');
+	}
+
+	public function add_dateE(){
+		$startDate = $_POST['dateE'];
+		$rID = $_POST['id2'];
+		$milesEnd = $_POST['endMiles'];
+		$this-> ReservationModel ->update_Arrival($rID , $startDate , $milesEnd);
+		redirect('/HomeInfo/driverLogin','refresh');
+	}
+
 	public function addReserve(){
 		$startDate = $_POST['dateS'];
 		$endDate = $_POST['dateE'];

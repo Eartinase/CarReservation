@@ -319,7 +319,7 @@
 				<div class="modal-footer">
 					<button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
 					<button type="button" id="btnDelete" onclick="deleteRes(this.value)" class="btn btn-danger">Delete</button>
-					<button type="button" id="btnCancle" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button type="button" id="btnCancle" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

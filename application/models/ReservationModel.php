@@ -515,6 +515,26 @@ class ReservationModel extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function update_Departure( $rID , $dateS ,$sMiles ){
+    	$this->db->where('currentId', $rID);
+    	$this->db->update('currentreservation', 
+    		array(	'Departure' => $dateS ,
+    				'CarMilesStart' => $sMiles	
+    				));
+		return true;
+	}
+
+	public function update_Arrival( $rID , $dateE , $eMiles){
+		$sql = 'UPDATE previousreservation SET  Arrival = \''.$dateE.'\', CarMilesEnd = '.$eMiles.' WHERE previousreservation.StatusId = '.$rID;
+		
+		$query = $this->db->query('INSERT INTO previousreservation (StatusId, CarId, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart) SELECT currentId, carid, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart FROM currentreservation WHERE CurrentId = '.$rID);
+
+		$query = $this->db->query($sql);
+
+		$this->db->delete('currentreservation', array('currentid' => $rID));	
+	}
+
+
 
 }
 

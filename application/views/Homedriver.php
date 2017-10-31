@@ -51,22 +51,24 @@
 					?>
 					<ul>
 					<?php foreach ($ResToday as $value) { ?>
-							<li style ="padding:0px">
-							<div class= "row" style ="padding:0px">
-								<div  class="col-md-9" style ="margin:0px">
-								<?php echo $value['PlateLicense']; ?><br>
-								<?php echo $value['StartDate']; ?><br>
-								<?php echo $value['EndDate']; ?>
+							<li style =" border-radius: 10px ; background-color: <?php echo $value['Color']; ?>">
+								<div class= "row" style ="padding:0px">
+									<div  class="col-md-9" style ="margin:0px">
+									<h4><?php echo $value['PlateLicense']; ?><br></h4>
+									<?php echo $value['StartDate']; ?><br>
+									<?php echo $value['EndDate']; ?>
+									</div>
+									<div style ="float: right;margin-right: 20px">
+									<?php if($value['Departure'] == null){ ?>
+									<input id= "savebut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default" onclick="submitDeparture(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลาออก' type="button">
+									<?php }else{ ?>
+									<input id= "savebut2<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
+									onclick="insertArrivalTime(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลากลับ' type="button">
+									<input id= "transbut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
+									onclick="insertTransaction(<?php echo $value['CurrentId'] ; ?>)" value='เพิ่มข้อมูล' type="button">
+									<?php } ?>
+									</div>
 								</div>
-								<?php if($value['Departure'] == null){ ?>
-								<input id= "savebut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default" onclick="submitDeparture(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลาออก' type="button">
-								<?php }else{ ?>
-								<input id= "savebut2<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
-								onclick="insertArrivalTime(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลากลับ' type="button">
-								<input id= "transbut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
-								onclick="insertTransaction(<?php echo $value['CurrentId'] ; ?>)" value='เพิ่มข้อมูล' type="button">
-								<?php } ?>
-							</div>
 							</li>							
 					
 					<?php } ?>
@@ -89,8 +91,8 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
 					<h3 class="modal-title">Reservation</h3>
 				</div>
+				<form action="<?php echo base_url();?>Reserve/add_dateS" method="POST" id="formSaveDateS" class="form-horizontal">
 				<div class="modal-body form">
-					<form action="#" id="formSaveDateS" class="form-horizontal">
 						<input type="hidden" value="" id='id' name="id"/>
 						<div class="form-body"> 	                
 							<div class="form-group">
@@ -126,20 +128,24 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-4 control-label" >กรุณาใส่เวลาเวลาออกรถ</label>
-								<div class="col-md-6 ">
-									<input  name="dateS" class="form-control datetimepicker" class="form-control" type="text" autocomplete="off" >
+								<label class="col-md-2 control-label" >เวลาเวลาออกรถ</label>
+								<div class="col-md-4 ">
+									<input  name="dateS" class="form-control datetimepicker" class="form-control" type="text" autocomplete="off" required>
+									<span class="help-block"></span>
+								</div>
+								<label class="col-md-2 control-label" >เลขไมค์ปัจจุบัน</label>
+								<div class="col-md-4 ">
+									<input  name="startMiles" class="form-control" class="form-control" type="text" autocomplete="off" required>
 									<span class="help-block"></span>
 								</div>
 							</div>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="btnSave" onclick="saveDateS()" class="btn btn-primary">ยืนยัน</button>
+					<button type="submit" id="btnSave" class="btn btn-primary">ยืนยัน</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					
 				</div>
+				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -147,25 +153,29 @@
 	<div class="modal fade lg" id="insert_modal" role="dialog">
 	  <div class="modal-dialog " role="document">
 	    <div class="modal-content">
+	    <form action="<?php echo base_url();?>Reserve/add_dateE" method="POST" id="formEdit" class="form-horizontal">
 		      <div class="modal-body">
-		    	<form action="#" id="formEdit" class="form-horizontal">
 						<input type="hidden" value="" id='id2' name="id2"/>
 						<div class="form-body"> 	                
 								<br>
 							<div class="form-group">
-								<label class="col-md-4 control-label" >กรุณาใส่เวลาเวลาออกรถ</label>
-								<div class="col-md-6 ">
-									<input  name="dateE" class="form-control datetimepicker" class="form-control" type="text" autocomplete="off" >
-									<span class="help-block"></span>
+								<label class="col-md-2 control-label" >กรุณาใส่เวลากลับ</label>
+								<div class="col-md-4 ">
+									<input  name="dateE" class="form-control datetimepicker" class="form-control" type="text" autocomplete="off" required >
+								</div>
+								<label class="col-md-2 control-label" >เลขไมค์ปัจจุบัน</label>
+								<div class="col-md-4">
+									<input  name="endMiles" class="form-control " class="form-control" type="text" autocomplete="off" required>
 								</div>
 							</div>
 						</div>
-					</form>
+					
 		        </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary">ยืนยัน</button>
+		        <button type="submit" class="btn btn-primary">ยืนยัน</button>
 		         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
+		      </form>
 		
 		</div>
 	</div>
@@ -215,34 +225,77 @@
 	</div><!-- /.modal -->
 	<!-- End Bootstrap modal -->
 
-	
+	<div class="modal fade" id="modal_showInfo" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title">Reservation</h3>
+				</div>
+				<div class="modal-body form">
+					<form action="#" id="formEdit" class="form-horizontal">
+						<input type="hidden" value="" id='id' name="id"/>
+						<div class="form-body"> 	                
+							<div class="form-group">
+								<label class="col-md-3 control-label">ประเภทรถ</label>
+								<div class="col-md-8">
+									<select id="carType" class="form-control" name="carType" readonly>
+										<option value="1">เก๋ง</option>
+										<option value="2">กระบะ</option>
+										<option value="3">ตู้</option>
+										<option value="4">ไมโครบัส</option>		
+									</select>
+									<span class="help-block"></span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label">ทะเบียนรถ</label>
+								<div class="col-md-8">
+									<input id="plateL" class="form-control" name="plateL" readonly>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">วันที่เดินทาง</label>
+								<div class="col-md-8">
+									<input id="dateS2" name="dateS2"  class="form-control datetimepicker2" type="text" autocomplete="off" readonly>
+									<span class="help-block"></span>
+								</div>	                    
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label" >วันที่กลับ</label>
+								<div class="col-md-8">
+									<input id="dateE2" name="dateE2" class="form-control datetimepicker2" type="text" autocomplete="off" readonly>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group" id='telEditG'>
+								<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+								<div class="col-md-8 ">
+									<input id="telEdit" name="telEdit" class="form-control" type="text" autocomplete="off" readonly>
+									<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">สถานที่</label>
+								<div class="col-md-8">
+									<textarea id="placeEdit" name="placeEdit" placeholder="place" class="form-control" readonly></textarea>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="btnCancle" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- End Bootstrap modal -->
 
 	<?php include "Footer.php"; ?>
 </body>
 <script type="text/javascript">
-	function saveDateS(){
-		$.ajax({
-			url: '<?php echo base_url('Reserve/ajax_saveDeparture'); ?>',
-			type: "POST",
-			data: $('#formSaveDateS').serialize(),
-			datatype: 'json',
-			success: function (doc) {
-				data =JSON.parse(doc);	
-				$('#calendar').fullCalendar('destroy');
-				createCalendar(data) ;  	             
-			},error: function (err) {
-				alert('Error in fetching data');
-			}
-		});		
-		var id = $('[name="id"]').val();
-		var savebut = '#savebut'+id;
-		var savebut2 = '#savebut2'+id;
-		var transbut = '#transbut'+id;
-		$(savebut).hide();
-		$(savebut2).show();
-		$(transbut.show(); 
-
-	}
 
 	function insertArrivalTime(rID){
 		$('[name="id2"]').val(rID);
@@ -318,25 +371,44 @@
 				$(this).popover('show');
 			},
 			eventClick: function(calEvent, jsEvent, view) {
-				$('.alertEdit').hide();
-				if(calEvent.editable){
-					edit_reserve(calEvent.id);
-					$("#btnCancle").hide();
-					$("#btnSave, #btnDelete").show();
-					$('#formEdit').find('input, textarea, select').attr('disabled',false);
-					$('#telEditG').show();
-				}else{
-					(calEvent.id);
-					$("#btnCancle").show();
-					$("#btnSave, #btnDelete").hide();
-					$('#formEdit').find('input, textarea, select').attr('disabled','disabled');
-					$('#telEditG').hide();
-				}			        
+				edit_reserve(calEvent.id);			        
 			        // change the border color just for fun
-
 			}					           				
 		});  
 	}
+
+	function edit_reserve(rID){
+	    $('#formEdit')[0].reset(); // reset form on modals
+	    $('.form-group').removeClass('has-error'); // clear error class
+	    $('.help-block').empty(); // clear error string
+
+	    //Ajax Load data from ajax
+	    $.ajax({
+	    	url : "<?php echo site_url('Reserve/ajax_edit')?>/"+rID,
+	    	type: "GET",
+	    	dataType: "JSON",
+	    	success: function(data)
+	    	{
+	    		$('#id').val(data.reserveId);
+	    		$('[name="carType"]').val(data.carTypeId).change();
+	    		$('[name="plateL"]').val(data.carId);
+	    		$('[name="dateS2"]').datetimepicker('update',data.startDate);
+	    		$('[name="dateE2"]').datetimepicker('update',data.endDate);
+	    		$('[name="placeEdit"]').val(data.place);
+	    		$('[name="telEdit"]').val(data.tel);
+	    		$('#btnDelete').val(data.reserveId);
+
+	          	//changeType();
+	            $('#modal_showInfo').modal('show'); // show bootstrap modal when complete loaded
+	            
+
+	        },
+	        error: function (jqXHR, textStatus, errorThrown)
+	        {
+	        	alert('Error get data from ajax');
+	        }
+	    });
+	}	
 
 
 	function reload_calendar(){
