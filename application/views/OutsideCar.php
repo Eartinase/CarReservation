@@ -64,14 +64,14 @@ body{
 					<div class="form-group" id='telEditG'>
 						<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
 						<div class="col-md-8 ">
-							<input id="tel2" name="tel2" maxlength="10" name="tel" class="form-control" type="tel" autocomplete="off" required>
+							<input id="tel2" name="tel2" maxlength="10" name="tel2" class="form-control" type="tel" autocomplete="off" required>
 							<span class="help-block"></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">สถานที่</label>
 						<div class="col-md-8">
-							<textarea id="place2" name="place/" placeholder="สถานที่" class="form-control" required></textarea>
+							<textarea id="place2" name="place2" placeholder="สถานที่" class="form-control" required></textarea>
 							<span class="help-block"></span>
 						</div>
 					</div>

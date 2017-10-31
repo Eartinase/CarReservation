@@ -193,10 +193,9 @@
 						<div class="col-sm-4 ">
 						  <div class="form-group">
 						      <select class="form-control " id="trans" name="trans[]">
-						        <option value="2015">1</option>
-						        <option value="2016">2</option>
-						        <option value="2017">3</option>
-						        <option value="2018">4</option>
+						      <?php foreach ($Trans as $value) { ?>
+						        <option value="<?php echo $value['TransactionTypeId'] ?>"><?php echo $value['TransactionName'] ?></option>
+						      <?php } ?>
 						      </select>
 						  </div>
 						</div>
@@ -450,7 +449,7 @@
 	    var divtest = document.createElement("div");
 		divtest.setAttribute("class", "form-group removeclass"+transaction);
 		var rdiv = 'removeclass'+transaction;
-	    divtest.innerHTML = '<div class="col-sm-4 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><option value="">Date</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option> </select></div></div><div class="clear"></div><div class="col-sm-8 nopadding"><div class="form-group"><div class="input-group">  <input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_Add_Transaction('+ transaction +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
+	    divtest.innerHTML = '<div class="col-sm-4 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><?php foreach ($Trans as $value) { ?><option value="<?php echo $value['TransactionTypeId'] ?>"><?php echo $value['TransactionName'] ?></option><?php } ?> </select></div></div><div class="clear"></div><div class="col-sm-8 nopadding"><div class="form-group"><div class="input-group">  <input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_Add_Transaction('+ transaction +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
 	    
 	    objTo.appendChild(divtest)
 	}

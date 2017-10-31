@@ -9,6 +9,7 @@ class homeInfo extends CI_Controller {
 		$this->load->model('ReservationModel','ReservationModel');
 		$this->load->model('CarsModel','CarsModel');
 		$this->load->model('UserModel','UserModel');
+		$this->load->model('TransactionModel','TransactionModel');
 	}
 
 	public function Test(){
@@ -27,7 +28,8 @@ class homeInfo extends CI_Controller {
 
 	public function driverLogin(){
 		$empCode =  $this->session->userdata['logged_in']['employeeCode'];
-		$data['ResToday'] =  $this-> ReservationModel-> getReserveTodayforDriver($empCode );
+		$data['ResToday'] =  $this-> ReservationModel-> getReserveTodayforDriver($empCode);
+		$data['Trans'] = $this -> TransactionModel -> getTransactionType() ;
 		$this->load->view('Homedriver' , $data);
 
 	}
