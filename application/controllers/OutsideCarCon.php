@@ -11,7 +11,19 @@ class OutsideCarCon extends CI_Controller {
 
 	public function AddData(){
 		$this->OutsideCarModel->AddPlateAndCost($_POST['plate'],$_POST['cost'], $_POST['hireId']);
-		$this->load->view('GenOutsideCost');
+		$id = $_POST['hireId'];
+		$data = $this->OutsideCarModel->getOutsideInfoFromHire($id);
+			$outsideinfo = array(
+				'cartype' => $data['cartype'],
+				'startdate' => $data['startdate'],
+				'enddate' => $data['enddate'],
+				'place' => $data['place'],
+				'tel' => $data['tel'],
+				'cost' => $data['cost'],
+				'platelicense' => $data['platelicense']
+			);
+			$this->load->view('GenOutsideCost', $outsideinfo);
+	//		$this->load->view('GenOutsideCost');
 	}
 
 	public function sendRequest(){
