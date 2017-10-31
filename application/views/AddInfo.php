@@ -11,8 +11,8 @@
 	<?php 
 	include "NavbarChooser.php";
 	?>
-<div align="center">
-<h1>กรุณาใส่ข้อมูล</h1>
+<div align="center"><br>
+<h1>กรุณาใส่ข้อมูล</h1><br>
 <h4 style="color:red">***คุณไม่สามารถกลับมาแก้ข้อมูลได้อีก กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนกดยืนยัน***</h4>
 </div>
 <br>
@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-md-offset-2 col-md-3">ทะเบียนรถ</div>
 			<div class="col-md-5">
-				<input type="text" name="plate" class="form-control">
+				<input type="text" name="plate" class="form-control" required>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-offset-2 col-md-3">ค่าใช้จ่าย</div>
 			<div class="col-md-5">
-				<input type="text" name="cost" class="form-control">
+				<input type="text" name="cost" class="form-control" required>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
