@@ -260,7 +260,17 @@ class genReport extends CI_Controller {
 		$id = $_POST['hireId'];
 		$isCheck = $this->OutsideCarModel->checkInfo($id);
 		if($isCheck){
-			$this->load->view('genOutsideCost');
+			$data = $this->OutsideCarModel->getOutsideInfoFromHire($id);
+			$outsideinfo = array(
+				'cartype' => $data['cartype'],
+				'startdate' => $data['startdate'],
+				'enddate' => $data['enddate'],
+				'place' => $data['place'],
+				'tel' => $data['tel'],
+				'cost' => $data['cost'],
+				'platelicense' => $data['platelicense']
+			);
+			$this->load->view('GenOutsideCost', $outsideinfo);
 		}else{
 			$data = array(
 				'id' => $_POST['hireId']

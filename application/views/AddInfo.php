@@ -11,7 +11,11 @@
 	<?php 
 	include "NavbarChooser.php";
 	?>
-
+<div align="center">
+<h1>กรุณาใส่ข้อมูล</h1>
+<h4 style="color:red">***คุณไม่สามารถกลับมาแก้ข้อมูลได้อีก กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนกดยืนยัน***</h4>
+</div>
+<br>
 	<form action="<?php echo base_url(); ?>OutsideCarCon/AddData" method="post">
 		<input type="text" name="hireId" style="display:none" value="<?php echo $id ?>">
 		<div class="row">

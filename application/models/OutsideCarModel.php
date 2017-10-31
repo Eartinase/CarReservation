@@ -155,6 +155,26 @@ class OutsideCarModel extends CI_Model {
 		return $r;
 	}
 
+	public function getOutsideInfoFromHire($id){
+		$this->db->select('*');
+		$this->db->from('hirecar');
+		$this->db->where('HireId', $id);
+		$query = $this->db->get();
+
+		foreach ($query->result() as $row) {
+			$data = array(
+			'cartype' 	=> $row->CarTypeId,
+			'startdate' => $row->StartDate,
+			'enddate' 	=> $row->EndDate,
+			'place' 	=> $row->place,
+			'tel' 		=> $row->Tel,
+			'cost' 		=> $row->Cost,
+			'platelicense' => $row->PlateLicense
+		);			
+		}
+		return $data;
+	}
+
 	private function matchObject($outside,$row){
 		$outside->setHireId($row->HireId);
 		$outside->setReserver($row->Reserver);
