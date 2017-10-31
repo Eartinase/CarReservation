@@ -34,7 +34,7 @@
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ค่าใช้จ่าย</th>
         </tr>
         <tr>
-          <td style="text-align:center;padding: 15px;border: 1px solid #ddd"><?php echo $cartype ?></td>
+          <td style="text-align:center;padding: 15px;border: 1px solid #ddd"><?php if($cartype==1){echo "แท็กซี่";}else{ echo "ตู้";} ?></td>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd"><?php echo $platelicense ?></th>
           <td style="text-align:center;padding: 15px;border: 1px solid #ddd"><?php echo $startdate ?></td>
           <td style="text-align:center;padding: 15px;border: 1px solid #ddd"><?php echo $enddate ?></td>
