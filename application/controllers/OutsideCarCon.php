@@ -10,6 +10,7 @@ class OutsideCarCon extends CI_Controller {
 	}
 
 	public function AddData(){
+		$this->load->model('UserModel');
 		$this->OutsideCarModel->AddPlateAndCost($_POST['plate'],$_POST['cost'], $_POST['hireId']);
 		$id = $_POST['hireId'];
 		$data = $this->OutsideCarModel->getOutsideInfoFromHire($id);
@@ -20,7 +21,9 @@ class OutsideCarCon extends CI_Controller {
 				'place' => $data['place'],
 				'tel' => $data['tel'],
 				'cost' => $data['cost'],
-				'platelicense' => $data['platelicense']
+				'platelicense' => $data['platelicense'],
+				'hireId' => $id,
+				'departmentName' => $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department'])
 			);
 			$this->load->view('GenOutsideCost', $outsideinfo);
 	//		$this->load->view('GenOutsideCost');
