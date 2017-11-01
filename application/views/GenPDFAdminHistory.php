@@ -11,7 +11,7 @@ $role = ($this->session->userdata['logged_in']['role']);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <body>
   <h2 style="padding-left:85%">วันที่ออกเอกสาร
-    <?php echo  date("Y-m-d")?>
+    <?php echo  date("d-M-Y")?>
   </h2>
   <div class="con">
     <h2 style="text-align:center;font-size:36px">รายงานข้อมูลการใช้งานรถ</h2>

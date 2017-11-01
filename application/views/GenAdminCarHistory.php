@@ -62,7 +62,7 @@
   </form>         
 </div>
 
-<center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
+<center><p>วันที่ออกเอกสาร <?php echo date("d-M-Y");?></p></center>
 <center>
   <table id="reportTable" class="table2excel table" data-tableName="Header Table" style="font-size:18px;border: 1px solid #ddd;text-align: center;border-collapse: collapse;width: 80%" >
     <thead>

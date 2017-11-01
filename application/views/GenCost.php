@@ -103,7 +103,7 @@
           </table>
         </center>
         <br>
-        <p style="text-align: right;margin-right:20%">วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p>
+        <p style="text-align: right;margin-right:20%">วันที่ออกเอกสาร <?php echo date("d-M-Y");?></p>
         <div class="row">
           <div style="text-align: right;margin-right: 16%">
             <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button>

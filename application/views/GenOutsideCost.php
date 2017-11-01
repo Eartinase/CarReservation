@@ -19,14 +19,16 @@
     <div align="center"><h1>รายงานค่าใช้จ่ายบริการรถภายนอก</h1></div>
     <hr>
     <div class="row">
-      <div style="text-align:center">
-        <form action="<?php echo base_url() ?>/GenReport/genPDFOutsideCost" method="post">
-          <input type="text" name="hireId" value="<?php echo $hireId ?>" style="display:none;">
+      <div style="margin-left: 35%">
+        <div class="col-md-3" style="text-align: center;">
+          <form action="<?php echo base_url() ?>/GenReport/genPDFOutsideCost" method="post">
+            <input type="text" name="hireId" value="<?php echo $hireId ?>" style="display:none;">
+            <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>
+          </form>
+          </div>
           
-          <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>&nbsp;
-          
-        </form>
-        <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button>
+          <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button>
+
       </div>
     </div>
     <br>
@@ -45,7 +47,7 @@
           </td>
         </tr>
 
-        <center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
+        <center><p>วันที่ออกเอกสาร <?php echo date("d-M-Y");?></p></center>
 
         <tr>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ประเภทรถที่ใช้บริการ</th>
