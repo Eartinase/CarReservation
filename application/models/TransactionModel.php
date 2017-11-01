@@ -8,6 +8,15 @@ class TransactionModel extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function insert_Trans( $rID,$TransID , $note){
+		$data = array(
+			'ReserveID' => $rID ,
+		   'TransactionTypeId' => $TransID ,
+		   'Note' => $note 
+		);
+
+		$this->db->insert('transaction', $data); 
+	}
 
 
 }

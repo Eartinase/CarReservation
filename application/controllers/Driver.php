@@ -6,6 +6,7 @@ class Driver extends CI_Controller {
 		parent::__construct();
 		$this->load->model('CarsModel');
 		$this->load->model('ReservationModel');
+		$this->load->model('TransactionModel');
 		//$this->load->model('ReservationModel','ReservationModel');				
 	}
 
@@ -86,6 +87,16 @@ class Driver extends CI_Controller {
 		$this->load->view('Driving',$data);
 	}
 
+	public function save_Transaction(){
+		$rID = $_POST['id3'];
+		$transID = $_POST['trans'];
+		$note = $_POST['note']; 
+		for ($i=0; $i < count($transID) ; $i++) {
+			$this -> TransactionModel -> insert_Trans($rID , $transID[$i] , $note[$i]);
+		}
+		redirect('/HomeInfo/driverLogin','refresh');
+
+	}
 }
 
 /* End of file CarController.php */
