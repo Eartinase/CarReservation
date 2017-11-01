@@ -187,8 +187,8 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
 					<h3 class="modal-title">Transaction</h3>
 				</div>
+				<form action="<?php echo base_url();?>Driver/save_Transaction" method="POST" id="formSaveTrans" >	
 				<div class="modal-body">
-					<form action="#" id="formSaveTrans" >	
 						<input type="hidden" value="" id='id3' name="id3"/>	
 						<div class="col-sm-4 ">
 						  <div class="form-group">
@@ -203,7 +203,7 @@
 						<div class="col-sm-8  nopadding">
 						  <div class="form-group">
 						  	<div class="input-group">
-						    	<input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ">
+						    	<input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ" autocomplete="off" >
 						   		<div class="input-group-btn">
 						        	<button class="btn btn-success" type="button"  onclick="Add_Transaction();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
 						      	</div>
@@ -212,13 +212,14 @@
 						  </div>
 						<div id="Add_Transaction">          
 						</div>
-					</form><br>
+					<br>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="btnSave" onclick="saveDateS()" class="btn btn-primary">ยืนยัน</button>
+					<button type="submit" id="btnSave" class="btn btn-primary">ยืนยัน</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					
 				</div>
+				</form>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
@@ -449,7 +450,7 @@
 	    var divtest = document.createElement("div");
 		divtest.setAttribute("class", "form-group removeclass"+transaction);
 		var rdiv = 'removeclass'+transaction;
-	    divtest.innerHTML = '<div class="col-sm-4 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><?php foreach ($Trans as $value) { ?><option value="<?php echo $value['TransactionTypeId'] ?>"><?php echo $value['TransactionName'] ?></option><?php } ?> </select></div></div><div class="clear"></div><div class="col-sm-8 nopadding"><div class="form-group"><div class="input-group">  <input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_Add_Transaction('+ transaction +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
+	    divtest.innerHTML = '<div class="col-sm-4 nopadding"><div class="form-group"><select class="form-control" id="trans" name="trans[]"><?php foreach ($Trans as $value) { ?><option value="<?php echo $value['TransactionTypeId'] ?>"><?php echo $value['TransactionName'] ?></option><?php } ?> </select></div></div><div class="clear"></div><div class="col-sm-8 nopadding"><div class="form-group"><div class="input-group">  <input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ autocomplete="off" "><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_Add_Transaction('+ transaction +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
 	    
 	    objTo.appendChild(divtest)
 	}
