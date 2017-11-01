@@ -83,17 +83,28 @@ class genReport extends CI_Controller {
 		//$this->load->view('SelectCost', $data);
 	}	
 
-	public function genPDFOutsideCost(){	
-		$depID = $this->session->userdata['logged_in']['department'];
-		$username = ($this->session->userdata['logged_in']['username']);
-
+	public function genPDFOutsideCost(){			
+		
+		$id = $_POST['hireId'];
 		$this->load->model('OutsideCarModel');
-		$reserve =$this->OutsideCarModel->getOutsideInfo($this->session->userdata['logged_in']['employeeCode']);
-		
-		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
-		
-		$data['reserve'] = $reserve;
-		$this->load->view('GenPDFOutsideCost', $data);
+		//$reserve =$this->OutsideCarModel->getOutsideInfo($this->session->userdata['logged_in']['employeeCode']);
+							
+		$data = $this->OutsideCarModel->getOutsideInfoFromHire($id);
+		$outsideinfo = array(
+			'cartype' 			=> $data['cartype'],
+			'startdate' 		=> $data['startdate'],
+			'enddate' 			=> $data['enddate'],
+			'place' 			=> $data['place'],
+			'tel' 				=> $data['tel'],
+			'cost' 				=> $data['cost'],
+			'platelicense'		=> $data['platelicense'],
+			'departmentName' 	=> $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']),
+			'reserve' 			=> $reserve
+		);
+		$this->load->view('GenPDFOutsideCost', $outsideinfo);
+
+
+		//$this->load->view('GenPDFOutsideCost', $data);
 		//$this->load->view('SelectCost', $data);
 	}	
 
@@ -283,7 +294,8 @@ class genReport extends CI_Controller {
 				'tel' => $data['tel'],
 				'cost' => $data['cost'],
 				'platelicense' => $data['platelicense'],
-				'departmentName' => $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department'])
+				'departmentName' => $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']),
+				'hireId' => $id
 			);
 			$this->load->view('GenOutsideCost', $outsideinfo);
 		}else{

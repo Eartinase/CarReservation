@@ -20,7 +20,12 @@
     <hr>
     <div class="row">
       <div style="text-align:center">
-        <button class="btn btn-danger" onclick="openInNewTab('<?php echo base_url(); ?>GenReport/genPDFOutsideCost');">ดาวน์โหลดเป็น PDF</button>&nbsp;
+        <form action="<?php echo base_url() ?>/GenReport/genPDFOutsideCost" method="post">
+          <input type="text" name="hireId" value="<?php echo $hireId ?>" style="display:none;">
+          
+          <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>&nbsp;
+          
+        </form>
         <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button>
       </div>
     </div>
