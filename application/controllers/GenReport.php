@@ -282,7 +282,8 @@ class genReport extends CI_Controller {
 				'place' => $data['place'],
 				'tel' => $data['tel'],
 				'cost' => $data['cost'],
-				'platelicense' => $data['platelicense']
+				'platelicense' => $data['platelicense'],
+				'departmentName' => $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department'])
 			);
 			$this->load->view('GenOutsideCost', $outsideinfo);
 		}else{
