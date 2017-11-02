@@ -55,6 +55,7 @@ class OutsideCarCon extends CI_Controller {
 		$depID =  $this->session->userdata['logged_in']['department'];
 		$osc = $this->OutsideCarModel->getOutsideInfo($this->session->userdata['logged_in']['employeeCode']);
 		$data = array();
+		if($osc != null || $osc != ""){
 		foreach ($osc as $value) {			
 			if($value->getCarTypeId() ==='1'){
 				$carType = "แท็กซี่";
@@ -73,6 +74,7 @@ class OutsideCarCon extends CI_Controller {
 		           '</form>'
 				);
 		}
+	}
 		 $output = array(            
                 "data" => $data
             );		
