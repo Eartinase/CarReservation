@@ -20,14 +20,16 @@ class CarsModel extends CI_Model {
 	private $depID;
 	private $department;
 	private $description;
-	
 	private $carType;	
 	
 	private $detail;	
 	
+
+
 	public function __construct(){
 		parent::__construct();		
 	}	
+
 
 	public function getCarId(){
 		return $this->carId;

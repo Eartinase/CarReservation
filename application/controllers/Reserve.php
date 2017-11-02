@@ -60,7 +60,8 @@ class Reserve extends CI_Controller {
 			'startDate' => $ReserveInfo->getStartDate(),
 			'endDate' => $ReserveInfo->getEndDate(),
 			'place' => $ReserveInfo->getPlace(),
-			'tel' => $ReserveInfo->getTel()
+			'tel' => $ReserveInfo->getTel(),
+			//'carMiles' => $selectCar->getCarMiles()
 			);
 		echo json_encode($data);
 	}

@@ -349,6 +349,7 @@
 	    		$('[name="tel"]').val(data.tel);
 	    		$('[name="place"]').val(data.place);
 	    		$('[name="dateS"]').datetimepicker('update',now);
+	    		$('[name="startMiles"]').val(data.carMiles);
 	          	//changeType();
 	            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
 	            

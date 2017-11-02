@@ -16,7 +16,7 @@ class Driver extends CI_Controller {
 		$Trans = array();
 		foreach ($Reserve as $value){
 			$rID = $value['StatusId'];
-			$Trans[] = $this->TransactionModel->getTransactionFromRID($rID);
+			$Trans[$rID] = $this->TransactionModel->getTransactionFromRID($rID);
 		}
 
 		$data = $this->ReservationModel->driverReserve();
