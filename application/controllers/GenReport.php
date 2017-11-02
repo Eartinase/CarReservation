@@ -47,26 +47,30 @@ class genReport extends CI_Controller {
 		$this->load->view('GenExcelUserHistory',$data);
 	}
 
-	public function index(){	
-		$depID = $this->session->userdata['logged_in']['department'];
-		$username = ($this->session->userdata['logged_in']['username']);
+	public function index(){
+		if (isset($this->session->userdata['logged_in'])){
+			$depID = $this->session->userdata['logged_in']['department'];
+			$username = ($this->session->userdata['logged_in']['username']);
 
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
-		$userInfo = $this-> UserModel->getUserInfo($username);
-		$carType = array();
-		if($reserveInfo != ""){
-			foreach ($reserveInfo as $value) {
-				$car =$this->CarsModel->getCarById($value->getCarId());
-				$id = $car->getCarId();
-				$v = $car->getCarType();
-				$carType[$id] = $v;
+			$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
+			$userInfo = $this-> UserModel->getUserInfo($username);
+			$carType = array();
+			if($reserveInfo != ""){
+				foreach ($reserveInfo as $value) {
+					$car =$this->CarsModel->getCarById($value->getCarId());
+					$id = $car->getCarId();
+					$v = $car->getCarType();
+					$carType[$id] = $v;
+				}
 			}
+			$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+			$data['reserveInfo'] = $reserveInfo;
+			$data['userInfo']= $userInfo;
+			$data['carType'] = $carType;
+			$this->load->view('GenDocument', $data);	
+		}else{
+			redirect($base_url."HomeInfo");
 		}
-		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
-		$data['reserveInfo'] = $reserveInfo;
-		$data['userInfo']= $userInfo;
-		$data['carType'] = $carType;
-		$this->load->view('GenDocument', $data);	
 	}	
 
 	public function genOutsideCost(){	
@@ -87,7 +91,7 @@ class genReport extends CI_Controller {
 		$id = $_POST['hireId'];
 		$this->load->model('OutsideCarModel');
 		//$reserve =$this->OutsideCarModel->getOutsideInfo($this->session->userdata['logged_in']['employeeCode']);
-							
+
 		$data = $this->OutsideCarModel->getOutsideInfoFromHire($id);
 		$outsideinfo = array(
 			'cartype' 			=> $data['cartype'],
@@ -226,26 +230,30 @@ class genReport extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function selectCost(){	
-		$depID = $this->session->userdata['logged_in']['department'];
-		$username = ($this->session->userdata['logged_in']['username']);
+	public function selectCost(){
+		if(isset($this->session->userdata['logged_in'])){
+			$depID = $this->session->userdata['logged_in']['department'];
+			$username = ($this->session->userdata['logged_in']['username']);
 
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
-		$userInfo = $this-> UserModel->getUserInfo($username);
-		$carType = array();
-		if($reserveInfo != ""){
-			foreach ($reserveInfo as $value) {
-				$car =$this->CarsModel->getCarById($value->getCarId());
-				$id = $car->getCarId();
-				$v = $car->getCarType();
-				$carType[$id] = $v;
+			$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
+			$userInfo = $this-> UserModel->getUserInfo($username);
+			$carType = array();
+			if($reserveInfo != ""){
+				foreach ($reserveInfo as $value) {
+					$car =$this->CarsModel->getCarById($value->getCarId());
+					$id = $car->getCarId();
+					$v = $car->getCarType();
+					$carType[$id] = $v;
+				}
 			}
+			$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
+			$data['reserveInfo'] = $reserveInfo;
+			$data['userInfo']= $userInfo;
+			$data['carType'] = $carType;
+			$this->load->view('SelectCost', $data);
+		}else{
+			redirect($base_url."HomeInfo");
 		}
-		$data['departmentName'] = $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']);
-		$data['reserveInfo'] = $reserveInfo;
-		$data['userInfo']= $userInfo;
-		$data['carType'] = $carType;
-		$this->load->view('SelectCost', $data);
 	}
 
 	public function ajax_AllReserve(){

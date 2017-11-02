@@ -493,9 +493,7 @@ class ReservationModel extends CI_Model {
 
 	public function getReserverName($id){
 		$sql = 'SELECT u.name from user u join currentreservation c on c.EmployeeCode = u.EmployeeCode';
-
 		$query = $this->db->query($sql);
-
 		$name = "";
 		foreach ($query->result() as $row){
 			$name = $row->name;
@@ -570,12 +568,9 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function update_Arrival( $rID , $dateE , $eMiles){
-		$sql = 'UPDATE previousreservation SET  Arrival = \''.$dateE.'\', CarMilesEnd = '.$eMiles.' WHERE previousreservation.StatusId = '.$rID;
-		
+		$sql = 'UPDATE previousreservation SET  Arrival = \''.$dateE.'\', CarMilesEnd = '.$eMiles.' WHERE previousreservation.StatusId = '.$rID;		
 		$query = $this->db->query('INSERT INTO previousreservation (StatusId, CarId, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart) SELECT currentId, carid, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart FROM currentreservation WHERE CurrentId = '.$rID);
-
 		$query = $this->db->query($sql);
-
 		$this->db->delete('currentreservation', array('currentid' => $rID));	
 	}
 
@@ -584,9 +579,6 @@ class ReservationModel extends CI_Model {
 		$query = $this->db->query($SQL);
 		return $query->row_array();
 	}
-
-
-
 }
 
 /* End of file CarModel.php */
