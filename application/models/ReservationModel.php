@@ -192,6 +192,21 @@ class ReservationModel extends CI_Model {
 		return $r;	
 	}
 
+	public function getPrevReservation(){
+		$reserveInfo = null;
+		$r = "";
+		$query = $this->db->query('SELECT cr.* , ct.Color, c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN previousreservation cr ON cr.carId = c.carId');
+		foreach ($query->result() as $row){
+			$reserveInfo = new ReservationModel;
+			$this->matchPrevObject($reserveInfo,$row);
+			if($r === "") {
+				$r = array();
+			}
+			array_push($r,$reserveInfo);
+		}		
+		return $r;	
+	}
+
 	public function getCurrentReservationFromID($rID){
 		$reserveInfo = null;
 		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where CurrentId = '.$rID);
@@ -305,18 +320,14 @@ class ReservationModel extends CI_Model {
 				'EmployeeCode' =>$employeeCode
 				);
 
-
 			$query = $this->db->select('DriverId')
 				->from('cars')
 				->where('carId', $data["carId"])
 				->get();
-
-
 			foreach ($query->result() as $row){			
 				$input["DriverId"] = $row->DriverId;
 			}			
-			return $this->db->insert('currentreservation', $data);		
-
+			return $this->db->insert('currentreservation', $data);
 		}else{
 			return false;
 		}
@@ -452,7 +463,7 @@ class ReservationModel extends CI_Model {
 		$reserveInfo->setPlace($row->Place);
 		$reserveInfo->setDriverId($row->DriverId);
 		$reserveInfo->setColor($row->Color);
-		$reserveInfo->setCarId($row->carId);		
+		$reserveInfo->setCarId($row->CarId);		
 	}
 
 	private function matchReservationObject($reserveInfo,$row){

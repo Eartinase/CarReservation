@@ -29,23 +29,30 @@
             <li style="padding-left: 0px" >
               <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ขอใช้รถภายนอก <span class="sr-only">(current)</span></a>
             </li>
-            <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ประวัติการจอง
+            
+            <li style="padding-left: 0px"  class="dropdown">
+              <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">การจองและใช้งาน<span class="caret"></span>
               </a>
+              <ul class="dropdown-menu"> 
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>Reserve/showReserveHistory">ประวัติการจอง</a></li>   
+                <li role="separator" class="divider"></li>
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>Reserve/showCarUseHistory">ประวัติการใช้งาน</a></li>                        
+              </ul> 
+
             </li>
-            <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showCarUseHistory" >ประวัติการใช้งาน
-              </a>
-            </li>
+
+
             <li style="padding-left: 0px"  class="dropdown">
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">จัดการ<span class="caret"></span>
               </a>
-              <ul class="dropdown-menu">
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>ManageCar">จัดการรถ</a></li> 
+              <ul class="dropdown-menu"> 
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>AllReserve">การจองทั้งหมด</a></li>   
                 <li role="separator" class="divider"></li>
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>AllReserve">การจองทั้งหมด</a></li>                
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>AllUseCar">ประวัติการใช้งานทั้งหมด</a></li>  
+                <li role="separator" class="divider"></li>
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>ManageCar">จัดการรถ</a></li>             
               </ul> 
-                       
+
             </li>
             <li style="padding-left: 0px"  class="dropdown">
               <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สร้างรายงาน<span class="caret"></span>

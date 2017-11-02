@@ -66,8 +66,7 @@ class genReport extends CI_Controller {
 		$data['reserveInfo'] = $reserveInfo;
 		$data['userInfo']= $userInfo;
 		$data['carType'] = $carType;
-		$this->load->view('GenDocument', $data);
-		//$this->load->view('SelectCost', $data);
+		$this->load->view('GenDocument', $data);	
 	}	
 
 	public function genOutsideCost(){	
