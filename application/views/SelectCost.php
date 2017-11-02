@@ -62,48 +62,7 @@
             </tbody>              
           </table>
 </div>
-
-           <!--       
-         <table>
-        <tr>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ประเภทรถ</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ทะเบียนรถ</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่เดินทาง</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">วันเวลาที่กลับ</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">สถานที่</th>
-          <th style="text-align:center;padding: 15px;border: 1px solid #ddd">ออกรายงานเบิกงบประมาณ</th>
-        </tr>
-        <?php 
-        if($reserveInfo != ""){
-          foreach ($reserveInfo as $value) { 
-            ?>
-            <tr>
-              <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getReserveId() ?></td>
-              <td style="padding: 15px;border: 1px solid #ddd"><?php echo $carType[$value->getCarId()] ?></td>
-              <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getPlateLicese() ?></td>
-              <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getStartDate() ?></td>
-              <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getEndDate() ?></td>
-              <td style="padding: 15px;border: 1px solid #ddd"><?php echo $value->getPlace() ?></td>
-              <td style="text-align:center;padding: 15px;border: 1px solid #ddd">
-                <a href="<?php echo base_url(); ?>GenReport/GenCost?carTypeId=<?php echo $carType[$value->getCarId()]?>&reserveId=<?php echo $value->getReserveId()?>">
-                    
-                <button id="searchbut" type="submit" class="btn btn-primary">ออกรายงาน</button>
-                </a>
-                </td>
-            </tr>
-            <?php 
-          }
-        } else{
-          echo "<td style='text-align:center;padding: 15px;border: 1px solid #ddd' colspan='6'>ไม่มีประวัติการจองรถ</td>";
-        }
-        ?>
-      </table>
-    </center>
-    
-    <br>
-
--->
+          
   <script type="text/javascript">
     function reload_table(){
       table.ajax.reload(null,false); //reload datatable ajax 

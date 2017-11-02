@@ -12,7 +12,7 @@ class genReport extends CI_Controller {
 
 	public function genPDFUserHistory(){	
 		$empCode = $this->session->userdata['logged_in']['employeeCode'];
-		$reserveInfo = $this-> ReservationModel->getCurReserveFormEmpCode($empCode);
+		$reserveInfo = $this-> ReservationModel->getPrevReserveFormEmpCode($empCode);
 		$userInfo = $this-> UserModel->getUserInfo('admin');
 		$carType = array();
 		foreach ($reserveInfo as $value) {
@@ -49,10 +49,10 @@ class genReport extends CI_Controller {
 
 	public function index(){
 		if (isset($this->session->userdata['logged_in'])){
-			$depID = $this->session->userdata['logged_in']['department'];
+		//	$depID = $this->session->userdata['logged_in']['department'];
 			$username = ($this->session->userdata['logged_in']['username']);
-
-			$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
+			$empcode = ($this->session->userdata['logged_in']['employeeCode']);
+			$reserveInfo = $this-> ReservationModel->getPrevReserveFormEmpCode($empcode);
 			$userInfo = $this-> UserModel->getUserInfo($username);
 			$carType = array();
 			if($reserveInfo != ""){
@@ -86,11 +86,9 @@ class genReport extends CI_Controller {
 		//$this->load->view('SelectCost', $data);
 	}	
 
-	public function genPDFOutsideCost(){			
-		
+	public function genPDFOutsideCost(){
 		$id = $_POST['hireId'];
-		$this->load->model('OutsideCarModel');
-		//$reserve =$this->OutsideCarModel->getOutsideInfo($this->session->userdata['logged_in']['employeeCode']);
+		$this->load->model('OutsideCarModel');		
 
 		$data = $this->OutsideCarModel->getOutsideInfoFromHire($id);
 		$outsideinfo = array(
@@ -104,11 +102,7 @@ class genReport extends CI_Controller {
 			'departmentName' 	=> $this->UserModel->getDepartmentName($this->session->userdata['logged_in']['department']),
 			'reserve' 			=> $reserve
 		);
-		$this->load->view('GenPDFOutsideCost', $outsideinfo);
-
-
-		//$this->load->view('GenPDFOutsideCost', $data);
-		//$this->load->view('SelectCost', $data);
+		$this->load->view('GenPDFOutsideCost', $outsideinfo);		
 	}	
 
 	public function genPDFCost(){			
@@ -162,7 +156,6 @@ class genReport extends CI_Controller {
 			'place'			=> $place,
 			'reserveId' 	=> $_GET['reserveId']
 		);
-
 		$this->load->view('GenCost',$data);
 	}
 
@@ -180,7 +173,6 @@ class genReport extends CI_Controller {
 			$v = $car->getCarType();
 			$carType[$id] = $v;
 		}
-
 		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
@@ -234,8 +226,7 @@ class genReport extends CI_Controller {
 		if(isset($this->session->userdata['logged_in'])){
 			$depID = $this->session->userdata['logged_in']['department'];
 			$username = ($this->session->userdata['logged_in']['username']);
-
-			$reserveInfo = $this-> ReservationModel->getCurReserveFormDepID($depID);
+			$reserveInfo = $this-> ReservationModel->getPrevReserveFormDepID($depID);
 			$userInfo = $this-> UserModel->getUserInfo($username);
 			$carType = array();
 			if($reserveInfo != ""){
@@ -258,7 +249,7 @@ class genReport extends CI_Controller {
 
 	public function ajax_AllReserve(){
 		$depID = $this->session->userdata['logged_in']['department'];
-		$allReserve = $this-> ReservationModel->getCurReserveFormDepID($depID);
+		$allReserve = $this-> ReservationModel->getPrevReserveFormDepID($depID);
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));	
 		$data = array();
@@ -274,7 +265,6 @@ class genReport extends CI_Controller {
 					"<center>".$value->getStartDate()."</center>",
 					"<center>".$value->getEndDate()."</center>",
 					"<center>".$value->getPlace()."</center>",
-
 					"<center><a href='".base_url()."GenReport/GenCost?carTypeId=".$carType."&reserveId=".$value->getReserveId()."'>"."<button id='searchbut' type='submit' class='btn btn-primary'>ออกรายงาน</button></a></center>"
 				);			
 			}

@@ -37,11 +37,7 @@
 
         <div class="form-group">
           <label style="margin-left:5%">ค่าใช้บริการรถ/ชั่วโมง <?php echo $costPerHour?> บาท</label>
-        </div>
-
-        <div class="form-group">
-          <label style="margin-left:5%">ค่าใช้บริการรถล่วงเวลา (OT) 0 บาท</label>
-        </div>
+        </div>     
 
         <div class="form-group">
           <label style="margin-left:5%">ระยะเวลาที่ใช้งาน <?php echo $duration ?> ชั่วโมง</label>
@@ -82,11 +78,7 @@
           <tr>    
             <td style="padding: 12px;border: 1px solid #ddd">ค่าใช้บริการรถต่อชั่วโมง</td>
             <td style="padding: 12px;border: 1px solid #ddd"><?php echo $costPerHour ?> บาท</td>
-          </tr>
-          <tr>    
-            <td style="padding: 12px;border: 1px solid #ddd">บริการรถล่วงเวลา (OT)</td>
-            <td style="padding: 12px;border: 1px solid #ddd">0 บาท</td>
-          </tr>
+          </tr>         
           <tr>    
             <td style="padding: 12px;border: 1px solid #ddd">ระยะเวลาการใช้รถ</td>
             <td style="padding: 12px;border: 1px solid #ddd"><?php echo $duration ?> ชั่วโมง</td>
