@@ -21,7 +21,7 @@
     <div class="row">
       <div style="margin-left: 35%">
         <div class="col-md-3" style="text-align: center;">
-          <form action="<?php echo base_url() ?>/GenReport/genPDFOutsideCost" method="post">
+          <form action="<?php echo base_url() ?>/GenReport/genPDFOutsideCost" method="post" target="_blank">
             <input type="text" name="hireId" value="<?php echo $hireId ?>" style="display:none;">
             <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>
           </form>

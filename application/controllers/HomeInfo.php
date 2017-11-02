@@ -19,18 +19,22 @@ class homeInfo extends CI_Controller {
 	public function index(){				
 		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
 		$data["Type1"] = $this-> CarsModel -> getCarsByTypeForReserve(1);
- 		$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
- 		$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
- 		$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
+		$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
+		$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
+		$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
  		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
 		$this->load->view('Home', $data);
 	}
 
 	public function driverLogin(){
-		$empCode =  $this->session->userdata['logged_in']['employeeCode'];
-		$data['ResToday'] =  $this-> ReservationModel-> getReserveTodayforDriver($empCode);
-		$data['Trans'] = $this -> TransactionModel -> getTransactionType() ;
-		$this->load->view('Homedriver' , $data);
+		if(isset($this->session->userdata['logged_in'])) {
+			$empCode =  $this->session->userdata['logged_in']['employeeCode'];
+			$data['ResToday'] =  $this-> ReservationModel-> getReserveTodayforDriver($empCode);
+			$data['Trans'] = $this -> TransactionModel -> getTransactionType() ;
+			$this->load->view('Homedriver' , $data);
+		}else{
+			redirect($base_url."HomeInfo");
+		}
 
 	}
 
@@ -38,15 +42,15 @@ class homeInfo extends CI_Controller {
 		$reserve = $this-> ReservationModel->getCurrentReservation();
 		$data = array();
 		if($reserve != ''){
-		foreach ($reserve as $value) {				
+			foreach ($reserve as $value) {				
 				$data[] = array(
 					'id' => $value->getReserveId(),
-	                "title" => $value->getPlateLicese(),
-	                "start" => $value->getStartDate(),
-	                "end" => $value->getEndDate(),
-	                "color" => $value->getColor(),
-	                "editable" => false
-	               );
+					"title" => $value->getPlateLicese(),
+					"start" => $value->getStartDate(),
+					"end" => $value->getEndDate(),
+					"color" => $value->getColor(),
+					"editable" => false
+				);
 			}
 		}
 		echo json_encode($data);
@@ -56,12 +60,12 @@ class homeInfo extends CI_Controller {
 	public function adminLogin(){
 		
 		$data["Type1"] = $this-> CarsModel -> getCarsByTypeForReserve(1);
- 		$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
- 		$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
- 		$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
- 		$data["driver"] = $this-> UserModel -> getDriverInfo();
+		$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
+		$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
+		$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
+		$data["driver"] = $this-> UserModel -> getDriverInfo();
  		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
- 		$this->load->view('HomeAdmin', $data);
+		$this->load->view('HomeAdmin', $data);
 	}
 
 

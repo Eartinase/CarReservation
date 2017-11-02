@@ -68,8 +68,8 @@
         <tr>
           <td colspan="2"><center><p>ผู้ใช้บริการ <?php echo $name ?> หน่วยงาน <?php echo $departmentt?>
             <br>ประเภทรถ <?php echo $carType ?> หมายเลขทะเบียน <?php echo $plateLicense?>
-            <br>วันเวลาที่เดินทาง <?php echo $startDate?> วันเวลาที่กลับ <?php echo $endDate?> สถานที่ 
-            <?php echo $place?></p></center></td>
+            <br>วันเวลาที่เดินทาง <?php echo $startDate?> วันเวลาที่กลับ <?php echo $endDate?> 
+            <br>สถานที่ <?php echo $place?></p></center></td>
           </tr>
           <tr>    
             <th style="padding: 12px;border: 1px solid #ddd"><center>รายการค่าใช้จ่าย</center></th>
@@ -100,7 +100,7 @@
           <div style="text-align: right;margin-right: 16%">
             <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button>
             <div class="col-md-9" style="margin-left: 12%">
-              <form action="<?php echo base_url()?>GenReport/genPDFCost" method="post"> 
+              <form action="<?php echo base_url()?>GenReport/genPDFCost" method="post" target="_blank"> 
                 <input type="text" name="carT" value="<?php echo $carTypeId ?>" hidden> 
                 <input type="text" name="reserveId" value="<?php echo $reserveId ?>" hidden> 
                 <input type="text" name="otherr" value="0"  id="otherr" hidden > 
