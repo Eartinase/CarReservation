@@ -192,6 +192,21 @@ class ReservationModel extends CI_Model {
 		return $r;	
 	}
 
+	public function getPrevReservation(){
+		$reserveInfo = null;
+		$r = "";
+		$query = $this->db->query('SELECT cr.* , ct.Color, c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN previousreservation cr ON cr.carId = c.carId');
+		foreach ($query->result() as $row){
+			$reserveInfo = new ReservationModel;
+			$this->matchPrevObject($reserveInfo,$row);
+			if($r === "") {
+				$r = array();
+			}
+			array_push($r,$reserveInfo);
+		}		
+		return $r;	
+	}
+
 	public function getCurrentReservationFromID($rID){
 		$reserveInfo = null;
 		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where CurrentId = '.$rID);
@@ -305,18 +320,14 @@ class ReservationModel extends CI_Model {
 				'EmployeeCode' =>$employeeCode
 				);
 
-
 			$query = $this->db->select('DriverId')
 				->from('cars')
 				->where('carId', $data["carId"])
 				->get();
-
-
 			foreach ($query->result() as $row){			
 				$input["DriverId"] = $row->DriverId;
 			}			
-			return $this->db->insert('currentreservation', $data);		
-
+			return $this->db->insert('currentreservation', $data);
 		}else{
 			return false;
 		}
@@ -452,7 +463,7 @@ class ReservationModel extends CI_Model {
 		$reserveInfo->setPlace($row->Place);
 		$reserveInfo->setDriverId($row->DriverId);
 		$reserveInfo->setColor($row->Color);
-		$reserveInfo->setCarId($row->carId);		
+		$reserveInfo->setCarId($row->CarId);		
 	}
 
 	private function matchReservationObject($reserveInfo,$row){
@@ -482,9 +493,7 @@ class ReservationModel extends CI_Model {
 
 	public function getReserverName($id){
 		$sql = 'SELECT u.name from user u join currentreservation c on c.EmployeeCode = u.EmployeeCode';
-
 		$query = $this->db->query($sql);
-
 		$name = "";
 		foreach ($query->result() as $row){
 			$name = $row->name;
@@ -559,12 +568,9 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function update_Arrival( $rID , $dateE , $eMiles){
-		$sql = 'UPDATE previousreservation SET  Arrival = \''.$dateE.'\', CarMilesEnd = '.$eMiles.' WHERE previousreservation.StatusId = '.$rID;
-		
+		$sql = 'UPDATE previousreservation SET  Arrival = \''.$dateE.'\', CarMilesEnd = '.$eMiles.' WHERE previousreservation.StatusId = '.$rID;		
 		$query = $this->db->query('INSERT INTO previousreservation (StatusId, CarId, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart) SELECT currentId, carid, DriverId, EmployeeCode, depId, StartDate, EndDate, Place, Departure, CarMilesStart FROM currentreservation WHERE CurrentId = '.$rID);
-
 		$query = $this->db->query($sql);
-
 		$this->db->delete('currentreservation', array('currentid' => $rID));	
 	}
 
@@ -573,9 +579,6 @@ class ReservationModel extends CI_Model {
 		$query = $this->db->query($SQL);
 		return $query->row_array();
 	}
-
-
-
 }
 
 /* End of file CarModel.php */
