@@ -27,13 +27,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">                        
             <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Driver" >รายการรถวันนี้</a>
+              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Driver" >ประวัติการออกรถ</a>
             </li>
-            
-            <li style="padding-left: 0px" >              
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Driver/Driving" >รถที่คุณกำลังขับ</a>
-            </li>
-
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

@@ -33,7 +33,7 @@
               <span style="text-align:center;font-size:20px;font-weight: bold;">ชื่อ-นามสกุลผู้จอง</span> 
               <?php echo $this->session->userdata['logged_in']['name'] ?>  
               <span style="text-align:center;font-size:20px;font-weight: bold;">หน่วยงาน</span> 
-
+              <?php echo $departmentName ?>
               <span style="text-align:center;font-size:20px;font-weight: bold;">ตำแหน่ง</span> 
               <?php echo $this->session->userdata['logged_in']['role'] ?>
             </p>

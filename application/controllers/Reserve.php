@@ -122,7 +122,11 @@ class Reserve extends CI_Controller {
 		$dateE = $this->input->post('dateE2');
 		$place = $this->input->post('placeEdit');
 		$tel = $this-> input->post('telEdit');
-		if($this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
+		if(!$this->ReservationModel->checkDriverTimeforEdit($driverId ,$dateS , $dateE , $reserveId)){
+			echo json_encode(array("status" => FALSE , "message" => 'พนักงานขับรถไม่ว่างกรุณาเลือกพนักงานคนอื่น'));
+		}else if(!$this->ReservationModel->checkReservationforEdit($carId ,$dateS , $dateE ,$reserveId)){
+			echo json_encode(array("status" => FALSE , "message" => 'ไม่สามารถทำการแก้ไขได้เนื่องจากรถได้ถูกจองแล้ว'));
+		}else{
 			$data = array(
 				'carId' => $carId,
 				'driverId'=> $driverId,
@@ -135,8 +139,6 @@ class Reserve extends CI_Controller {
 			);			
 			$this-> ReservationModel ->updateAdminReserve($reserveId , $data);
 			echo json_encode(array("status" => TRUE));
-		}else{
-			echo json_encode(array("status" => FALSE));
 		}		
 	}
 
@@ -224,6 +226,8 @@ class Reserve extends CI_Controller {
 		echo json_encode($output);
 		exit;
 	}
+
+	
 
 }
 

@@ -50,23 +50,37 @@
 						}else{
 					?>
 					<ul>
-					<?php foreach ($ResToday as $value) { ?>
-							<li style =" border-radius: 10px ; background-color: <?php echo $value['Color']; ?>">
-								<div class= "row" style ="padding:0px">
-									<div  class="col-md-9" style ="margin:0px">
-									<h4><?php echo $value['PlateLicense']; ?><br></h4>
-									<?php echo $value['StartDate']; ?><br>
-									<?php echo $value['EndDate']; ?>
+					<?php foreach ($ResToday as $value) { ?>		            		             		           		         
+							<li style ="padding: 0px">
+								<div class="panel panel-default">
+									<div class="panel-heading"  style ="background-color: <?php echo $value['Color']; ?> ; padding: 1px">
+										<center><h4><?php echo $value['PlateLicense']; ?><br></h4></center>
 									</div>
-									<div style ="float: right;margin-right: 20px">
-									<?php if($value['Departure'] == null){ ?>
-									<input id= "savebut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default" onclick="submitDeparture(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลาออก' type="button">
-									<?php }else{ ?>
-									<input id= "savebut2<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
-									onclick="insertArrivalTime(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลากลับ' type="button">
-									<input id= "transbut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
-									onclick="insertTransaction(<?php echo $value['CurrentId'] ; ?>)" value='เพิ่มข้อมูล' type="button">
-									<?php } ?>
+									<div class="panel-body">
+										<?php echo $value['StartDate']; ?><br>
+										<?php echo $value['EndDate']; ?>
+
+		            				</div>
+		            				<div class="panel-footer" style =" padding: 5px">
+		            				<div class="clearfix">
+									<div style ="float: right;">
+										<?php if($value['Departure'] == null){ ?>
+										<input id= "savebut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default" onclick="submitDeparture(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลาออก' type="button"  
+											onmouseover="this.style.backgroundColor='<?php echo $value['Color']; ?>'" 
+											onmouseout="this.style.backgroundColor=''">
+										<?php }else{ ?>
+										<input id= "transbut<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
+										onclick="insertTransaction(<?php echo $value['CurrentId'] ; ?>)" value='เพิ่มข้อมูล' type="button"
+										onmouseover="this.style.backgroundColor='<?php echo $value['Color']; ?>'" 
+										onmouseout="this.style.backgroundColor=''">
+										<input id= "savebut2<?php echo $value['CurrentId'] ; ?>" class="btn btn-default"  
+										onclick="insertArrivalTime(<?php echo $value['CurrentId'] ; ?>)" value='ยืนยันเวลากลับ' type="button"
+										onmouseover="this.style.backgroundColor='<?php echo $value['Color']; ?>'" 
+										onmouseout="this.style.backgroundColor=''">
+										
+										<?php } ?>
+									</div>
+									</div>
 									</div>
 								</div>
 							</li>							
@@ -128,12 +142,12 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-2 control-label" >เวลาเวลาออกรถ</label>
+								<label class="col-md-2 control-label" >เวลาออกรถ</label>
 								<div class="col-md-4 ">
 									<input  name="dateS" class="form-control datetimepicker" class="form-control" type="text" autocomplete="off" required>
 									<span class="help-block"></span>
 								</div>
-								<label class="col-md-2 control-label" >เลขไมค์ปัจจุบัน</label>
+								<label class="col-md-2 control-label" >เลขไมล์ปัจจุบัน</label>
 								<div class="col-md-4 ">
 									<input  name="startMiles" class="form-control" class="form-control" type="text" autocomplete="off" required>
 									<span class="help-block"></span>
@@ -301,7 +315,21 @@
 		$('[name="id2"]').val(rID);
 		var now = new Date();
 		$('[name="dateE"]').datetimepicker('update',now);
-		$('#insert_modal').modal('show');
+		 $.ajax({
+	    	url : "<?php echo site_url('Driver/getCarMilesStart')?>/"+rID,
+	    	type: "GET",
+	    	dataType: "JSON",
+	    	success: function(data){
+	    		$('[name="endMiles"]').val(data.CStart);
+	          	//changeType();
+	            $('#insert_modal').modal('show'); // show bootstrap modal when complete loaded
+
+	        },
+	        error: function (jqXHR, textStatus, errorThrown)
+	        {
+	        	alert('Error get data from ajax');
+	        }
+	    });
 		
 	}
 

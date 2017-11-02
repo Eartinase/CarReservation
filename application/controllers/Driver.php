@@ -12,19 +12,31 @@ class Driver extends CI_Controller {
 
 	public function index(){
 		$emId = $this->session->userdata['logged_in']['employeeCode'];
-		$check = $this->ReservationModel->checkDriver($emId);
-		$incar = false;
-		foreach ($check->result() as $row){
-			$incar = true;
+		$Reserve = $this->ReservationModel->getPreReserveFromDriver($emId);
+		$Trans = array();
+		foreach ($Reserve as $value){
+			$rID = $value['StatusId'];
+			$Trans[] = $this->TransactionModel->getTransactionFromRID($rID);
 		}
 
 		$data = $this->ReservationModel->driverReserve();
-		$send = array(
-			'tab' => $data,
-			'incar' => $incar
+		$data = array(
+			'Reserve' => $Reserve,
+			'Trans' => $Trans
 		);
-		$this->load->view('DriverView', $send);
+		$this->load->view('DriverView', $data);
 	}	
+
+	public function getCarMilesStart($rID){
+		$reserve = $this-> ReservationModel -> getCarMilesStart($rID);
+		//$data =array();
+		$data = array(
+			'CStart' => $reserve['CarMilesStart']
+			);
+		echo json_encode($data);
+		exit();		
+
+	}
 
 	public function ajax_loadEventDriver(){
 		//$reserve = $this-> ReservationModel->getCurrentReservation();

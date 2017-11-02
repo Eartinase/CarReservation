@@ -3,16 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+	<?php 
+	include "Header.php";
+	?>
+	
+	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+	
 	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
-
-	<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
-	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
-	<script src='<?php echo base_url(); ?>fullcalendar/lib/jquery.min.js'></script>	
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
-
 	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
-
 	<title>ระบบบริหารจัดการรถยนต์</title>
 	
 	<style type="text/css">
@@ -32,37 +33,35 @@
 
 	<div  class="container" style="margin-top: 50px">
 	<div>			
-		<table  id="tablee" class="table table-striped table-bordered table-hover" width="100%">
+		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
-					<td class="tablehead">รหัสการจอง</td>
 					<td class="tablehead">ประเภทรถ</td>
-					<td class="tablehead">ทะเบียนรถ</td> 
-					<td class="tablehead">ผู้จอง</td> 
+					<td class="tablehead">ทะเบียนรถ</td>
 					<td class="tablehead">สถานที่</td> 
-					<td class="tablehead">วันที่เดินทาง</td>
-					<td class="tablehead">วันที่กลับ</td>					
+					<td class="tablehead">วันที่เดินทาง</td> 
+					<td class="tablehead">วันที่กลับ</td> 
+					<td class="tablehead">เลขไมล์เริ่มต้น</td>
+					<td class="tablehead">เลขไมล์สิ้นสุด</td>					
 					<td style="width:150px"></td>
 				</tr>
 			</thead>
 			
 			<tbody>
 				<?php 
-				$dis = "";
-				if($incar){
-					$dis = "disabled";
-				}
-				foreach($tab->result() as $row){
+				foreach($Reserve as $value){
 					//$plate = $row->PlateLicense.replace(/ /g, '+');
 					echo "<tr>\n";
-					echo "<td>".$row->currentid."</td>\n";
-					echo "<td>".$row->CarType."</td>\n";
-					echo "<td>".$row->PlateLicense."</td>\n";
-					echo "<td>".$row->Name."</td>\n";
-					echo "<td>".$row->place."</td>\n";
-					echo "<td>".$row->StartDate."</td>\n";
-					echo "<td>".$row->EndDate."</td>\n";
-					echo "<td><button ".$dis." class='btn btn-success' data-toggle='modal' onclick='changeData(".$row->currentid.")' data-target='#confirm'>ยืนยัน</button>";
+					echo "<td>".$value['CarType']."</td>\n";
+					echo "<td>".$value['plateLicense']."</td>\n";
+					echo "<td>".$value['Place']."</td>\n";
+					echo "<td>".$value['Departure']."</td>\n";
+					echo "<td>".$value['Arrival']."</td>\n";
+					echo "<td>".$value['CarMilesStart']."</td>\n";
+					echo "<td>".$value['CarMilesEnd']."</td>\n";
+					echo "<td>";
+					
+					echo "</td>";
 					echo "</td>\n";
 					echo "</tr>\n";
 				} 
@@ -144,6 +143,15 @@
 		autoclose: true,
 		format: 'yyyy-mm-dd hh:ii'
 	});
+
+	$(document).ready(function() {		
+	    //datatables
+	    table = $('#table').DataTable({ 
+	    	"bPaginate":true,
+	       	"processing": true
+	        //Set column definition initialisation properties. 
+	    });
+	})
 
 </script>
 	

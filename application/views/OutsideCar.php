@@ -220,7 +220,7 @@ body{
 				data: $('#formRequest').serialize(),
 				datatype: 'json',
 				success: function (doc) {
-					alert(doc);  
+					alert('คำขอใช่รถภายนอกถูกส่งแล้ว');  
 					$('#formRequest').trigger("reset");
 					$('#reasonDiv').collapse('hide');
 					reload_table();            

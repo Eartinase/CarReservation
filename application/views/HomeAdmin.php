@@ -311,7 +311,7 @@
 								</div>
 							</div>
 							<div class='alertEdit' style="background-color: #FFB9B4;font-size: 15px;height: 25px;">
-								<center><b>ไม่สามารถทำการแก้ไขได้เนื่องจากรถได้ถูกจองแล้ว</b></center>
+								<center><b id="warning">ไม่สามารถทำการแก้ไขได้เนื่องจากรถได้ถูกจองแล้ว</b></center>
 							</div>
 						</div>
 					</form>
@@ -603,6 +603,7 @@ function reload_calendar(){
 	            }
 	            else
 	            {
+	            	$('#warning').html(data.message);
 	            	$('.alertEdit').show();
 	            }
 	            $('#btnSave').text('save'); //change button text

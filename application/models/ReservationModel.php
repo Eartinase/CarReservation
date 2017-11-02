@@ -271,20 +271,11 @@ class ReservationModel extends CI_Model {
 		}		
 		return $r;
 	}
-	public function getReserveFromDriver($driverId){
+	public function getPreReserveFromDriver($driverId){
 		$reserveInfo = null;
 		$r = "";
-		$query = $this->db->query("SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId where cr.DriverId = '". $driverId . "'" );
-
-		foreach ($query->result() as $row) {
-				$reserveInfo = new ReservationModel;
-				$this->matchReservationObject($reserveInfo,$row);
-				if($r === "") {
-					$r = array();
-				}
-				array_push($r,$reserveInfo);
-		}		
-		return $r;
+		$query = $this->db->query("SELECT cr.* , c.carId, c.plateLicense , ct.* , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN previousreservation cr ON cr.carId = c.carId where cr.DriverId = '". $driverId . "'" );
+		return $query->result_array();;
 	}
 
 	private function checkCarIdType($carId){
@@ -344,6 +335,22 @@ class ReservationModel extends CI_Model {
 
 	public function checkReservationforEdit($carId , $startDate , $endDate , $reserveId){
 		$query = $this->db->query('SELECT CurrentId FROM currentreservation WHERE  carId = '.$carId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
+		$row = $query->row();
+		$num = 0;
+		foreach ($query->result() as $row){
+			if($row->CurrentId != $reserveId){
+				$num++;
+			}
+		}
+		if($num < 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function checkDriverTimeforEdit($driverId , $startDate , $endDate , $reserveId){
+		$query = $this->db->query('SELECT CurrentId FROM currentreservation WHERE  DriverId = '.$driverId.' AND ((EndDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate BETWEEN (\''. $startDate .'\') AND (\''. $endDate .'\')) OR (StartDate <= (\''. $endDate .'\') AND EndDate >= (\''. $startDate .'\')))');
 		$row = $query->row();
 		$num = 0;
 		foreach ($query->result() as $row){
@@ -532,6 +539,12 @@ class ReservationModel extends CI_Model {
 		$query = $this->db->query($sql);
 
 		$this->db->delete('currentreservation', array('currentid' => $rID));	
+	}
+
+	public function getCarMilesStart($rID){
+		$SQL = 'SELECT * FROM currentreservation WHERE currentId = '.$rID;
+		$query = $this->db->query($SQL);
+		return $query->row_array();
 	}
 
 
