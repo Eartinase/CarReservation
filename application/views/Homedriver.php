@@ -39,7 +39,8 @@
 	?>
 	<div class = "container" style="margin-top: 50px">	
 		<div class="row"> 
-			<div class="col-md-3">			
+			<div class="col-md-3">	
+			
 				<div class="panel panel-default" >
 					<div class="panel-heading" style="padding:3px">
 							<center style="font-size: 25px">รายการรถ</center>
@@ -57,9 +58,9 @@
 										<center><h4><?php echo $value['PlateLicense']; ?><br></h4></center>
 									</div>
 									<div class="panel-body">
-										<?php echo $value['StartDate']; ?><br>
-										<?php echo $value['EndDate']; ?>
-
+										ออก : <?php echo $value['StartDate']; ?><br>
+										กลับ : <?php echo $value['EndDate']; ?><br>
+										เบอร์ติดต่อ : <?php echo $value['Tel']; ?>
 		            				</div>
 		            				<div class="panel-footer" style =" padding: 5px">
 		            				<div class="clearfix">
@@ -156,7 +157,7 @@
 						</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" id="btnSave" class="btn btn-primary">ยืนยัน</button>
+					<button type="submit" id="btnSave" class="btn btn-primary" onclick="return confirm('โปรดตรวจสอบ ไม่สามารถแกไขข้อมูลภายหลังได้')">ยืนยัน</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 				</form>
@@ -186,7 +187,7 @@
 					
 		        </div>
 		      <div class="modal-footer">
-		        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+		        <button type="submit" class="btn btn-primary" onclick="return confirm('โปรดตรวจสอบ ไม่สามารถแกไขข้อมูลภายหลังได้')" >ยืนยัน</button>
 		         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
 		      </form>
@@ -229,7 +230,7 @@
 					<br>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" id="btnSave" class="btn btn-primary">ยืนยัน</button>
+					<button type="submit" id="btnSave" class="btn btn-primary" onclick="return confirm('โปรดตรวจสอบ ไม่สามารถแกไขข้อมูลภายหลังได้')">ยืนยัน</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					
 				</div>
@@ -310,6 +311,8 @@
 	<?php include "Footer.php"; ?>
 </body>
 <script type="text/javascript">
+
+	
 
 	function insertArrivalTime(rID){
 		$('[name="id2"]').val(rID);
