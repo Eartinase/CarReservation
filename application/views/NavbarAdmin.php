@@ -30,7 +30,11 @@
               <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ขอใช้รถภายนอก <span class="sr-only">(current)</span></a>
             </li>
             <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ประวัติการใช้
+              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ประวัติการจอง
+              </a>
+            </li>
+            <li style="padding-left: 0px" >
+              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showCarUseHistory" >ประวัติการใช้งาน
               </a>
             </li>
             <li style="padding-left: 0px"  class="dropdown">

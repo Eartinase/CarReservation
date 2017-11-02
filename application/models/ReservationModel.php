@@ -380,6 +380,21 @@ class ReservationModel extends CI_Model {
 		return $r;
 	}
 
+	public function getPrevReserveFormDepID($depID){
+		$currentReserve = null;
+		$r = "";
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN previousreservation cr ON cr.carId = c.carId where cr.depID = '.$depID);
+		foreach ($query->result() as $row){
+			$currentReserve = new ReservationModel;
+			$this->matchPrevObject($currentReserve,$row);
+			if($r === ""){
+				$r = array();
+			}
+			array_push($r,$currentReserve);
+		}		
+		return $r;
+	}
+
 	public function deleteReserve($rID){
 		$this->db->where('CurrentId', $rID);
 		$this->db->delete('currentreservation');
@@ -427,6 +442,18 @@ class ReservationModel extends CI_Model {
 				));
 		return true;
 	}	
+
+	private function matchPrevObject($reserveInfo,$row){
+		$reserveInfo->setReserveId($row->StatusId);
+		$reserveInfo->setEmployeeCode($row->EmployeeCode);
+		$reserveInfo->setPlateLicense($row->plateLicense);
+		$reserveInfo->setStartDate($row->StartDate);	
+		$reserveInfo->setEndDate($row->EndDate);
+		$reserveInfo->setPlace($row->Place);
+		$reserveInfo->setDriverId($row->DriverId);
+		$reserveInfo->setColor($row->Color);
+		$reserveInfo->setCarId($row->carId);		
+	}
 
 	private function matchReservationObject($reserveInfo,$row){
 		$reserveInfo->setReserveId($row->CurrentId);
