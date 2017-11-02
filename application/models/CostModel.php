@@ -13,18 +13,15 @@ class CostModel extends CI_Model {
 	}
 
 	public function getDuration($reserveId){
-		$sql = 'SELECt (`EndDate`-`StartDate`)/10000 as time from currentreservation where CurrentId = '.$reserveId;
+		$sql = 'SELECT (`Arrival`-`Departure`)/10000 as duration from previousreservation where StatusId = '.$reserveId;
 
 		$result = $this->db->query($sql);
-
+		
 		foreach($result->result() as $row){
-			$duration = $row->time;
+			$duration = $row->duration;
 		}
 		return $duration;
-
 	}
-	
-
 }
 
 /* End of file CostModel.php */

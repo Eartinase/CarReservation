@@ -177,6 +177,21 @@ class ReservationModel extends CI_Model {
 		return $r;
 	}
 
+	public function getPrevReserveFormEmpCode($employeeCode){
+		$currentReserve = null;
+		$r = "";
+		$query = $this->db->query('SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN previousreservation cr ON cr.carId = c.carId where cr.EmployeeCode = '.$employeeCode);
+		foreach ($query->result() as $row){
+			$currentReserve = new ReservationModel;
+			$this->matchPrevObject($currentReserve,$row);
+			if($r === ""){
+				$r = array();
+			}
+			array_push($r,$currentReserve);
+		}		
+		return $r;
+	}
+
 	public function getCurrentReservation(){
 		$reserveInfo = null;
 		$r = "";
@@ -517,7 +532,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function getPlateLiceseByReserve($reserveId){
-		$sql = 'select c.plateLicense from currentreservation cr join cars c on cr.carId = c.carId where cr.currentId = '.$reserveId;
+		$sql = 'select c.plateLicense from previousreservation cr join cars c on cr.carId = c.carId where cr.StatusId = '.$reserveId;
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
 			$result = $row->plateLicense;  
@@ -526,7 +541,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function getStartDateFromReserveId($reserveId){
-		$sql = 'SELECT StartDate FROM currentreservation WHERE currentId = '.$reserveId;
+		$sql = 'SELECT StartDate FROM previousreservation WHERE StatusId = '.$reserveId;
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
 			$result = $row->StartDate;  
@@ -535,7 +550,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function getEndDateFromReserveId($reserveId){
-		$sql = 'SELECT EndDate FROM currentreservation WHERE currentId = '.$reserveId;
+		$sql = 'SELECT EndDate FROM previousreservation WHERE StatusId = '.$reserveId;
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
 			$result = $row->EndDate;  
@@ -544,7 +559,7 @@ class ReservationModel extends CI_Model {
 	}
 
 	public function getPlaceFromReserveId($reserveId){
-		$sql = 'SELECT place FROM currentreservation WHERE currentId = '.$reserveId;
+		$sql = 'SELECT place FROM previousreservation WHERE StatusId = '.$reserveId;
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row){
 			$result = $row->place;  
