@@ -159,7 +159,7 @@ class Reserve extends CI_Controller {
 				$car = $this->CarsModel->getCarById($value->getCarId());
 				$no++;
 				$data[] = array(
-	                   "<center>".$value->getCarId()."</center>",
+	                  "<center>".$this->CarsModel->getPlateLicenseFromCarId($value->getCarId())."</center>",
 	                   "<center>".$car->getCarType()."</center>",
 	                   "<center>".$value->getPlateLicese()."</center>",
 	                   "<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",
@@ -187,8 +187,9 @@ class Reserve extends CI_Controller {
 			foreach ($currentReserve as $value) {
 				$car = $this->CarsModel->getCarById($value->getCarId());
 				$no++;
+				
 				$data[] = array(
-	                   "<center>".$value->getCarId()."</center>",
+	                   "<center>".$this->CarsModel->getPlateLicenseFromCarId($value->getCarId())."</center>",
 	                   "<center>".$car->getCarType()."</center>",
 	                   "<center>".$value->getPlateLicese()."</center>",
 	                   "<center>".date("Y-m-d H:i", strtotime($value->getStartDate()))."</center>",

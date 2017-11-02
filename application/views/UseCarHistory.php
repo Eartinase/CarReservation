@@ -37,13 +37,12 @@
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
-					<td class="head">Car ID</td>
+					<td class="head">ทะเบียนรถ</td>
 					<td class="head">ประเภทรถ</td> 
 					<td class="head">ทะเบียนรถ</td> 
 					<td class="head">วันที่เดินทาง</td>
 					<td class="head">วันที่กลับ</td>
-					<td class="head">สถานที่</td>
-					
+					<td class="head">สถานที่</td>					
 				</tr>
 			</thead>
 			<tbody>
