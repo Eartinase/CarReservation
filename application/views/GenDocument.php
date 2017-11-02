@@ -43,7 +43,7 @@
           </td>
         </tr>
 
-        <center><p>วันที่ออกเอกสาร <?php echo date("Y-m-d");?></p></center>
+        <center><p>วันที่ออกเอกสาร <?php echo date("d-M-Y");?></p></center>
         
         <tr>
           <th style="text-align:center;padding: 15px;border: 1px solid #ddd">หมายเลขการจอง</th>
