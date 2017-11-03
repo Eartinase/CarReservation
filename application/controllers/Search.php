@@ -59,7 +59,7 @@ class Search extends CI_Controller {
 		//$carId = $this->input->post('carId');
 		$carTypeId = (isset($_POST['carType']))?$_POST['carType']:"";
 		$carId = (isset($_POST['carId']))?$_POST['carId']:"";
-		if(!$carTypeId == ""  && $driverId == "all"){
+		if($carTypeId != ""  && $driverId == "all"){
 			foreach ($carTypeId as $value) {
 				$r = $this -> ReservationModel -> getReserveFromCarTypeALLDriver($value , $carId);
 				if($r != ""){
@@ -73,8 +73,10 @@ class Search extends CI_Controller {
 					$reserve = array_merge($reserve ,$r);
 				}
 			}
-		}else if($driverId != "all"){
+		}else if( $driverId != "all"){
+			
 			$reserve = $this-> ReservationModel->getReserveFromDriver($driverId);
+
 		}else{
 			$reserve = $this-> ReservationModel->getCurrentReservation();
 		}

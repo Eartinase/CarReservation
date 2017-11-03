@@ -283,6 +283,22 @@ class ReservationModel extends CI_Model {
 		return $r;
 	}
 
+	public function getReserveFromDriver($driverId){
+		$reserveInfo = null;
+		$r = "";
+		$query = $this->db->query("SELECT cr.* , c.carId , ct.carTypeId , ct.Color , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN currentreservation cr ON cr.carId = c.carId  where  cr.DriverId = '". $driverId . "'" );
+		foreach ($query->result() as $row) {
+				$reserveInfo = new ReservationModel;
+				$this->matchReservationObject($reserveInfo,$row);
+				if($r === "") {
+					$r = array();
+				}
+				array_push($r,$reserveInfo);
+			
+		}		
+		return $r;
+	}
+
 	public function getReserveFromCarTypeALLDriver($carTypeId ,$carId ){
 		$reserveInfo = null;
 		$r = "";
@@ -307,6 +323,8 @@ class ReservationModel extends CI_Model {
 		$query = $this->db->query("SELECT cr.* , c.carId, c.plateLicense , ct.* , c.plateLicense FROM cartype ct JOIN cars c ON c.carTypeId = ct.carTypeId JOIN previousreservation cr ON cr.carId = c.carId where cr.DriverId = '". $driverId . "'" );
 		return $query->result_array();;
 	}
+
+
 
 	private function checkCarIdType($carId){
 		$r = ['not','have'];
