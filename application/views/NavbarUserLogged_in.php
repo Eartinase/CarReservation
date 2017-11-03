@@ -29,9 +29,14 @@
             <li style="padding-left: 0px" >
               <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/outsideCar" >ขอใช้รถภายนอก <span class="sr-only">(current)</span></a>
             </li>
-            <li style="padding-left: 0px" >
-              <a style="font-size:16px;color:white" href="<?php echo base_url(); ?>Reserve/showReserveHistory" >ประวัติการใช้
+            <li style="padding-left: 0px"  class="dropdown">
+              <a style="font-size:16px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">การจองและใช้งาน<span class="caret"></span>
               </a>
+              <ul class="dropdown-menu"> 
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>Reserve/showReserveHistory">ประวัติการจอง</a></li>   
+                <li role="separator" class="divider"></li>
+                <li class="dr-menu"><a href="<?php echo base_url(); ?>Reserve/showCarUseHistory">ประวัติการใช้งาน</a></li>
+              </ul> 
             </li>
             
             <li style="padding-left: 0px"  class="dropdown">
@@ -50,8 +55,7 @@
             <li style="padding-left: 0px" class="dropdown">
               <a style="font-size:18px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $name.' '?><span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li class="dr-menu"><a href="#" >แก้ไขข้อมูลส่วนตัว</a></li>
-                <li role="separator" class="divider"></li>
+               
                 <li class="dr-menu"><a href="<?php echo base_url(); ?>User_Authentication/logout">ออกจากระบบ</a></li>
               </ul>
             </li>
