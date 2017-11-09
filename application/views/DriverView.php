@@ -30,7 +30,9 @@
 	<?php 
 	include "NavbarChooser.php";
 	?>
-
+<h1 align="center">
+	ข้อมูลการขับรถย้อนหลัง
+</h1>
 	<div  class="container" style="margin-top: 50px">
 	<div>			
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
@@ -77,7 +79,7 @@
 		</table>
 	</div>	
 
-	<p>* หากต้องการแก้ไขข้อมูลกรุณาติดต่อเจ้าหน้าที่</p>
+	<p style="color:red">* หากต้องการแก้ไขข้อมูลกรุณาติดต่อเจ้าหน้าที่</p>
 	
 <script>
 	function changeData(license) {

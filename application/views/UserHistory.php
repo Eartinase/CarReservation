@@ -27,7 +27,7 @@
 		font-weight: bold;
 	}
 </style>
-<body  ">
+<body>
 	
 	<?php 
 	include "NavbarChooser.php";

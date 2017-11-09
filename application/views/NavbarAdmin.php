@@ -57,11 +57,17 @@
               </a>
               <ul class="dropdown-menu">
                 <!--<li><a href="#">Something else here</a></li>-->
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>GenReport">รายงานประวัติการใช้บริการรถ</a></li>
+                <li class="dr-menu">
+                  <a href="<?php echo base_url(); ?>GenReport">รายงานประวัติการใช้บริการรถ</a>
+                </li>
                 <li role="separator" class="divider"></li>
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>GenReport/selectCost">รายงานขอเบิกงบประมาณ</a></li>
+                <li class="dr-menu">
+                  <a href="<?php echo base_url(); ?>GenReport/selectCost">รายงานขอเบิกงบประมาณ</a>
+                </li>
                 <li role="separator" class="divider"></li>
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>GenReport/genAdminCarHistory">รายงานข้อมูลการใช้งานรถ</a></li>
+                <li class="dr-menu">
+                  <a href="<?php echo base_url(); ?>GenReport/genAdminCarHistory">รายงานข้อมูลการใช้งานรถ</a>
+                </li>
               </ul>
             </li>            
           </ul>
@@ -69,8 +75,14 @@
           <ul class="nav navbar-nav navbar-right">
             <li style="padding-left: 0px" class="dropdown">
               <a style="font-size:18px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $name.' '?><span class="caret"></span></a>
-              <ul class="dropdown-menu">                
-                <li class="dr-menu"><a href="<?php echo base_url(); ?>User_Authentication/logout">ออกจากระบบ</a></li>
+              <ul class="dropdown-menu"> 
+                <li class="dr-menu">
+                  <a href="<?php echo base_url(); ?>Manual/Admin">คู่มือการใช้งาน</a>
+                </li>         
+                <li role="separator" class="divider"></li>      
+                <li class="dr-menu">
+                  <a href="<?php echo base_url(); ?>User_Authentication/logout">ออกจากระบบ</a>
+                </li>
               </ul>
             </li>
           </ul>
