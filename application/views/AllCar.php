@@ -36,7 +36,7 @@
 		<a href="<?php echo base_url() ?>ManageCar/AddCar"><button class="btn btn-primary">เพิ่มรถ</button></a>
 		<br>
 		<br>
-
+			<h1 align="center">รายการรถ</h1>
 		<table id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>

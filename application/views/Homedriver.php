@@ -334,7 +334,7 @@
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		<!-- End Bootstrap modal -->
-		<br><br>
+
 		<?php include "Footer.php"; ?>
 	</body>
 	<script type="text/javascript">

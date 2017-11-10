@@ -336,7 +336,6 @@ if (isset($this->session->userdata['logged_in'])) {
 	</div><!-- /.modal -->
 	<!-- End Bootstrap modal -->
 	</div>
-	<br><br>
 	<?php include "Footer.php"; ?>
 </body>
 <script type="text/javascript">
