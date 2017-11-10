@@ -71,7 +71,11 @@
     border-color: #FCD422;
   }
 
+  .dataTable thead{
+     background-color:#FCD422;
+  }
     
 
   </style>   
+  
 
