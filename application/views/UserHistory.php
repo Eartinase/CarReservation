@@ -33,7 +33,8 @@
 	include "NavbarChooser.php";
 	?>
 	
-	<div  class = "container">			
+	<div  class = "container">		
+	<h1 align="center">การจอง</h1>	
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
