@@ -30,12 +30,12 @@
       font-weight : extra-bold; 
     } 
     font, td { 
-      font-family: Arial, Helvetica, sans-serif; 
+        font-family: 'Prompt', sans-serif;
       font-size: 11pt; 
     } 
     body { 
       font-size: 11pt; 
-      font-family: Arial, Helvetica, sans-serif; 
+      font-family: 'Prompt', sans-serif;
       font-family: 'Prompt', sans-serif;
     }  
     p, span{
@@ -45,10 +45,10 @@
     }
     select{
       font-size: 11pt; 
-      font-family: Arial, Helvetica, sans-serif; 
       font-family: 'Prompt', sans-serif;
     
     }
+
   .fc-widget-header{
       background-color:#FCD422;
   }

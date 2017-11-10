@@ -23,10 +23,10 @@
   <?php 
   include "NavbarChooser.php";   
   ?>
-
+<h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
   <div class="container">
 
-    <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
+    
     <p style="text-align:center;font-size:20px">
       <span style="text-align:center;font-size:20px;font-weight: bold;">ชื่อ-นามสกุลผู้จอง</span> 
       <?php echo $this->session->userdata['logged_in']['name'] ?> 

@@ -70,7 +70,7 @@ class OutsideCarCon extends CI_Controller {
 		            $value->getTel(),
 		            '<form action="'.base_url().'GenReport/AddInfo" method="post">'.
 		            	'<input type="text" name="hireId" style="display:none;" value="'.$value->getHireId().'">'.
-		            	'<button class="btn btn-info" type="submit">เบิกงบประมาณ</button>'.
+		            	'<button class="btn btn-info" type="submit">เบิกงบ</button>'.
 		           '</form>'
 				);
 		}

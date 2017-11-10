@@ -33,8 +33,9 @@ body{
 	include "NavbarChooser.php";
 	?>
 	
-	<div class = "container">		
-	<h1 align="center">การใช้งานทั้งหมด</h1>	
+		
+	<h1 align="center">การใช้งานทั้งหมด</h1><hr>		
+	<div class = "container">
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
