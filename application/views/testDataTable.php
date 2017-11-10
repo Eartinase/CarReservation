@@ -1,55 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<?php 
-	include "Header.php";
-	?>
 </head>
 <body>
-
-
-<div class="col-sm-3 nopadding">
-  <div class="form-group">
-      <select class="form-control" id="trans" name="trans[]">
-        <option value="2015">1</option>
-        <option value="2016">2</option>
-        <option value="2017">3</option>
-        <option value="2018">4</option>
-      </select>
-  </div>
-</div>
-
-<div class="col-sm-3 nopadding">
-  <div class="form-group">
-  	<div class="input-group">
-    	<input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ">
-   		<div class="input-group-btn">
-        	<button class="btn btn-success" type="button"  onclick="Add_Transaction();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-      	</div>
-    </div>
-  </div>
-</div>
-
-  <div id="Add_Transaction">
-          
-   </div>
+ <a class="btn-draw" href="#"><span>Hover Me</span></a>
 
 </body>
+<style type="text/css">
+  // Normalize/Reset only elements used
+body {
+  margin: 0;
+  padding: 0;
+}
 
-<script type="text/javascript" charset="utf-8" >
-	var transaction = 1;
-	function Add_Transaction() {
-	    transaction++;
-	    var objTo = document.getElementById('Add_Transaction')
-	    var divtest = document.createElement("div");
-		divtest.setAttribute("class", "form-group removeclass"+transaction);
-		var rdiv = 'removeclass'+transaction;
-	    divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><option value="">Date</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option> </select></div></div><div class="clear"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group">  <input type="text" class="form-control" id="note" name="note[]" value="" placeholder="หมายเหตุ"><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="remove_Add_Transaction('+ transaction +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>';
-	    
-	    objTo.appendChild(divtest)
-	}
-	   function remove_Add_Transaction(rid) {
-		   $('.removeclass'+rid).remove();
-	   }
-</script>
+// Mixin for drawing button with optional argument for width, padding, and time
+@mixin btn-draw($color, $color-hov, $width: 1px, $padding: 0.5em, $time: 0.2s) {
+  position: relative;
+
+  display: inline-block;
+
+  color: $color;
+  border-bottom: $width solid $color;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color $time ease-in-out, background-color $time ease-in-out;
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    height: 100%;
+    width: $width;
+
+    background: $color;
+    transform: translateY(100%);
+    transition: transform $time ease-in-out;
+    transition-delay: $time * 3;
+  }
+
+  > span {
+    position: relative;
+
+    display: block;
+    padding: $padding;
+
+    color: inherit;
+
+    &:before, 
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      background: $color;
+      transition: transform $time ease-in-out;
+    }
+
+    &:before {
+      height: $width;
+      width: 100%;
+      
+      transform: translateX(100%);
+      transition-delay: $time * 2;
+    }
+
+    &:after {
+      height: 100%;
+      width: $width;
+
+      transform: translateY(-100%);
+      transition-delay: $time;
+    }
+  }
+
+  &:hover:after, 
+  &:hover > span:before, 
+  &:hover > span:after {
+    transform: translate(0, 0);
+  }
+
+  &:hover:after {
+    transition-delay: 0s;___
+  }
+
+  &:hover > span:before {
+    transition-delay: $time;
+  }
+
+  &:hover > span:after {
+    transition-delay: $time * 2;
+  }
+
+  &:hover {
+    color: $color-hov;
+    background-color: $color;
+    transition-delay: $time * 3;
+  }
+}
+
+// Color variables
+$color-blue: #324577;
+$color-grey: #e4e4e2;
+
+// Start of styling
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  
+  font-family: Doko-Book, serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: $color-grey;
+}
+
+a {
+  font-size: 2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+
+.btn-draw {
+  @include btn-draw($color-blue, $color-grey, 2px);
+}
+
+
+</style>
 </html>
+

@@ -121,7 +121,7 @@ body{
 						<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 							<thead>
 								<tr>
-									<td>ประเภทรถ</td> 
+									<td>ประเภท</td> 
 									<td>วันที่เดินทาง</td>
 									<td>วันที่กลับ</td>
 									<td>สถานที่</td>
@@ -311,6 +311,7 @@ body{
 		});
 
 		table = $('#table').DataTable({ 
+			"pageLength": 7,
 			"lengthChange": false,
 			"bFilter" : false,
 			"bPaginate":true,
