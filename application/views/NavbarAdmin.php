@@ -19,7 +19,7 @@
           <span class="icon-bar"></span>
         </button>
         <a style="margin-left:22px" float class="navbar-brand" href="#">
-          <img src="<?php echo base_url(); ?>application/views/img/home-128.png" width="26" height="26"></a>
+          <img src="<?php echo base_url(); ?>application/views/img/home-128.png" width="28" height="28" style="margin: -6px"></a>
           <a style="font-size:25px;color:white" class="navbar-brand" href="<?php echo base_url(); ?>HomeInfo/adminLogin" >เมนูหลัก</a>
         </div>
 

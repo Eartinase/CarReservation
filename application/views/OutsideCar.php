@@ -13,10 +13,7 @@
 	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hunterPopup.css' />
 </head>
 <style type="text/css">
-body{
-	font-family: 'Prompt', sans-serif;
-	background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
-}
+
 #formRequest{
 	background-color: #DDE0E0;
 	padding : 15px;
@@ -28,7 +25,7 @@ body{
 	<?php 
 	include "NavbarChooser.php";
 	?>		
-	<br>
+	<center><h1>ขอใช้รถภายนอก</h1></center><hr>
 	<div>
 		<div>
 			<div class="col-md-4 col-md-offset-1" style="margin-top: 20px">

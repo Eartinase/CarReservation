@@ -22,9 +22,26 @@
 		max-height: 70px;
 		width: 230px;
 	}
+	.fc-widget-header{
+	    background-color:#FCD422;
+	}
+
+	.fc-body{
+	   
+	}
+	.fc-button{
+		background-image: none;
+		background-color: white;
+		color: black;
+		border-color: #FCD422;
+	}
+	.modal-header{
+		background-color:#FCD422;
+	}
+
 	</style>
 </head>
-<body style="background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);">
+<body>
 	<?php 
 
 	include "NavbarAdmin.php";
@@ -35,21 +52,15 @@
 			<div  id="calendar" class="col-md-10">
 			</div>
 			<div class="col-md-2">
+				<center><button type='button' class="btn btn-default" data-toggle="modal" data-target="#reserve">กดที่นี่เพื่อจองรถ  &nbsp;<img src="<?php echo base_url(); ?>application/views/img/car.png"></button></center>	
+				<br>
 				<form  class="form-horizontal" id="formS" style="align-items:center;">
-					<select id="filterDriver" class="form-control" name="filterDriver">
-						<option value="all">เลือกคนขับทั้งหมด</option>
-						<option value="0">การจองที่ไม่มีคนขับ</option>
-						<?php foreach ($driver as  $value) { ?>		
-						<option value="<?php echo $value['EmployeeCode'];?>"><?php echo $value['Name'];?></option>
-						<?php }  ?>	
-					</select>
-					<br>
 					<div id="holdList" style="padding: 1px; margin : 0px;">
 						<div class="panel panel-default" >
-							<div class="panel-heading" style="padding:3px">
-								<center style="font-size: 25px">รายการรถ</center>
+							<div class="panel-heading" style="padding:3px; background-color: #FCD422 ; ">
+								<center style="font-size: 20px">รายการรถ</center>
 							</div>
-							<div class="panel-body" style="padding:10px ; background-color: #F5F2E5">
+							<div class="panel-body" style="padding:10px ;">
 								<div id="divCarList1">
 									<ul>
 										<div class="headList" style="background-color:#ea8066">
@@ -146,10 +157,29 @@
 							</div>	
 
 						</div>	
+						<div class="panel panel-default" >
+							<div class="panel-heading" style="padding:3px; background-color: #FCD422 ; ">
+								<center style="font-size: 20px">กรองคนขับ</center>
+							</div>
+							<div class="panel-body" style="padding:10px ;">
+					
+						<select id="filterDriver" class="form-control" name="filterDriver">
+								<option value="all">ทั้งหมด</option>
+								<option value="0">การจองที่ไม่มีคนขับ</option>
+								<?php foreach ($driver as  $value) { ?>		
+								<option value="<?php echo $value['EmployeeCode'];?>"><?php echo $value['Name'];?></option>
+								<?php }  ?>	
+						</select>
+						</div>
+						</div>
+
 						<center>
-							<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-primary">ค้นหารถ</button>
+							<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+							ค้นหารถ
+							</button>
 						</form>
-						<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>	
+						
 					</center>	
 
 				</div>
@@ -163,11 +193,12 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
+								<center><h3 class="modal-title" id="myModalLabel">จองรถ</h3></center>
 							</div>
 							<div class="modal-body form">
 
 								<div id="form-body">
+								<br>
 									<div class="form-group">
 										<label for="cartype" class="col-md-3 control-label">ประเภทรถ </label>
 										<div class="col-md-8">
@@ -317,6 +348,7 @@
 			</div><!-- /.modal -->
 			<!-- End Bootstrap modal -->
 		</div>
+		<br><br>
 		<?php include "Footer.php"; ?>
 	</body>
 	<script type="text/javascript">
@@ -450,6 +482,7 @@
 
 										function createCalendar(data){
 											$('#calendar').fullCalendar({
+
 												eventLimit: true, 
 												editable: false,
 												navLinks: true,

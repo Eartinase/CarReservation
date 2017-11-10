@@ -30,10 +30,11 @@
 	<?php 
 	include "NavbarChooser.php";
 	?>
+	<div  class="container" style="margin-top: 50px">
 <h1 align="center">
 	ข้อมูลการขับรถย้อนหลัง
-</h1>
-	<div  class="container" style="margin-top: 50px">
+</h1><hr>
+	
 	<div>			
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>

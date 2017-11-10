@@ -42,10 +42,10 @@
 			<div class="col-md-3">	
 
 				<div class="panel panel-default" >
-					<div class="panel-heading" style="padding:3px">
+					<div class="panel-heading" style="padding:3px ; background-color: #FCD422">
 						<center style="font-size: 25px">รายการรถ</center>
 					</div>
-					<div class="panel-body" style="padding:10px ; background-color: #F5F2E5">
+					<div class="panel-body" style="padding:10px ; ">
 						<?php if(!isset($ResToday) | $ResToday == null){
 							echo '<center> ไม่มีรายการรถที่ต้องขับวันนี้ <center>';
 						}else{
@@ -334,7 +334,7 @@
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		<!-- End Bootstrap modal -->
-
+		<br><br>
 		<?php include "Footer.php"; ?>
 	</body>
 	<script type="text/javascript">

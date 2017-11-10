@@ -20,7 +20,7 @@
         </button>
         <a style="margin-left:22px" float class="navbar-brand" href="#">
           <img src="<?php echo base_url(); ?>application/views/img/home-128.png" width="26" height="26"></a>
-          <a style="font-size:25px;color:white" class="navbar-brand" href="<?php echo base_url(); ?>HomeInfo/driverLogin" >เมนูหลัก</a>
+          <a style="font-size:25px;color:white" class="navbar-brand" href="<?php echo base_url(); ?>HomeInfo/driverLogin" >หน้าหลัก</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,10 +35,8 @@
             <li style="padding-left: 0px" class="dropdown">
               <a style="font-size:18px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $name.' ' ?><span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li class="dr-menu">
-                  <a href="<?php echo base_url(); ?>Manual/Driver">คู่มือการใช้งาน</a>
-                </li>         
-                <li role="separator" class="divider"></li>      
+                <li class="dr-menu"><a href="#" >แก้ไขข้อมูลส่วนตัว</a></li>
+                <li role="separator" class="divider"></li>
                 <li class="dr-menu"><a href="<?php echo base_url(); ?>User_Authentication/logout">ออกจากระบบ</a></li>
               </ul>
             </li>

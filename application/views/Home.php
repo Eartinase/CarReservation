@@ -52,16 +52,21 @@ if (isset($this->session->userdata['logged_in'])) {
 		</div>
 
 		<div class="col-md-2">
+		<?php 
+						if (isset($this->session->userdata['logged_in'])) { 
+							if($role != "driver"){ 
+								?>
+							<center><button type='button' class="btn btn-default" data-toggle="modal" data-target="#reserve">กดที่นี่เพื่อจองรถ  &nbsp;<img src="<?php echo base_url(); ?>application/views/img/car.png"></button></center>
+								<br>
+								<center><button style="width: 100%" type='button' onclick="ajax_myHistory()" class="btn btn-default">ดูการจองของฉัน
+								 &nbsp;<img src="<?php echo base_url(); ?>application/views/img/My.png">
+								</button> <br><br>	
+								</center>
+								<?php 
+							}
+						} 
+						?>
 
-			<?php 
-			if (isset($this->session->userdata['logged_in'])) { 
-				if($role != "driver"){ 
-					?>
-					<button type='button' onclick="ajax_myHistory()" class="btn btn-secondary">ดูประวัติการจองของฉัน</button> <br><br>
-					<?php 
-				}
-			} 
-			?>
 
 			<?php if (isset($this->session->userdata['logged_in'])) { ?>	
 			
@@ -69,10 +74,10 @@ if (isset($this->session->userdata['logged_in'])) {
 			<form  class="form-horizontal" style="align-items:center;">
 			<div id="holdList" style="padding: 1px; margin : 0px;">
 				<div class="panel panel-default" >
-					<div class="panel-heading" style="padding:3px">
+					<div class="panel-heading" style="padding:3px ;background-color: #FCD422">
 						<center style="font-size: 25px">รายการรถ</center>
 					</div>
-					<div class="panel-body" style="padding:10px ; background-color: #F5F2E5">
+					<div class="panel-body" style="padding:10px ;">
 					<div id="divCarList1">
 							<ul>
 								<div class="headList" style="background-color:#ea8066">
@@ -168,16 +173,11 @@ if (isset($this->session->userdata['logged_in'])) {
 					</div>				
 					</div>
 					<center>	
-						<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-primary">ค้นหารถ</button>
-						<?php 
-						if (isset($this->session->userdata['logged_in'])) { 
-							if($role != "driver"){ 
-								?>
-								<button type='button'class="btn btn-primary" data-toggle="modal" data-target="#reserve">จองรถ</button>
-								<?php 
-							}
-						} 
-						?>
+							<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+							ค้นหารถ
+							</button>
+						
 					</center>
 				</div>
 			</form>		
@@ -193,10 +193,10 @@ if (isset($this->session->userdata['logged_in'])) {
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
+						<center><h3 class="modal-title" id="myModalLabel">จองรถ</h3></center>
 					</div>
 					<div class="modal-body form">
-
+						<br>
 						<div id="form-body">
 							<div class="form-group">
 								<label for="cartype" class="col-md-3 control-label">ประเภทรถ </label>
@@ -336,6 +336,7 @@ if (isset($this->session->userdata['logged_in'])) {
 	</div><!-- /.modal -->
 	<!-- End Bootstrap modal -->
 	</div>
+	<br><br>
 	<?php include "Footer.php"; ?>
 </body>
 <script type="text/javascript">

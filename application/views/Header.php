@@ -37,13 +37,40 @@
       font-size: 11pt; 
       font-family: Arial, Helvetica, sans-serif; 
       font-family: 'Prompt', sans-serif;
-      background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
     }  
     p, span{
       font-size: 11pt; 
       font-family: Arial, Helvetica, sans-serif; 
       font-family: 'Prompt', sans-serif;
     }
+    select{
+      font-size: 11pt; 
+      font-family: Arial, Helvetica, sans-serif; 
+      font-family: 'Prompt', sans-serif;
+    
+    }
+  .fc-widget-header{
+      background-color:#FCD422;
+  }
+
+  .fc-body{
+     
+  }
+  .fc-button{
+    background-image: none !important;
+    background-color: #FCD422 !important;
+    color: black!important;
+    border-color: #FCD422 !important;
+  }
+  .modal-header{
+    background-color:#FCD422;
+  }
+
+  hr{
+    height: : 5px;
+    border-color: #FCD422;
+  }
+
     
 
   </style>   
