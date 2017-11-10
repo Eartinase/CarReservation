@@ -51,7 +51,7 @@ p{
 	include "NavbarChooser.php";
 	?>	
 	<div class="sidenav">
-		<a href="#page1" class="snav">จองรถ</a>
+		<a href="#page1" class="snav">จองรถ</a> 
 		<br><br>
 		<a href="#page2" class="snav">ขอใช้รถภายนอก</a>
 		<br><br>
