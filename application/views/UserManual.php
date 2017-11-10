@@ -6,50 +6,30 @@
 	<?php 
 	include "Header.php";
 	?>
+	
+	<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+	<link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+	
+	<link href="<?php echo base_url('assets/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet">
+	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 	<link rel="icon" href="<?php echo base_url('assets/favicon.ico')?>" sizes="16x16">
 	
 </head>
 <style type="text/css">
-body{
-	font-family: 'Prompt', sans-serif;
-}
-.head{
-	font-weight: bold;
-}	
-p{
-	font-size: 13pt;
-}
-.manualimg{
-	width: 90%;
-	height: : auto;
-}
-.imgcon{
-	text-align: center;
-}
-.sidenav {
-	height: 100%;
-	width: 200px;
-	position: fixed;
-	z-index: 1;
-	top: 30%;
-	left: 0;
-  /*
-  background-color: #111;
-  */
-
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-.snav{
-	background-color: lightblue; 
-}
-
+	body{
+		font-family: 'Prompt', sans-serif;
+	}
+	.head{
+		font-weight: bold;
+	}
 </style>
 <body >
 	
 	<?php 
 	include "NavbarChooser.php";
 	?>	
+
 	<div class="sidenav">
 		<a href="#page1" class="snav">การจองรถ</a> 
 		<br><br>
@@ -100,19 +80,7 @@ p{
 
 		<br><br>
 
-		<div id="page4">			
-			<h2 align="center">ประวัติการใช้งาน</h2>
-			
-			<div class="imgcon">
-				<img class="manualimg" src="<?php echo base_url('application/views/img/admin4.JPG')?>">
-			</div>
-			<p>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				แสดงการใช้งานรถของคุณ
-			</p>
-		</div>
 
-		<br><br>
-	</div>
+
 </body>
 </html>
