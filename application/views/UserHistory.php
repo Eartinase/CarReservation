@@ -243,7 +243,7 @@ function save(){
 	var table;
 	$(document).ready(function() {		
 	    //datatables
-	    table = $('#table').DataTable({ 
+	    table = $('#table').DataTable({
 	    	"bPaginate":true,
 	       	"processing": true, //Feature control the processing indicator.
 	        // Load data for the table's content from an Ajax source

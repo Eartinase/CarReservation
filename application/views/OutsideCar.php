@@ -308,6 +308,7 @@
 		});
 
 		table = $('#table').DataTable({ 
+			"pageLength": 7, 
 			"lengthChange": false,
 			"bFilter" : false,
 			"bPaginate":true,
