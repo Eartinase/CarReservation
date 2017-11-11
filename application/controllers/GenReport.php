@@ -7,7 +7,8 @@ class genReport extends CI_Controller {
 		$this->load->model('ReservationModel','ReservationModel');
 		$this->load->model('CarsModel','CarsModel');	
 		$this->load->model('UserModel','UserModel');
-		$this->load->model('CostModel');		
+		$this->load->model('CostModel');
+
 	}
 
 	public function genPDFUserHistory(){	
@@ -48,7 +49,7 @@ class genReport extends CI_Controller {
 	}
 
 	public function index(){
-		if (isset($this->session->userdata['logged_in'])){
+		if (isset($this->session->userdata['logged_in']) && ($this->session->userdata['logged_in']['role']) != "driver"){
 		//	$depID = $this->session->userdata['logged_in']['department'];
 			$username = ($this->session->userdata['logged_in']['username']);
 			$empcode = ($this->session->userdata['logged_in']['employeeCode']);

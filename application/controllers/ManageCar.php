@@ -9,7 +9,11 @@ class ManageCar extends CI_Controller {
 	}
 
 	public function index(){
-		$this->load->view('AllCar');
+		if( ($this->session->userdata['logged_in']['role']) != "admin"){
+			redirect($base_url."HomeInfo");
+		}else{
+			$this->load->view('AllCar');
+		}
 	}
 
 	public function AddCar(){		
@@ -61,36 +65,42 @@ class ManageCar extends CI_Controller {
 	}
 
 	public function EditCar(){
-		$driverOption = $this->UserModel->getDriverForSelection($_POST["carId"]);
-		$depOption = $this->UserModel->getDepartmentForSelection($_POST["carId"]);
-		$openReserve = $this->CarsModel->getIsReserve($_POST["carId"]);
+		if( ($this->session->userdata['logged_in']['role']) != "admin"){
+			redirect($base_url."HomeInfo");
+		}else{
+			
+			
+			$driverOption = $this->UserModel->getDriverForSelection($_POST["carId"]);
+			$depOption = $this->UserModel->getDepartmentForSelection($_POST["carId"]);
+			$openReserve = $this->CarsModel->getIsReserve($_POST["carId"]);
 
-		$carDetail = $this->CarsModel->getCarForEdit($_POST["carId"]);		
-		
-		$data = array(
-			'color' 		=> $carDetail['color'],
-			'plateLicense' 	=> $carDetail['plateLicense'],
-			'carType' 		=> $carDetail['carType'],
-			'registerDate'	=> $carDetail['registerDate'],
-			'price' 		=> $carDetail['price'],
-			'brand' 		=> $carDetail['brand'],
-			'generation' 	=> $carDetail['generation'],
-			'serial' 		=> $carDetail['serial'],
-			'purchaseYear' 	=> $carDetail['purchaseYear'],
-			'seat' 			=> $carDetail['seat'],
-			'itemLabel' 	=> $carDetail['itemLabel'],
-			'driver' 		=> $carDetail['driver'],
-			'department' 	=> $carDetail['department'],
-			'description' 	=> $carDetail['description'],
-			'generation' 	=> $carDetail['generation'],
-			'fuel' 			=> $carDetail['fuel'],
-			'carId' 		=> $carDetail['carId'],
-			'depId' 		=> $carDetail['depId'],
-			'depOption'		=> $depOption,
-			'driverOption'	=> $driverOption,
-			'openReserve'	=> $openReserve
-		);
-		$this->load->view('EditCar',$data);
+			$carDetail = $this->CarsModel->getCarForEdit($_POST["carId"]);		
+			
+			$data = array(
+				'color' 		=> $carDetail['color'],
+				'plateLicense' 	=> $carDetail['plateLicense'],
+				'carType' 		=> $carDetail['carType'],
+				'registerDate'	=> $carDetail['registerDate'],
+				'price' 		=> $carDetail['price'],
+				'brand' 		=> $carDetail['brand'],
+				'generation' 	=> $carDetail['generation'],
+				'serial' 		=> $carDetail['serial'],
+				'purchaseYear' 	=> $carDetail['purchaseYear'],
+				'seat' 			=> $carDetail['seat'],
+				'itemLabel' 	=> $carDetail['itemLabel'],
+				'driver' 		=> $carDetail['driver'],
+				'department' 	=> $carDetail['department'],
+				'description' 	=> $carDetail['description'],
+				'generation' 	=> $carDetail['generation'],
+				'fuel' 			=> $carDetail['fuel'],
+				'carId' 		=> $carDetail['carId'],
+				'depId' 		=> $carDetail['depId'],
+				'depOption'		=> $depOption,
+				'driverOption'	=> $driverOption,
+				'openReserve'	=> $openReserve
+			);
+			$this->load->view('EditCar',$data);
+		}
 	}
 
 	public function EditOrDel(){
