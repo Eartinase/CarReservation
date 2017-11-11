@@ -2,20 +2,15 @@
 defined('BASEPATH') || exit('No direct script access allowed');
 
 class User_Authentication extends CI_Controller {
-	public function __construct()
-	{
-		parent::__construct();
-		//Do your magic here
+	public function __construct(){
+		parent::__construct();		
 		$this->load->model('UserModel','UserModel');
-		$this->load->helper('form');
-		
-		// Load form validation library
+		$this->load->helper('form');	
 		$this->load->library('form_validation');
 
 	}
 
-	public function index()
-	{
+	public function index(){
 		if(isset($this->session->userdata['logged_in'])){
 				redirect('homeInfo','refresh');
 			}else{
@@ -24,10 +19,7 @@ class User_Authentication extends CI_Controller {
 		
 	}
 
-	public function Authen()
-	{
-	
-		
+	public function Authen(){		
 		$this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -70,9 +62,7 @@ class User_Authentication extends CI_Controller {
 		
 	}
 
-	public function logout()
-	{
-
+	public function logout(){
 		$this->session->unset_userdata('logged_in');
 		session_destroy();
 		$this->load->view('Login');
