@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class homeInfo extends CI_Controller {
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		//$this->load->model('CarsModel','CarsModel');
 		$this->load->model('ReservationModel','ReservationModel');
@@ -27,7 +26,7 @@ class homeInfo extends CI_Controller {
 	}
 
 	public function driverLogin(){
-		if(isset($this->session->userdata['logged_in'])) {
+		if(isset($this->session->userdata['logged_in']) && $role = ($this->session->userdata['logged_in']['role'])== "driver") {
 			$empCode =  $this->session->userdata['logged_in']['employeeCode'];
 			$data['ResToday'] =  $this-> ReservationModel-> getReserveTodayforDriver($empCode);
 			$data['Trans'] = $this -> TransactionModel -> getTransactionType() ;
@@ -57,14 +56,18 @@ class homeInfo extends CI_Controller {
 		exit();
 	}
 
-	public function adminLogin(){		
-		$data["Type1"] = $this-> CarsModel -> getCarsByTypeForReserve(1);
-		$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
-		$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
-		$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
-		$data["driver"] = $this-> UserModel -> getDriverInfo();
+	public function adminLogin(){
+		if(isset($this->session->userdata['logged_in']) &&  ($this->session->userdata['logged_in']['role'])== "admin"){
+			$data["Type1"] = $this-> CarsModel -> getCarsByTypeForReserve(1);
+			$data["Type2"] = $this-> CarsModel -> getCarsByTypeForReserve(2);
+			$data["Type3"] = $this-> CarsModel -> getCarsByTypeForReserve(3);
+			$data["Type4"] = $this-> CarsModel -> getCarsByTypeForReserve(4);
+			$data["driver"] = $this-> UserModel -> getDriverInfo();
  		//$data["Reservation"] = $this-> ReservationModel->getCurrentReservation();
-		$this->load->view('HomeAdmin', $data);
+			$this->load->view('HomeAdmin', $data);
+		}else{
+			redirect('homeInfo');
+		}
 	}
 }
 
