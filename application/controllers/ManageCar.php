@@ -17,14 +17,18 @@ class ManageCar extends CI_Controller {
 	}
 
 	public function AddCar(){		
-		$driverOption = $this->UserModel->getDriver();
-		$depOption = $this->UserModel->getDepartment();
+		if( ($this->session->userdata['logged_in']['role']) != "admin"){
+			redirect($base_url."HomeInfo");
+		}else{
+			$driverOption = $this->UserModel->getDriver();
+			$depOption = $this->UserModel->getDepartment();
 
-		$data = array(
-			'driverOption' => $driverOption,
-			'depOption' => $depOption
-		);
-		$this->load->view('AddCar', $data);
+			$data = array(
+				'driverOption' => $driverOption,
+				'depOption' => $depOption
+			);
+			$this->load->view('AddCar', $data);
+		}
 	}
 
 	public function ajax_carlist(){
@@ -68,14 +72,10 @@ class ManageCar extends CI_Controller {
 		if( ($this->session->userdata['logged_in']['role']) != "admin"){
 			redirect($base_url."HomeInfo");
 		}else{
-			
-			
 			$driverOption = $this->UserModel->getDriverForSelection($_POST["carId"]);
 			$depOption = $this->UserModel->getDepartmentForSelection($_POST["carId"]);
 			$openReserve = $this->CarsModel->getIsReserve($_POST["carId"]);
-
 			$carDetail = $this->CarsModel->getCarForEdit($_POST["carId"]);		
-			
 			$data = array(
 				'color' 		=> $carDetail['color'],
 				'plateLicense' 	=> $carDetail['plateLicense'],
@@ -131,7 +131,6 @@ class ManageCar extends CI_Controller {
 		}
 		$this->load->view('AllCar');
 	}
-
 }
 
 /* End of file ManageCar.php */

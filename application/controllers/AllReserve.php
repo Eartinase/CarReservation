@@ -9,12 +9,17 @@ class AllReserve extends CI_Controller {
 		$this->load->model('UserModel');
 	}
 	
-	public function index(){		
+	public function index(){	
+	if( ($this->session->userdata['logged_in']['role']) != "admin"){
+			redirect($base_url."HomeInfo");
+		}else{
+			
 		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
  		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
  		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
  		$data["Type4"] = $this-> CarsModel -> getCarsByType(4); 		
 		$this->load->view('AllReserveList', $data);
+	}
 	}
 
 	public function ajax_reservelist(){
