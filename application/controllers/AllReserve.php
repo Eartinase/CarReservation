@@ -10,16 +10,15 @@ class AllReserve extends CI_Controller {
 	}
 	
 	public function index(){	
-	if( ($this->session->userdata['logged_in']['role']) != "admin"){
+		if( ($this->session->userdata['logged_in']['role']) != "admin"){
 			redirect($base_url."HomeInfo");
-		}else{
-			
-		$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
- 		$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
- 		$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
- 		$data["Type4"] = $this-> CarsModel -> getCarsByType(4); 		
-		$this->load->view('AllReserveList', $data);
-	}
+		}else{			
+			$data["Type1"] = $this-> CarsModel -> getCarsByType(1);
+			$data["Type2"] = $this-> CarsModel -> getCarsByType(2);
+			$data["Type3"] = $this-> CarsModel -> getCarsByType(3);
+			$data["Type4"] = $this-> CarsModel -> getCarsByType(4); 		
+			$this->load->view('AllReserveList', $data);
+		}
 	}
 
 	public function ajax_reservelist(){
@@ -44,12 +43,12 @@ class AllReserve extends CI_Controller {
 					$value->getPlace(),					
 					'<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_reserve('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
 					<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="deleteRes('."'".$value->getReserveId()."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>'
-					);			
+				);			
 			}
 		}
 		$output = array(            
 			"data" => $data
-			);		
+		);		
 		//output to json format
 		echo json_encode($output);
 		exit;
@@ -74,7 +73,7 @@ class AllReserve extends CI_Controller {
 			'carId'	=> $ReserveInfo->getCarId(),
 			'place' => $ReserveInfo->getPlace()	
 			
-			);
+		);
 		echo json_encode($data);		
 	}
 
