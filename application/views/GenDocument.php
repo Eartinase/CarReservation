@@ -17,7 +17,7 @@
    //echo $department;
   ?>
 
-  <div class="con">
+  <div class="container" id='boxCal'>
 
     <h2 style="text-align:center;font-size:36px">รายงานประวัติการใช้บริการรถ</h2><hr>
 

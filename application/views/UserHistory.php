@@ -34,8 +34,9 @@
 	?>
 	
 		
+	
+	<div  class = "container" id='boxCal' >	
 	<h1 align="center">รายการการจอง</h1>	<hr>
-	<div  class = "container">	
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>
@@ -278,6 +279,11 @@ function save(){
 	    	$(this).next().empty();
 	    });
 
+		$('#dateS').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#dateE').datetimepicker('setStartDate', ev.date);
+
+		});
 	    $('#dateS').datetimepicker('setStartDate', dateToday);
 	    $('#dateE').datetimepicker('setStartDate', dateToday);
 	});

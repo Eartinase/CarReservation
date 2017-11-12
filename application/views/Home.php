@@ -16,13 +16,8 @@
 	<script src="<?php echo base_url('assets/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js')?>"></script>
 	<script src='fullcalendar/locale-all.js'></script>
 	<style type="text/css">
-		body{
-			font-family: 'Prompt', sans-serif;
-		}
-		.popover{
-			max-height: 70px;
-			width: 230px;
-		}
+	
+		
 	</style>
 </head>
 <body>
@@ -41,41 +36,26 @@ if (isset($this->session->userdata['logged_in'])) {
 		include "NavbarUserLogged_in.php";
 	}			
 }else{
+
 	include "NavbarHome.php";
 	
 }
 ?>
-	<div class = "container" style="margin-top: 50px">	
+	<div class = "container" id='boxCal' >	
 	<div class="row"> 
 
-		<div  id="calendar" class="col-md-10">
-		</div>
+		
 
-		<div class="col-md-2">
-		<?php 
-						if (isset($this->session->userdata['logged_in'])) { 
-							if($role != "driver"){ 
-								?>
-							<center><button type='button' class="btn btn-default" data-toggle="modal" data-target="#reserve">กดที่นี่เพื่อจองรถ  &nbsp;<img src="<?php echo base_url(); ?>application/views/img/car.png"></button></center>
-								<br>
-								<center><button style="width: 100%" type='button' onclick="ajax_myHistory()" class="btn btn-default">ดูการจองของฉัน
-								 &nbsp;<img src="<?php echo base_url(); ?>application/views/img/My.png">
-								</button> <br><br>	
-								</center>
-								<?php 
-							}
-						} 
-						?>
-
-
-			<?php if (isset($this->session->userdata['logged_in'])) { ?>	
+		<div class="col-md-3">
+		<div align="center" class="dateconnect">
 			
-			<?php } ?>
-			<form  class="form-horizontal" style="align-items:center;">
-			<div id="holdList" style="padding: 1px; margin : 0px;">
+		</div>
+			<div style="align-self: center; padding: 0 15px" >	
+			<form  class="form-horizontal">
+			<div id="holdList" style="padding: 1px; margin : 0px; ">
 				<div class="panel panel-default" >
 					<div class="panel-heading" style="padding:3px ;background-color: #FCD422">
-						<center style="font-size: 25px">รายการรถ</center>
+						<center style="font-size: 25px">กรองรถ</center>
 					</div>
 					<div class="panel-body" style="padding:10px ;">
 					<div id="divCarList1">
@@ -180,96 +160,25 @@ if (isset($this->session->userdata['logged_in'])) {
 						
 					</center>
 				</div>
-			</form>		
+			</form>	
+			</div>	
 			<br>
 		</div>
-	</div>
-	<br><br>
-
-	<form class="form-horizontal" id="formReserve" target="sendform" action="<?php echo base_url();?>Reserve/addReserve" method="post">
-		
-		<div class="modal fade" id="reserve" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
-						<center><h3 class="modal-title" id="myModalLabel">จองรถ</h3></center>
-					</div>
-					<div class="modal-body form">
-						<br>
-						<div id="form-body">
-							<div class="form-group">
-								<label for="cartype" class="col-md-3 control-label">ประเภทรถ </label>
-								<div class="col-md-8">
-									<select name="cars" required id="cartype" onchange="changeType()" class="form-control">
-										<option value="">เลือกประเภทรถ</option>
-										<option value="1">เก๋ง</option>
-										<option value="2">กระบะ</option>
-										<option value="3">ตู้</option>
-										<option value="4">ไมโครบัส</option>						
-									</select>
-								</div>	
-							</div>
-
-							<div class="form-group">
-								<label for="plate" class="col-md-3 control-label">ทะเบียนรถ </label>
-								<div class="col-md-8">
-									<select required name="plateLicense" id="plate" class="form-control">
-										<option value="">เลือกประเภทรถก่อน</option>
-									</select>
-								</div>	
-							</div>
-
-							<div class="form-group">
-								<label class="col-md-3 control-label">วันที่เดินทาง</label>
-								<div class="col-md-8 ">
-									<input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off" required>
-									<span class="help-block"></span>
-								</div>	                    
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label" >วันที่กลับ</label>
-								<div class="col-md-8 ">
-									<input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off" required>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
-								<div class="col-md-8 ">
-									<input id="tel" name="tel" class="form-control" type="text" autocomplete="off" required>
-									<span class="help-block"></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-3 control-label" >สถานที่ </label>
-								<div class="col-md-8">
-									<textarea class="form-control" name="place" required ></textarea>
-									<span class="help-block"></span>
-								</div>
-							</div>					
-							
-							<br>
-							<iframe style = "height: 0px; width: 100%" target="" src="/senior/application/views/UnableToReserve.php" id="sendform" name="sendform"></iframe>
-							
-						</div>
-						<div class="modal-footer">
-							<button type="submit"  class="btn btn-primary" >ยืนยันการจอง</button>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div  id="calendar" class="col-md-9">
 		</div>
-	</form>
+	</div>
+	
+
 
 	<div class="modal fade" id="modal_form" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
-					<h3 class="modal-title">Reservation</h3>
+					<center><h3 class="modal-title">รายละเอียดการจอง</h3></center>
 				</div>
 				<div class="modal-body form">
+				<br>
 					<form action="#" id="formEdit" class="form-horizontal">
 						<input type="hidden" value="" id='id' name="id"/>
 						<div class="form-body"> 	                
@@ -336,6 +245,83 @@ if (isset($this->session->userdata['logged_in'])) {
 	</div><!-- /.modal -->
 	<!-- End Bootstrap modal -->
 	</div>
+
+  <form class="form-horizontal" id="formReserve" target="sendform" action="<?php echo base_url();?>Reserve/addReserve" method="post">
+    
+    <div class="modal fade" id="reserve" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetForm()"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
+            <center><h3 class="modal-title" id="myModalLabel">จองรถ</h3></center>
+          </div>
+          <div class="modal-body form">
+            <br>
+            <div id="form-body">
+              <div class="form-group">
+                <label for="cartype" class="col-md-3 control-label">ประเภทรถ </label>
+                <div class="col-md-8">
+                  <select name="cars" required id="cartype" onchange="changeType()" class="form-control">
+                    <option value="">เลือกประเภทรถ</option>
+                    <option value="1">เก๋ง</option>
+                    <option value="2">กระบะ</option>
+                    <option value="3">ตู้</option>
+                    <option value="4">ไมโครบัส</option>           
+                  </select>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <label for="plate" class="col-md-3 control-label">ทะเบียนรถ </label>
+                <div class="col-md-8">
+                  <select required name="plateLicense" id="plate" class="form-control">
+                    <option value="">เลือกประเภทรถก่อน</option>
+                  </select>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-3 control-label">วันที่เดินทาง</label>
+                <div class="col-md-8 ">
+                  <input id="dateS" name="dateS"  class="form-control datetimepicker1" type="text" autocomplete="off" required>
+                  <span class="help-block"></span>
+                </div>                      
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" >วันที่กลับ</label>
+                <div class="col-md-8 ">
+                  <input id="dateE" name="dateE" class="form-control datetimepicker1" type="text" autocomplete="off" required>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
+                <div class="col-md-8 ">
+                  <input id="tel" name="tel" class="form-control" type="text" autocomplete="off" required>
+                  <span class="help-block"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label" >สถานที่ </label>
+                <div class="col-md-8">
+                  <textarea class="form-control" name="place" required ></textarea>
+                  <span class="help-block"></span>
+                </div>
+              </div>          
+              
+              <br>
+              <iframe style = "height: 0px; width: 100%" target="" src="/senior/application/views/UnableToReserve.php" id="sendform" name="sendform"></iframe>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="submit"  class="btn btn-primary" >ยืนยันการจอง</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
 	<br><br>
 	<?php include "Footer.php"; ?>
 </body>
@@ -469,11 +455,28 @@ function createCalendar(data){
 		editable: false,
 		navLinks: true,
 		locale: 'th',
+		<?php if (isset($this->session->userdata['logged_in'])) { ?>
+		customButtons: {
+        	myHistory: {
+            	text: "ดูการจองของฉัน",
+            	click: function() {
+                	ajax_myHistory();
+            	}
+        	}
+    	},
 		header: {
+			left: 'prev,next myHistory today',
+			center: 'title',
+			right : ' month,agendaWeek,agendaDay '
+		},	
+		
+		<?php }else{?>
+			header: {
 			left: 'prev,next listWeek today',
 			center: 'title',
 			right : ' month,agendaWeek,agendaDay '
 		},	
+		<?php } ?>
 		events: data,
 		eventMouseover: function (calEvent,event, jsEvent) {
 			$(this).popover({
@@ -641,7 +644,30 @@ function reload_calendar(){
 	$(document).ready(function() {
 		getDefualt_Calendar();		
 
-		$('.datetimepicker').datetimepicker({
+		$('.dateconnect').datetimepicker({
+			minView: 'month',
+			todayHighlight: true,
+			orientation: "top auto",
+			todayBtn: true,
+			todayHighlight: true, 
+
+		});
+		$('.dateconnect').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#calendar').fullCalendar('changeView', 'agendaDay');
+			$('#calendar').fullCalendar( 'gotoDate', ev.date );
+
+		});
+
+		$('.dateconnect').datetimepicker()
+		.on('changeMonth', function(ev){
+			$('#calendar').fullCalendar('changeView', 'month');
+			$('#calendar').fullCalendar( 'gotoDate', ev.date );
+
+		});
+
+
+		$('.datetimepicker1').datetimepicker({
 			container:'#reserve',
 			autoclose: true,
 			format: "yyyy-mm-dd hh:ii",
@@ -659,6 +685,16 @@ function reload_calendar(){
 			orientation: "top auto",
 			todayBtn: true,
 			todayHighlight: true, 
+
+		});
+		$('#dateS2').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#dateE2').datetimepicker('setStartDate', ev.date);
+
+		});
+		$('#dateS').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#dateE').datetimepicker('setStartDate', ev.date);
 
 		});
 

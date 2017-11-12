@@ -18,11 +18,12 @@
 	td{
 		text-align: center;
 	}
-	body{
-		font-family: 'Prompt', sans-serif;
-	}
 	.head{
 		font-weight: bold;
+	}
+
+	.toolbar {
+    	float: left;
 	}
 </style>
 </head>
@@ -31,12 +32,12 @@
 	<?php 
 	include "NavbarChooser.php";
 	?>
-	<h1 align="center">รายการรถ</h1><hr>
-	<div class="container-fluid">
+	<div class="container-fluid" id='boxCal'>
+	<h1 align="center">รายการรถ</h1>
+	<hr>
+	
 
-		<a href="<?php echo base_url() ?>ManageCar/AddCar"><button class="btn btn-primary">เพิ่มรถ</button></a>
-		<br>
-		<br>
+
 			
 		<table id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
@@ -70,6 +71,7 @@
 		$(document).ready(function() {		
 	    	//datatables
 	    	table = $('#table').DataTable({ 
+	    		"dom": '<"toolbar">frtip',
 	    		"bPaginate":true,
 	       		"processing": true, //Feature control the processing indicator.
 	        	// Load data for the table's content from an Ajax source
@@ -77,8 +79,8 @@
 	        		"url" : "<?php echo base_url(); ?>ManageCar/ajax_carlist",
 	        		"type" : "POST"
 	        	}
-	        //Set column definition initialisation properties. 
 	    });
+	    	  $("div.toolbar").html('<a href="<?php echo base_url() ?>ManageCar/AddCar"><button style="width: 150px" class="btn btn-info">เพิ่มรถ <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a>');
 	    });
 
 	</script>

@@ -17,6 +17,7 @@
   <?php 
   include "NavbarChooser.php";
   ?>
+  <div class="container" id="boxCal">
   <form action="<?php echo base_url(); ?>GenReport/genPDFAdminHistory" method="post" style="display:none">
     <input type="text" name="carType" id="ct" >
     <input type="text" name="plateLicense"  id="pl">
@@ -82,7 +83,7 @@
 </center>
 
 <br>
-
+</div>
 </body>
 <script type="text/javascript">
   $(document).ready(function() {

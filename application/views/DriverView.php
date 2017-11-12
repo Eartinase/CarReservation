@@ -17,6 +17,10 @@
 	<title>ระบบบริหารจัดการรถยนต์</title>
 	
 	<style type="text/css">
+	body{
+		font-family: 'Prompt', sans-serif;
+		background-color: #514F4F;
+	}
 	td{
 		text-align: center;
 
@@ -30,7 +34,7 @@
 	<?php 
 	include "NavbarChooser.php";
 	?>
-	<div  class="container" style="margin-top: 50px">
+	<div  class="container" id='boxCal'>
 <h1 align="center">
 	ข้อมูลการขับรถย้อนหลัง
 </h1><hr>

@@ -8,6 +8,7 @@
 	<script src='<?php echo base_url(); ?>fullcalendar/lib/moment.min.js'></script>
 	<script src='<?php echo base_url(); ?>fullcalendar/fullcalendar.js'></script>
 	<script src='<?php echo base_url(); ?>fullcalendar/locale/th.js'></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script type='text/javascript' src='<?php echo base_url(); ?>fullcalendar/gcal.js'></script>
 	<link rel='stylesheet' href='<?php echo base_url(); ?>fullcalendar/fullcalendar.css' />
 	<link rel='stylesheet' href='<?php echo base_url(); ?>application/views/css/hr.css' />
@@ -17,6 +18,7 @@
 	<style type="text/css">
 	body{
 		font-family: 'Prompt', sans-serif;
+		background-color: #514F4F;
 	}
 	.popover{
 		max-height: 70px;
@@ -37,13 +39,17 @@
 	<?php 
 	include "NavbarDriverLogged_in.php";	
 	?>
-	<div class = "container" style="margin-top: 50px">	
+	<div class = "container" id='boxCal'>	
 		<div class="row"> 
 			<div class="col-md-3">	
 
+				<div align="center" class="dateconnect">
+			
+				</div>
+				<div style="align-self: center; padding: 0 15px" >	
 				<div class="panel panel-default" >
 					<div class="panel-heading" style="padding:3px ; background-color: #FCD422">
-						<center style="font-size: 25px">รายการรถ</center>
+						<center style="font-size: 20px">รายการรถวันนี้</center>
 					</div>
 					<div class="panel-body" style="padding:10px ; ">
 						<?php if(!isset($ResToday) | $ResToday == null){
@@ -60,7 +66,7 @@
 										<div class="panel-body">
 											ออก : <?php echo $value['StartDate']; ?><br>
 											กลับ : <?php echo $value['EndDate']; ?><br>
-											เบอร์ติดต่อ : <?php echo $value['Tel']; ?>
+											เบอร์ : <?php echo $value['Tel']; ?>
 										</div>
 										<div class="panel-footer" style =" padding: 5px">
 											<div class="clearfix">
@@ -91,6 +97,7 @@
 							<?php } ?>
 						</div>
 					</div>
+					</div>
 				</div>	
 				<div  id="calendar" class="col-md-9">
 				</div>
@@ -120,13 +127,13 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label">วันที่เดินทาง</label>
 									<div class="col-md-4">
-										<input id="dateS2" name="dateS2"  class="form-control datetimepicker" type="text" autocomplete="off" readonly>
+										<input id="dateS2" name="dateS2"  class="form-control datetimepicker1" type="text" autocomplete="off" readonly>
 										<span class="help-block"></span>
 									</div>	                    
 
 									<label class="col-md-2 control-label" >วันที่กลับ</label>
 									<div class="col-md-4">
-										<input id="dateE2" name="dateE2" class="form-control datetimepicker" type="text" autocomplete="off" readonly>
+										<input id="dateE2" name="dateE2" class="form-control datetimepicke1" type="text" autocomplete="off" readonly>
 										<span class="help-block"></span>
 									</div>
 								</div>
@@ -145,7 +152,7 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" >เวลาออกรถ</label>
 									<div class="col-md-4 ">
-										<input  name="dateS" class="form-control datetimepicker" class="form-control" type="text" autocomplete="off" required>
+										<input  name="dateS" class="form-control datetimepicker1" class="form-control" type="text" autocomplete="off" required>
 										<span class="help-block"></span>
 									</div>
 									<label class="col-md-2 control-label" >เลขไมล์ปัจจุบัน</label>
@@ -159,10 +166,10 @@
 
 
 								</div>
-								<div align="center">
-								<label style="color:red">
-									<input type="checkbox" onclick="check3()"> ข้าพเจ้าขอยืนยันว่าข้อมูลที่กรอกเป็นความจริงทุกประการ
-								</label>
+								<div align="center" class="checkbox" >
+							
+									<input type="checkbox" id="makeSure" onclick="check3()"><label for="makeSure" style="color:red"> ข้าพเจ้าขอยืนยันว่าข้อมูลที่กรอกเป็นความจริงทุกประการ	</label>
+							
 
 
 							</div>
@@ -189,7 +196,7 @@
 								<div class="form-group">
 									<label class="col-md-2 control-label" >กรุณาใส่เวลากลับ</label>
 									<div class="col-md-4 ">
-										<input  name="dateE" class="form-control datetimepicker" class="form-control" type="text" autocomplete="off" required >
+										<input  name="dateE" class="form-control datetimepicker1" class="form-control" type="text" autocomplete="off" required >
 									</div>
 									<label class="col-md-2 control-label" >เลขไมล์ปัจจุบัน</label>
 									<div class="col-md-4">
@@ -197,12 +204,8 @@
 									</div>
 								</div>
 							</div>
-							<div align="center">
-								<label style="color:red">
-									<input type="checkbox" onclick="check2()"> ข้าพเจ้าขอยืนยันว่าข้อมูลที่กรอกเป็นความจริงทุกประการ
-								</label>
-
-
+							<div align="center" class="checkbox" >
+									<input  type="checkbox" id="makeSure2" onclick="check2()"><label for="makeSure2" style="color:red"> ข้าพเจ้าขอยืนยันว่าข้อมูลที่กรอกเป็นความจริงทุกประการ</label>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -247,10 +250,8 @@
 							</div>
 							<div id="Add_Transaction">          
 							</div>
-							<div align="center">
-								<label style="color:red">
-									<input type="checkbox" onclick="check()"> ข้าพเจ้าขอยืนยันว่าข้อมูลที่กรอกเป็นความจริงทุกประการ
-								</label>
+							<div align="center" class="checkbox">
+									<input type="checkbox" id="makeSure3" onclick="check()"><label for="makeSure3" style="color:red"> ข้าพเจ้าขอยืนยันว่าข้อมูลที่กรอกเป็นความจริงทุกประการ</label>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -272,7 +273,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
 						<h3 class="modal-title">ข้อมูลการจอง</h3>
 					</div>
-					<div class="modal-body form">
+					<div class="modal-body form"><br>
 						<form action="#" id="formEdit" class="form-horizontal">
 							<input type="hidden" value="" id='id' name="id"/>
 							<div class="form-body"> 	                
@@ -298,14 +299,14 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label">วันที่เดินทาง</label>
 									<div class="col-md-8">
-										<input id="dateS2" name="dateS2"  class="form-control datetimepicker2" type="text" autocomplete="off" readonly>
+										<input id="dateS2" name="dateS2"  class="form-control datetimepicker1" type="text" autocomplete="off" readonly>
 										<span class="help-block"></span>
 									</div>	                    
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 control-label" >วันที่กลับ</label>
 									<div class="col-md-8">
-										<input id="dateE2" name="dateE2" class="form-control datetimepicker2" type="text" autocomplete="off" readonly>
+										<input id="dateE2" name="dateE2" class="form-control datetimepicker1" type="text" autocomplete="off" readonly>
 										<span class="help-block"></span>
 									</div>
 								</div>
@@ -468,9 +469,30 @@
 	var dateToday = new Date(); 
 	var urls = 'HomeInfo/ajax_loadEvent';
 	$(document).ready(function() {
-		getDefualt_Calendar();	
+		getDefualt_Calendar();
+		$('.dateconnect').datetimepicker({
+			minView: 'month',
+			todayHighlight: true,
+			orientation: "top auto",
+			todayBtn: true,
+			todayHighlight: true, 
+
+		});
+		$('.dateconnect').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#calendar').fullCalendar('changeView', 'agendaDay');
+			$('#calendar').fullCalendar( 'gotoDate', ev.date );
+
+		});
+
+		$('.dateconnect').datetimepicker()
+		.on('changeMonth', function(ev){
+			$('#calendar').fullCalendar('changeView', 'month');
+			$('#calendar').fullCalendar( 'gotoDate', ev.date );
+
+		});	
 		
-		$('.datetimepicker').datetimepicker({
+		$('.datetimepicker1').datetimepicker({
 			container:'#modal_form',
 			autoclose: true,
 			format: "yyyy-mm-dd hh:ii",
@@ -538,6 +560,8 @@
 			x[0].disabled =true;
 		}		
 	}
+
+
 </script>
 
 

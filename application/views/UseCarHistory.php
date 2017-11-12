@@ -32,10 +32,8 @@
 	<?php 
 	include "NavbarChooser.php";
 	?>
-	
-			
+	<div  class = "container" id='boxCal'>
 	<h1 align="center">ประวัติการใช้งาน</h1>	<hr>
-	<div  class = "container">
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>

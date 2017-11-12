@@ -19,8 +19,7 @@
           <span class="icon-bar"></span>
         </button>
         <a style="margin-left:22px" float class="navbar-brand" href="#">
-          <img src="<?php echo base_url(); ?>application/views/img/home-128.png" width="26" height="26">
-        </a>
+          <img src="<?php echo base_url(); ?>application/views/img/home-128.png" width="26" height="26" style="margin: -6px"></a>
           <a style="font-size:25px;color:white" class="navbar-brand" href="<?php echo base_url(); ?>HomeInfo" >เมนูหลัก</a>
         </div>
 
@@ -51,7 +50,7 @@
               </ul>
             </li>            
           </ul>
-
+         
           <ul class="nav navbar-nav navbar-right">
             <li style="padding-left: 0px" class="dropdown">
               <a style="font-size:18px;color:white" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $name.' '?><span class="caret"></span></a>
@@ -67,9 +66,13 @@
               </ul>
             </li>
           </ul>
+           <?php if($_SERVER['REQUEST_URI']=='/senior/HomeInfo'){?>
+          <button type='button'  class="btn btn-default navbar-right" data-toggle="modal" data-target="#reserve">กดที่นี่เพื่อจองรถ  &nbsp;<img src="<?php echo base_url(); ?>application/views/img/car.png"></button>
+          <?php } ?>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+
 
 
 

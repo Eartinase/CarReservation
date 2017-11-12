@@ -1,3 +1,5 @@
 #topnav{
     background: #ff8000; /* Old browsers */
+    border-color: #ff8000;
+    box-shadow:  0 3px 10px ; 
 }

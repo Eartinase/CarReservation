@@ -55,7 +55,7 @@ class ManageCar extends CI_Controller {
 
 					"<form method='post' action='".base_url()."ManageCar/EditCar'>\n".
 					"<input type='text' hidden name='carId' value='".$value->getCarId()."'>\n".
-					"<button class='btn btn-success' type='submit'>รายละเอียด</button>\n".
+					"<button class='btn btn-success' type='submit'>รายละเอียด <span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span></button>\n".
 					"</form>"	               		               	
 				);			
 			}

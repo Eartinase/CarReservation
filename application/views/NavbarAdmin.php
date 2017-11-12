@@ -86,6 +86,9 @@
               </ul>
             </li>
           </ul>
+           <?php if($_SERVER['REQUEST_URI']=='/senior/HomeInfo/adminLogin'){?>
+          <button type='button'  class="btn btn-default navbar-right" data-toggle="modal" data-target="#reserve">กดที่นี่เพื่อจองรถ  &nbsp;<img src="<?php echo base_url(); ?>application/views/img/car.png"></button>
+          <?php } ?>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>

@@ -14,84 +14,69 @@
 </head>
 <style type="text/css">
 
+
 #formRequest{
-	background-color: #DDE0E0;
 	padding : 15px;
 	padding-top: 25px;
 	border-radius: 3%;
+	border: solid;
+	border-color: #ff8000;
+	
 }
+.reccommendCars{
+	position: absolute;
+	z-index: 1000;
+	padding: 10px;
+	border: 10px solid white;
+	background-color: #31bca9;
+	margin-left: -1000px;
+	margin-top: 20px;
+	width: 600px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+#boxCal{
+	width: 90%;
+}
+#plus{
+	position: absolute;
+	color: white;
+	border-color: #31bca9;
+	width: 0;
+	height: 0;
+	margin-left: -150px;
+	margin-top: 100px;
+	border-top: 80px solid transparent;
+	border-left: 100px solid #31bca9;
+	border-bottom: 80px solid transparent;
+	-webkit-transition: all 1.25s ease;
+	  -moz-transition: all 1.25s ease;
+	  -o-transition: all 1.25s ease;
+	  transition: all 1.25s ease;
+	  cursor: pointer;
+}
+#plus span {
+  position: absolute;
+  margin-top: -20px;
+  left: -90px;
+}
+
 </style>
 <body>
 	<?php 
 	include "NavbarChooser.php";
 	?>		
+	
+	<div class="container-fluid" id="boxCal">
 	<center><h1>ขอใช้รถภายนอก</h1></center><hr>
-	<div>
 		<div>
-			<div class="col-md-4 col-md-offset-1" style="margin-top: 20px">
-
-				<form class="form-horizontal" id="formRequest"  action="#" method="get" accept-charset="utf-8">
-					<center><legend>คำร้องขอจ้างเหมารถจากภายนอก</legend></center>
-					<div class="form-group" >
-						<label for="cartype" class="col-md-3 control-label" >ประเภทรถ </label>
-						<div class="col-md-8" >
-							<select name="cartype" required id="cartype" onchange="reccommend()" class="form-control">
-								<option value="">เลือกประเภทรถ</option>
-								<option value="1">แท็กซี่</option>
-								<option value="3">รถตู้</option>					
-							</select>
-						</div>	
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label">วันที่เดินทาง</label>
-						<div class="col-md-8">
-							<input id="dateS2" name="dateS2"  class="form-control datetimepicker" onchange="reccommend()" type="text" autocomplete="off" required >
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label" >วันที่กลับ</label>
-						<div class="col-md-8">
-							<input id="dateE2" name="dateE2" class="form-control datetimepicker" onchange="reccommend()"  type="text" autocomplete="off" required>
-							<span class="help-block"></span>
-						</div>	                    
-					</div>
-
-
-
-					<div class="form-group" id='telEditG'>
-						<label class="col-md-3 control-label" >เบอร์ติดต่อ</label>
-						<div class="col-md-8 ">
-							<input id="tel2" name="tel2" maxlength="10" name="tel2" class="form-control" type="tel" autocomplete="off" required>
-							<span class="help-block"></span>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label">สถานที่</label>
-						<div class="col-md-8">
-							<textarea id="place2" name="place2" placeholder="สถานที่" class="form-control" required></textarea>
-							<span class="help-block"></span>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label">เหตุผล</label>
-						<div>
-							<label  class="radio-inline col-md-4 " style='margin: 0'><input  type="radio" id="radio1" value="ไม่มีรถว่าง" name="reason" > ไม่มีรถในระบบที่ว่าง</label>
-							<label class="radio-inline col-md-4" style='margin: 0' ><input   type="radio" id="radio2" value="0" name="reason" > เหตุผลอื่นๆ  </label>
-							<br><br>
-						</div>
-
-						<div id="reasonDiv"  class="collapse col-md-8 col-md-offset-3" >
-							<textarea id="reason" name="reasonText" placeholder="กรุณาใส่เหตุผล" class="form-control" required></textarea>
-						</div>
-
-					</div>
-
-					<center>
-						<button style="width: 20%" type="submit" id="sendFrom" class="btn btn-primary" >ยืนยัน</button>	
-					</center>		
-					</form>
-
+			<div class="col-md-4" >
+				<div id="plus"><span><b>แนะนำรถ</b><br>&nbsp;&nbsp;<i class="fa fa-plus"></i></span></div>
 					<div class="reccommendCars" >
+					<button type="button" class="close" id="closeRec" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<p> รถแนะนำในระบบที่สามารถจองได้ </p>
 						<table id="rec" class="table table-bordered" >
 							<thead>
@@ -110,9 +95,71 @@
 							</tbody>
 						</table>
 					</div>
+				<form class="form-horizontal" id="formRequest"  action="#" method="get" accept-charset="utf-8">
+					<center><legend>คำร้องขอจ้างเหมารถจากภายนอก</legend></center>
+					<div class="form-group" >
+						<label for="cartype" class="col-md-4 control-label" >ประเภทรถ </label>
+						<div class="col-md-7" >
+							<select name="cartype" required id="cartype" onchange="reccommend()" class="form-control">
+								<option value="">เลือกประเภทรถ</option>
+								<option value="1">แท็กซี่</option>
+								<option value="3">รถตู้</option>					
+							</select>
+						</div>	
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">วันที่เดินทาง</label>
+						<div class="col-md-7">
+							<input id="dateS2" name="dateS2"  class="form-control datetimepicker" onchange="reccommend()" type="text" autocomplete="off" required >
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label" >วันที่กลับ</label>
+						<div class="col-md-7">
+							<input id="dateE2" name="dateE2" class="form-control datetimepicker" onchange="reccommend()"  type="text" autocomplete="off" required>
+							<span class="help-block"></span>
+						</div>	                    
+					</div>
+
+
+
+					<div class="form-group" id='telEditG'>
+						<label class="col-md-4 control-label" >เบอร์ติดต่อ</label>
+						<div class="col-md-7 ">
+							<input id="tel2" name="tel2" maxlength="10" name="tel2" class="form-control" type="tel" autocomplete="off" required>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">สถานที่</label>
+						<div class="col-md-7">
+							<textarea id="place2" name="place2" placeholder="สถานที่" class="form-control" required></textarea>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 control-label">เหตุผล</label>
+						<div>
+							<label  class="radio-inline col-md-4 " style='margin: 0'><input  type="radio" id="radio1" value="ไม่มีรถว่าง" name="reason" > ไม่มีรถในระบบที่ว่าง</label>
+							<label class="radio-inline col-md-4" style='margin: 0' ><input   type="radio" id="radio2" value="0" name="reason" > เหตุผลอื่นๆ  </label>
+							<br><br>
+						</div>
+
+						<div id="reasonDiv"  class="collapse col-md-7 col-md-offset-4" >
+							<textarea id="reason" name="reasonText" placeholder="กรุณาใส่เหตุผล" class="form-control" required></textarea>
+						</div>
+
+					</div>
+
+					<center>
+						<button style="width: 20%" type="submit" id="sendFrom" class="btn btn-primary" >ยืนยัน</button>	
+					</center>		
+					</form>
+
+				
 
 				</div>
-				<div class="col-md-6" style="margin-left: 50px">
+				<div class="col-md-8" >
 					<div>
 						<h3>ประวัติคำร้องขอใช้รถภายนอก</h3>			
 						<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
@@ -209,6 +256,7 @@
 	</body>
 
 	<script>
+		
 
 		function ajax_sendAsk(){		
 			$.ajax({
@@ -246,6 +294,8 @@
 								$('#radio1').attr('disabled',true);
 								$('#radio2').prop("checked",true);
 								$('#reasonDiv').collapse('show');
+								$("#plus").css("margin-left", "-1000px");
+								$(".reccommendCars").css("margin-left", "-150px");
 							}
 						}else{
 							$("#rec").append('<tr><td colspan = "4"><center>ไม่มีข้อมูล<center></td></tr>');
@@ -302,13 +352,23 @@
 	
 	var table;
 	$( document ).ready(function(){
+		$("#closeRec").click(function() {
+			$(".reccommendCars").css("margin-left", "-1000px");
+			$("#plus").css("margin-left", "-150px");
+		});
+
+		$("#plus").click(function() {
+			$(".reccommendCars").css("margin-left", "-150px");
+			$("#plus").css("margin-left", "-1000px");
+		});
+
 		$("#formRequest").submit(function(e) {
 			e.preventDefault();
 			ajax_sendAsk();
 		});
 
 		table = $('#table').DataTable({ 
-			"pageLength": 7, 
+			"pageLength": 5, 
 			"lengthChange": false,
 			"bFilter" : false,
 			"bPaginate":true,
@@ -329,6 +389,17 @@
 			todayBtn: true,
 			todayHighlight: true,
 			startDate: new Date()
+		});
+
+		$('#dateS2').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#dateE2').datetimepicker('setStartDate', ev.date);
+
+		});
+		$('#dateS').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#dateE').datetimepicker('setStartDate', ev.date);
+
 		});
 	});
 

@@ -27,7 +27,7 @@
   include "NavbarChooser.php";
   ?>
 
-  <div class="con">
+  <div class="container" id='boxCal'>
 
     <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
     <div class="col-md-5 " style="margin-left:3%" >

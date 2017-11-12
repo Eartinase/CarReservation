@@ -32,10 +32,8 @@ body{
 	<?php 
 	include "NavbarChooser.php";
 	?>
-	
-		
-	<h1 align="center">การใช้งานทั้งหมด</h1><hr>		
-	<div class = "container">
+	<div class = "container-fluid">
+	<h1 align="center">การใช้งานทั้งหมด</h1><hr>	
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>

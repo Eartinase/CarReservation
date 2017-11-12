@@ -17,26 +17,11 @@
 	<style type="text/css">
 	body{
 		font-family: 'Prompt', sans-serif;
+		background-color: #514F4F;
 	}
 	.popover{
 		max-height: 70px;
 		width: 230px;
-	}
-	.fc-widget-header{
-	    background-color:#FCD422;
-	}
-
-	.fc-body{
-	   
-	}
-	.fc-button{
-		background-image: none;
-		background-color: white;
-		color: black;
-		border-color: #FCD422;
-	}
-	.modal-header{
-		background-color:#FCD422;
 	}
 
 	</style>
@@ -47,21 +32,33 @@
 	include "NavbarAdmin.php";
 	?>
 
-	<div class = "container" style="margin-top: 50px">	
+	<div class = "container" id='boxCal'>	
 		<div class="row"> 
-			<div  id="calendar" class="col-md-10">
-			</div>
-			<div class="col-md-2">
-				<center><button type='button' class="btn btn-default" data-toggle="modal" data-target="#reserve">กดที่นี่เพื่อจองรถ  &nbsp;<img src="<?php echo base_url(); ?>application/views/img/car.png"></button></center>	
-				<br>
+		
+			<div class="col-md-3">
+
+				<div align="center" class="dateconnect">
+			
+				</div>
+				<div style="align-self: center; padding: 0 15px">
+			
 				<form  class="form-horizontal" id="formS" style="align-items:center;">
 					<div id="holdList" style="padding: 1px; margin : 0px;">
 						<div class="panel panel-default" >
 							<div class="panel-heading" style="padding:3px; background-color: #FCD422 ; ">
-								<center style="font-size: 20px">รายการรถ</center>
+								<center style="font-size: 20px">กรองรถและคนขับ</center>
 							</div>
 							<div class="panel-body" style="padding:10px ;">
-								<div id="divCarList1">
+								<div style ="margin-bottom: 8px">
+									<select id="filterDriver" class="form-control" name="filterDriver">
+										<option value="all">ทั้งหมด</option>
+										<option value="0">การจองที่ไม่มีคนขับ</option>
+										<?php foreach ($driver as  $value) { ?>		
+										<option value="<?php echo $value['EmployeeCode'];?>"><?php echo $value['Name'];?></option>
+										<?php }  ?>	
+									</select>
+								</div>
+									<div id="divCarList1">
 									<ul>
 										<div class="headList" style="background-color:#ea8066">
 											<li >
@@ -157,34 +154,25 @@
 							</div>	
 
 						</div>	
-						<div class="panel panel-default" >
-							<div class="panel-heading" style="padding:3px; background-color: #FCD422 ; ">
-								<center style="font-size: 20px">กรองคนขับ</center>
-							</div>
-							<div class="panel-body" style="padding:10px ;">
-					
-						<select id="filterDriver" class="form-control" name="filterDriver">
-								<option value="all">ทั้งหมด</option>
-								<option value="0">การจองที่ไม่มีคนขับ</option>
-								<?php foreach ($driver as  $value) { ?>		
-								<option value="<?php echo $value['EmployeeCode'];?>"><?php echo $value['Name'];?></option>
-								<?php }  ?>	
-						</select>
-						</div>
-						</div>
-
 						<center>
 							<button id="searchbut" onclick="ajax_search()" type="button" class="btn btn-default">
 							<span class="glyphicon glyphicon-search"></span>
-							ค้นหารถ
+							ค้นหารถ	
 							</button>
+						</center>
+						</div>
 						</form>
+					</div>
 						
-					</center>	
+					
 
+				</div>
+				<div  id="calendar" class="col-md-9">
 				</div>
 			</div>
 			<br><br>
+
+	</div>
 
 			<form class="form-horizontal" id="formReserve" target="sendform" action="<?php echo base_url();?>Reserve/addReserve" method="post">
 
@@ -224,14 +212,14 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label">วันที่เดินทาง</label>
 										<div class="col-md-8 ">
-											<input id="dateS" name="dateS"  class="form-control datetimepicker" type="text" autocomplete="off" required>
+											<input id="dateS" name="dateS"  class="form-control datetimepicker1" type="text" autocomplete="off" required>
 											<span class="help-block"></span>
 										</div>	                    
 									</div>
 									<div class="form-group">
 										<label class="col-md-3 control-label" >วันที่กลับ</label>
 										<div class="col-md-8 ">
-											<input id="dateE" name="dateE" class="form-control datetimepicker" type="text" autocomplete="off" required>
+											<input id="dateE" name="dateE" class="form-control datetimepicker1" type="text" autocomplete="off" required>
 											<span class="help-block"></span>
 										</div>
 									</div>
@@ -268,9 +256,9 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="font-size: 20pt !important" aria-hidden="true">&times;</span></button>
-							<h3 class="modal-title">Reservation</h3>
+							<center><h3 class="modal-title">รายละเอียดการจอง</h3></center>
 						</div>
-						<div class="modal-body form">
+						<div class="modal-body form"><br>
 							<form action="#" id="formEdit" class="form-horizontal">
 								<input type="hidden" value="" id='id' name="id"/>
 								<div class="form-body"> 	                
@@ -347,7 +335,7 @@
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
 			<!-- End Bootstrap modal -->
-		</div>
+	
 		<br><br>
 		<?php include "Footer.php"; ?>
 	</body>
@@ -650,7 +638,29 @@
 	$(document).ready(function() {
 		getDefualt_Calendar();		
 
-		$('.datetimepicker').datetimepicker({
+		$('.dateconnect').datetimepicker({
+			minView: 'month',
+			todayHighlight: true,
+			orientation: "top auto",
+			todayBtn: true,
+			todayHighlight: true, 
+
+		});
+		$('.dateconnect').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#calendar').fullCalendar('changeView', 'agendaDay');
+			$('#calendar').fullCalendar( 'gotoDate', ev.date );
+
+		});
+
+		$('.dateconnect').datetimepicker()
+		.on('changeMonth', function(ev){
+			$('#calendar').fullCalendar('changeView', 'month');
+			$('#calendar').fullCalendar( 'gotoDate', ev.date );
+
+		});
+
+		$('.datetimepicker1').datetimepicker({
 			container:'#reserve',
 			autoclose: true,
 			format: "yyyy-mm-dd hh:ii",
@@ -668,6 +678,17 @@
 			orientation: "top auto",
 			todayBtn: true,
 			todayHighlight: true, 
+
+		});
+
+		$('#dateS2').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#dateE2').datetimepicker('setStartDate', ev.date);
+
+		});
+		$('#dateS').datetimepicker()
+		.on('changeDate', function(ev){
+			$('#dateE').datetimepicker('setStartDate', ev.date);
 
 		});
 

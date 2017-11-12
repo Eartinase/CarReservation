@@ -10,27 +10,36 @@
 	<?php 
 	include "NavbarChooser.php";   
 	?>
-	<div class="container">
+	<div class="container" id="boxCal">
 		<center>
-			<h3>แก้ไขรถ</h3>
+			<h2>แก้ไขรถ</h2>
+			<hr>
 		</center>
+		
 		<form action="<?php echo base_url(); ?>ManageCar/EditOrDel" method="post">
-			เปิดให้จองหรือไม่?
-			<?php 
-			if($openReserve == 0){
+			<div class="row">
+				<div class="col-md-6">
+					<input type="button" class=" btn btn-info" onClick='window.history.back()' value='ย้อนกลับ'> 
+				</div>
+				<div class="col-md-6">
+				<br>
+				เปิดให้จองหรือไม่?
+				<?php 
+				if($openReserve == 0){
+					?>
+					<input type="radio" name="open" value="1"> เปิดให้จอง &nbsp;&nbsp;&nbsp;
+					<input type="radio" name="open" value="0" checked> ไม่เปิดให้จอง
+					<?php
+				}else{
+					?>
+					<input type="radio" name="open" value="1" checked> เปิดให้จอง &nbsp;&nbsp;&nbsp;
+					<input type="radio" name="open" value="0" > ไม่เปิดให้จอง
+					<?php
+				}
 				?>
-				<input type="radio" name="open" value="1"> เปิดให้จอง &nbsp;&nbsp;&nbsp;
-				<input type="radio" name="open" value="0" checked> ไม่เปิดให้จอง
-				<?php
-			}else{
-				?>
-				<input type="radio" name="open" value="1" checked> เปิดให้จอง &nbsp;&nbsp;&nbsp;
-				<input type="radio" name="open" value="0" > ไม่เปิดให้จอง
-				<?php
-			}
-			?>
-			<br><br>
-
+				<br><br>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-6">
 					ทะเบียน: 

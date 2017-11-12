@@ -23,9 +23,9 @@
   <?php 
   include "NavbarChooser.php";   
   ?>
-<h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
-  <div class="container">
 
+  <div class="container" id='boxCal'>
+  <h2 style="text-align:center;font-size:36px">รายงานขอเบิกงบประมาณ</h2><hr>
     
     <p style="text-align:center;font-size:20px">
       <span style="text-align:center;font-size:20px;font-weight: bold;">ชื่อ-นามสกุลผู้จอง</span> 
