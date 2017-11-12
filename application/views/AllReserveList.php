@@ -26,16 +26,20 @@ body{
 .head{
 	font-weight: bold;
 }
+#boxCal{
+	max-width: 95%;
+}
 </style>
-<body  style="background-color:#fafafa">
+<body >
 	
 	<?php 
 	include "NavbarChooser.php";
 	?>
 	
 	
-	<h1 align="center">การจองทั้งหมด</h1><hr>
-	<div class = "container-fluid"> 		
+	
+	<div class = "container-fluid" id="boxCal"> 
+	<h1 align="center">การจองทั้งหมด</h1><hr>		
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
 				<tr>

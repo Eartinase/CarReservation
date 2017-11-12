@@ -25,6 +25,9 @@
 	.toolbar {
     	float: left;
 	}
+	#boxCal{
+		max-width: 95%;
+	}
 </style>
 </head>
 <body >
