@@ -17,18 +17,13 @@
 
 #formRequest{
 	padding : 15px;
-	padding-top: 25px;
-	border-radius: 3%;
-	border: solid;
-	border-color: #ff8000;
+	background-color: #edece8;
 	
 }
 .reccommendCars{
+	color: white;
 	position: absolute;
 	z-index: 1000;
-	padding: 10px;
-	border: 10px solid white;
-	background-color: #31bca9;
 	margin-left: -1000px;
 	margin-top: 20px;
 	width: 600px;
@@ -64,6 +59,7 @@
   left: -90px;
 }
 
+
 </style>
 <body>
 	<?php 
@@ -75,9 +71,12 @@
 		<div>
 			<div class="col-md-4" >
 				<div id="plus"><span><b>แนะนำรถ</b><br>&nbsp;&nbsp;<i class="fa fa-plus"></i></span></div>
-					<div class="reccommendCars" >
+					<div class="panel panel-default reccommendCars" style="border: 3px solid #31bca9;">
+					<div class="panel-heading" style="padding:3px ; background-color: #31bca9 ; border: 5px solid #31bca9 ; border-radius: 0px ">
 					<button type="button" class="close" id="closeRec" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<p> รถแนะนำในระบบที่สามารถจองได้ </p>
+						<center><h4> รถแนะนำในระบบที่สามารถจองได้ </h4></center>
+					</div>
+					<div class="panel-body" style="padding:10px ; ">	
 						<table id="rec" class="table table-bordered" >
 							<thead>
 								<tr>
@@ -95,8 +94,11 @@
 							</tbody>
 						</table>
 					</div>
+					</div>
+				<br>
 				<form class="form-horizontal" id="formRequest"  action="#" method="get" accept-charset="utf-8">
-					<center><legend>คำร้องขอจ้างเหมารถจากภายนอก</legend></center>
+					<center><div style="background-color: #ff8000; padding: 3px 2px ; margin-top: -30px ; width: 90%"><h4>คำร้องขอจ้างเหมารถจากภายนอก</h4></div></center>
+					<br>
 					<div class="form-group" >
 						<label for="cartype" class="col-md-4 control-label" >ประเภทรถ </label>
 						<div class="col-md-7" >
@@ -140,7 +142,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label">เหตุผล</label>
 						<div>
-							<label  class="radio-inline col-md-4 " style='margin: 0'><input  type="radio" id="radio1" value="ไม่มีรถว่าง" name="reason" > ไม่มีรถในระบบที่ว่าง</label>
+							<label  class="radio-inline col-md-4 " style='margin: 0'><input  type="radio" id="radio1" value="ไม่มีรถว่าง" name="reason" > ไม่มีรถว่างในระบบ</label>
 							<label class="radio-inline col-md-4" style='margin: 0' ><input   type="radio" id="radio2" value="0" name="reason" > เหตุผลอื่นๆ  </label>
 							<br><br>
 						</div>
@@ -161,7 +163,7 @@
 				</div>
 				<div class="col-md-8" >
 					<div>
-						<h3>ประวัติคำร้องขอใช้รถภายนอก</h3>			
+						<center><h3>ประวัติคำร้องขอใช้รถภายนอก</h3></center>			
 						<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 							<thead>
 								<tr>
@@ -194,7 +196,7 @@
 							<h4 class="modal-title" id="myModalLabel">จองรถ</h4>
 						</div>
 						<div class="modal-body form">
-
+							<br>
 							<input  name="plateLicense" id="plateLicense" class="form-control" style="display: none" >
 
 							<div id="form-body">

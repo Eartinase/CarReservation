@@ -28,10 +28,8 @@ if (isset($this->session->userdata['logged_in'])) {
 	$name = ($this->session->userdata['logged_in']['name']);
 	$department = ($this->session->userdata['logged_in']['department']);
 	$role = ($this->session->userdata['logged_in']['role']);
-	if($role == "driver"){
-		include "NavbarDriverLogged_in.php";
-	}else if($role=="admin"){
-		include "NavbarAdmin.php";
+	if($role == "driver" || $role=="admin"){
+		redirect($base_url."User_Authentication/logout");
 	}else{
 		include "NavbarUserLogged_in.php";
 	}			

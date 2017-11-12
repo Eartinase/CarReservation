@@ -26,43 +26,36 @@ p{
 .imgcon{
 	text-align: center;
 }
-.sidenav {
-	height: 100%;
-	width: 200px;
-	position: fixed;
-	z-index: 1;
-	top: 30%;
-	left: 0;
-  /*
-  background-color: #111;
-  */
 
-  overflow-x: hidden;
-  padding-top: 20px;
+.sidenav {
+	position: fixed;	
+	top:10%;
+	margin-left: 0px;
+	width: 170px;
 }
-.snav{
-	background-color: lightblue; 
+.but{
+	background-color: #fcd522;
+	border-radius: 0px;
+	color:black;
+	margin-bottom: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
 </style>
 <body >
-	
 	<?php 
 	include "NavbarChooser.php";
 	?>	
 	<div class="sidenav">
-		<a href="#page1" class="snav">จองรถ</a>
-		<br><br>
-		<a href="#page2" class="snav">ขอใช้รถภายนอก</a>
-		<br><br>
-		<a href="#page3" class="snav">ประวัติการจอง</a>
-		<br><br>
-		<a href="#page4" class="snav">ประวัติการใช้งาน</a>		
+		<a href="#page1" class="snav"><button class="but btn">จองรถ</button></a>
+		<a href="#page2" class="snav"><button class="but btn">ขอใช้รถภายนอก</button></a>
+		<a href="#page3" class="snav"><button class="but btn">ประวัติการจอง</button></a>
+		<a href="#page4" class="snav"><button class="but btn">ประวัติการใช้งาน</button></a>		
 		
 	</div>
-	<div class="container">
+	<div class="container" id ="boxCal">
 		<div id="page1">
-			<h1 align="center">คู่มือการใช้งาน</h1>
+			<h1 align="center">คู่มือการใช้งาน</h1><hr>
 			<h2 align="center">จองรถ</h2>
 			
 			<div class="imgcon">

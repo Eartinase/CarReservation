@@ -27,7 +27,7 @@
 	</style>
 </head>
 <body>
-	<?php 
+<?php 
 
 	include "NavbarAdmin.php";
 	?>

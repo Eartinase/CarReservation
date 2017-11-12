@@ -35,6 +35,7 @@
     
     }
 
+
   .fc-widget-header{
       background-color:#FCD422;
   }
@@ -70,7 +71,9 @@
     overflow: hidden;
     
   }
-
+  h1,h2,h3{
+    margin: 0PX;
+  }
   .popover{
       max-height: 70px;
       width: 230px;
@@ -78,7 +81,7 @@
   #boxCal{
       background-color: white;
       padding: 60px;
-      margin-top: -30px;
+      ;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
       min-height: 650px;
   }

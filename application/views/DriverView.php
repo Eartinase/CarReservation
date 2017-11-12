@@ -38,7 +38,7 @@
 <h1 align="center">
 	ข้อมูลการขับรถย้อนหลัง
 </h1><hr>
-	
+	<p style="color:red">* หากต้องการแก้ไขข้อมูลกรุณาติดต่อเจ้าหน้าที่</p>
 	<div>			
 		<table  id="table" class="table table-striped table-bordered table-hover" width="100%">
 			<thead>
@@ -84,7 +84,7 @@
 		</table>
 	</div>	
 
-	<p style="color:red">* หากต้องการแก้ไขข้อมูลกรุณาติดต่อเจ้าหน้าที่</p>
+	
 	
 <script>
 	function changeData(license) {
