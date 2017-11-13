@@ -97,9 +97,12 @@
         <br>
         <p style="text-align: right;margin-right:20%">วันที่ออกเอกสาร <?php echo date("d-M-Y");?></p>
         <div class="row">
-          <div style="text-align: right;margin-right: 16%">
+            <div class="col-md-2 col-md-offset-7">
             <button class="btn btn-success" id="excel">ดาวน์โหลดเป็น Excel</button>
-            <div class="col-md-9" style="margin-left: 12%">
+            </div>
+            <div class="col-md-2" >
+              
+            
               <form action="<?php echo base_url()?>GenReport/genPDFCost" method="post" target="_blank"> 
                 <input type="text" name="carT" value="<?php echo $carTypeId ?>" hidden> 
                 <input type="text" name="reserveId" value="<?php echo $reserveId ?>" hidden> 
@@ -107,7 +110,6 @@
                 <button class="btn btn-danger" type="submit">ดาวน์โหลดเป็น PDF</button>
               </form>
             </div>
-          </div> 
         </div>
       </div>
       <script>

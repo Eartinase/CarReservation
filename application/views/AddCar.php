@@ -10,7 +10,7 @@
 	<?php 
 	include "NavbarChooser.php";   
 	?>
-	<div class="container">
+	<div class="container" id="boxCal">
 		<center>
 			<h3>เพิ่มรถ</h3>
 		</center>
